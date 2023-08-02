@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpm1h02k47x6e"]
+
+[ext_resource type="Script" path="res://board/board.gd" id="1_xgs1u"]
+[ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="2_l1sj6"]
+
+[node name="Board" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_xgs1u")
+
+[node name="DrawPileIcon" type="Sprite2D" parent="."]
+position = Vector2(144, 896)
+rotation = 1.5708
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_l1sj6")
+
+[node name="DiscardPileIcon" type="Sprite2D" parent="."]
+position = Vector2(384, 896)
+rotation = 1.5708
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_l1sj6")
+
+[node name="CardMarkers" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="CardMarkers"]
+position = Vector2(76, 428)
+
+[node name="Marker2D2" type="Marker2D" parent="CardMarkers"]
+position = Vector2(204, 428)
+
+[node name="Marker2D3" type="Marker2D" parent="CardMarkers"]
+position = Vector2(332, 428)
+
+[node name="Marker2D4" type="Marker2D" parent="CardMarkers"]
+position = Vector2(460, 428)
+
+[node name="Marker2D5" type="Marker2D" parent="CardMarkers"]
+position = Vector2(76, 590)
+
+[node name="Marker2D6" type="Marker2D" parent="CardMarkers"]
+position = Vector2(204, 590)
+
+[node name="Marker2D7" type="Marker2D" parent="CardMarkers"]
+position = Vector2(332, 590)
+
+[node name="Marker2D8" type="Marker2D" parent="CardMarkers"]
+position = Vector2(460, 590)
+
+[node name="Marker2D9" type="Marker2D" parent="CardMarkers"]
+position = Vector2(76, 752)
+
+[node name="Marker2D10" type="Marker2D" parent="CardMarkers"]
+position = Vector2(204, 752)
+
+[node name="Marker2D11" type="Marker2D" parent="CardMarkers"]
+position = Vector2(332, 752)
+
+[node name="Marker2D12" type="Marker2D" parent="CardMarkers"]
+position = Vector2(460, 752)
