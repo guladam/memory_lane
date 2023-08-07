@@ -10,7 +10,7 @@ extends Resource
 @export var card_front: Texture
 ## A unique ID for the card, used for checking matches.
 @export var id: String
-## The [Effect] matching these cards together has.
+## The [Effect] this card creates when paired.
 @export var effect: Effect
 
 

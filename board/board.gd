@@ -8,6 +8,9 @@ signal matched(card: CardData)
 signal mismatched
 ## Emitted when all pairs were found and the board is empty.
 signal emptied
+## Emitted when the [Card]s from the board are discarded.
+signal discarded(cards: Array[CardData])
+
 
 ## [Card] scene used for spawning the cards in place.
 @onready var card_scene := preload("res://cards/card.tscn")
@@ -21,6 +24,10 @@ signal emptied
 @onready var discard_pile_icon: Sprite2D = $DiscardPileIcon
 ## Node holding the spawn position markers for the [Card]s.
 @onready var card_markers: Node2D = $CardMarkers
+
+
+func _ready() -> void:
+	Events.effect_created.connect(_on_effect_created)
 
 
 ## Spawns [Card]s in place based on an array of [CardData].
@@ -38,6 +45,32 @@ func spawn_cards(cards: Array[CardData]) -> void:
 		await get_tree().create_timer(0.15).timeout
 		
 	cards_on_board = cards.size()
+
+
+func discard_board() -> void:
+	var cards: Array[Card] = []
+	
+	for i in range(card_markers.get_child_count()):
+		var marker = card_markers.get_child(i)
+		if marker.get_child_count() == 0:
+			continue
+			
+		var card = marker.get_child(0)
+		cards.append(card)
+		
+		if cards_on_board > 1:
+			card.animate_discard(discard_pile_icon.global_position)
+			await get_tree().create_timer(0.15).timeout
+		else:
+			await card.animate_discard(discard_pile_icon.global_position)
+		
+		cards_on_board -= 1
+			
+	discarded.emit(cards.map(func(card: Card): return card.card))
+	
+	for card in cards:
+		if is_instance_valid(card):
+			card.queue_free()
 
 
 ## Returns [code]true[/code] if there is a match made on the board.
@@ -61,6 +94,7 @@ func _on_match() -> void:
 	matched.emit(flipped_cards[0].card)
 	flipped_cards[0].animate_match(flipped_cards[1].global_position, discard_pile_icon.global_position)
 	await flipped_cards[1].animate_match(flipped_cards[0].global_position, discard_pile_icon.global_position)
+	Events.effect_created.emit(flipped_cards[0].card.effect)
 	flipped_cards[0].queue_free()
 	flipped_cards[1].queue_free()
 	flipped_cards.clear()
@@ -101,3 +135,15 @@ func _on_card_flipped(_card: Card) -> void:
 ## Called when a [Card] is flipped back.
 func _on_card_unflipped(card: Card) -> void:
 	flipped_cards.erase(card)
+
+
+## Called when an [Effect] is created by matching 2 [Card]s.
+func _on_effect_created(effect: Effect) -> void:
+	if not effect:
+		return
+	
+	if effect.target_type != Effect.TargetType.BOARD:
+		return
+	
+	effect.setup(self)
+	effect.apply_effect()

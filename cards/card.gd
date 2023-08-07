@@ -69,6 +69,17 @@ func animate_match(pair_position: Vector2, discard_position: Vector2) -> void:
 	await t.finished
 
 
+## Tween animation when a card is discarded.
+## This method is a coroutine as it waits for the tween animation to complete.
+## [param discard_position] is the position of the Discard Pile.
+func animate_discard(discard_position: Vector2) -> void:
+	z_index = 99
+	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	t.tween_property(self, "global_position", discard_position, 0.3)
+	t.parallel().tween_property(self, "scale", Vector2(0.5, 0.5), 0.3)
+	await t.finished
+
+
 ## Sets the data of the card to [param new_card_data].
 func _set_card(new_card_data: CardData) -> void:
 	if not is_inside_tree():

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://ccwxdf2rlwc4q"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_2oxgo"]
+[ext_resource type="Script" path="res://card_effects/board_discard_effect.gd" id="1_m4xp8"]
+
+[resource]
+script = ExtResource("1_2oxgo")
+target_type = 0
+effect_name = "discard"
+effect_code = ExtResource("1_m4xp8")

@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://b0hucd36es5rb"]
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://b0hucd36es5rb"]
 
 [ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="1_oub3v"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_60kcm"]
 [ext_resource type="Texture2D" uid="uid://onx7ra1n5vg8" path="res://temp/card_104.png" id="2_s035s"]
+[ext_resource type="Resource" uid="uid://ccwxdf2rlwc4q" path="res://card_effects/board_discard_effect.tres" id="3_by5qf"]
 
 [resource]
 script = ExtResource("2_60kcm")
 card_back = ExtResource("1_oub3v")
 card_front = ExtResource("2_s035s")
 id = "red_arrow"
+effect = ExtResource("3_by5qf")
