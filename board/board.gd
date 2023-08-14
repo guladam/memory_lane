@@ -2,75 +2,115 @@
 class_name Board
 extends Node2D
 
-## Emitted when two [Card]s are matched together correctly.
-signal matched(card: CardData)
-## Emitted when the player tried to match 2 different [Card]s.
-signal mismatched
-## Emitted when all pairs were found and the board is empty.
-signal emptied
-## Emitted when the [Card]s from the board are discarded.
-signal discarded(cards: Array[CardData])
 
-
-## [Card] scene used for spawning the cards in place.
-@onready var card_scene := preload("res://cards/card.tscn")
+## This array is representing the current [Card]s.
+@onready var current_cards := []
 ## This array is tracking the currently flipped [Card](s).
 @onready var flipped_cards := []
-## Tracks the current number of [Card]s on the board.
-@onready var cards_on_board := 0
-## Interactable icon of the draw pile
-@onready var draw_pile_icon: Sprite2D = $DrawPileIcon
-## Interactable icon of the discard pile
-@onready var discard_pile_icon: Sprite2D = $DiscardPileIcon
+## Tracks if the board is animating (e.g. drawing or discarding)
+## This is used to prevent flipping [Card]s over while animating.
+@onready var animating := false
+## [Card] scene used for spawning the cards in place.
+@onready var card_scene := preload("res://cards/card.tscn")
+## Position of the draw pile. Needed for [Card] animations.
+@onready var draw_pile_pos: Vector2
+## Position of the discard pile. Needed for [Card] animations.
+@onready var discard_pile_pos: Vector2
 ## Node holding the spawn position markers for the [Card]s.
-@onready var card_markers: Node2D = $CardMarkers
+@onready var card_markers: Array[Node] = $CardMarkers.get_children()
+## Node holding [Card]s.
+@onready var cards: Node2D = $Cards
 
 
 func _ready() -> void:
 	Events.effect_created.connect(_on_effect_created)
+	Events.card_flip_started.connect(_on_card_flip_started)
+	Events.card_flipped.connect(_on_card_flipped)
+	Events.card_unflipped.connect(_on_card_unflipped)
+
+
+## This method is used for dependency injection.
+## The board needs the position of the draw and discard piles for 
+## [Card] animations.
+func setup(_draw_pile_pos: Vector2, _discard_pile_pos: Vector2) -> void:
+	draw_pile_pos = _draw_pile_pos
+	discard_pile_pos = _discard_pile_pos
+	
+	current_cards.resize(12)
+	current_cards.fill(null)
 
 
 ## Spawns [Card]s in place based on an array of [CardData].
-func spawn_cards(cards: Array[CardData]) -> void:
-	for i in range(cards.size()):
-		var new_card = card_scene.instantiate()
-		var marker = card_markers.get_child(i)
-		marker.add_child(new_card)
-		
-		new_card.card = cards[i]
-		new_card.flipped.connect(_on_card_flipped)
-		new_card.unflipped.connect(_on_card_unflipped)
-		new_card.input_event.connect(_on_card_input_event.bind(new_card))
-		new_card.animate_draw(draw_pile_icon.global_position, marker.global_position)
-		await get_tree().create_timer(0.15).timeout
-		
-	cards_on_board = cards.size()
-
-
-func discard_board() -> void:
-	var cards: Array[Card] = []
+## This is a coroutine because it waits for the last card draw 
+## animation to finish.
+func spawn_cards(new_cards: Array[CardData]) -> void:
+	animating = true
 	
-	for i in range(card_markers.get_child_count()):
-		var marker = card_markers.get_child(i)
-		if marker.get_child_count() == 0:
-			continue
-			
-		var card = marker.get_child(0)
-		cards.append(card)
+	for i in range(new_cards.size()):
+		var j = i
+		while _is_space_occupied(j) and j < current_cards.size():
+			j += 1
 		
-		if cards_on_board > 1:
-			card.animate_discard(discard_pile_icon.global_position)
+		var new_card = card_scene.instantiate()
+		cards.add_child(new_card)
+		new_card.card = new_cards[i]
+		new_card.input_event.connect(_on_card_input_event.bind(new_card))
+		current_cards[j] = new_card
+		
+		if i < new_cards.size()-1:
+			new_card.animate_draw(draw_pile_pos, card_markers[j].global_position)
 			await get_tree().create_timer(0.15).timeout
 		else:
-			await card.animate_discard(discard_pile_icon.global_position)
+			await new_card.animate_draw(draw_pile_pos, card_markers[j].global_position)
 		
-		cards_on_board -= 1
-			
-	discarded.emit(cards.map(func(card: Card): return card.card))
+	animating = false
+
+
+## Discards the entire current board.
+func discard_board() -> void:
+	var last_card := _get_last_card_index()
+		
+	# If the board is already empty, we can return
+	if last_card == -1:
+		return
 	
-	for card in cards:
-		if is_instance_valid(card):
-			card.queue_free()
+	animating = true
+	
+	for i in range(current_cards.size()):
+		if not _is_space_occupied(i):
+			continue
+			
+		var card = current_cards[i]
+		if card and is_instance_valid(card):
+			if i != last_card:
+				card.animate_discard(discard_pile_pos)
+				await get_tree().create_timer(0.15).timeout
+			else:
+				await card.animate_discard(discard_pile_pos)
+	
+	current_cards.fill(null)
+	animating = false
+	Events.board_emptied.emit()
+
+
+## Returns [code]true[/code] if the [param n]th space is occupied.
+func _is_space_occupied(n) -> bool:
+	return current_cards[n] != null
+
+
+## Returns [code]true[/code] if the board is currently empty.
+func _is_board_empty() -> bool:
+	var non_empty_elements = current_cards.filter(func(card): return card != null)
+	return non_empty_elements.size() == 0
+
+
+## Returns the index of the last [Card] on the board.
+func _get_last_card_index() -> int:
+	var last_card := current_cards.size() - 1
+	while not _is_space_occupied(last_card) and last_card > 0:
+		last_card -= 1
+		
+	return last_card
 
 
 ## Returns [code]true[/code] if there is a match made on the board.
@@ -91,39 +131,43 @@ func _check_pair() -> void:
 
 ## Called when there is a matched pair of [Card]s on the board.
 func _on_match() -> void:
-	matched.emit(flipped_cards[0].card)
-	flipped_cards[0].animate_match(flipped_cards[1].global_position, discard_pile_icon.global_position)
-	await flipped_cards[1].animate_match(flipped_cards[0].global_position, discard_pile_icon.global_position)
+	flipped_cards[0].animate_match(flipped_cards[1].global_position, discard_pile_pos)
+	await flipped_cards[1].animate_match(flipped_cards[0].global_position, discard_pile_pos)
+	
+	current_cards[current_cards.find(flipped_cards[0])] = null
+	current_cards[current_cards.find(flipped_cards[1])] = null
+	
 	Events.effect_created.emit(flipped_cards[0].card.effect)
+	
 	flipped_cards[0].queue_free()
 	flipped_cards[1].queue_free()
 	flipped_cards.clear()
-	cards_on_board -= 2
 	
-	if cards_on_board <= 0:
-		emptied.emit()
+	if _is_board_empty():
+		Events.board_emptied.emit()
 
 
 ## Called when two different [Card]s are flipped over.
 func _on_mismatch() -> void:
-	mismatched.emit()
+	Events.cards_mismatched.emit()
 	await flipped_cards[0].unflip()
 	await flipped_cards[0].unflip()
 
 
 ## Called when the [Card]s are clicked. The cards can't handle
-## this event by themselved because we need to make sure that
+## this event by themselves because we need to make sure that
 ## no more than 2 cards are flipped at any given time.
 func _on_card_input_event(_viewport: Node, event: InputEvent, _shape_idx: int, card: Card) -> void:
-	if flipped_cards.size() == 2:
+	if flipped_cards.size() == 2 or animating:
 		return
 
 	if event is InputEventMouseButton and event.is_pressed():
-		if card.is_flipped:
-			card.unflip()
-		else:
-			flipped_cards.append(card)
-			card.flip()
+		card.flip()
+
+
+## Called when a [Card] is started flipping over.
+func _on_card_flip_started(card: Card) -> void:
+	flipped_cards.append(card)
 
 
 ## Called when a [Card] is flipped over.

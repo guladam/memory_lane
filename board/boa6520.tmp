@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpm1h02k47x6e"]
+
+[ext_resource type="PackedScene" uid="uid://b864ttbx7p5vk" path="res://cards/card.tscn" id="1_8h1u6"]
+[ext_resource type="Script" path="res://board/board.gd" id="1_xgs1u"]
+[ext_resource type="Resource" uid="uid://b0hucd36es5rb" path="res://temp/testcard1.tres" id="2_0vak5"]
+[ext_resource type="Resource" uid="uid://c1l2bnjtal2uc" path="res://temp/testcard2.tres" id="3_uqb8n"]
+[ext_resource type="Resource" uid="uid://75qrcaqkjir8" path="res://temp/testcard3.tres" id="4_b8jl6"]
+[ext_resource type="Resource" uid="uid://bxb1epfykt48n" path="res://temp/testcard4.tres" id="5_wyejd"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_xgs1u")
+
+[node name="Card" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(102, 122)
+card = ExtResource("2_0vak5")
+
+[node name="Card2" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(249, 124)
+card = ExtResource("3_uqb8n")
+
+[node name="Card3" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(396, 125)
+card = ExtResource("2_0vak5")
+
+[node name="Card4" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(102, 283)
+card = ExtResource("3_uqb8n")
+
+[node name="Card5" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(249, 283)
+card = ExtResource("4_b8jl6")
+
+[node name="Card6" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(396, 286)
+card = ExtResource("3_uqb8n")
+
+[node name="Card7" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(99, 451)
+card = ExtResource("2_0vak5")
+
+[node name="Card8" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(247, 450)
+card = ExtResource("4_b8jl6")
+
+[node name="Card9" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(397, 451)
+card = ExtResource("3_uqb8n")
+
+[node name="Card10" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(101, 618)
+card = ExtResource("2_0vak5")
+
+[node name="Card11" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(250, 617)
+card = ExtResource("5_wyejd")
+
+[node name="Card12" parent="." instance=ExtResource("1_8h1u6")]
+position = Vector2(399, 617)
+card = ExtResource("5_wyejd")

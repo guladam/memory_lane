@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cegivhvq2dd30"]
+
+[ext_resource type="Script" path="res://piles/discard_pile.gd" id="1_xx1fb"]
+[ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="2_qyb4x"]
+
+[node name="DiscardPile" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_xx1fb")
+
+[node name="DiscardPileIcon" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_qyb4x")
+
+[node name="CardsLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 30.0
+offset_right = 20.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

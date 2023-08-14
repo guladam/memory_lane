@@ -1,23 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://l48bpn0txwjb"]
+[gd_scene load_steps=8 format=3 uid="uid://l48bpn0txwjb"]
 
 [ext_resource type="Script" path="res://screens/level.gd" id="1_cmfot"]
 [ext_resource type="PackedScene" uid="uid://cpm1h02k47x6e" path="res://board/board.tscn" id="1_da4pj"]
 [ext_resource type="Resource" uid="uid://c8nrc1hufo7nl" path="res://temp/test_deck.tres" id="2_l4jg6"]
-[ext_resource type="Script" path="res://piles/draw_pile.gd" id="4_8fn1m"]
-[ext_resource type="Script" path="res://piles/discard_pile.gd" id="5_fjo8x"]
+[ext_resource type="PackedScene" uid="uid://djtj8f4tg8dk2" path="res://creatures/creatures.tscn" id="3_lmivi"]
+[ext_resource type="PackedScene" uid="uid://du5hommjpsvea" path="res://piles/draw_pile.tscn" id="4_iejax"]
+[ext_resource type="PackedScene" uid="uid://cegivhvq2dd30" path="res://piles/discard_pile.tscn" id="5_73kb1"]
+[ext_resource type="PackedScene" uid="uid://c7r675rnocnfe" path="res://debugging/debug_window.tscn" id="6_yafv1"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_cmfot")
 deck = ExtResource("2_l4jg6")
 
-[node name="Creatures" type="ColorRect" parent="."]
-offset_right = 539.0
-offset_bottom = 320.0
+[node name="Creatures" parent="." instance=ExtResource("3_lmivi")]
 
 [node name="Board" parent="." instance=ExtResource("1_da4pj")]
 
-[node name="DrawPile" type="Node" parent="."]
-script = ExtResource("4_8fn1m")
+[node name="DrawPile" parent="." instance=ExtResource("4_iejax")]
+position = Vector2(144, 896)
 
-[node name="DiscardPile" type="Node" parent="."]
-script = ExtResource("5_fjo8x")
+[node name="DiscardPile" parent="." instance=ExtResource("5_73kb1")]
+position = Vector2(384, 896)
+
+[node name="DebugWindow" parent="." instance=ExtResource("6_yafv1")]
