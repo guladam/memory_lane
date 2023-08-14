@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7r675rnocnfe"]
+[gd_scene load_steps=3 format=3 uid="uid://c7r675rnocnfe"]
 
 [ext_resource type="PackedScene" uid="uid://c8veoc8fba8l0" path="res://debugging/time_scale.tscn" id="1_0y8b5"]
+[ext_resource type="Script" path="res://debugging/player.gd" id="2_wtd20"]
 
 [node name="DebugWindow" type="PanelContainer"]
 offset_left = 16.0
@@ -13,3 +14,28 @@ layout_mode = 2
 
 [node name="TimeScale" parent="Items" instance=ExtResource("1_0y8b5")]
 layout_mode = 2
+
+[node name="Player" type="HBoxContainer" parent="Items"]
+layout_mode = 2
+script = ExtResource("2_wtd20")
+
+[node name="PlayerDmg" type="Button" parent="Items/Player"]
+layout_mode = 2
+text = "take 1 dmg"
+
+[node name="PlayerHeal" type="Button" parent="Items/Player"]
+layout_mode = 2
+text = "heal 1"
+
+[node name="PlayerMaxHigh" type="Button" parent="Items/Player"]
+layout_mode = 2
+text = "maxhp +1"
+
+[node name="PlayerMaxLow" type="Button" parent="Items/Player"]
+layout_mode = 2
+text = "maxhp -1"
+
+[connection signal="pressed" from="Items/Player/PlayerDmg" to="Items/Player" method="_on_player_dmg_pressed"]
+[connection signal="pressed" from="Items/Player/PlayerHeal" to="Items/Player" method="_on_player_heal_pressed"]
+[connection signal="pressed" from="Items/Player/PlayerMaxHigh" to="Items/Player" method="_on_player_max_high_pressed"]
+[connection signal="pressed" from="Items/Player/PlayerMaxLow" to="Items/Player" method="_on_player_max_low_pressed"]

@@ -30,6 +30,13 @@ signal card_unflipped(card: Card)
 signal cards_mismatched
 ## Emitted when the [Board] is emptied and needs new [Card]s.
 signal board_emptied
+## Emitted when the deck is reshuffled because there
+## were no more cards left in the draw pile.
+signal draw_pile_reshuffled(cards_still_needed: int)
+## Emitted when a card reshuffle animation is started.
+signal card_reshuffle_anim_started
+## Emitted when a card reshuffle animation has finished.
+signal card_reshuffle_anim_finished
 
 ## Emitted when a [Card] produces an [Effect].
 signal effect_created(effect: Effect)

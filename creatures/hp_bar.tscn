@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b8sc83m582p45"]
+
+[node name="HPBar" type="ColorRect"]
+custom_minimum_size = Vector2(0, 16)
+offset_bottom = 16.0
+size_flags_horizontal = 3
+color = Color(0.372549, 0.639216, 0.454902, 1)

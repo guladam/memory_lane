@@ -16,7 +16,7 @@ func _ready() -> void:
 	discard_pile.setup(deck)
 	draw_pile.setup(deck)
 	
-	draw_pile.reshuffled.connect(_on_board_reshuffled)
+	Events.draw_pile_reshuffled.connect(_on_draw_pile_reshuffled)
 	Events.board_emptied.connect(_on_board_emptied)
 	
 	board.setup(draw_pile.global_position, discard_pile.global_position)
@@ -32,18 +32,10 @@ func _on_board_emptied() -> void:
 		draw_pile.reshuffle(cards, 12)
 
 
-## Called when the board is discarded.
-## [param cards] is an array of [CardData]
-func _on_board_discarded(cards: Array) -> void:
-	# If this is the last match, we can ignore it
-	# because the board is emptied anyway
-	if cards.size() <= 1:
-		return
-		
-	_on_board_emptied()
-
-
-func _on_board_reshuffled(remaining_cards: int) -> void:
+## Called when the draw pile gets reshuffled.
+## First, it animates the cards reshuffling from the discard pile.
+## Then, it draws the remaining cards.
+func _on_draw_pile_reshuffled(remaining_cards: int) -> void:
 	await get_tree().create_timer(0.2).timeout
 	await discard_pile.empty(draw_pile.global_position)
 	await get_tree().create_timer(0.4).timeout

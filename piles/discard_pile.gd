@@ -25,8 +25,6 @@ func setup(_deck: Deck) -> void:
 
 ## Empties the discard pile. Used when the deck needs reshuffling.
 func empty(draw_pile_position: Vector2) -> void:
-	print(cards.size())
-	
 	var tween = get_tree().create_tween()
 	for i in range(cards.size()):
 		tween.tween_callback(_animate_reshuffled_card.bind(draw_pile_position, self.global_position))
@@ -37,6 +35,7 @@ func empty(draw_pile_position: Vector2) -> void:
 	cards.clear()
 
 
+## Animates a card to reshuffle towards the draw pile.
 func _animate_reshuffled_card(draw_pile_position: Vector2, discard_pile_position: Vector2) -> void:
 	var card_anim: Path2D = reshuffle_card.instantiate()
 	add_child(card_anim)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://l48bpn0txwjb"]
+[gd_scene load_steps=9 format=3 uid="uid://l48bpn0txwjb"]
 
 [ext_resource type="Script" path="res://screens/level.gd" id="1_cmfot"]
 [ext_resource type="PackedScene" uid="uid://cpm1h02k47x6e" path="res://board/board.tscn" id="1_da4pj"]
 [ext_resource type="Resource" uid="uid://c8nrc1hufo7nl" path="res://temp/test_deck.tres" id="2_l4jg6"]
 [ext_resource type="PackedScene" uid="uid://djtj8f4tg8dk2" path="res://creatures/creatures.tscn" id="3_lmivi"]
 [ext_resource type="PackedScene" uid="uid://du5hommjpsvea" path="res://piles/draw_pile.tscn" id="4_iejax"]
+[ext_resource type="PackedScene" uid="uid://b6k5gqw3dbwew" path="res://player/player.tscn" id="4_wob1k"]
 [ext_resource type="PackedScene" uid="uid://cegivhvq2dd30" path="res://piles/discard_pile.tscn" id="5_73kb1"]
 [ext_resource type="PackedScene" uid="uid://c7r675rnocnfe" path="res://debugging/debug_window.tscn" id="6_yafv1"]
 
@@ -13,6 +14,9 @@ script = ExtResource("1_cmfot")
 deck = ExtResource("2_l4jg6")
 
 [node name="Creatures" parent="." instance=ExtResource("3_lmivi")]
+
+[node name="Player" parent="Creatures" instance=ExtResource("4_wob1k")]
+position = Vector2(80, 240)
 
 [node name="Board" parent="." instance=ExtResource("1_da4pj")]
 
@@ -23,3 +27,8 @@ position = Vector2(144, 896)
 position = Vector2(384, 896)
 
 [node name="DebugWindow" parent="." instance=ExtResource("6_yafv1")]
+
+[node name="Player" parent="DebugWindow/Items" index="1" node_paths=PackedStringArray("player")]
+player = NodePath("../../../Creatures/Player")
+
+[editable path="DebugWindow"]

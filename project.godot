@@ -34,6 +34,11 @@ debug_discard={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="HitBox"
+2d_physics/layer_2="HurtBox"
+
 [rendering]
 
 renderer/rendering_method="mobile"
