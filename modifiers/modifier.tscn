@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6w34hc4bemxj"]
+
+[ext_resource type="Script" path="res://modifiers/modifier.gd" id="1_mqd7t"]
+
+[node name="Modifier" type="Node"]
+script = ExtResource("1_mqd7t")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

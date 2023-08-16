@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7r675rnocnfe"]
+[gd_scene load_steps=4 format=3 uid="uid://c7r675rnocnfe"]
 
 [ext_resource type="PackedScene" uid="uid://c8veoc8fba8l0" path="res://debugging/time_scale.tscn" id="1_0y8b5"]
 [ext_resource type="Script" path="res://debugging/player.gd" id="2_wtd20"]
+[ext_resource type="Script" path="res://debugging/enemies.gd" id="3_m650b"]
 
 [node name="DebugWindow" type="PanelContainer"]
 offset_left = 16.0
@@ -35,7 +36,16 @@ text = "maxhp +1"
 layout_mode = 2
 text = "maxhp -1"
 
+[node name="Enemies" type="HBoxContainer" parent="Items"]
+layout_mode = 2
+script = ExtResource("3_m650b")
+
+[node name="EnemyTurn" type="Button" parent="Items/Enemies"]
+layout_mode = 2
+text = "do enemy turn"
+
 [connection signal="pressed" from="Items/Player/PlayerDmg" to="Items/Player" method="_on_player_dmg_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerHeal" to="Items/Player" method="_on_player_heal_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerMaxHigh" to="Items/Player" method="_on_player_max_high_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerMaxLow" to="Items/Player" method="_on_player_max_low_pressed"]
+[connection signal="pressed" from="Items/Enemies/EnemyTurn" to="Items/Enemies" method="_on_enemy_turn_pressed"]

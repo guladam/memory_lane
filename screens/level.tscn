@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://l48bpn0txwjb"]
+[gd_scene load_steps=10 format=3 uid="uid://l48bpn0txwjb"]
 
 [ext_resource type="Script" path="res://screens/level.gd" id="1_cmfot"]
 [ext_resource type="PackedScene" uid="uid://cpm1h02k47x6e" path="res://board/board.tscn" id="1_da4pj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://du5hommjpsvea" path="res://piles/draw_pile.tscn" id="4_iejax"]
 [ext_resource type="PackedScene" uid="uid://b6k5gqw3dbwew" path="res://player/player.tscn" id="4_wob1k"]
 [ext_resource type="PackedScene" uid="uid://cegivhvq2dd30" path="res://piles/discard_pile.tscn" id="5_73kb1"]
+[ext_resource type="PackedScene" uid="uid://dyvt0jm27wtbk" path="res://creatures/enemy_manager.tscn" id="5_smhgd"]
 [ext_resource type="PackedScene" uid="uid://c7r675rnocnfe" path="res://debugging/debug_window.tscn" id="6_yafv1"]
 
 [node name="Level" type="Node2D"]
@@ -18,6 +19,8 @@ deck = ExtResource("2_l4jg6")
 [node name="Player" parent="Creatures" instance=ExtResource("4_wob1k")]
 position = Vector2(80, 240)
 
+[node name="EnemyManager" parent="Creatures" instance=ExtResource("5_smhgd")]
+
 [node name="Board" parent="." instance=ExtResource("1_da4pj")]
 
 [node name="DrawPile" parent="." instance=ExtResource("4_iejax")]
@@ -28,7 +31,7 @@ position = Vector2(384, 896)
 
 [node name="DebugWindow" parent="." instance=ExtResource("6_yafv1")]
 
-[node name="Player" parent="DebugWindow/Items" index="1" node_paths=PackedStringArray("player")]
-player = NodePath("../../../Creatures/Player")
+[node name="Enemies" parent="DebugWindow/Items" index="2" node_paths=PackedStringArray("enemy_manager")]
+enemy_manager = NodePath("../../../Creatures/EnemyManager")
 
 [editable path="DebugWindow"]

@@ -9,6 +9,9 @@ extends Node2D
 @onready var draw_pile: DrawPile = $DrawPile
 @onready var discard_pile: DiscardPile = $DiscardPile
 
+## Turn counter. Used for spawning in [Enemy]
+## units at specific turns. TODO actually implement it
+var turn := 0
 
 func _ready() -> void:
 	randomize()

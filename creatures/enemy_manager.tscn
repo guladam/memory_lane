@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyvt0jm27wtbk"]
+
+[ext_resource type="Script" path="res://creatures/enemy_manager.gd" id="1_qr7fj"]
+
+[node name="EnemyManager" type="Node2D"]
+script = ExtResource("1_qr7fj")
+
+[node name="Grid" type="Node2D" parent="."]
+
+[node name="1" type="Marker2D" parent="Grid"]
+position = Vector2(176, 256)
+
+[node name="2" type="Marker2D" parent="Grid"]
+position = Vector2(256, 256)
+
+[node name="3" type="Marker2D" parent="Grid"]
+position = Vector2(336, 256)
+
+[node name="4" type="Marker2D" parent="Grid"]
+position = Vector2(416, 256)
+
+[node name="5" type="Marker2D" parent="Grid"]
+position = Vector2(496, 256)
+
+[node name="FlyingUnitsSpawn" type="Marker2D" parent="."]
+position = Vector2(496, 144)
+
+[node name="MeleeAttackAnimRange" type="Marker2D" parent="."]
+position = Vector2(128, 256)
+
+[node name="Enemies" type="Node2D" parent="."]
