@@ -7,9 +7,10 @@ extends Node2D
 @onready var current_cards := []
 ## This array is tracking the currently flipped [Card](s).
 @onready var flipped_cards := []
-## Tracks if the board is animating (e.g. drawing or discarding)
-## This is used to prevent flipping [Card]s over while animating.
-@onready var animating := false
+## Tracks if the board is interactable.
+## This is used to prevent flipping [Card]s over 
+## while animating or during the enemy's turn.
+@onready var interactable := true
 ## [Card] scene used for spawning the cards in place.
 @onready var card_scene := preload("res://cards/card.tscn")
 ## Position of the draw pile. Needed for [Card] animations.
@@ -28,6 +29,18 @@ func _ready() -> void:
 	Events.card_flipped.connect(_on_card_flipped)
 	Events.card_unflipped.connect(_on_card_unflipped)
 
+	Events.enemy_turn_ended.connect(func(): Events.player_turn_started.emit())
+	Events.player_turn_started.connect(
+		func(): 
+			self.interactable = true
+			print("player turn started!")
+	)
+	Events.player_turn_ended.connect(
+		func(): 
+			self.interactable = false
+			print("player turn ended!")
+	)
+
 
 ## This method is used for dependency injection.
 ## The board needs the position of the draw and discard piles for 
@@ -44,7 +57,7 @@ func setup(_draw_pile_pos: Vector2, _discard_pile_pos: Vector2) -> void:
 ## This is a coroutine because it waits for the last card draw 
 ## animation to finish.
 func spawn_cards(new_cards: Array[CardData]) -> void:
-	animating = true
+	interactable = false
 	
 	for i in range(new_cards.size()):
 		var j = i
@@ -62,8 +75,10 @@ func spawn_cards(new_cards: Array[CardData]) -> void:
 			await get_tree().create_timer(0.15).timeout
 		else:
 			await new_card.animate_draw(draw_pile_pos, card_markers[j].global_position)
-		
-	animating = false
+	
+	# TODO feels hacky
+	if _get_current_board_card_number() == 12:
+		interactable = true
 
 
 ## Discards the entire current board.
@@ -74,7 +89,7 @@ func discard_board() -> void:
 	if last_card == -1:
 		return
 	
-	animating = true
+	interactable = false
 	
 	for i in range(current_cards.size()):
 		if not _is_space_occupied(i):
@@ -89,7 +104,6 @@ func discard_board() -> void:
 				await card.animate_discard(discard_pile_pos)
 	
 	current_cards.fill(null)
-	animating = false
 	Events.board_emptied.emit()
 
 
@@ -98,10 +112,15 @@ func _is_space_occupied(n) -> bool:
 	return current_cards[n] != null
 
 
+## Returns the number of cards on the board.
+func _get_current_board_card_number() -> int:
+	var non_empty_elements = current_cards.filter(func(card): return card != null)
+	return non_empty_elements.size()
+
+
 ## Returns [code]true[/code] if the board is currently empty.
 func _is_board_empty() -> bool:
-	var non_empty_elements = current_cards.filter(func(card): return card != null)
-	return non_empty_elements.size() == 0
+	return _get_current_board_card_number() == 0
 
 
 ## Returns the index of the last [Card] on the board.
@@ -152,13 +171,14 @@ func _on_mismatch() -> void:
 	Events.cards_mismatched.emit()
 	await flipped_cards[0].unflip()
 	await flipped_cards[0].unflip()
+	Events.player_turn_ended.emit()
 
 
 ## Called when the [Card]s are clicked. The cards can't handle
 ## this event by themselves because we need to make sure that
 ## no more than 2 cards are flipped at any given time.
 func _on_card_input_event(_viewport: Node, event: InputEvent, _shape_idx: int, card: Card) -> void:
-	if flipped_cards.size() == 2 or animating:
+	if flipped_cards.size() == 2 or (not interactable):
 		return
 
 	if event is InputEventMouseButton and event.is_pressed():

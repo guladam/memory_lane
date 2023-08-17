@@ -19,6 +19,9 @@ func _ready() -> void:
 		grid_ground[i] = null
 		grid_air[i] = null
 	spawn_enemy()
+	
+	Events.player_turn_ended.connect(func(): Events.enemy_turn_started.emit())
+	Events.enemy_turn_started.connect(do_enemy_turn)
 
 
 func spawn_enemy() -> void:
@@ -30,14 +33,14 @@ func spawn_enemy() -> void:
 	var enemy2 := enemy_scene.instantiate()
 	enemies.add_child(enemy2)
 	enemy2.global_position = _get_grid_position(4)
+	enemy2.movement_speed = 2.5
 	grid_ground[4] = enemy2
 
 
 func do_enemy_turn() -> void:
-	print("enemy turn started")
 	await take_turn_with_units(grid_air)
 	await take_turn_with_units(grid_ground)
-	print("enemy turn finished")
+	Events.enemy_turn_ended.emit()
 
 
 func take_turn_with_units(units: Dictionary) -> void:
@@ -55,7 +58,6 @@ func take_turn_with_units(units: Dictionary) -> void:
 
 
 func move_enemy(enemy: Enemy, grid_idx: int) -> void:
-	print("move enemy %s" % enemy)
 	enemy.accumulated_movement += enemy.get_speed()
 	
 	var enemy_grid_steps := int(enemy.accumulated_movement)
@@ -79,7 +81,7 @@ func move_enemy(enemy: Enemy, grid_idx: int) -> void:
 
 
 func attack_with_enemy(enemy: Enemy, grid_idx: int) -> void:
-	print("hehe")
+	print("%s attacks at %s!" % [enemy, grid_idx])
 	await get_tree().create_timer(0.25).timeout
 
 
@@ -108,6 +110,4 @@ func _get_grid_table_for_enemy(enemy: Enemy) -> Dictionary:
 
 
 # TODO erase units on enemy death
-# turn back to player turn after finishing enemy turn
-# start turn automatically after match / mismatch
 # doc comments

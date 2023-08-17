@@ -57,6 +57,9 @@ func change_max_health(amount: int) -> void:
 ## [param target] is where the [Enemy] ends up at the end.
 ## This is a coroutine as it waits for the animation to finish.
 func animate_move(target: Vector2) -> void: 
+	if global_position == target:
+		return
+	
 	var anim_length := movement_anim_speed * movement_modifiers.get_modifier()
 	animation_player.play("walk")
 	var tween := create_tween().set_ease(Tween.EASE_IN_OUT)
@@ -78,8 +81,8 @@ func change_speed(amount: float, turns=0) -> void:
 
 
 ## Returns [code]true[/code] if the unit is withing attacking range.
+## [param distance] is the current distance of the unit from the [Player].
 func in_range(distance: int) -> bool:
-	print("distance: ", distance)
 	return distance == 1
 
 

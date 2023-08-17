@@ -33,4 +33,5 @@ func apply_effect() -> void:
 		return
 	
 	await _code.apply_effect()
+	Events.player_turn_ended.emit()
 	_code.queue_free()
