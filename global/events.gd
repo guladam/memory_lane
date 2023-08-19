@@ -40,3 +40,21 @@ signal card_reshuffle_anim_finished
 
 ## Emitted when a [Card] produces an [Effect].
 signal effect_created(effect: Effect)
+
+
+## Emitted when the [Player]'s turn starts.
+signal player_turn_started
+## Emitted when the [Player]'s turn ends.
+signal player_turn_ended
+## Emitted when the [Enemy]'s turn starts.
+signal enemy_turn_started
+## Emitted when the [Enemy]'s turn ends.
+signal enemy_turn_ended
+## Emitted when an [Enemy] dies.
+signal enemy_died(enemy: Enemy)
+
+
+## Emitted when the [Player] dies.
+signal game_over
+## Emitted when the [Player] wins a level.
+signal level_won

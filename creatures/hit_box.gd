@@ -1,6 +1,6 @@
 ## Component for damage hitboxes.
 ## Used by projectiles and melee attacks.
-class_name Hitbox
+class_name HitBox
 extends Area2D
 
 

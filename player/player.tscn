@@ -25,6 +25,9 @@ max_health = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_c1ll0")
 
+[node name="RangedTargetPosition" type="Marker2D" parent="."]
+position = Vector2(0, -16)
+
 [node name="HealthBar" parent="." instance=ExtResource("3_twdi5")]
 offset_left = -24.0
 offset_top = -64.0

@@ -44,8 +44,19 @@ script = ExtResource("3_m650b")
 layout_mode = 2
 text = "do enemy turn"
 
+[node name="EnemyIndex" type="SpinBox" parent="Items/Enemies"]
+layout_mode = 2
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+
+[node name="EnemyDamage" type="Button" parent="Items/Enemies"]
+layout_mode = 2
+text = "dmg enemy"
+
 [connection signal="pressed" from="Items/Player/PlayerDmg" to="Items/Player" method="_on_player_dmg_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerHeal" to="Items/Player" method="_on_player_heal_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerMaxHigh" to="Items/Player" method="_on_player_max_high_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerMaxLow" to="Items/Player" method="_on_player_max_low_pressed"]
 [connection signal="pressed" from="Items/Enemies/EnemyTurn" to="Items/Enemies" method="_on_enemy_turn_pressed"]
+[connection signal="pressed" from="Items/Enemies/EnemyDamage" to="Items/Enemies" method="_on_enemy_damage_pressed"]

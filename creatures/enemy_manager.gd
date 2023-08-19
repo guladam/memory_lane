@@ -19,6 +19,10 @@ func _ready() -> void:
 		grid_ground[i] = null
 		grid_air[i] = null
 	spawn_enemy()
+	
+	Events.player_turn_ended.connect(func(): Events.enemy_turn_started.emit())
+	Events.enemy_turn_started.connect(do_enemy_turn)
+	Events.enemy_died.connect(_on_enemy_died)
 
 
 func spawn_enemy() -> void:
@@ -30,14 +34,14 @@ func spawn_enemy() -> void:
 	var enemy2 := enemy_scene.instantiate()
 	enemies.add_child(enemy2)
 	enemy2.global_position = _get_grid_position(4)
+	enemy2.movement_speed = 2.5
 	grid_ground[4] = enemy2
 
 
 func do_enemy_turn() -> void:
-	print("enemy turn started")
 	await take_turn_with_units(grid_air)
 	await take_turn_with_units(grid_ground)
-	print("enemy turn finished")
+	Events.enemy_turn_ended.emit()
 
 
 func take_turn_with_units(units: Dictionary) -> void:
@@ -55,7 +59,6 @@ func take_turn_with_units(units: Dictionary) -> void:
 
 
 func move_enemy(enemy: Enemy, grid_idx: int) -> void:
-	print("move enemy %s" % enemy)
 	enemy.accumulated_movement += enemy.get_speed()
 	
 	var enemy_grid_steps := int(enemy.accumulated_movement)
@@ -79,8 +82,15 @@ func move_enemy(enemy: Enemy, grid_idx: int) -> void:
 
 
 func attack_with_enemy(enemy: Enemy, grid_idx: int) -> void:
-	print("hehe")
-	await get_tree().create_timer(0.25).timeout
+	print("%s attacks at %s!" % [enemy, grid_idx])
+	var original_position := enemy.global_position
+	var attack_position := Vector2.ZERO
+	
+	if enemy.type == Enemy.Type.GROUND:
+		attack_position = melee_attack_anim_range.global_position
+	
+	await enemy.attack(attack_position)
+	await enemy.animate_move(original_position)
 
 
 func _is_grid_space_taken(i: int, type: Enemy.Type) -> bool:
@@ -107,7 +117,22 @@ func _get_grid_table_for_enemy(enemy: Enemy) -> Dictionary:
 	return {}
 
 
-# TODO erase units on enemy death
-# turn back to player turn after finishing enemy turn
-# start turn automatically after match / mismatch
-# doc comments
+func _on_enemy_died(enemy: Enemy) -> void:
+	print("%s enemies left, deleting %s..." % [enemies.get_child_count(), enemy])
+	var grid_table := _get_grid_table_for_enemy(enemy)
+	print("grid before: %s" % grid_table)
+	
+	for i in grid_table.keys():
+		if grid_table[i] == enemy:
+			grid_table[i] = null
+			break
+			
+	print("grid after: %s" % grid_table)
+	
+	
+# TODO doc comments
+
+
+func damage_unit(grid_idx: int) -> void:
+	if grid_ground[grid_idx]:
+		grid_ground[grid_idx].take_damage(1)

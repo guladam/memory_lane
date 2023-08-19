@@ -17,7 +17,7 @@ deck = ExtResource("2_l4jg6")
 [node name="Creatures" parent="." instance=ExtResource("3_lmivi")]
 
 [node name="Player" parent="Creatures" instance=ExtResource("4_wob1k")]
-position = Vector2(80, 240)
+position = Vector2(48, 240)
 
 [node name="EnemyManager" parent="Creatures" instance=ExtResource("5_smhgd")]
 
@@ -30,6 +30,9 @@ position = Vector2(144, 896)
 position = Vector2(384, 896)
 
 [node name="DebugWindow" parent="." instance=ExtResource("6_yafv1")]
+
+[node name="Player" parent="DebugWindow/Items" index="1" node_paths=PackedStringArray("player")]
+player = NodePath("../../../Creatures/Player")
 
 [node name="Enemies" parent="DebugWindow/Items" index="2" node_paths=PackedStringArray("enemy_manager")]
 enemy_manager = NodePath("../../../Creatures/EnemyManager")

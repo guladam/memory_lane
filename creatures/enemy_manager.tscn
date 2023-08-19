@@ -26,6 +26,6 @@ position = Vector2(496, 256)
 position = Vector2(496, 144)
 
 [node name="MeleeAttackAnimRange" type="Marker2D" parent="."]
-position = Vector2(128, 256)
+position = Vector2(112, 256)
 
 [node name="Enemies" type="Node2D" parent="."]

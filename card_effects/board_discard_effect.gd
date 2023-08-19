@@ -5,7 +5,7 @@ extends EffectCode
 ## Overrides the virtual method of the [EffectCode] parent class.
 ## this effects discards the whole hand.
 func apply_effect() -> void:
-	print("discarding board...")
+	print("discarding board via effect...")
 	var board = effect.target as Board
 	if not board:
 		return

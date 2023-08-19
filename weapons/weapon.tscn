@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4k3qws740poq"]
+
+[ext_resource type="PackedScene" uid="uid://dnd6bc6alqa1i" path="res://creatures/hit_box.tscn" id="1_56j7v"]
+[ext_resource type="Script" path="res://weapons/weapon.gd" id="1_vl8cu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfwhh"]
+size = Vector2(14, 63)
+
+[sub_resource type="Animation" id="Animation_cucwv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tp0q5"]
+resource_name = "use"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(-10, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -1.39626, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y2f4g"]
+_data = {
+"RESET": SubResource("Animation_cucwv"),
+"use": SubResource("Animation_tp0q5")
+}
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_vl8cu")
+attack_range = 1
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Visuals"]
+color = Color(0.133333, 0.290196, 0.247059, 0.588235)
+polygon = PackedVector2Array(-12, 16, -6, -17, -11, -48, 11, -48, 6, -17, 11, 16)
+
+[node name="HitBox" parent="Visuals" instance=ExtResource("1_56j7v")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/HitBox"]
+position = Vector2(0, -15.5)
+shape = SubResource("RectangleShape2D_kfwhh")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y2f4g")
+}
+
+[connection signal="area_entered" from="Visuals/HitBox" to="." method="_on_hit_box_area_entered"]

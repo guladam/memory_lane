@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkp8vqgjvv1ni"]
+[gd_scene load_steps=12 format=3 uid="uid://bkp8vqgjvv1ni"]
 
 [ext_resource type="Script" path="res://creatures/enemy.gd" id="1_8xmhl"]
 [ext_resource type="PackedScene" uid="uid://1l6kn3equ457" path="res://creatures/health_bar.tscn" id="1_pxvnn"]
 [ext_resource type="PackedScene" uid="uid://d3vnfucrg4ic3" path="res://creatures/health.tscn" id="2_2468b"]
-[ext_resource type="PackedScene" path="res://modifiers/modifiers.tscn" id="4_l3yc6"]
+[ext_resource type="PackedScene" uid="uid://ddrodc1r2feoo" path="res://modifiers/modifiers.tscn" id="4_l3yc6"]
+[ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/weapon.tscn" id="5_nu4d5"]
 
 [sub_resource type="Animation" id="Animation_ygyo0"]
 length = 0.001
@@ -54,6 +55,35 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_00g3l"]
+resource_name = "attack"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.349066, -0.0541052]
 }
 
 [sub_resource type="Animation" id="Animation_ixash"]
@@ -147,13 +177,15 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0nvuf"]
 _data = {
 "RESET": SubResource("Animation_ygyo0"),
+"attack": SubResource("Animation_00g3l"),
 "damage": SubResource("Animation_ixash"),
 "idle": SubResource("Animation_sevog"),
 "walk": SubResource("Animation_mtw5n")
 }
 
-[node name="Enemy" type="Sprite2D" groups=["enemies"]]
+[node name="Enemy" type="Sprite2D" node_paths=PackedStringArray("weapon") groups=["enemies"]]
 script = ExtResource("1_8xmhl")
+weapon = NodePath("Weapon")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(0.857874, -15.4139)
@@ -176,3 +208,6 @@ libraries = {
 }
 
 [node name="MovementModifiers" parent="." instance=ExtResource("4_l3yc6")]
+
+[node name="Weapon" parent="." instance=ExtResource("5_nu4d5")]
+position = Vector2(-48, -16)
