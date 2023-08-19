@@ -25,8 +25,11 @@ func _ready() -> void:
 	Events.draw_pile_reshuffled.connect(_on_draw_pile_reshuffled)
 	Events.board_emptied.connect(_on_board_emptied)
 	Events.player_turn_started.connect(_draw_new_hand)
-	Events.enemy_turn_ended.connect(_new_turn)
-	Events.game_over.connect(func(): print("game over!"))
+	Events.enemy_turn_ended.connect(
+		func(): 
+			self.turn += 1
+			print("turn %s begins." % turn)
+	)
 	
 	board.setup(draw_pile.global_position, discard_pile.global_position)
 	board.spawn_cards(draw_pile.draw_cards(12))
@@ -61,9 +64,3 @@ func _on_draw_pile_reshuffled(remaining_cards: int) -> void:
 	await discard_pile.empty(draw_pile.global_position)
 	await get_tree().create_timer(0.4).timeout
 	board.spawn_cards(draw_pile.draw_cards(remaining_cards))
-
-
-## Called when all enemies completed their actions.
-func _new_turn(): 
-	self.turn += 1
-	print("turn %s begins." % turn)

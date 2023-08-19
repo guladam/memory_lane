@@ -16,8 +16,8 @@ enum Type {GROUND, FLYING}
 @export var movement_speed := 1.0
 ## Animation speed for moving, in one grid / second format.
 @export var movement_anim_speed := 1.0
-## The [Weapon] this [Enemy] uses.
-@export var weapon: Weapon
+## TODO this comes from weapons, refactor this
+@export var atk_range := 1
 
 @onready var health: Health = $Health
 @onready var health_bar: PanelContainer = $HealthBar
@@ -29,13 +29,13 @@ var accumulated_movement := 0.0
 
 
 func _ready() -> void:
-	health.changed.connect(_on_health_changed)
+	health.changed.connect(
+		func(new_hp): health_bar.update_health.call_deferred(new_hp)
+	)
 	health.max_health_changed.connect(health_bar.setup)
-	
-	health_bar.setup(health.max_health)
 
 
-## This method is mandatory for creatures having a [HurtBox].
+## This method is mandatory for creatures having a [Hurtbox].
 ## [param damage] is the amount of damage to take.
 func take_damage(damage: int) -> void:
 	health.health -= damage
@@ -83,36 +83,14 @@ func change_speed(amount: float, turns=0) -> void:
 ## Returns [code]true[/code] if the unit is withing attacking range.
 ## [param distance] is the current distance of the unit from the [Player].
 func in_range(distance: int) -> bool:
-	return distance <= weapon.attack_range
+	return distance == 1
 
 
 ## Attacks the player if in range.
-## This is a coroutine as it waits for the animation(s) to finish.
-## [param attack_position] is a global position, from where the [Enemy] attacks.
-func attack(attack_position: Vector2) -> void:
-	if attack_position != Vector2.ZERO:
-		await animate_move(attack_position)
-	
-	weapon.use_weapon()
-	animation_player.play("attack")
-	await animation_player.animation_finished
+func attack() -> void:
+	print("attack!")
 
 
 ## Returns the current speed of the unit, in grids.
 func get_speed() -> float:
 	return movement_speed * movement_modifiers.get_modifier()
-
-
-func _on_health_changed(new_hp: int) -> void:
-	health_bar.update_health.call_deferred(new_hp)
-	if new_hp <= 0:
-		_die()
-		
-
-func _die() -> void:
-	# TODO
-	print("die anim")
-	animation_player.play("attack")
-	await animation_player.animation_finished
-	
-	Events.enemy_died.emit(self)

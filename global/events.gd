@@ -50,11 +50,3 @@ signal player_turn_ended
 signal enemy_turn_started
 ## Emitted when the [Enemy]'s turn ends.
 signal enemy_turn_ended
-## Emitted when an [Enemy] dies.
-signal enemy_died(enemy: Enemy)
-
-
-## Emitted when the [Player] dies.
-signal game_over
-## Emitted when the [Player] wins a level.
-signal level_won
