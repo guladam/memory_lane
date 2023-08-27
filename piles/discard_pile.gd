@@ -3,6 +3,7 @@
 class_name DiscardPile
 extends Node2D
 
+@export var game_state: GameState
 ## Label displaying the number of [Card]s in the discard pile.
 @onready var cards_label: Label = $CardsLabel
 ## Scene for animating deck reshuffling.
@@ -54,3 +55,12 @@ func _on_card_discarded(_card: Card) -> void:
 	cards.append(_card.card)
 	var new_number: int = min(deck.cards.size(), cards.size())
 	_update_label(new_number)
+
+
+## Requests to show the discard pile when it is clicked.
+func _on_tap_detector_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if game_state.is_paused():
+		return
+	
+	if event is InputEventMouseButton and event.is_pressed():
+		Events.card_pile_panel_requested.emit("Discard Pile", cards)

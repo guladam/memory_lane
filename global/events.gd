@@ -50,3 +50,14 @@ signal player_turn_ended
 signal enemy_turn_started
 ## Emitted when the [Enemy]'s turn ends.
 signal enemy_turn_ended
+## Emitted when an [Enemy] dies.
+signal enemy_died(enemy: Enemy)
+
+## Emitted when the [Player] wins the level.
+signal level_won
+## Emitted when the [Player] loses the level.
+signal game_over
+
+
+## Emitted when the CardPilePanel is requested to show.
+signal card_pile_panel_requested(title: String, cards: Array[CardData])

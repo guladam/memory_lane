@@ -8,8 +8,3 @@ extends Resource
 
 ## A deck is an array of [CardData] resources.
 @export var cards: Array[CardData]
-
-
-## Shuffles the cards in the deck.
-func shuffle() -> void:
-	cards.shuffle()

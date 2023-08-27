@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://q0uouhv20f7t"]
+
+[ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_yonek"]
+[ext_resource type="PackedScene" uid="uid://c0tlhwxxydged" path="res://weapons/ranged_weapon.tscn" id="2_e0qoe"]
+
+[node name="FlyingEnemy" node_paths=PackedStringArray("weapon") instance=ExtResource("1_yonek")]
+type = 1
+movement_speed = 2.0
+movement_anim_speed = 0.5
+weapon = NodePath("RangedWeapon")
+
+[node name="Weapon" parent="." index="5"]
+visible = false
+
+[node name="RangedWeapon" parent="." index="6" instance=ExtResource("2_e0qoe")]
+position = Vector2(-48, -32)
+rotation = -3.14159

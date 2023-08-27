@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bey3layhelrlx"]
+
+[ext_resource type="Script" path="res://creatures/status_effect.gd" id="1_pf5hs"]
+[ext_resource type="Texture2D" uid="uid://d234b64y0wd5i" path="res://temp/card_014.png" id="2_lpxs7"]
+[ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="2_xpyvu"]
+
+[node name="StatusEffect" type="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_pf5hs")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("2_lpxs7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TurnCounter" type="Label" parent="."]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 21.0
+offset_bottom = 25.0
+theme = ExtResource("2_xpyvu")
+theme_override_colors/font_shadow_color = Color(0.219608, 0.219608, 0.219608, 1)
+theme_override_colors/font_outline_color = Color(0.654902, 0.654902, 0.654902, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 1

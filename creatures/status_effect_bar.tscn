@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl5gsx3seabcr"]
+
+[ext_resource type="Script" path="res://creatures/status_effect_bar.gd" id="1_go63e"]
+
+[node name="StatusEffectBar" type="GridContainer"]
+custom_minimum_size = Vector2(60, 30)
+columns = 3
+script = ExtResource("1_go63e")

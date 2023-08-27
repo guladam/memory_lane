@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://du5hommjpsvea"]
+[gd_scene load_steps=4 format=3 uid="uid://du5hommjpsvea"]
 
 [ext_resource type="Script" path="res://piles/draw_pile.gd" id="1_xtf2o"]
 [ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="2_7mo4s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0my4n"]
+size = Vector2(86, 56)
 
 [node name="DrawPile" type="Node2D"]
 texture_filter = 1
@@ -27,3 +30,12 @@ grow_vertical = 0
 text = "16"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TapDetector" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TapDetector"]
+shape = SubResource("RectangleShape2D_0my4n")
+
+[connection signal="input_event" from="TapDetector" to="." method="_on_tap_detector_input_event"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Run" load_steps=4 format=3 uid="uid://bsyx4481gsh2v"]
+
+[ext_resource type="Script" path="res://custom_resource_types/run.gd" id="1_rrlye"]
+[ext_resource type="Resource" uid="uid://ccrhcy38xlr5e" path="res://characters/fire_character.tres" id="1_xlfx5"]
+[ext_resource type="Resource" uid="uid://c8nrc1hufo7nl" path="res://temp/test_deck.tres" id="2_a1lv6"]
+
+[resource]
+script = ExtResource("1_rrlye")
+current_level = 1
+deck = ExtResource("2_a1lv6")
+character = ExtResource("1_xlfx5")

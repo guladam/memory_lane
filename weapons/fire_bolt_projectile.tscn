@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw4676bwvd6"]
+
+[ext_resource type="PackedScene" uid="uid://4ja8uwrqk6sv" path="res://weapons/projectile.tscn" id="1_rd8es"]
+
+[node name="FireBoltProjectile" instance=ExtResource("1_rd8es")]
+speed = 550
+
+[node name="Polygon2D" parent="." index="0"]
+color = Color(0.329412, 0.0666667, 0.0666667, 0.843137)
+
+[node name="HitBox" parent="." index="1"]
+collision_layer = 1
+collision_mask = 8
+target = 1

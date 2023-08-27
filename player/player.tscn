@@ -1,12 +1,133 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6k5gqw3dbwew"]
+[gd_scene load_steps=13 format=3 uid="uid://b6k5gqw3dbwew"]
 
 [ext_resource type="PackedScene" uid="uid://cx0wk3a6k6nnl" path="res://creatures/hurt_box.tscn" id="1_bfnpp"]
 [ext_resource type="PackedScene" uid="uid://d3vnfucrg4ic3" path="res://creatures/health.tscn" id="1_jxybv"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_qjjdr"]
 [ext_resource type="PackedScene" uid="uid://1l6kn3equ457" path="res://creatures/health_bar.tscn" id="3_twdi5"]
+[ext_resource type="PackedScene" uid="uid://ddrodc1r2feoo" path="res://modifiers/modifiers.tscn" id="5_torel"]
+[ext_resource type="PackedScene" uid="uid://cywb0mjl78eua" path="res://status_effects/status_effects.tscn" id="7_hu57v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1ll0"]
 radius = 25.0
+
+[sub_resource type="Animation" id="Animation_7y411"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Staff:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Staff:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_a4ano"]
+resource_name = "cast_spell_air"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Staff:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, 16), Vector2(38, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Staff:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.959931]
+}
+
+[sub_resource type="Animation" id="Animation_h728c"]
+resource_name = "cast_spell_ground"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Staff:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, 16), Vector2(38, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Staff:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_yqpne"]
+resource_name = "cast_spell_other"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Staff:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, 16), Vector2(32, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Staff:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2citj"]
+_data = {
+"RESET": SubResource("Animation_7y411"),
+"cast_spell_air": SubResource("Animation_a4ano"),
+"cast_spell_ground": SubResource("Animation_h728c"),
+"cast_spell_other": SubResource("Animation_yqpne")
+}
 
 [node name="Player" type="Sprite2D"]
 script = ExtResource("1_qjjdr")
@@ -15,12 +136,16 @@ script = ExtResource("1_qjjdr")
 color = Color(0.564706, 0.388235, 0.592157, 1)
 polygon = PackedVector2Array(-32, 0, 0, -32, 32, 0, 0, 32)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Staff" type="Polygon2D" parent="."]
+position = Vector2(32, 16)
+color = Color(0.682353, 0.560784, 0.588235, 1)
+polygon = PackedVector2Array(-16, 0, 0, 16, 16, 0, 0, -32)
 
-[node name="Health" parent="." instance=ExtResource("1_jxybv")]
-max_health = 3
+[node name="StaffEnd" type="Marker2D" parent="Staff"]
+position = Vector2(0, -32)
 
 [node name="HurtBox" parent="." instance=ExtResource("1_bfnpp")]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_c1ll0")
@@ -33,3 +158,16 @@ offset_left = -24.0
 offset_top = -64.0
 offset_right = 26.0
 offset_bottom = -44.0
+
+[node name="Health" parent="." instance=ExtResource("1_jxybv")]
+max_health = 3
+
+[node name="BonusDamage" parent="." instance=ExtResource("5_torel")]
+percent_based = false
+
+[node name="StatusEffects" parent="." instance=ExtResource("7_hu57v")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2citj")
+}

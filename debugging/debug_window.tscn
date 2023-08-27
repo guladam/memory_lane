@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7r675rnocnfe"]
+[gd_scene load_steps=5 format=3 uid="uid://c7r675rnocnfe"]
 
 [ext_resource type="PackedScene" uid="uid://c8veoc8fba8l0" path="res://debugging/time_scale.tscn" id="1_0y8b5"]
+[ext_resource type="Script" path="res://debugging/debug_window.gd" id="1_nb8mh"]
 [ext_resource type="Script" path="res://debugging/player.gd" id="2_wtd20"]
 [ext_resource type="Script" path="res://debugging/enemies.gd" id="3_m650b"]
 
@@ -9,12 +10,18 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 201.0
 offset_bottom = 42.0
+script = ExtResource("1_nb8mh")
 
 [node name="Items" type="VBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="TimeScale" parent="Items" instance=ExtResource("1_0y8b5")]
 layout_mode = 2
+alignment = 0
+
+[node name="ShowBoard" type="Button" parent="Items/TimeScale"]
+layout_mode = 2
+text = "board"
 
 [node name="Player" type="HBoxContainer" parent="Items"]
 layout_mode = 2
@@ -54,6 +61,7 @@ value = 1.0
 layout_mode = 2
 text = "dmg enemy"
 
+[connection signal="pressed" from="Items/TimeScale/ShowBoard" to="." method="_on_show_board_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerDmg" to="Items/Player" method="_on_player_dmg_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerHeal" to="Items/Player" method="_on_player_heal_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerMaxHigh" to="Items/Player" method="_on_player_max_high_pressed"]

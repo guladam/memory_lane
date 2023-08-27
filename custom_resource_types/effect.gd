@@ -7,23 +7,29 @@ extends Resource
 ## Types of targets for the different effects.
 enum TargetType { BOARD, SELF, GROUND, AIR, ALL_ENEMIES }
 
-
 @export var target_type: TargetType
-@export var target: Node
 @export var effect_name: String
 @export var effect_code: GDScript
 
+var player: Player
+var targets: Array[Node]
 var _code: Node
 
 
 ## This is for injecting the Target dependency for an effect.
 ## After this, it should be implement its logic in a self contained manner
 ## in its [EffectCode].
-func setup(_target: Node) -> void:
-	target = _target
+func setup(_targets: Array[Node]) -> void:
+	targets = _targets
 	_code = Node.new()
 	_code.set_script(effect_code)
 	_code.effect = self
+
+
+## This is for injecting the [Player] dependency for an effect.
+## Mainly used by single target attacks.
+func set_player(_player: Player) -> void:
+	player = _player
 
 
 ## This is a public method for applying the logic this effect has.

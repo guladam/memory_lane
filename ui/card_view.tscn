@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://di8413bx5b8td"]
+
+[ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="1_2okdi"]
+[ext_resource type="Script" path="res://ui/card_view.gd" id="1_54pvi"]
+
+[node name="CardView" type="CenterContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_54pvi")
+
+[node name="Texture" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(75, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("1_2okdi")
+stretch_mode = 5

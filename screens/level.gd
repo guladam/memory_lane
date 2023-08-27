@@ -2,12 +2,15 @@
 class_name Level
 extends Node2D
 
-
 ## Current [Deck] of the player.
-@export var deck: Deck
+@export var run: Run
+@export var game_state: GameState
+
 @onready var board: Board = $Board
 @onready var draw_pile: DrawPile = $DrawPile
 @onready var discard_pile: DiscardPile = $DiscardPile
+@onready var player: Sprite2D = $Creatures/Player
+@onready var enemy_manager: Node2D = $Creatures/EnemyManager
 
 ## Turn counter. Used for spawning in [Enemy]
 ## units at specific turns.
@@ -18,9 +21,9 @@ var draw_queue := []
 
 func _ready() -> void:
 	randomize()
-	deck.shuffle()
-	discard_pile.setup(deck)
-	draw_pile.setup(deck)
+	discard_pile.setup(run.deck)
+	draw_pile.setup(run.deck)
+	enemy_manager.setup(player.get_ranged_target_position())
 	
 	Events.draw_pile_reshuffled.connect(_on_draw_pile_reshuffled)
 	Events.board_emptied.connect(_on_board_emptied)
@@ -33,6 +36,7 @@ func _ready() -> void:
 	
 	board.setup(draw_pile.global_position, discard_pile.global_position)
 	board.spawn_cards(draw_pile.draw_cards(12))
+	game_state.reset()
 
 
 ## Called when the board is emptied.
@@ -64,3 +68,8 @@ func _on_draw_pile_reshuffled(remaining_cards: int) -> void:
 	await discard_pile.empty(draw_pile.global_position)
 	await get_tree().create_timer(0.4).timeout
 	board.spawn_cards(draw_pile.draw_cards(remaining_cards))
+
+
+## Submits a request to the show the [Deck] in the Card Pile panel.
+func _on_deck_view_button_pressed() -> void:
+	Events.card_pile_panel_requested.emit("Deck", run.deck.cards)

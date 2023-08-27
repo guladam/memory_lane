@@ -16,29 +16,33 @@ enum Type {GROUND, FLYING}
 @export var movement_speed := 1.0
 ## Animation speed for moving, in one grid / second format.
 @export var movement_anim_speed := 1.0
-## TODO this comes from weapons, refactor this
-@export var atk_range := 1
+## [Weapon] used by this enemy.
+@export var weapon: Weapon
 
 @onready var health: Health = $Health
 @onready var health_bar: PanelContainer = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var movement_modifiers: Modifiers = $MovementModifiers
+@onready var status_effects: StatusEffects = $StatusEffects
+
 
 ## TODO document correctly movement if slowed
 var accumulated_movement := 0.0
 
 
 func _ready() -> void:
-	health.changed.connect(
-		func(new_hp): health_bar.update_health.call_deferred(new_hp)
-	)
+	health.changed.connect(_on_health_changed)
 	health.max_health_changed.connect(health_bar.setup)
+	
+	health_bar.setup(health.max_health)
 
 
 ## This method is mandatory for creatures having a [Hurtbox].
 ## [param damage] is the amount of damage to take.
 func take_damage(damage: int) -> void:
 	health.health -= damage
+	animation_player.play("damage")
+	await animation_player.animation_finished
 
 
 ## This method is for healing the enemy.
@@ -83,14 +87,49 @@ func change_speed(amount: float, turns=0) -> void:
 ## Returns [code]true[/code] if the unit is withing attacking range.
 ## [param distance] is the current distance of the unit from the [Player].
 func in_range(distance: int) -> bool:
-	return distance == 1
+	return distance <= weapon.attack_range
 
 
 ## Attacks the player if in range.
-func attack() -> void:
-	print("attack!")
+## [param attack_position] is used for melee attack animation.
+func melee_attack(attack_position: Vector2) -> void:
+	if not has_melee_weapon():
+		return
+		
+	var starting_pos := global_position
+	await animate_move(attack_position)
+	
+	@warning_ignore("redundant_await")
+	await weapon.use_weapon()
+	
+	await animate_move(starting_pos)
+
+
+## Performs a ranged attack.
+## [param target] is the position to shoot towards.
+func ranged_attack(target: Vector2) -> void:
+	if has_melee_weapon():
+		return
+	
+	weapon.target = target
+	
+	@warning_ignore("redundant_await")
+	await weapon.use_weapon()
 
 
 ## Returns the current speed of the unit, in grids.
 func get_speed() -> float:
 	return movement_speed * movement_modifiers.get_modifier()
+
+
+func has_melee_weapon() -> bool:
+	return weapon is MeleeWeapon
+	
+
+func _on_health_changed(new_hp: int) -> void:
+	health_bar.update_health.call_deferred(new_hp)
+	if new_hp <= 0:
+		Events.enemy_died.emit(self)
+		#animation_player.play("die")
+		queue_free()
+		print("enemy died")

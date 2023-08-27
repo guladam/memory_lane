@@ -3,6 +3,8 @@
 class_name DrawPile
 extends Node2D
 
+
+@export var game_state: GameState
 ## Label displaying the number of [Card]s in the draw pile.
 @onready var cards_label: Label = $CardsLabel
 ## The draw pile is dependent of the [Deck] to work properly.
@@ -14,11 +16,13 @@ var cards: Array[CardData]
 func _ready() -> void:
 	Events.card_draw_started.connect(_on_card_draw_started)
 	Events.card_reshuffle_anim_finished.connect(_on_card_reshuffle_anim_finished)
+	
 
 ## This function is for injecting the [Deck] dependency.
 func setup(_deck: Deck) -> void:
 	deck = _deck
 	cards = deck.cards.duplicate(true)
+	cards.shuffle()
 	_update_label(cards.size())
 
 
@@ -73,3 +77,12 @@ func _on_card_draw_started(_card: Card) -> void:
 func _on_card_reshuffle_anim_finished() -> void:
 	var new_number: int = min(deck.cards.size(), int(cards_label.text) + 1)
 	_update_label(new_number)
+
+
+## Request to show the draw pile when it is clicked.
+func _on_tap_detector_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if game_state.is_paused():
+		return
+	
+	if event is InputEventMouseButton and event.is_pressed():
+		Events.card_pile_panel_requested.emit("Draw Pile", cards)

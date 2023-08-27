@@ -1,10 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkp8vqgjvv1ni"]
+[gd_scene load_steps=16 format=3 uid="uid://bkp8vqgjvv1ni"]
 
 [ext_resource type="Script" path="res://creatures/enemy.gd" id="1_8xmhl"]
 [ext_resource type="PackedScene" uid="uid://1l6kn3equ457" path="res://creatures/health_bar.tscn" id="1_pxvnn"]
+[ext_resource type="PackedScene" uid="uid://cx0wk3a6k6nnl" path="res://creatures/hurt_box.tscn" id="2_36ngk"]
 [ext_resource type="PackedScene" uid="uid://d3vnfucrg4ic3" path="res://creatures/health.tscn" id="2_2468b"]
+[ext_resource type="PackedScene" uid="uid://bl5gsx3seabcr" path="res://creatures/status_effect_bar.tscn" id="4_h8dq8"]
 [ext_resource type="PackedScene" uid="uid://ddrodc1r2feoo" path="res://modifiers/modifiers.tscn" id="4_l3yc6"]
-[ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/weapon.tscn" id="5_nu4d5"]
+[ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="5_5qetd"]
+[ext_resource type="PackedScene" uid="uid://cywb0mjl78eua" path="res://status_effects/status_effects.tscn" id="6_4bj62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j25mi"]
+size = Vector2(64, 26)
 
 [sub_resource type="Animation" id="Animation_ygyo0"]
 length = 0.001
@@ -192,22 +198,39 @@ position = Vector2(0.857874, -15.4139)
 color = Color(0.309804, 0.572549, 0.74902, 1)
 polygon = PackedVector2Array(-16, -16, -32, 0, -32, 16, 32, 16, 32, 0, 16, -16)
 
+[node name="HurtBox" parent="." instance=ExtResource("2_36ngk")]
+collision_layer = 8
+is_type = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_j25mi")
+
 [node name="HealthBar" parent="." instance=ExtResource("1_pxvnn")]
 offset_left = -24.0
 offset_top = -60.0
 offset_right = 26.0
 offset_bottom = -40.0
 
+[node name="StatusEffectBar" parent="." instance=ExtResource("4_h8dq8")]
+offset_left = -31.0
+offset_top = 4.0
+offset_right = 49.0
+offset_bottom = 44.0
+
 [node name="Health" parent="." instance=ExtResource("2_2468b")]
 max_health = 2
+
+[node name="MovementModifiers" parent="." instance=ExtResource("4_l3yc6")]
+
+[node name="StatusEffects" parent="." node_paths=PackedStringArray("status_effect_bar") instance=ExtResource("6_4bj62")]
+status_effect_bar = NodePath("../StatusEffectBar")
+
+[node name="Weapon" parent="." instance=ExtResource("5_5qetd")]
+position = Vector2(-48, -16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_0nvuf")
 }
-
-[node name="MovementModifiers" parent="." instance=ExtResource("4_l3yc6")]
-
-[node name="Weapon" parent="." instance=ExtResource("5_nu4d5")]
-position = Vector2(-48, -16)

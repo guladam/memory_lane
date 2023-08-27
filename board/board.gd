@@ -3,6 +3,7 @@ class_name Board
 extends Node2D
 
 
+@export var game_state: GameState
 ## This array is representing the current [Card]s.
 @onready var current_cards := []
 ## This array is tracking the currently flipped [Card](s).
@@ -178,7 +179,10 @@ func _on_mismatch() -> void:
 ## this event by themselves because we need to make sure that
 ## no more than 2 cards are flipped at any given time.
 func _on_card_input_event(_viewport: Node, event: InputEvent, _shape_idx: int, card: Card) -> void:
-	if flipped_cards.size() == 2 or (not interactable):
+	var two_cards_flipped := flipped_cards.size() == 2
+	var is_paused := game_state.is_paused()
+	
+	if two_cards_flipped or is_paused or (not interactable):
 		return
 
 	if event is InputEventMouseButton and event.is_pressed():
@@ -209,5 +213,5 @@ func _on_effect_created(effect: Effect) -> void:
 	if effect.target_type != Effect.TargetType.BOARD:
 		return
 	
-	effect.setup(self)
+	effect.setup([self])
 	effect.apply_effect()

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvya4mhm2rvyc"]
+
+[ext_resource type="Script" path="res://screens/menu_screen.gd" id="1_r7624"]
+[ext_resource type="PackedScene" uid="uid://csckhpk6v8me2" path="res://screens/main_menu.tscn" id="2_gtfp5"]
+[ext_resource type="PackedScene" uid="uid://rl6khyp8imaq" path="res://screens/character_selector.tscn" id="3_3hp7d"]
+[ext_resource type="PackedScene" uid="uid://by2lxtudbbc58" path="res://screens/credits.tscn" id="4_dbb1f"]
+
+[node name="MenuScreen" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.145098, 0.145098, 0.145098, 1)
+script = ExtResource("1_r7624")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_gtfp5")]
+layout_mode = 1
+offset_left = -200.0
+offset_top = -325.0
+offset_right = 200.0
+offset_bottom = 325.0
+
+[node name="CharacterSelector" parent="." instance=ExtResource("3_3hp7d")]
+visible = false
+layout_mode = 1
+offset_left = -200.0
+offset_top = -325.0
+offset_right = 200.0
+offset_bottom = 325.0
+
+[node name="Credits" parent="." instance=ExtResource("4_dbb1f")]
+visible = false
+layout_mode = 1
+offset_left = -200.0
+offset_top = -325.0
+offset_right = 200.0
+offset_bottom = 325.0

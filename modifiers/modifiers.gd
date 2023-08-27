@@ -4,6 +4,10 @@
 class_name Modifiers
 extends Node
 
+
+## If true, this is a %-based modifier.
+## Otherwise, we just need to add the values together
+@export var percent_based := true
 ## If true, this modifier is ignored.
 var ignore := false
 ## Array holding the modifier instances.
@@ -29,8 +33,8 @@ func new_modifier(value: float) -> Modifier:
 ## Adds a new temporary [Modifier] value to this collection.
 ## [param value] is the value you want to add. For % values, use floats
 ## between 0 and 1.
-## [param duration] is the duration of this new value, in seconds.
-func new_temporary_modifier(value: float, duration: float) -> void:
+## [param duration] is the duration of this new value, in turns.
+func new_temporary_modifier(value: float, duration: int) -> void:
 	var m := new_modifier(value)
 	m.expired.connect(func(expired_value): modifier_values.erase(expired_value))
 	m.remove_after(duration)
@@ -43,6 +47,19 @@ func clear_modifiers() -> void:
 ## Returns the result of applying all present [Modifier]s.
 func get_modifier() -> float:
 	if ignore:
+		return _get_base_value()
+	
+	return max(
+		modifier_values.reduce(func(sum, n): return sum + n, _get_base_value()), 
+		0.0
+	)
+
+
+## Returns the base value for these modifiers.
+## Namely, 1.0 (100%) for percent-based values,
+## and 0.0 (0) otherwise.
+func _get_base_value() -> float:
+	if percent_based:
 		return 1.0
 	
-	return max(modifier_values.reduce(func(accum, number): return accum + number, 1.0), 0.0)
+	return 0.0

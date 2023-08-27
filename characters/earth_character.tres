@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://ccn8avhv1bgyg"]
+
+[ext_resource type="Script" path="res://custom_resource_types/character.gd" id="1_0sm6t"]
+[ext_resource type="Texture2D" uid="uid://d234b64y0wd5i" path="res://temp/card_014.png" id="1_qtf06"]
+
+[resource]
+script = ExtResource("1_0sm6t")
+name = "Earth"
+icon = ExtResource("1_qtf06")
+starting_hp = 5
+starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([])
+available_cards = Array[Resource("res://custom_resource_types/card.gd")]([])

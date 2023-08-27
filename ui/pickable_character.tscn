@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce62ja7y3ei2q"]
+
+[ext_resource type="Script" path="res://ui/pickable_character.gd" id="1_d4seh"]
+[ext_resource type="Texture2D" uid="uid://c2ug18p2l2bw1" path="res://temp/card_012.png" id="1_rmycn"]
+
+[node name="PickableCharacter" type="PanelContainer"]
+script = ExtResource("1_d4seh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_rmycn")
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fire"
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

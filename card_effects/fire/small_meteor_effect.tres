@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://ddc1pu36fxx03"]
+
+[ext_resource type="Script" path="res://card_effects/fire/small_meteor_effect.gd" id="1_fsab3"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_sjyaa"]
+
+[resource]
+script = ExtResource("1_sjyaa")
+target_type = 3
+effect_name = "small_meteor"
+effect_code = ExtResource("1_fsab3")

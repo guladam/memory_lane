@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://3kesmebidtjo"]
+
+[ext_resource type="Script" path="res://card_effects/fire/raise_hell_effect.gd" id="1_4tr0h"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_fw0bq"]
+
+[resource]
+script = ExtResource("1_fw0bq")
+target_type = 4
+effect_name = "raise_hell"
+effect_code = ExtResource("1_4tr0h")

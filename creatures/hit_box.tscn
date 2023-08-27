@@ -3,5 +3,7 @@
 [ext_resource type="Script" path="res://creatures/hit_box.gd" id="1_v5cl3"]
 
 [node name="HitBox" type="Area2D"]
+collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_v5cl3")
+base_damage = 1

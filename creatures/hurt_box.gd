@@ -1,8 +1,22 @@
+@tool
 ## Component for taking damage.
 ## Used by units that have health and can take damage.
 class_name HurtBox
 extends Area2D
 
+enum Type {PLAYER, ENEMY}
+
+@export var is_type: Type
+
+# TODO make this run in editor
+func _ready() -> void:
+	match is_type:
+		Type.PLAYER:
+			collision_layer = 2
+			collision_mask = 4
+		Type.ENEMY:
+			collision_layer = 8
+			collision_mask = 1
 
 ## This class relies on its owner to have a "take_damage"
 ## method.

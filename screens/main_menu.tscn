@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://csckhpk6v8me2"]
+
+[ext_resource type="Texture2D" uid="uid://cj814886i60yr" path="res://temp/card_015.png" id="1_qnc3l"]
+[ext_resource type="Script" path="res://screens/main_menu.gd" id="1_rq6x7"]
+
+[node name="MainMenu" type="VBoxContainer"]
+custom_minimum_size = Vector2(400, 650)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+script = ExtResource("1_rq6x7")
+
+[node name="Logo" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+texture = ExtResource("1_qnc3l")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play"
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Credits
+"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
