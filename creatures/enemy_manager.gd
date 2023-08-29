@@ -22,10 +22,6 @@ func _ready() -> void:
 	for i in range(1, 6):
 		grid_ground[i] = null
 		grid_air[i] = null
-		
-	spawn_enemy(ranged_enemy_scene, 5)
-	spawn_enemy(enemy_scene, 4)
-	spawn_enemy(flying_enemy_scene, 5)
 	
 	Events.player_turn_ended.connect(func(): Events.enemy_turn_started.emit())
 	Events.enemy_turn_started.connect(do_enemy_turn)
@@ -37,9 +33,14 @@ func setup(_player_ranged_target: Vector2) -> void:
 	player_ranged_target = _player_ranged_target
 
 
-func spawn_enemy(_enemy_scene: PackedScene, grid_idx: int) -> void:
+func spawn_enemy(_enemy_scene: PackedScene) -> void:
 	var enemy := _enemy_scene.instantiate()
 	enemies.add_child(enemy)
+	
+	var grid_idx := 5
+	while _is_grid_space_taken(grid_idx, enemy.type):
+		grid_idx -= 1
+	
 	enemy.global_position = _get_grid_position_for_enemy(enemy, grid_idx)
 	
 	var grid_table := _get_grid_table_for_enemy(enemy)
@@ -55,19 +56,20 @@ func do_enemy_turn() -> void:
 
 
 func take_turn_with_units(units: Dictionary) -> void:
-	var curr_enemy: Enemy
-	
 	for i in units.keys():
-		curr_enemy = units[i]
-		if not curr_enemy:
+		if not units[i]:
 			continue
 		
-		await curr_enemy.status_effects.apply_status_effects()
+		await units[i].status_effects.apply_status_effects()
+	
+	for i in units.keys():
+		if not units[i]:
+			continue
 		
-		if curr_enemy.in_range(i):
-			await attack_with_enemy(curr_enemy)
+		if units[i].in_range(i):
+			await attack_with_enemy(units[i])
 		else:
-			await move_enemy(curr_enemy, i)
+			await move_enemy(units[i], i)
 
 
 func move_enemy(enemy: Enemy, grid_idx: int) -> void:
@@ -104,6 +106,15 @@ func attack_with_enemy(enemy: Enemy) -> void:
 func damage_unit(grid_idx: int) -> void:
 	if grid_ground[grid_idx]:
 		grid_ground[grid_idx].take_damage(1)
+
+
+func spawn_enemies_for_turn(turn: int, level_data: LevelData) -> void:
+	if not level_data.spawn_table.has(turn):
+		return
+	
+	for enemy in level_data.spawn_table[turn]:
+		if enemy:
+			spawn_enemy(enemy)
 
 
 func _is_grid_space_taken(i: int, type: Enemy.Type) -> bool:

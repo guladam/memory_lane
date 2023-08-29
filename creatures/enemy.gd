@@ -24,7 +24,8 @@ enum Type {GROUND, FLYING}
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var movement_modifiers: Modifiers = $MovementModifiers
 @onready var status_effects: StatusEffects = $StatusEffects
-
+@onready var floating_text_position: Marker2D = $FloatingTextPosition
+@onready var floating_text := preload("res://creatures/floating_text.tscn")
 
 ## TODO document correctly movement if slowed
 var accumulated_movement := 0.0
@@ -33,6 +34,7 @@ var accumulated_movement := 0.0
 func _ready() -> void:
 	health.changed.connect(_on_health_changed)
 	health.max_health_changed.connect(health_bar.setup)
+	health.reached_zero.connect(_on_health_reached_zero)
 	
 	health_bar.setup(health.max_health)
 
@@ -41,14 +43,18 @@ func _ready() -> void:
 ## [param damage] is the amount of damage to take.
 func take_damage(damage: int) -> void:
 	health.health -= damage
-	animation_player.play("damage")
-	await animation_player.animation_finished
+	_create_floating_text("-%s" % damage, Color.FIREBRICK)
+	
+	if health.health > 0:
+		animation_player.play("damage")
+		await animation_player.animation_finished
 
 
 ## This method is for healing the enemy.
 ## [param amount] is the amount of health restored.
 func heal(amount: int) -> void:
 	health.health += amount
+	_create_floating_text("+%s" % amount, Color.WEB_GREEN)
 
 
 ## Changes the maximum health of the enemy.
@@ -124,12 +130,20 @@ func get_speed() -> float:
 
 func has_melee_weapon() -> bool:
 	return weapon is MeleeWeapon
+
+
+func _create_floating_text(text: String, color: Color) -> void:
+	var new_floating_text := floating_text.instantiate()
+	get_tree().root.add_child(new_floating_text)
+	new_floating_text.show_text(floating_text_position.global_position, color, text)
 	
 
 func _on_health_changed(new_hp: int) -> void:
 	health_bar.update_health.call_deferred(new_hp)
-	if new_hp <= 0:
-		Events.enemy_died.emit(self)
-		#animation_player.play("die")
-		queue_free()
-		print("enemy died")
+
+
+func _on_health_reached_zero() -> void:
+	Events.enemy_died.emit(self)
+	#animation_player.play("die")
+	queue_free()
+	print("enemy died")

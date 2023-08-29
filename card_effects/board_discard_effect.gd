@@ -6,7 +6,7 @@ extends EffectCode
 ## this effects discards the whole hand.
 func apply_effect() -> void:
 	print("discarding board via effect...")
-	var board = effect.target as Board
+	var board = effect.targets[0] as Board
 	if not board:
 		return
 	

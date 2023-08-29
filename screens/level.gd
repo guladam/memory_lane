@@ -4,6 +4,7 @@ extends Node2D
 
 ## Current [Deck] of the player.
 @export var run: Run
+@export var level_data: LevelData
 @export var game_state: GameState
 
 @onready var board: Board = $Board
@@ -14,13 +15,16 @@ extends Node2D
 
 ## Turn counter. Used for spawning in [Enemy]
 ## units at specific turns.
-var turn := 0
+var turn := 1
+## TODO
+var enemies_killed := 0
 ## A queue for drawing a new set of [Card]s.
 ## This can only happen after a new player turn begins.
 var draw_queue := []
 
 func _ready() -> void:
 	randomize()
+	print("deck size: %s" % run.deck.cards.size())
 	discard_pile.setup(run.deck)
 	draw_pile.setup(run.deck)
 	enemy_manager.setup(player.get_ranged_target_position())
@@ -28,15 +32,17 @@ func _ready() -> void:
 	Events.draw_pile_reshuffled.connect(_on_draw_pile_reshuffled)
 	Events.board_emptied.connect(_on_board_emptied)
 	Events.player_turn_started.connect(_draw_new_hand)
+	Events.enemy_died.connect(_on_enemy_died)
 	Events.enemy_turn_ended.connect(
 		func(): 
 			self.turn += 1
-			print("turn %s begins." % turn)
+			enemy_manager.spawn_enemies_for_turn(self.turn, level_data)
 	)
 	
 	board.setup(draw_pile.global_position, discard_pile.global_position)
 	board.spawn_cards(draw_pile.draw_cards(12))
 	game_state.reset()
+	enemy_manager.spawn_enemies_for_turn(turn, level_data)
 
 
 ## Called when the board is emptied.
@@ -73,3 +79,10 @@ func _on_draw_pile_reshuffled(remaining_cards: int) -> void:
 ## Submits a request to the show the [Deck] in the Card Pile panel.
 func _on_deck_view_button_pressed() -> void:
 	Events.card_pile_panel_requested.emit("Deck", run.deck.cards)
+
+
+func _on_enemy_died(_enemy: Enemy) -> void:
+	enemies_killed += 1
+	if enemies_killed == level_data.get_number_of_enemies():
+		Events.level_won.emit()
+		print("level won! woo")

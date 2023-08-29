@@ -11,3 +11,4 @@ card_back = ExtResource("1_b2gp7")
 card_front = ExtResource("2_qfwvj")
 id = "green_arrow"
 effect = ExtResource("3_l3wjd")
+can_have_multiple = false

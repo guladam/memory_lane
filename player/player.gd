@@ -10,6 +10,8 @@ extends Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var bonus_damage: Modifiers = $BonusDamage
 @onready var status_effects: StatusEffects = $StatusEffects
+@onready var floating_text_position: Marker2D = $FloatingTextPosition
+@onready var floating_text := preload("res://creatures/floating_text.tscn")
 
 
 func _ready() -> void:
@@ -24,12 +26,14 @@ func _ready() -> void:
 ## [param damage] is the amount of damage to take.
 func take_damage(damage: int) -> void:
 	health.health -= damage
+	_create_floating_text("-%s" % damage, Color.FIREBRICK)
 
 
 ## This method is for healing the player
 ## [param amount] is the amount of health restored.
 func heal(amount: int) -> void:
 	health.health += amount
+	_create_floating_text("+%s" % amount, Color.WEB_GREEN)
 
 
 ## Changes the maximum health of the player.
@@ -73,6 +77,12 @@ func spawn_projectile(target: Vector2, projectile: PackedScene) -> void:
 	get_tree().root.add_child(new_projectile)
 	new_projectile.global_position = staff_end.global_position
 	new_projectile.launch(target, bonus_damage.get_modifier())
+
+
+func _create_floating_text(text: String, color: Color) -> void:
+	var new_floating_text := floating_text.instantiate()
+	get_tree().root.add_child(new_floating_text)
+	new_floating_text.show_text(floating_text_position.global_position, color, text)
 
 
 ## Called when the player's health changes.

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=5 format=3 uid="uid://dsx0r64r2guss"]
+
+[ext_resource type="Script" path="res://custom_resource_types/level_data.gd" id="1_safmq"]
+[ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="2_416yo"]
+[ext_resource type="PackedScene" uid="uid://q0uouhv20f7t" path="res://creatures/flying_enemy.tscn" id="3_2drht"]
+[ext_resource type="PackedScene" uid="uid://bvkc4bkk7r02b" path="res://creatures/ranged_enemy.tscn" id="4_todrb"]
+
+[resource]
+script = ExtResource("1_safmq")
+level_pool = 2
+spawn_table = {
+1: [ExtResource("2_416yo")],
+2: [ExtResource("3_2drht"), ExtResource("4_todrb")],
+3: [],
+4: [],
+5: []
+}

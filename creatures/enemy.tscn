@@ -206,6 +206,12 @@ is_type = 1
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_j25mi")
 
+[node name="Weapon" parent="." instance=ExtResource("5_5qetd")]
+position = Vector2(-48, -16)
+
+[node name="FloatingTextPosition" type="Marker2D" parent="."]
+position = Vector2(-22, -23)
+
 [node name="HealthBar" parent="." instance=ExtResource("1_pxvnn")]
 offset_left = -24.0
 offset_top = -60.0
@@ -225,9 +231,6 @@ max_health = 2
 
 [node name="StatusEffects" parent="." node_paths=PackedStringArray("status_effect_bar") instance=ExtResource("6_4bj62")]
 status_effect_bar = NodePath("../StatusEffectBar")
-
-[node name="Weapon" parent="." instance=ExtResource("5_5qetd")]
-position = Vector2(-48, -16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"

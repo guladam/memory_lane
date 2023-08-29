@@ -12,6 +12,8 @@ extends Resource
 @export var id: String
 ## The [Effect] this card creates when paired.
 @export var effect: Effect
+## If false, the [Player] can only draft this card once.
+@export var can_have_multiple := true
 
 
 ## Returns true if the card's id matches the id of the [param other_card_data].
