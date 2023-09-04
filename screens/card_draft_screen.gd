@@ -1,5 +1,9 @@
+## This screen is shown when a [Level] is won and the [Player]
+## can draft new [Card]s to their [Deck].
 extends ColorRect
 
+## Emitted when the user has selected a card to draft, or when they
+## skipped the reward.
 signal card_drafted(new_card: CardData)
 
 @onready var add: Button = %Add
@@ -15,6 +19,8 @@ func _ready() -> void:
 	skip.pressed.connect(func(): card_drafted.emit(null))
 
 
+## This method sets the screen up before showing it.
+## [param run] is the data for the current [Run].
 func setup(run: Run) -> void:
 	var rewards := run.character.available_cards.duplicate(true)
 	rewards.shuffle()
@@ -30,11 +36,14 @@ func setup(run: Run) -> void:
 	picked_card = cards.get_child(0).card
 
 
+## Enables or disables both buttons.
+## [param enabled] is true if you want the buttons to be enabled.
 func set_buttons(enabled: bool) -> void:
 	add.disabled = not enabled
 	skip.disabled = not enabled
 
 
+## Called when the user selects a draftable [Card] on this screen.
 func _on_card_selected(selected_card: CardData) -> void:
 	for card in cards.get_children():
 		if card.card != selected_card:

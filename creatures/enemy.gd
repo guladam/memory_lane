@@ -18,7 +18,6 @@ enum Type {GROUND, FLYING}
 @export var movement_anim_speed := 1.0
 ## [Weapon] used by this enemy.
 @export var weapon: Weapon
-
 @onready var health: Health = $Health
 @onready var health_bar: PanelContainer = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -27,7 +26,9 @@ enum Type {GROUND, FLYING}
 @onready var floating_text_position: Marker2D = $FloatingTextPosition
 @onready var floating_text := preload("res://creatures/floating_text.tscn")
 
-## TODO document correctly movement if slowed
+## This variable is used to calculate how many grid spaces
+## an enemy can move. If it's less than 0, the accumulated
+## float value is stored for the next turn(s).
 var accumulated_movement := 0.0
 
 
@@ -128,22 +129,28 @@ func get_speed() -> float:
 	return movement_speed * movement_modifiers.get_modifier()
 
 
+## Returns true if the enemy wields a [MeleeWeapon].
 func has_melee_weapon() -> bool:
 	return weapon is MeleeWeapon
 
 
+## Creates a floating text for this enemy.
+## [param text] is the text to be displayed,
+## [param color] is the color of the message.
 func _create_floating_text(text: String, color: Color) -> void:
 	var new_floating_text := floating_text.instantiate()
 	get_tree().root.add_child(new_floating_text)
 	new_floating_text.show_text(floating_text_position.global_position, color, text)
 	
 
+## Called when the enemy's health is changed.
 func _on_health_changed(new_hp: int) -> void:
 	health_bar.update_health.call_deferred(new_hp)
 
 
+## Called when the enemy's health reaches 0.
 func _on_health_reached_zero() -> void:
 	Events.enemy_died.emit(self)
+	print("TODO!")
 	#animation_player.play("die")
 	queue_free()
-	print("enemy died")

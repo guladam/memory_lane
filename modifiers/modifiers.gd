@@ -39,10 +39,12 @@ func new_temporary_modifier(value: float, duration: int) -> void:
 	m.expired.connect(func(expired_value): modifier_values.erase(expired_value))
 	m.remove_after(duration)
 
+
 ## Clears all [Modifier] values.
 func clear_modifiers() -> void:
 	for c in get_children():
 		remove_child(c)
+
 
 ## Returns the result of applying all present [Modifier]s.
 func get_modifier() -> float:

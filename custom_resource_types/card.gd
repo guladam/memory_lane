@@ -14,7 +14,8 @@ extends Resource
 @export var effect: Effect
 ## If false, the [Player] can only draft this card once.
 @export var can_have_multiple := true
-
+## Tooltip shown when tapped on the card.
+@export var tooltip: String
 
 ## Returns true if the card's id matches the id of the [param other_card_data].
 func is_matching(other_card_data: CardData) -> bool:

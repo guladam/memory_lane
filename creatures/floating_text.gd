@@ -1,6 +1,10 @@
 extends Label
 
 
+## Shows an animates the floating text.
+## [param start_pos] is where the text appears,
+## [param color] is the color of the text,
+## [param message] is the message to be displayed.
 func show_text(start_pos: Vector2, color: Color, message: String) -> void:
 	text = message
 	set("theme_override_colors/font_color", color)

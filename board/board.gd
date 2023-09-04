@@ -3,6 +3,7 @@ class_name Board
 extends Node2D
 
 
+## [GameState] dependency.
 @export var game_state: GameState
 ## This array is representing the current [Card]s.
 @onready var current_cards := []
@@ -31,16 +32,8 @@ func _ready() -> void:
 	Events.card_unflipped.connect(_on_card_unflipped)
 
 	Events.enemy_turn_ended.connect(func(): Events.player_turn_started.emit())
-	Events.player_turn_started.connect(
-		func(): 
-			self.interactable = true
-			print("player turn started!")
-	)
-	Events.player_turn_ended.connect(
-		func(): 
-			self.interactable = false
-			print("player turn ended!")
-	)
+	Events.player_turn_started.connect(func(): self.interactable = true)
+	Events.player_turn_ended.connect(func(): self.interactable = false)
 
 
 ## This method is used for dependency injection.

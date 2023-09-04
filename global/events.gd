@@ -1,6 +1,5 @@
 ## Event bus for global events to avoid distant passing of signals.
 ## This is a Singleton Class added as an autoload.
-## Mainly used for [Effect]s of [Card]s.
 extends Node
 
 
@@ -54,10 +53,12 @@ signal enemy_turn_ended
 signal enemy_died(enemy: Enemy)
 
 ## Emitted when the [Player] wins the level.
-signal level_won
+signal level_won(level: LevelData)
 ## Emitted when the [Player] loses the level.
 signal game_over
+## Emitted when a whole run is won by the [Player].
+signal run_won
 
 
-## Emitted when the CardPilePanel is requested to show.
+## Emitted when a CardPilePanel is requested to show.
 signal card_pile_panel_requested(title: String, cards: Array[CardData])

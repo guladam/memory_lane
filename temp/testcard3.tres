@@ -12,3 +12,4 @@ card_front = ExtResource("2_qfwvj")
 id = "green_arrow"
 effect = ExtResource("3_l3wjd")
 can_have_multiple = false
+tooltip = "Green Card xd"

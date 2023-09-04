@@ -11,3 +11,5 @@ card_back = ExtResource("1_oub3v")
 card_front = ExtResource("2_s035s")
 id = "red_arrow"
 effect = ExtResource("3_by5qf")
+can_have_multiple = true
+tooltip = "Red card"

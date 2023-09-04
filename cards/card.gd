@@ -5,6 +5,7 @@ extends Area2D
 
 ## [CardData] resource.
 @export var card: CardData: set = _set_card
+## A boolean for checking if the card is flipped over.
 @onready var is_flipped := false
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var back: Sprite2D = $Back

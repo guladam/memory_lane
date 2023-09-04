@@ -1,12 +1,17 @@
+## Base class representing all Ranged Weapons.
+## These are used by the ranged [Enemy] units.
+class_name RangedWeapon
 extends Weapon
 
 
+## The projectile this weapon fires.
 @export var projectile: PackedScene
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var visuals: Node2D = $Visuals
 @onready var muzzle: Marker2D = $Visuals/Muzzle
-
+## The target of the unit, in global coordinates.
 var target := Vector2.ZERO
+
 
 ## This method is used for performing az attack with the weapon.
 func use_weapon() -> void:
@@ -19,6 +24,8 @@ func use_weapon() -> void:
 	visuals.rotation = old_rotation
 
 
+## This method is used to spawn a projectile when shooting the weapon.
+## Can be called within animations for the weapon.
 func spawn_projectile() -> void:
 	var new_projectile := projectile.instantiate()
 	get_tree().root.add_child(new_projectile)

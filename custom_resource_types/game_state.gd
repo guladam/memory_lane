@@ -2,6 +2,7 @@
 class_name GameState
 extends Resource
 
+## An enum holding all available [GameState]s.
 enum State {PLAYING, PAUSED}
 
 ## Emitted when the game state is changed.

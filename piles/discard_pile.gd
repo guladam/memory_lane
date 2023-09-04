@@ -3,6 +3,7 @@
 class_name DiscardPile
 extends Node2D
 
+## [GameState] dependency.
 @export var game_state: GameState
 ## Label displaying the number of [Card]s in the discard pile.
 @onready var cards_label: Label = $CardsLabel

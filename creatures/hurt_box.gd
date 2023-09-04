@@ -4,11 +4,12 @@
 class_name HurtBox
 extends Area2D
 
+## enum for specifying the type of the HurtBox.
 enum Type {PLAYER, ENEMY}
-
+## [enum HurtBox.Type] of this HurtBox.
 @export var is_type: Type
 
-# TODO make this run in editor
+
 func _ready() -> void:
 	match is_type:
 		Type.PLAYER:

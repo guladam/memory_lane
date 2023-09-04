@@ -1,3 +1,4 @@
+## This class represents a playthrough of the game.
 class_name Run
 extends Resource
 

@@ -1,5 +1,8 @@
+## This panel shows a set of [Card]s in a grid.
+## This is used to display the [Player]'s deck, draw pile and discard pile.
 extends CenterContainer
 
+## [GameState] dependency.
 @export var game_state: GameState
 @onready var panel_title: Label = %PanelTitle
 @onready var card_grid: GridContainer = %CardGrid
@@ -31,6 +34,7 @@ func show_panel(title: String, cards: Array[CardData]) -> void:
 		var new_card_view := card_view.instantiate()
 		card_grid.add_child(new_card_view)
 		new_card_view.setup(card)
+		new_card_view.tooltip_shown.connect(_on_card_tooltip_shown)
 	
 	fade_in()
 
@@ -52,3 +56,11 @@ func fade_out() -> void:
 	t.parallel().tween_property(self, "modulate", Color.TRANSPARENT, 0.5)
 	t.tween_callback(hide)
 	t.tween_callback(game_state.change_to.bind(GameState.State.PLAYING))
+
+
+## This is called when a tooltip is shown for a card.
+## [param _card_view] is the card that has its tooltip shown.
+func _on_card_tooltip_shown(_card_view: Control) -> void:
+	for card in card_grid.get_children():
+		if card != _card_view:
+			card.turn_off_tooltip()

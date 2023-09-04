@@ -1,3 +1,4 @@
+## This class manages spawning and taking turns with [Enemy] units.
 class_name EnemyManager
 extends Node2D
 
@@ -7,9 +8,6 @@ extends Node2D
 @onready var melee_attack_anim_range: Marker2D = $MeleeAttackAnimRange
 @onready var flying_melee_attack_anim_range: Marker2D = $FlyingMeleeAttackAnimRange
 @onready var enemies: Node2D = $Enemies
-@onready var enemy_scene := preload("res://creatures/enemy.tscn")
-@onready var flying_enemy_scene := preload("res://creatures/flying_enemy.tscn")
-@onready var ranged_enemy_scene := preload("res://creatures/ranged_enemy.tscn")
 ## The position where ranged [Enemy] units will shoot at.
 var player_ranged_target: Vector2
 ## Grid representing the current [Enemy] units on the ground.
@@ -29,10 +27,15 @@ func _ready() -> void:
 	Events.enemy_died.connect(_on_enemy_died)
 
 
+## This method is used to inject a dependency for ranged units.
+## They need to know where to aim before shooting.
+## [param _player_ranged_target] is the position of the [Player].
 func setup(_player_ranged_target: Vector2) -> void:
 	player_ranged_target = _player_ranged_target
 
 
+## Spawns an [Enemy] unit in the furthest available grid.
+## [param _enemy_scene] is the [Enemy] unit to spawn.
 func spawn_enemy(_enemy_scene: PackedScene) -> void:
 	var enemy := _enemy_scene.instantiate()
 	enemies.add_child(enemy)
@@ -47,6 +50,8 @@ func spawn_enemy(_enemy_scene: PackedScene) -> void:
 	grid_table[grid_idx] = enemy
 
 
+## Completes the full enemy turn, unit by unit.
+## This is a coroutine as it waits for the units to finish their actions.
 func do_enemy_turn() -> void:
 	# TODO valami grafika?
 	await get_tree().create_timer(1.0).timeout
@@ -55,6 +60,9 @@ func do_enemy_turn() -> void:
 	Events.enemy_turn_ended.emit()
 
 
+## Iterates over a type of enemies and takes turns with them one by one.
+## [param units] is a [Dictionary] with all the [Enemy] units for a given type.
+## This method is used by [method EnemyManager.do_enemy_turn].
 func take_turn_with_units(units: Dictionary) -> void:
 	for i in units.keys():
 		if not units[i]:
@@ -66,12 +74,22 @@ func take_turn_with_units(units: Dictionary) -> void:
 		if not units[i]:
 			continue
 		
-		if units[i].in_range(i):
+		var can_move_up: bool = i > 1 and not _is_grid_space_taken(i - 1, units[i].type)
+		var has_unit_behind: bool = i < 5 and _is_grid_space_taken(i + 1, units[i].type)
+		
+		print("%s. enemy: canmoveup: %s has_unit_behind: %s" % [i, can_move_up, has_unit_behind])
+		
+		if can_move_up and has_unit_behind:
+			await move_enemy(units[i], i)
+		elif units[i].in_range(i):
 			await attack_with_enemy(units[i])
 		else:
 			await move_enemy(units[i], i)
 
 
+## Moves an [Enemy] according to its movement speed.
+## [param enemy] is the [Enemy] unit,
+## [param grid_idx] is the starting position of the unit.
 func move_enemy(enemy: Enemy, grid_idx: int) -> void:
 	enemy.accumulated_movement += enemy.get_speed()
 	
@@ -81,6 +99,8 @@ func move_enemy(enemy: Enemy, grid_idx: int) -> void:
 		return
 	
 	enemy.accumulated_movement = 0
+	var grid_table := _get_grid_table_for_enemy(enemy)
+	
 	for i in range(1, enemy_grid_steps+1):
 		var current_grid_idx = max(1, grid_idx - i)
 		if _is_grid_space_taken(current_grid_idx, enemy.type):
@@ -89,12 +109,15 @@ func move_enemy(enemy: Enemy, grid_idx: int) -> void:
 		
 		await enemy.animate_move(_get_grid_position_for_enemy(enemy, current_grid_idx))	
 	
-	print("moved from %s to %s" % [grid_idx, max(1, grid_idx - enemy_grid_steps)])
-	var grid_table := _get_grid_table_for_enemy(enemy)
-	grid_table[grid_idx] = null
-	grid_table[max(1, grid_idx - enemy_grid_steps)] = enemy
+		print("moved from %s to %s" % [grid_idx, current_grid_idx])
+		## TODO THIS MIGHT BE WRONG, MIGHT DELETE UNRELATED UNITS,
+		## NEEDS TO BE CHECKED ON PAPER
+		grid_table[current_grid_idx + 1] = null
+		grid_table[current_grid_idx] = enemy
 
 
+## Performs an attack with the [Enemy] unit.
+## [param enemy] is the attacking unit.
 func attack_with_enemy(enemy: Enemy) -> void:
 	if enemy.has_melee_weapon():
 		var anim_position = _get_melee_attack_anim_pos_for_enemy(enemy)
@@ -103,11 +126,21 @@ func attack_with_enemy(enemy: Enemy) -> void:
 		await enemy.ranged_attack(player_ranged_target)
 
 
+## Deals one damage to an [Enemy] unit in a given index,
+## prioritizing ground units.
+## [param grid_idx] is the grid position of the unit.
+## Note: this method is only used for debugging.
 func damage_unit(grid_idx: int) -> void:
 	if grid_ground[grid_idx]:
 		grid_ground[grid_idx].take_damage(1)
+	elif grid_air[grid_idx]:
+		grid_air[grid_idx].take_damage(1)
 
 
+## Spawns the [Enemy] units according the Spawn Table of the current [Level]'s
+## [LevelData]. This should be called in every turn.
+## [param turn] is the turn counter,
+## [parram level_data] is the [LevelData] resource for the current [Level].
 func spawn_enemies_for_turn(turn: int, level_data: LevelData) -> void:
 	if not level_data.spawn_table.has(turn):
 		return
@@ -117,6 +150,9 @@ func spawn_enemies_for_turn(turn: int, level_data: LevelData) -> void:
 			spawn_enemy(enemy)
 
 
+## Returns [code]true[/code] if a given grid is taken by a specific type of [Enemy].
+## [param i] is the grid index,
+## [param type] is the [enum Enemy.Type] of the enemy unit.
 func _is_grid_space_taken(i: int, type: Enemy.Type) -> bool:
 	match type:
 		Enemy.Type.GROUND:
@@ -127,6 +163,9 @@ func _is_grid_space_taken(i: int, type: Enemy.Type) -> bool:
 	return false
 
 
+## Returns the position of any given [Enemy] unit, in global coordinates.
+## [param enemy] is the [Enemy] unit which is needed to get the correct type.
+## [param grid_idx] is the grid position of the unit.
 func _get_grid_position_for_enemy(enemy: Enemy, grid_idx: int) -> Vector2:
 	match enemy.type:
 		Enemy.Type.GROUND:
@@ -137,6 +176,8 @@ func _get_grid_position_for_enemy(enemy: Enemy, grid_idx: int) -> Vector2:
 	return Vector2.ZERO
 
 
+## Returns the matching grid table ([Dictionary]) for a given [Enemy].
+## [param enemy] is the [Enemy] unit.
 func _get_grid_table_for_enemy(enemy: Enemy) -> Dictionary:
 	match enemy.type:
 		Enemy.Type.GROUND:
@@ -147,6 +188,9 @@ func _get_grid_table_for_enemy(enemy: Enemy) -> Dictionary:
 	return {}
 
 
+## Gets the starting position for a melee attack for an [Enemy] unit
+## with a [MeleeWeapon].
+## [param enemy] is the [Enemy] unit.
 func _get_melee_attack_anim_pos_for_enemy(enemy: Enemy) -> Vector2:
 	match enemy.type:
 		Enemy.Type.GROUND:
@@ -157,6 +201,7 @@ func _get_melee_attack_anim_pos_for_enemy(enemy: Enemy) -> Vector2:
 	return Vector2.ZERO
 
 
+## Returns all present [Enemy] units in an [Array].
 func _get_all_enemies() -> Array[Node]:
 	var all_enemies: Array[Node] = []
 	
@@ -169,6 +214,9 @@ func _get_all_enemies() -> Array[Node]:
 	return all_enemies
 
 
+## Returns the first available target for an [Effect].
+## This method is only useful for single-target [Effects].
+## [param effect] is the [Effect] which needs to get a target.
 func _get_target_for_effect(effect: Effect) -> Array[Node]:
 	match effect.target_type:
 		Effect.TargetType.AIR:
@@ -183,6 +231,9 @@ func _get_target_for_effect(effect: Effect) -> Array[Node]:
 	return []
 
 
+## Called when an [Effect] is created by the [Player].
+## This is usually done by matching two cards together.
+## [param effect] is created [Effect].
 func _on_effect_created(effect: Effect) -> void:
 	if not effect:
 		return
@@ -207,6 +258,8 @@ func _on_effect_created(effect: Effect) -> void:
 	effect.apply_effect()
 
 
+## Called when an [Enemy] unit dies.
+## [param enemy] is the dead [Enemy].
 func _on_enemy_died(enemy: Enemy) -> void:
 	var table := _get_grid_table_for_enemy(enemy)
 	for i in table.keys():

@@ -18,6 +18,7 @@ func _ready() -> void:
 	Events.effect_created.connect(_on_effect_created)
 	health.changed.connect(_on_health_changed)
 	health.max_health_changed.connect(health_bar.setup)
+	health.reached_zero.connect(_on_health_reached_zero)
 	
 	health_bar.setup(health.max_health)
 
@@ -79,6 +80,9 @@ func spawn_projectile(target: Vector2, projectile: PackedScene) -> void:
 	new_projectile.launch(target, bonus_damage.get_modifier())
 
 
+## Creates a floating text for the player.
+## [param text] is the text of the message.
+## [param color] is the [Color].
 func _create_floating_text(text: String, color: Color) -> void:
 	var new_floating_text := floating_text.instantiate()
 	get_tree().root.add_child(new_floating_text)
@@ -89,10 +93,12 @@ func _create_floating_text(text: String, color: Color) -> void:
 ## [param new_hp] is the new health of the player.
 func _on_health_changed(new_hp: int) -> void:
 	health_bar.update_health.call_deferred(new_hp)
-	if new_hp <= 0:
+
+
+## Called when the player's health reaches zero.
+func _on_health_reached_zero() -> void:
 		Events.game_over.emit()
 		print("game over")
-
 
 
 ## Inject the [Player] as a dependency when an [Effect] is created.

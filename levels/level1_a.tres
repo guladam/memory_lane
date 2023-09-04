@@ -9,7 +9,7 @@
 script = ExtResource("1_nfxvh")
 level_pool = 1
 spawn_table = {
-1: [ExtResource("2_m7gi1"), ExtResource("3_1bm8g")],
+1: [ExtResource("2_m7gi1"), ExtResource("3_1bm8g"), ExtResource("3_1bm8g")],
 2: [],
 3: [ExtResource("3_1bm8g"), ExtResource("4_nnuoh")],
 4: [],

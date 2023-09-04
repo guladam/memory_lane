@@ -10,13 +10,15 @@ extends Weapon
 var already_hit := false
 
 
-## This method is used for performing az attack with the weapon.
+## This method is used for performing an attack with the weapon.
 func use_weapon() -> void:
 	already_hit = false
 	animation_player.play("use")
 	await animation_player.animation_finished
 
 
+## Called when the [HitBox] collides with a [HurtBox].
+## This is used to make sure that the weapon only hits once per attack.
 func _on_hit_box_area_entered(hurt_box: HurtBox) -> void:
 	if not hurt_box or already_hit:
 		return

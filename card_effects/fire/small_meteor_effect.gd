@@ -4,7 +4,7 @@ extends EffectCode
 var fire_bolt_projectile := preload("res://weapons/fire_bolt_projectile.tscn")
 
 ## Overrides the virtual method of the [EffectCode] parent class.
-## this effect fires a single fire bolt.
+## this effect fires a meteor over the first flying enemy.
 func apply_effect() -> void:
 	print("small meteor effect...")
 	

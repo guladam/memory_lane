@@ -1,17 +1,20 @@
 @tool
-## Component for damage hitboxes.
+## Component for damaging hitboxes.
 ## Used by projectiles and melee attacks.
 class_name HitBox
 extends Area2D
 
+## enum for specifying the target of the HitBox.
 enum Target {PLAYER, ENEMY}
 
+## Base damage of this HitBox. This is without any modifiers.
 @export var base_damage: int
+## [enum Hitbox.Target] type for this HitBox.
 @export var target: Target
 
 @onready var damage := self.base_damage
 
-# TODO make this run in editor
+
 func _ready() -> void:
 	match target:
 		Target.PLAYER:
@@ -22,7 +25,7 @@ func _ready() -> void:
 			collision_mask = 8
 
 
-## This method returns the damage this hitbox creates.
+## This method returns the damage this HitBox creates.
 func get_damage() -> int:
 	return damage
 

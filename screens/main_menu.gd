@@ -1,7 +1,9 @@
+## This screen is shown when you start the game.
 extends VBoxContainer
 
-
+## Emitted when the player wants to see the credits.
 signal credits_requested
+## Emitted when the player wants to start a new game.
 signal new_game_requested
 
 @onready var play: Button = %Play
@@ -15,6 +17,8 @@ func _ready() -> void:
 	quit.pressed.connect(get_tree().quit)
 
 
+## Enables or disables all buttons.
+## [param enabled] is true if you want the buttons to be enabled.
 func set_buttons(enabled: bool) -> void:
 	play.disabled = not enabled
 	credits.disabled = not enabled

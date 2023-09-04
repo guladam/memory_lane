@@ -4,6 +4,7 @@ class_name DrawPile
 extends Node2D
 
 
+## [GameState] dependency.
 @export var game_state: GameState
 ## Label displaying the number of [Card]s in the draw pile.
 @onready var cards_label: Label = $CardsLabel
@@ -50,7 +51,7 @@ func draw_cards(n: int) -> Array[CardData]:
 	return drawn_cards
 
 
-## Reshuffles the draw pile. Emits the [signal reshuffled] signal.
+## Reshuffles the draw pile. Emits the [signal Events.draw_pile_reshuffled] signal.
 func reshuffle(cards_already_drawn: Array[CardData], cards_to_draw: int) -> void:
 	cards.clear()
 	cards = deck.cards.duplicate(true)

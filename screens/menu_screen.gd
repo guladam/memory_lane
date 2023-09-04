@@ -1,5 +1,8 @@
+## This screen manages and animates all the different available
+## screens in the game's starting menu.
 extends ColorRect
 
+## Emitted when the player starts a new game with the selected [Character].
 signal start_new_game(character: Character)
 
 @onready var main_menu: VBoxContainer = $MainMenu
@@ -36,6 +39,10 @@ func _ready() -> void:
 			_fade_in_left(main_menu)
 	)
 
+
+## Fade out left animation used by other screens.
+## This is a coroutine as it waits for the animation to finish playing.
+## [param screen] is the screen [Control] node which needs to be animated.
 func _fade_out_left(screen: Control) -> void:
 	screen.set_buttons(false)
 	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -45,6 +52,9 @@ func _fade_out_left(screen: Control) -> void:
 	await t.finished
 
 
+## Fade in left animation used by other screens.
+## This is a coroutine as it waits for the animation to finish playing.
+## [param screen] is the screen [Control] node which needs to be animated.
 func _fade_in_left(screen: Control) -> void:
 	screen.set_buttons(false)
 	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -55,6 +65,9 @@ func _fade_in_left(screen: Control) -> void:
 	screen.set_buttons(true)
 
 
+## Fade out right animation used by other screens.
+## This is a coroutine as it waits for the animation to finish playing.
+## [param screen] is the screen [Control] node which needs to be animated.
 func _fade_out_right(screen: Control) -> void:
 	screen.set_buttons(false)
 	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -64,6 +77,9 @@ func _fade_out_right(screen: Control) -> void:
 	await t.finished
 
 
+## Fade in right animation used by other screens.
+## This is a coroutine as it waits for the animation to finish playing.
+## [param screen] is the screen [Control] node which needs to be animated.
 func _fade_in_right(screen: Control) -> void:
 	screen.set_buttons(false)
 	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -74,6 +90,9 @@ func _fade_in_right(screen: Control) -> void:
 	screen.set_buttons(true)
 
 
+## Fade out front animation used by other screens.
+## This is a coroutine as it waits for the animation to finish playing.
+## [param screen] is the screen [Control] node which needs to be animated.
 func _fade_out_front(screen: Control) -> void:
 	screen.set_buttons(false)
 	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)

@@ -2,9 +2,11 @@
 class_name Level
 extends Node2D
 
-## Current [Deck] of the player.
+## Data of the current [Run].
 @export var run: Run
+## [LevelData] resource of the current Level.
 @export var level_data: LevelData
+## [GameState] dependency.
 @export var game_state: GameState
 
 @onready var board: Board = $Board
@@ -16,7 +18,8 @@ extends Node2D
 ## Turn counter. Used for spawning in [Enemy]
 ## units at specific turns.
 var turn := 1
-## TODO
+## Total number of enemies killed while playing this level.
+## This is used to check for a win state.
 var enemies_killed := 0
 ## A queue for drawing a new set of [Card]s.
 ## This can only happen after a new player turn begins.
@@ -24,7 +27,6 @@ var draw_queue := []
 
 func _ready() -> void:
 	randomize()
-	print("deck size: %s" % run.deck.cards.size())
 	discard_pile.setup(run.deck)
 	draw_pile.setup(run.deck)
 	enemy_manager.setup(player.get_ranged_target_position())
@@ -33,11 +35,7 @@ func _ready() -> void:
 	Events.board_emptied.connect(_on_board_emptied)
 	Events.player_turn_started.connect(_draw_new_hand)
 	Events.enemy_died.connect(_on_enemy_died)
-	Events.enemy_turn_ended.connect(
-		func(): 
-			self.turn += 1
-			enemy_manager.spawn_enemies_for_turn(self.turn, level_data)
-	)
+	Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
 	
 	board.setup(draw_pile.global_position, discard_pile.global_position)
 	board.spawn_cards(draw_pile.draw_cards(12))
@@ -69,6 +67,7 @@ func _draw_new_hand() -> void:
 ## Called when the draw pile gets reshuffled.
 ## First, it animates the cards reshuffling from the discard pile.
 ## Then, it draws the remaining cards.
+## [param remaining_cards] is the number of cards that still need to be drawn.
 func _on_draw_pile_reshuffled(remaining_cards: int) -> void:
 	await get_tree().create_timer(0.2).timeout
 	await discard_pile.empty(draw_pile.global_position)
@@ -81,8 +80,16 @@ func _on_deck_view_button_pressed() -> void:
 	Events.card_pile_panel_requested.emit("Deck", run.deck.cards)
 
 
+## Called when an [Enemy] unit dies.
+## [param _enemy] is the unit that just died.
 func _on_enemy_died(_enemy: Enemy) -> void:
 	enemies_killed += 1
 	if enemies_killed == level_data.get_number_of_enemies():
-		Events.level_won.emit()
+		Events.level_won.emit(level_data)
 		print("level won! woo")
+
+
+## Called when the enemy turn has ended.
+func _on_enemy_turn_ended(): 
+	self.turn += 1
+	enemy_manager.spawn_enemies_for_turn(self.turn, level_data)
