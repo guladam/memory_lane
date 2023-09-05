@@ -15,14 +15,16 @@ extends Node2D
 @onready var interactable := true
 ## [Card] scene used for spawning the cards in place.
 @onready var card_scene := preload("res://cards/card.tscn")
-## Position of the draw pile. Needed for [Card] animations.
-@onready var draw_pile_pos: Vector2
-## Position of the discard pile. Needed for [Card] animations.
-@onready var discard_pile_pos: Vector2
 ## Node holding the spawn position markers for the [Card]s.
 @onready var card_markers: Array[Node] = $CardMarkers.get_children()
 ## Node holding [Card]s.
 @onready var cards: Node2D = $Cards
+## Position of the draw pile. Needed for [Card] animations.
+var draw_pile_pos: Vector2
+## Position of the discard pile. Needed for [Card] animations.
+var discard_pile_pos: Vector2
+## [Character] dependency for spawning [Card]s.
+var current_character: Character
 
 
 func _ready() -> void:
@@ -39,9 +41,10 @@ func _ready() -> void:
 ## This method is used for dependency injection.
 ## The board needs the position of the draw and discard piles for 
 ## [Card] animations.
-func setup(_draw_pile_pos: Vector2, _discard_pile_pos: Vector2) -> void:
+func setup(_draw_pile_pos: Vector2, _discard_pile_pos: Vector2, character: Character) -> void:
 	draw_pile_pos = _draw_pile_pos
 	discard_pile_pos = _discard_pile_pos
+	current_character = character
 	
 	current_cards.resize(12)
 	current_cards.fill(null)
@@ -60,7 +63,7 @@ func spawn_cards(new_cards: Array[CardData]) -> void:
 		
 		var new_card = card_scene.instantiate()
 		cards.add_child(new_card)
-		new_card.card = new_cards[i]
+		new_card.setup(new_cards[i], current_character)
 		new_card.input_event.connect(_on_card_input_event.bind(new_card))
 		current_cards[j] = new_card
 		

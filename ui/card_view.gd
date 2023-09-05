@@ -5,14 +5,15 @@ extends Control
 ## Emitted when the tooltip of this card is shown.
 signal tooltip_shown(card_view: Control)
 
-@onready var texture: TextureRect = $Texture
+@onready var card_front: CardFront = $CardFront
 @onready var card_tooltip: Panel = $CardTooltip
 
 
 ## Sets up the card based on the [CardData].
 ## [param card_data] is the [CardData] resource.
-func setup(card_data: CardData) -> void:
-	texture.texture = card_data.card_front
+## [param character] is the current [Character].
+func setup(card_data: CardData, character: Character) -> void:
+	card_front.setup(card_data, character)
 	card_tooltip.setup(card_data)
 
 

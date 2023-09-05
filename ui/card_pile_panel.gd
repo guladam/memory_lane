@@ -24,7 +24,8 @@ func _clear_children() -> void:
 ## Shows the Card Pile panel.
 ## [param title] is the title used for this view. (e.g. Draw Pile)
 ## [param cards] is the array of [CardData], i.e. the Cards to show.
-func show_panel(title: String, cards: Array[CardData]) -> void:
+## [param character] is the curernt [Character].
+func show_panel(title: String, cards: Array[CardData], character: Character) -> void:
 	game_state.change_to(GameState.State.PAUSED)
 	close_button.disabled = true
 	panel_title.text = title
@@ -33,7 +34,7 @@ func show_panel(title: String, cards: Array[CardData]) -> void:
 	for card in cards:
 		var new_card_view := card_view.instantiate()
 		card_grid.add_child(new_card_view)
-		new_card_view.setup(card)
+		new_card_view.setup(card, character)
 		new_card_view.tooltip_shown.connect(_on_card_tooltip_shown)
 	
 	fade_in()

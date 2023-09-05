@@ -1,10 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://di8413bx5b8td"]
 
-[ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="1_2okdi"]
 [ext_resource type="Script" path="res://ui/card_view.gd" id="1_54pvi"]
+[ext_resource type="PackedScene" uid="uid://ok77bnmeiv08" path="res://cards/card_front.tscn" id="2_1aeiy"]
 [ext_resource type="PackedScene" uid="uid://cdylhvu13jmtq" path="res://ui/card_tooltip.tscn" id="3_jcony"]
 
 [node name="CardView" type="Control"]
+texture_filter = 1
 custom_minimum_size = Vector2(75, 100)
 layout_mode = 3
 anchors_preset = 0
@@ -13,17 +14,10 @@ offset_bottom = 100.0
 size_flags_horizontal = 3
 script = ExtResource("1_54pvi")
 
-[node name="Texture" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(75, 100)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-texture = ExtResource("1_2okdi")
-stretch_mode = 5
+[node name="CardFront" parent="." instance=ExtResource("2_1aeiy")]
+layout_mode = 0
+offset_right = 66.0
+offset_bottom = 102.0
 
 [node name="CardTooltip" parent="." instance=ExtResource("3_jcony")]
 visible = false

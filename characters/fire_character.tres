@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=8 format=3 uid="uid://ccrhcy38xlr5e"]
+[gd_resource type="Resource" script_class="Character" load_steps=9 format=3 uid="uid://ccrhcy38xlr5e"]
 
 [ext_resource type="Resource" uid="uid://b0hucd36es5rb" path="res://temp/testcard1.tres" id="1_iraos"]
 [ext_resource type="Texture2D" uid="uid://c2ug18p2l2bw1" path="res://temp/card_012.png" id="1_yix8y"]
@@ -7,11 +7,14 @@
 [ext_resource type="Resource" uid="uid://c8nrc1hufo7nl" path="res://temp/test_deck.tres" id="3_2050a"]
 [ext_resource type="Resource" uid="uid://75qrcaqkjir8" path="res://temp/testcard3.tres" id="3_rvmpv"]
 [ext_resource type="Resource" uid="uid://bxb1epfykt48n" path="res://temp/testcard4.tres" id="4_htgf2"]
+[ext_resource type="Texture2D" uid="uid://biyyvbrsubwil" path="res://cards/card_background1.png" id="5_eu8lp"]
 
 [resource]
 script = ExtResource("1_yq0hd")
 name = "Fire"
 icon = ExtResource("1_yix8y")
+card_background = ExtResource("5_eu8lp")
+color = Color(1, 0.333333, 0.333333, 1)
 starting_hp = 3
 starting_deck = ExtResource("3_2050a")
 starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([])

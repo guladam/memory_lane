@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://du5hommjpsvea"]
 
 [ext_resource type="Script" path="res://piles/draw_pile.gd" id="1_xtf2o"]
-[ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="2_7mo4s"]
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="2_d5bcq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0my4n"]
 size = Vector2(86, 56)
@@ -12,8 +12,8 @@ script = ExtResource("1_xtf2o")
 
 [node name="DrawPileIcon" type="Sprite2D" parent="."]
 rotation = 1.5708
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("2_7mo4s")
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_d5bcq")
 
 [node name="CardsLabel" type="Label" parent="."]
 anchors_preset = 7

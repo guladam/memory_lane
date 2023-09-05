@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://ok77bnmeiv08"]
+
+[ext_resource type="Texture2D" uid="uid://b6y4tttwgy6b0" path="res://cards/card_front.png" id="1_yrdxd"]
+[ext_resource type="Texture2D" uid="uid://bcyojbtyh8w6q" path="res://cards/card_border1.png" id="2_c0off"]
+[ext_resource type="Script" path="res://cards/card_front.gd" id="2_i0lui"]
+[ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target1.png" id="3_hi4ma"]
+[ext_resource type="FontFile" uid="uid://dbb73ujk8a3yr" path="res://ui/lato_regular.ttf" id="4_6bg4o"]
+[ext_resource type="Texture2D" uid="uid://bi3jwnpvsq3hi" path="res://cards/card_background2.png" id="4_vh0wh"]
+[ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target4.png" id="5_ly2g1"]
+
+[node name="CardFront" type="TextureRect"]
+texture_filter = 1
+texture = ExtResource("1_yrdxd")
+script = ExtResource("2_i0lui")
+
+[node name="Border" type="TextureRect" parent="."]
+layout_mode = 0
+texture = ExtResource("2_c0off")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vh0wh")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -32.0
+offset_right = 19.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hi4ma")
+
+[node name="TextAndStatusIcons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 6.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Text" type="Label" parent="TextAndStatusIcons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_6bg4o")
+theme_override_font_sizes/font_size = 24
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatusIcon" type="TextureRect" parent="TextAndStatusIcons"]
+layout_mode = 2
+texture = ExtResource("5_ly2g1")
+stretch_mode = 3

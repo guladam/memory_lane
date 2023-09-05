@@ -6,16 +6,22 @@ class_name CardData
 extends Resource
 
 
-@export var card_back: Texture = preload("res://temp/card_000.png")
-@export var card_front: Texture
+@export_category("Visuals")
+@export var card_back: Texture = preload("res://cards/card_back.png")
+@export var card_border: Texture
+@export var card_icon: Texture
+@export var card_text: String
+@export var card_status_icon: Texture
+## Tooltip shown when tapped on the card.
+@export var tooltip: String
+
+@export_category("Other Data")
 ## A unique ID for the card, used for checking matches.
 @export var id: String
 ## The [Effect] this card creates when paired.
 @export var effect: Effect
 ## If false, the [Player] can only draft this card once.
 @export var can_have_multiple := true
-## Tooltip shown when tapped on the card.
-@export var tooltip: String
 
 ## Returns true if the card's id matches the id of the [param other_card_data].
 func is_matching(other_card_data: CardData) -> bool:

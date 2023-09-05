@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cegivhvq2dd30"]
 
 [ext_resource type="Script" path="res://piles/discard_pile.gd" id="1_xx1fb"]
-[ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="2_qyb4x"]
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="2_y1mb3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aveds"]
 size = Vector2(86, 56)
@@ -12,8 +12,8 @@ script = ExtResource("1_xx1fb")
 
 [node name="DiscardPileIcon" type="Sprite2D" parent="."]
 rotation = 1.5708
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("2_qyb4x")
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_y1mb3")
 
 [node name="CardsLabel" type="Label" parent="."]
 anchors_preset = 7

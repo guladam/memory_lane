@@ -1,15 +1,20 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://b0hucd36es5rb"]
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://b0hucd36es5rb"]
 
-[ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="1_oub3v"]
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_hmcvu"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_60kcm"]
-[ext_resource type="Texture2D" uid="uid://onx7ra1n5vg8" path="res://temp/card_104.png" id="2_s035s"]
+[ext_resource type="Texture2D" uid="uid://bcyojbtyh8w6q" path="res://cards/card_border1.png" id="2_77p10"]
 [ext_resource type="Resource" uid="uid://ccwxdf2rlwc4q" path="res://card_effects/board_discard_effect.tres" id="3_by5qf"]
+[ext_resource type="Texture2D" uid="uid://c4ekjtwm3a3dc" path="res://cards/card_target3.png" id="3_k8tvx"]
+[ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target4.png" id="4_5tx1k"]
 
 [resource]
 script = ExtResource("2_60kcm")
-card_back = ExtResource("1_oub3v")
-card_front = ExtResource("2_s035s")
+card_back = ExtResource("1_hmcvu")
+card_border = ExtResource("2_77p10")
+card_icon = ExtResource("3_k8tvx")
+card_text = ""
+card_status_icon = ExtResource("4_5tx1k")
+tooltip = "Red card"
 id = "red_arrow"
 effect = ExtResource("3_by5qf")
 can_have_multiple = true
-tooltip = "Red card"

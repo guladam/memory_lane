@@ -14,6 +14,7 @@ extends Node2D
 @onready var discard_pile: DiscardPile = $DiscardPile
 @onready var player: Sprite2D = $Creatures/Player
 @onready var enemy_manager: Node2D = $Creatures/EnemyManager
+@onready var ingame_ui: CanvasLayer = $IngameUI
 
 ## Turn counter. Used for spawning in [Enemy]
 ## units at specific turns.
@@ -30,6 +31,7 @@ func _ready() -> void:
 	discard_pile.setup(run.deck)
 	draw_pile.setup(run.deck)
 	enemy_manager.setup(player.get_ranged_target_position())
+	ingame_ui.setup(run.character)
 	
 	Events.draw_pile_reshuffled.connect(_on_draw_pile_reshuffled)
 	Events.board_emptied.connect(_on_board_emptied)
@@ -37,7 +39,7 @@ func _ready() -> void:
 	Events.enemy_died.connect(_on_enemy_died)
 	Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
 	
-	board.setup(draw_pile.global_position, discard_pile.global_position)
+	board.setup(draw_pile.global_position, discard_pile.global_position, run.character)
 	board.spawn_cards(draw_pile.draw_cards(12))
 	game_state.reset()
 	enemy_manager.spawn_enemies_for_turn(turn, level_data)

@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://bxb1epfykt48n"]
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3 uid="uid://bxb1epfykt48n"]
 
-[ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="1_em1h0"]
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_dp243"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_46iaf"]
-[ext_resource type="Texture2D" uid="uid://bwykx8a3jjam6" path="res://temp/card_107.png" id="2_xvyse"]
+[ext_resource type="Texture2D" uid="uid://dfbh1en6few6v" path="res://cards/card_border3.png" id="2_kyrbp"]
+[ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target1.png" id="3_8vek4"]
 [ext_resource type="Resource" uid="uid://ddc1pu36fxx03" path="res://card_effects/fire/small_meteor_effect.tres" id="3_k7j7u"]
 
 [resource]
 script = ExtResource("2_46iaf")
-card_back = ExtResource("1_em1h0")
-card_front = ExtResource("2_xvyse")
+card_back = ExtResource("1_dp243")
+card_border = ExtResource("2_kyrbp")
+card_icon = ExtResource("3_8vek4")
+card_text = "1"
+tooltip = "Yellow Card"
 id = "yellow_arrow"
 effect = ExtResource("3_k7j7u")
+can_have_multiple = true

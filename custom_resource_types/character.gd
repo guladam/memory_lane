@@ -5,6 +5,8 @@ extends Resource
 
 @export var name: String
 @export var icon: Texture
+@export var card_background: Texture
+@export var color: Color
 @export var starting_hp: int
 @export var starting_deck: Deck
 ## This a collection of [StatusData] the [Player]

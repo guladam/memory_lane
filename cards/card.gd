@@ -9,7 +9,7 @@ extends Area2D
 @onready var is_flipped := false
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var back: Sprite2D = $Back
-@onready var front: Sprite2D = $Back/Front
+@onready var front: CardFront = $Back/CardFront
 
 ## Flips the card. It's a coroutine as it waits for the animation
 ## to finish.
@@ -99,6 +99,12 @@ func animate_discard(discard_position: Vector2) -> void:
 	queue_free()
 
 
+## Injects all data and dependencies when creating a new card.
+func setup(new_card_data: CardData, character: Character) -> void:
+	self.card = new_card_data
+	front.setup(new_card_data, character)
+
+
 ## Sets the data of the card to [param new_card_data].
 func _set_card(new_card_data: CardData) -> void:
 	if not is_inside_tree():
@@ -106,7 +112,6 @@ func _set_card(new_card_data: CardData) -> void:
 	
 	card = new_card_data
 	back.texture = new_card_data.card_back
-	front.texture = new_card_data.card_front
 
 
 func _to_string() -> String:

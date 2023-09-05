@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b864ttbx7p5vk"]
 
 [ext_resource type="Script" path="res://cards/card.gd" id="1_y607t"]
-[ext_resource type="Texture2D" uid="uid://sydofturnibn" path="res://temp/card_000.png" id="2_p7y8r"]
-[ext_resource type="Texture2D" uid="uid://onx7ra1n5vg8" path="res://temp/card_104.png" id="3_iehid"]
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="2_pe0pk"]
+[ext_resource type="PackedScene" uid="uid://ok77bnmeiv08" path="res://cards/card_front.tscn" id="3_sd88g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_repqe"]
 size = Vector2(66, 102)
@@ -19,31 +19,31 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3, 3)]
+"values": [Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Back/Front:z_index")
+tracks/1/path = NodePath("Back:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [-1]
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Back:position")
+tracks/2/path = NodePath("Back/CardFront:z_index")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [-1]
 }
 
 [sub_resource type="Animation" id="Animation_isy54"]
@@ -60,31 +60,31 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.125, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(3, 3), Vector2(0.1, 3), Vector2(3, 3)]
+"values": [Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Back/Front:z_index")
-tracks/1/interp = 1
+tracks/1/path = NodePath("Back:position")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [-1, 0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Back:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.06, 0.18, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -25), Vector2(0, -25), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Back/CardFront:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_04o1h"]
@@ -101,31 +101,31 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.125, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(3, 3), Vector2(0.1, 3), Vector2(3, 3)]
+"values": [Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Back/Front:z_index")
-tracks/1/interp = 1
+tracks/1/path = NodePath("Back:position")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, -1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Back:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.06, 0.18, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -25), Vector2(0, -25), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Back/CardFront:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, -1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ghscl"]
@@ -140,14 +140,17 @@ texture_filter = 1
 script = ExtResource("1_y607t")
 
 [node name="Back" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
-texture = ExtResource("2_p7y8r")
+texture = ExtResource("2_pe0pk")
 
-[node name="Front" type="Sprite2D" parent="Back"]
+[node name="CardFront" parent="Back" instance=ExtResource("3_sd88g")]
 z_index = -1
-texture = ExtResource("3_iehid")
+offset_left = -33.0
+offset_top = -51.0
+offset_right = 33.0
+offset_bottom = 51.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_repqe")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
