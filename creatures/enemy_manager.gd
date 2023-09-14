@@ -48,6 +48,9 @@ func spawn_enemy(_enemy_scene: PackedScene) -> void:
 	
 	var grid_table := _get_grid_table_for_enemy(enemy)
 	grid_table[grid_idx] = enemy
+	
+	update_unit_intentions(air_grid, grid_air)
+	update_unit_intentions(grid, grid_ground)
 
 
 ## Completes the full enemy turn, unit by unit.
@@ -57,6 +60,8 @@ func do_enemy_turn() -> void:
 	await get_tree().create_timer(1.0).timeout
 	await take_turn_with_units(grid_air)
 	await take_turn_with_units(grid_ground)
+	update_unit_intentions(air_grid, grid_air)
+	update_unit_intentions(grid, grid_ground)
 	Events.enemy_turn_ended.emit()
 
 
@@ -74,17 +79,25 @@ func take_turn_with_units(units: Dictionary) -> void:
 		if not units[i]:
 			continue
 		
-		var can_move_up: bool = i > 1 and not _is_grid_space_taken(i - 1, units[i].type)
-		var has_unit_behind: bool = i < 5 and _is_grid_space_taken(i + 1, units[i].type)
+		var intent: Enemy.Intents = _get_enemy_intent(units[i], i)
 		
-		print("%s. enemy: canmoveup: %s has_unit_behind: %s" % [i, can_move_up, has_unit_behind])
-		
-		if can_move_up and has_unit_behind:
+		if intent == Enemy.Intents.MOVE:
 			await move_enemy(units[i], i)
-		elif units[i].in_range(i):
-			await attack_with_enemy(units[i])
 		else:
-			await move_enemy(units[i], i)
+			await attack_with_enemy(units[i])
+
+
+## Iterates over a type of enemies and updates their intentions one by one.
+## [param marker_parent] is the parent Node holding all markers,
+## [param units] is the Dictionary containing unit information.
+func update_unit_intentions(marker_parent: Node, units: Dictionary) -> void:
+	for i in marker_parent.get_child_count():
+		if not units[i+1]:
+			marker_parent.get_child(i).change_color(Enemy.Intents.NONE)
+			continue
+		
+		var intent: Enemy.Intents = _get_enemy_intent(units[i+1], i+1)
+		marker_parent.get_child(i).change_color(intent)
 
 
 ## Moves an [Enemy] according to its movement speed.
@@ -100,6 +113,7 @@ func move_enemy(enemy: Enemy, grid_idx: int) -> void:
 	
 	enemy.accumulated_movement = 0
 	var grid_table := _get_grid_table_for_enemy(enemy)
+	
 	
 	for i in range(1, enemy_grid_steps+1):
 		var current_grid_idx = max(1, grid_idx - i)
@@ -148,6 +162,20 @@ func spawn_enemies_for_turn(turn: int, level_data: LevelData) -> void:
 	for enemy in level_data.spawn_table[turn]:
 		if enemy:
 			spawn_enemy(enemy)
+
+
+## Returns the appropriate [enum Enemy.Intents] for the [Enemy] unit.
+## [param enemy] is the unit in question, at [param grid_idx] position.
+func _get_enemy_intent(enemy: Enemy, grid_idx: int) -> Enemy.Intents:
+	var can_move_up: bool = grid_idx > 1 and not _is_grid_space_taken(grid_idx - 1, enemy.type)
+	var has_unit_behind: bool = grid_idx < 5 and _is_grid_space_taken(grid_idx + 1, enemy.type)
+
+	if can_move_up and has_unit_behind:
+		return Enemy.Intents.MOVE
+	elif enemy.in_range(grid_idx):
+		return Enemy.Intents.ATTACK
+	else:
+		return Enemy.Intents.MOVE
 
 
 ## Returns [code]true[/code] if a given grid is taken by a specific type of [Enemy].

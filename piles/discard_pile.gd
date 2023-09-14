@@ -6,7 +6,7 @@ extends Node2D
 ## [GameState] dependency.
 @export var game_state: GameState
 ## Label displaying the number of [Card]s in the discard pile.
-@onready var cards_label: Label = $CardsLabel
+@onready var cards_label: Label = %CardsLabel
 ## Scene for animating deck reshuffling.
 @onready var reshuffle_card := preload("res://piles/card_reshuffle.tscn")
 ## Available [CardData] in the discard pile.

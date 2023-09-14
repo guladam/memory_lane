@@ -5,16 +5,19 @@ extends Control
 ## Emitted when the tooltip of this card is shown.
 signal tooltip_shown(card_view: Control)
 
-@onready var card_front: CardFront = $CardFront
+@onready var card_front: CardFront = %CardFront
 @onready var card_tooltip: Panel = $CardTooltip
+@onready var number: Label = %Number
 
 
 ## Sets up the card based on the [CardData].
 ## [param card_data] is the [CardData] resource.
 ## [param character] is the current [Character].
-func setup(card_data: CardData, character: Character) -> void:
+## [param amount] is the number of cards the holder has.
+func setup(card_data: CardData, character: Character, amount: int) -> void:
 	card_front.setup(card_data, character)
 	card_tooltip.setup(card_data)
+	number.text = "×%s" % amount
 
 
 ## Toggles the tooltip when the player clicks on the card.

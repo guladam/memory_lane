@@ -1,31 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce62ja7y3ei2q"]
+[gd_scene load_steps=7 format=3 uid="uid://ce62ja7y3ei2q"]
 
+[ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_1ektl"]
 [ext_resource type="Script" path="res://ui/pickable_character.gd" id="1_d4seh"]
-[ext_resource type="Texture2D" uid="uid://c2ug18p2l2bw1" path="res://temp/card_012.png" id="1_rmycn"]
+[ext_resource type="Shader" path="res://ui/grayscale.gdshader" id="3_a4spq"]
+[ext_resource type="Texture2D" uid="uid://dpidrwgdl7ko1" path="res://ui/fire_emblem.png" id="3_l0jdm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8s0pf"]
+bg_color = Color(1, 1, 1, 0.141176)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7eyr"]
+resource_local_to_scene = true
+shader = ExtResource("3_a4spq")
+shader_parameter/enabled = 0.0
 
 [node name="PickableCharacter" type="PanelContainer"]
+custom_minimum_size = Vector2(110, 130)
+offset_right = 100.0
+offset_bottom = 145.0
+pivot_offset = Vector2(60, 75)
+theme = ExtResource("1_1ektl")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8s0pf")
 script = ExtResource("1_d4seh")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+alignment = 1
 
 [node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_b7eyr")
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
-texture = ExtResource("1_rmycn")
+texture = ExtResource("3_l0jdm")
 stretch_mode = 5
 
 [node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Fire"
 horizontal_alignment = 1
 

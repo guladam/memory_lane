@@ -1,23 +1,70 @@
-[gd_scene load_steps=4 format=3 uid="uid://di8413bx5b8td"]
+[gd_scene load_steps=8 format=3 uid="uid://di8413bx5b8td"]
 
 [ext_resource type="Script" path="res://ui/card_view.gd" id="1_54pvi"]
 [ext_resource type="PackedScene" uid="uid://ok77bnmeiv08" path="res://cards/card_front.tscn" id="2_1aeiy"]
 [ext_resource type="PackedScene" uid="uid://cdylhvu13jmtq" path="res://ui/card_tooltip.tscn" id="3_jcony"]
+[ext_resource type="FontFile" uid="uid://dbb73ujk8a3yr" path="res://ui/lato_regular.ttf" id="4_dmvay"]
+[ext_resource type="Texture2D" uid="uid://bxbhqu6hyblle" path="res://cards/card_number.png" id="4_slq2o"]
+
+[sub_resource type="Gradient" id="Gradient_bd1pe"]
+colors = PackedColorArray(1, 1, 1, 0.533333, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3rjtx"]
+gradient = SubResource("Gradient_bd1pe")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="CardView" type="Control"]
 texture_filter = 1
-custom_minimum_size = Vector2(75, 100)
+custom_minimum_size = Vector2(150, 220)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 75.0
-offset_bottom = 100.0
+offset_right = 150.0
+offset_bottom = 220.0
 size_flags_horizontal = 3
 script = ExtResource("1_54pvi")
 
-[node name="CardFront" parent="." instance=ExtResource("2_1aeiy")]
-layout_mode = 0
-offset_right = 66.0
-offset_bottom = 102.0
+[node name="Scaler" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.8, 1.8)
+mouse_filter = 1
+
+[node name="CardFront" parent="Scaler" instance=ExtResource("2_1aeiy")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -51.0
+offset_right = 33.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shadow" type="TextureRect" parent="Scaler/CardFront"]
+modulate = Color(1, 1, 1, 0.34902)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_3rjtx")
 
 [node name="CardTooltip" parent="." instance=ExtResource("3_jcony")]
 visible = false
@@ -29,6 +76,34 @@ anchor_right = 1.0
 offset_left = 5.0
 offset_right = 85.0
 grow_horizontal = 0
+
+[node name="NumberBg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 15.0
+offset_right = 75.0
+offset_bottom = 60.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("4_slq2o")
+
+[node name="Number" type="Label" parent="NumberBg"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_dmvay")
+theme_override_font_sizes/font_size = 26
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="tooltip_shown" from="CardTooltip" to="." method="_on_card_tooltip_tooltip_shown"]

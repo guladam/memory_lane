@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_sjyaa")
 target_type = 3
+anim_name = "cast_spell_air"
 effect_name = "small_meteor"
 effect_code = ExtResource("1_fsab3")

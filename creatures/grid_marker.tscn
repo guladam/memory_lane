@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwqcssthepcyb"]
+
+[ext_resource type="Texture2D" uid="uid://bj0hcd6d2ieqm" path="res://creatures/creature_grid.png" id="1_yrhk8"]
+[ext_resource type="Script" path="res://creatures/grid_marker.gd" id="2_qkd64"]
+
+[node name="GridMarker" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.588235)
+texture_filter = 1
+texture = ExtResource("1_yrhk8")
+script = ExtResource("2_qkd64")
+default_color = Color(1, 1, 1, 0.588235)
+attack_color = Color(1, 0.333333, 0.333333, 0.588235)
+move_color = Color(0.333333, 1, 1, 0.588235)

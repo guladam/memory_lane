@@ -39,6 +39,8 @@ signal card_reshuffle_anim_finished
 
 ## Emitted when a [Card] produces an [Effect].
 signal effect_created(effect: Effect)
+## Emitted when an [Effect] wants to spawn a projectile from the [Player].
+signal projectile_spawn_requested(target: Vector2, projectile: PackedScene, start: Vector2)
 
 
 ## Emitted when the [Player]'s turn starts.

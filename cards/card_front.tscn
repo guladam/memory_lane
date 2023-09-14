@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ok77bnmeiv08"]
+[gd_scene load_steps=7 format=3 uid="uid://ok77bnmeiv08"]
 
 [ext_resource type="Texture2D" uid="uid://b6y4tttwgy6b0" path="res://cards/card_front.png" id="1_yrdxd"]
-[ext_resource type="Texture2D" uid="uid://bcyojbtyh8w6q" path="res://cards/card_border1.png" id="2_c0off"]
 [ext_resource type="Script" path="res://cards/card_front.gd" id="2_i0lui"]
 [ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target1.png" id="3_hi4ma"]
 [ext_resource type="FontFile" uid="uid://dbb73ujk8a3yr" path="res://ui/lato_regular.ttf" id="4_6bg4o"]
@@ -12,10 +11,6 @@
 texture_filter = 1
 texture = ExtResource("1_yrdxd")
 script = ExtResource("2_i0lui")
-
-[node name="Border" type="TextureRect" parent="."]
-layout_mode = 0
-texture = ExtResource("2_c0off")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

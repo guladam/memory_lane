@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_2oxgo")
 target_type = 0
+anim_name = "cast_spell_air"
 effect_name = "discard"
 effect_code = ExtResource("1_m4xp8")

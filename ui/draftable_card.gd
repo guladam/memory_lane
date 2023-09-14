@@ -1,17 +1,19 @@
 ## A card which can be selected to draft into a [Deck].
-extends TextureRect
+extends Control
 
 ## Emitted when the draftable card is selected.
 signal selected(card: CardData)
 
+@onready var card_front: TextureRect = $CardFront
 var card: CardData
 
 
 ## Setting up the visuals based on the data.
 ## [param _card] is the [CardData] resource.
-func setup(_card: CardData) -> void:
+## [param character] is the current [Character].
+func setup(_card: CardData, character: Character) -> void:
 	card = _card
-	texture = card.card_front
+	card_front.setup(_card, character)
 
 
 ## Deselects the draftable card.

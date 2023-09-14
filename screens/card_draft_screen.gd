@@ -29,7 +29,7 @@ func setup(run: Run) -> void:
 	for card in rewards:
 		var new_draftable_card := draftable_card.instantiate()
 		cards.add_child(new_draftable_card)
-		new_draftable_card.setup(card)
+		new_draftable_card.setup(card, run.character)
 		new_draftable_card.selected.connect(_on_card_selected)
 	
 	cards.get_child(0).select()

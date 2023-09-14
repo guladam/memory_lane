@@ -1,10 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://csckhpk6v8me2"]
+[gd_scene load_steps=5 format=3 uid="uid://csckhpk6v8me2"]
 
-[ext_resource type="Texture2D" uid="uid://cj814886i60yr" path="res://temp/card_015.png" id="1_qnc3l"]
+[ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_d8eat"]
 [ext_resource type="Script" path="res://screens/main_menu.gd" id="1_rq6x7"]
+[ext_resource type="Texture2D" uid="uid://dyedqrv24r0cg" path="res://ui/logo.png" id="3_s5npc"]
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="4_84ke5"]
 
-[node name="MainMenu" type="VBoxContainer"]
+[node name="MainMenu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0901961, 0.0784314, 1)
+script = ExtResource("1_rq6x7")
+
+[node name="VboxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 650)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -16,29 +28,30 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
-script = ExtResource("1_rq6x7")
+theme = ExtResource("1_d8eat")
+theme_override_constants/separation = 0
 
-[node name="Logo" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(0, 120)
+[node name="Logo" type="TextureRect" parent="VboxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
-texture = ExtResource("1_qnc3l")
+texture = ExtResource("3_s5npc")
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="VboxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="Play" type="Button" parent="VboxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Play"
 
-[node name="Credits" type="Button" parent="VBoxContainer"]
+[node name="Credits" type="Button" parent="VboxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
@@ -46,9 +59,65 @@ size_flags_horizontal = 4
 text = "Credits
 "
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="VboxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Quit"
+
+[node name="Card" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -269.0
+offset_right = 146.0
+offset_bottom = -65.0001
+grow_vertical = 0
+rotation = 0.381056
+texture = ExtResource("4_84ke5")
+
+[node name="Card2" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -148.0
+offset_right = 145.0
+offset_bottom = 56.0001
+grow_vertical = 0
+rotation = 0.0143102
+texture = ExtResource("4_84ke5")
+
+[node name="Card4" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 486.0
+offset_top = -291.0
+offset_right = 618.0
+offset_bottom = -87.0
+grow_vertical = 0
+rotation = 0.507593
+texture = ExtResource("4_84ke5")
+
+[node name="Card3" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 371.0
+offset_top = -84.0001
+offset_right = 503.0
+offset_bottom = 120.0
+grow_vertical = 0
+rotation = -0.711641
+texture = ExtResource("4_84ke5")

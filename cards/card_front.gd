@@ -4,7 +4,6 @@ class_name CardFront
 extends TextureRect
 
 
-@onready var border: TextureRect = $Border
 @onready var background: TextureRect = $Background
 @onready var icon: TextureRect = $Icon
 @onready var text: Label = $TextAndStatusIcons/Text
@@ -12,13 +11,12 @@ extends TextureRect
 
 
 func setup(card: CardData, character: Character) -> void:
-	border.texture = card.card_border
 	icon.texture = card.card_icon
+	icon.modulate = card.card_color
 	text.text = card.card_text
 	text.visible = card.card_text.length() > 0
 	status_icon.texture = card.card_status_icon
 	status_icon.visible = card.card_status_icon != null
 	
 	if character:
-		icon.modulate = character.color
 		background.texture = character.card_background

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://by2lxtudbbc58"]
+[gd_scene load_steps=3 format=3 uid="uid://by2lxtudbbc58"]
 
+[ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_b6nea"]
 [ext_resource type="Script" path="res://screens/credits.gd" id="1_hiy2k"]
 
 [node name="Credits" type="VBoxContainer"]
@@ -15,12 +16,14 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_b6nea")
 theme_override_constants/separation = 50
 script = ExtResource("1_hiy2k")
 
 [node name="Title" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 text = "Credits"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -33,6 +36,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Énke"
 horizontal_alignment = 1
 

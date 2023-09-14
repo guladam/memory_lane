@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3 uid="uid://c1l2bnjtal2uc"]
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://c1l2bnjtal2uc"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_jt6ko"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_lprsf"]
-[ext_resource type="Texture2D" uid="uid://dfbh1en6few6v" path="res://cards/card_border3.png" id="2_pt0gi"]
 [ext_resource type="Resource" uid="uid://bhhdchrb6f4a" path="res://card_effects/fire/fire_bolt_effect.tres" id="3_kb4wr"]
 [ext_resource type="Texture2D" uid="uid://dj6okf305jccu" path="res://cards/card_target2.png" id="3_n6h5a"]
 
 [resource]
 script = ExtResource("2_lprsf")
 card_back = ExtResource("1_jt6ko")
-card_border = ExtResource("2_pt0gi")
+card_color = Color(1, 0.333333, 0.333333, 1)
 card_icon = ExtResource("3_n6h5a")
 card_text = "1"
 tooltip = "Blue card"

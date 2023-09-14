@@ -1,5 +1,5 @@
 ## This screen is shown when you start the game.
-extends VBoxContainer
+extends ColorRect
 
 ## Emitted when the player wants to see the credits.
 signal credits_requested

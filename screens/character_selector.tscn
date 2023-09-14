@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://rl6khyp8imaq"]
+[gd_scene load_steps=7 format=3 uid="uid://rl6khyp8imaq"]
 
+[ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_0kgti"]
 [ext_resource type="Script" path="res://screens/character_selector.gd" id="1_3f0td"]
 [ext_resource type="PackedScene" uid="uid://ce62ja7y3ei2q" path="res://ui/pickable_character.tscn" id="2_1c8pe"]
 [ext_resource type="Resource" uid="uid://ccrhcy38xlr5e" path="res://characters/fire_character.tres" id="3_qef18"]
@@ -20,51 +21,71 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(200, 325)
-theme_override_constants/separation = 50
+theme = ExtResource("1_0kgti")
+theme_override_constants/separation = 0
 script = ExtResource("1_3f0td")
 
 [node name="Title" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-text = "Pick your character!"
+theme_override_font_sizes/font_size = 64
+text = "Pick your
+element!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 20
+theme_override_constants/separation = 50
 alignment = 1
 
-[node name="PickableCharacters" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="PickedCharacterInfo" type="Label" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_font_sizes/font_size = 21
+text = " "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PickableCharacters" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 25
 alignment = 1
 
-[node name="PickableCharacter" parent="VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
+[node name="PickableCharacter" parent="VBoxContainer/VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
 layout_mode = 2
 character = ExtResource("3_qef18")
 
-[node name="PickableCharacter2" parent="VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
+[node name="PickableCharacter2" parent="VBoxContainer/VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
 layout_mode = 2
 character = ExtResource("4_j0i00")
 
-[node name="PickableCharacter3" parent="VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
+[node name="PickableCharacter3" parent="VBoxContainer/VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
 layout_mode = 2
 character = ExtResource("5_h3k3h")
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Back" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="Play" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Play
 "
-
-[node name="Back" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Back"

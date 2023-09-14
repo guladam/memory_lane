@@ -8,7 +8,7 @@ extends Resource
 
 @export_category("Visuals")
 @export var card_back: Texture = preload("res://cards/card_back.png")
-@export var card_border: Texture
+@export var card_color: Color
 @export var card_icon: Texture
 @export var card_text: String
 @export var card_status_icon: Texture

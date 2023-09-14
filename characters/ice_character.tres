@@ -2,12 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://bi3jwnpvsq3hi" path="res://cards/card_background2.png" id="1_ardei"]
 [ext_resource type="Script" path="res://custom_resource_types/character.gd" id="1_arh60"]
-[ext_resource type="Texture2D" uid="uid://c11uk3llpjx0c" path="res://temp/card_013.png" id="1_rgwu4"]
+[ext_resource type="Texture2D" uid="uid://c0pkpwfjtd53o" path="res://ui/ice_emblem.png" id="2_on7lf"]
 
 [resource]
 script = ExtResource("1_arh60")
 name = "Ice"
-icon = ExtResource("1_rgwu4")
+icon = ExtResource("2_on7lf")
+tooltip = "Personality trait: cold as ice."
 card_background = ExtResource("1_ardei")
 color = Color(0.333333, 1, 1, 1)
 starting_hp = 4

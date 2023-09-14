@@ -5,6 +5,7 @@ extends Resource
 
 @export var name: String
 @export var icon: Texture
+@export var tooltip: String
 @export var card_background: Texture
 @export var color: Color
 @export var starting_hp: int
@@ -15,3 +16,14 @@ extends Resource
 ## This is the collection of [CardData] the [Player] 
 ## can draft after winning levels.
 @export var available_cards: Array[CardData]
+
+
+## Returns true if the given Character is unlocked.
+func is_unlocked() -> bool:
+	match name:
+		"Ice":
+			return StatTracker.ice_unlocked
+		"Earth":
+			return StatTracker.earth_unlocked
+		_:
+			return true

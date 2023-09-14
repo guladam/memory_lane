@@ -1,47 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpm1h02k47x6e"]
+[gd_scene load_steps=5 format=3 uid="uid://cpm1h02k47x6e"]
 
 [ext_resource type="Script" path="res://board/board.gd" id="1_xgs1u"]
+[ext_resource type="Texture2D" uid="uid://ckdvioqanvlu4" path="res://board/board_bg.png" id="2_w4r6r"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oac6d"]
+texture = ExtResource("2_w4r6r")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_y0usl"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_oac6d")
 
 [node name="Board" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_xgs1u")
 
+[node name="Background" type="TileMap" parent="."]
+z_index = -1
+tile_set = SubResource("TileSet_y0usl")
+format = 2
+layer_0/tile_data = PackedInt32Array(262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 327688, 0, 0, 327687, 0, 0, 327686, 0, 0, 327685, 0, 0, 327684, 0, 0, 327683, 0, 0, 327682, 0, 0, 327681, 0, 0, 327680, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393224, 0, 0, 393223, 0, 0, 393222, 0, 0, 393221, 0, 0, 393220, 0, 0, 458753, 0, 0, 458752, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 524296, 0, 0, 524295, 0, 0, 524294, 0, 0, 524293, 0, 0, 524292, 0, 0, 589828, 0, 0, 589827, 0, 0, 589826, 0, 0, 589825, 0, 0, 524289, 0, 0, 524288, 0, 0, 524290, 0, 0, 524291, 0, 0, 589824, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 655368, 0, 0, 655367, 0, 0, 655366, 0, 0, 655365, 0, 0, 655364, 0, 0, 655363, 0, 0, 655362, 0, 0, 655361, 0, 0, 655360, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 786440, 0, 0, 786439, 0, 0, 786438, 0, 0, 786437, 0, 0, 786436, 0, 0, 786435, 0, 0, 786434, 0, 0, 786433, 0, 0, 786432, 0, 0, 851968, 0, 0, 851969, 0, 0, 851970, 0, 0, 851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 917512, 0, 0, 917511, 0, 0, 917510, 0, 0, 917509, 0, 0, 917508, 0, 0, 917507, 0, 0, 917506, 0, 0, 917505, 0, 0, 917504, 0, 0, 983040, 0, 0, 983041, 0, 0, 983042, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 983046, 0, 0, 983047, 0, 0, 983048, 0, 0)
+
 [node name="CardMarkers" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="CardMarkers"]
-position = Vector2(76, 428)
+position = Vector2(76, 382)
 
 [node name="Marker2D2" type="Marker2D" parent="CardMarkers"]
-position = Vector2(204, 428)
+position = Vector2(204, 382)
 
 [node name="Marker2D3" type="Marker2D" parent="CardMarkers"]
-position = Vector2(332, 428)
+position = Vector2(332, 382)
 
 [node name="Marker2D4" type="Marker2D" parent="CardMarkers"]
-position = Vector2(460, 428)
+position = Vector2(460, 382)
 
 [node name="Marker2D5" type="Marker2D" parent="CardMarkers"]
-position = Vector2(76, 590)
+position = Vector2(76, 574)
 
 [node name="Marker2D6" type="Marker2D" parent="CardMarkers"]
-position = Vector2(204, 590)
+position = Vector2(204, 574)
 
 [node name="Marker2D7" type="Marker2D" parent="CardMarkers"]
-position = Vector2(332, 590)
+position = Vector2(332, 574)
 
 [node name="Marker2D8" type="Marker2D" parent="CardMarkers"]
-position = Vector2(460, 590)
+position = Vector2(460, 574)
 
 [node name="Marker2D9" type="Marker2D" parent="CardMarkers"]
-position = Vector2(76, 752)
+position = Vector2(76, 766)
 
 [node name="Marker2D10" type="Marker2D" parent="CardMarkers"]
-position = Vector2(204, 752)
+position = Vector2(204, 766)
 
 [node name="Marker2D11" type="Marker2D" parent="CardMarkers"]
-position = Vector2(332, 752)
+position = Vector2(332, 766)
 
 [node name="Marker2D12" type="Marker2D" parent="CardMarkers"]
-position = Vector2(460, 752)
+position = Vector2(460, 766)
 
 [node name="Cards" type="Node2D" parent="."]

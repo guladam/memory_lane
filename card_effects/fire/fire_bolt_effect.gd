@@ -12,7 +12,4 @@ func apply_effect() -> void:
 		return
 	
 	var enemy = effect.targets[0] as Enemy
-	
-	await effect.player.play_spell_animation(effect.target_type)
-	effect.player.spawn_projectile(enemy.global_position, fire_bolt_projectile)
-	await effect.player.play_spell_animation(effect.target_type, true)
+	Events.projectile_spawn_requested.emit(enemy.global_position, fire_bolt_projectile)

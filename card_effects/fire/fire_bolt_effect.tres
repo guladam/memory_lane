@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_t06et")
 target_type = 2
+anim_name = "cast_spell_ground"
 effect_name = "fire_bolt"
 effect_code = ExtResource("1_4mrgc")

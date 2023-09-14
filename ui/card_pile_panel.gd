@@ -31,10 +31,11 @@ func show_panel(title: String, cards: Array[CardData], character: Character) -> 
 	panel_title.text = title
 	_clear_children()
 	
-	for card in cards:
+	var unique_cards := _get_unique_cards_counted(cards)
+	for card in unique_cards:
 		var new_card_view := card_view.instantiate()
 		card_grid.add_child(new_card_view)
-		new_card_view.setup(card, character)
+		new_card_view.setup(card, character, unique_cards[card])
 		new_card_view.tooltip_shown.connect(_on_card_tooltip_shown)
 	
 	fade_in()
@@ -65,3 +66,17 @@ func _on_card_tooltip_shown(_card_view: Control) -> void:
 	for card in card_grid.get_children():
 		if card != _card_view:
 			card.turn_off_tooltip()
+
+
+## Returns a [Dictionary] of unique cards with their number of occurances.
+## Key: card ([CardData]), Value: number of occurances (int)
+func _get_unique_cards_counted(cards: Array[CardData]) -> Dictionary:
+	var unique_cards := {}
+	
+	for card in cards:
+		if card in unique_cards:
+			continue
+		
+		unique_cards[card] = cards.count(card)
+	
+	return unique_cards

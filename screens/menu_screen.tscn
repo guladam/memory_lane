@@ -11,15 +11,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.145098, 0.145098, 0.145098, 1)
+color = Color(0, 0.0901961, 0.0784314, 1)
 script = ExtResource("1_r7624")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_gtfp5")]
 layout_mode = 1
-offset_left = -200.0
-offset_top = -325.0
-offset_right = 200.0
-offset_bottom = 325.0
+color = Color(0, 0.0901961, 0.0784314, 1)
 
 [node name="CharacterSelector" parent="." instance=ExtResource("3_3hp7d")]
 visible = false

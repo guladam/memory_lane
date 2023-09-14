@@ -8,10 +8,11 @@ extends Resource
 enum TargetType { BOARD, SELF, GROUND, AIR, ALL_ENEMIES }
 
 @export var target_type: TargetType
+@export var anim_name: String
 @export var effect_name: String
 @export var effect_code: GDScript
 
-var player: Player
+
 var targets: Array[Node]
 var _code: Node
 
@@ -24,12 +25,6 @@ func setup(_targets: Array[Node]) -> void:
 	_code = Node.new()
 	_code.set_script(effect_code)
 	_code.effect = self
-
-
-## This is for injecting the [Player] dependency for an effect.
-## Mainly used by single target attacks.
-func set_player(_player: Player) -> void:
-	player = _player
 
 
 ## This is a public method for applying the logic this effect has.

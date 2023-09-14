@@ -5,7 +5,7 @@ extends ColorRect
 ## Emitted when the player starts a new game with the selected [Character].
 signal start_new_game(character: Character)
 
-@onready var main_menu: VBoxContainer = $MainMenu
+@onready var main_menu: ColorRect = $MainMenu
 @onready var character_selector: VBoxContainer = $CharacterSelector
 @onready var credits: VBoxContainer = $Credits
 
@@ -59,7 +59,7 @@ func _fade_in_left(screen: Control) -> void:
 	screen.set_buttons(false)
 	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	t.tween_callback(screen.show)
-	t.tween_property(screen, "position:x", 70, 0.5).from(-500)
+	t.tween_property(screen, "position:x", 0, 0.5).from(-500)
 	t.parallel().tween_property(screen, "modulate", Color.WHITE, 0.6)
 	await t.finished
 	screen.set_buttons(true)

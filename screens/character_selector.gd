@@ -11,6 +11,7 @@ signal new_game_requested(character: Character)
 @onready var play: Button = %Play
 @onready var back: Button = %Back
 @onready var pickable_characters: HBoxContainer = %PickableCharacters
+@onready var picked_character_info: Label = %PickedCharacterInfo
 
 var picked_character: Character
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	
 	for pc in pickable_characters.get_children():
 		pc.selected.connect(_on_pickable_character_selected)
+		pc.selected_locked_character.connect(_on_locked_character_selected)
 	
 	pickable_characters.get_child(0).select()
 	picked_character = pickable_characters.get_child(0).character
@@ -33,10 +35,33 @@ func set_buttons(enabled: bool) -> void:
 	back.disabled = not enabled
 
 
+func _deselect_other_characters(exception: Character) -> void:
+	for pc in pickable_characters.get_children():
+		if pc.character != exception:
+			pc.deselect()
+
+
 ## Called when the player selects a playable [Character] on this screen.
 func _on_pickable_character_selected(character: Character) -> void:
-	for pc in pickable_characters.get_children():
-		if pc.character != character:
-			pc.deselect()
+	_deselect_other_characters(character)
+	play.disabled = false
 	
 	picked_character = character
+	picked_character_info.text = character.tooltip
+
+
+func _on_locked_character_selected(character: Character) -> void:
+	_deselect_other_characters(character)
+	play.disabled = true
+	
+	var msg: String
+	match character.name:
+		"Ice":
+			msg = "Beat Level 6 to unlock this element!"
+		"Earth":
+			msg = "Beat the game to unlock this element!"
+		_:
+			msg = " "
+	
+	picked_character_info.text = msg
+	

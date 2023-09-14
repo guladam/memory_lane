@@ -1,49 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyvt0jm27wtbk"]
+[gd_scene load_steps=3 format=3 uid="uid://dyvt0jm27wtbk"]
 
 [ext_resource type="Script" path="res://creatures/enemy_manager.gd" id="1_qr7fj"]
+[ext_resource type="PackedScene" uid="uid://dwqcssthepcyb" path="res://creatures/grid_marker.tscn" id="2_nn2hy"]
 
 [node name="EnemyManager" type="Node2D"]
 script = ExtResource("1_qr7fj")
 
 [node name="Grid" type="Node2D" parent="."]
 
-[node name="1" type="Marker2D" parent="Grid"]
-position = Vector2(176, 256)
+[node name="GridMarker" parent="Grid" instance=ExtResource("2_nn2hy")]
+position = Vector2(172, 252.5)
 
-[node name="2" type="Marker2D" parent="Grid"]
-position = Vector2(256, 256)
+[node name="GridMarker2" parent="Grid" instance=ExtResource("2_nn2hy")]
+position = Vector2(252, 252.5)
 
-[node name="3" type="Marker2D" parent="Grid"]
-position = Vector2(336, 256)
+[node name="GridMarker3" parent="Grid" instance=ExtResource("2_nn2hy")]
+position = Vector2(332, 252.5)
 
-[node name="4" type="Marker2D" parent="Grid"]
-position = Vector2(416, 256)
+[node name="GridMarker4" parent="Grid" instance=ExtResource("2_nn2hy")]
+position = Vector2(412, 252.5)
 
-[node name="5" type="Marker2D" parent="Grid"]
-position = Vector2(496, 256)
+[node name="GridMarker5" parent="Grid" instance=ExtResource("2_nn2hy")]
+position = Vector2(492, 252.5)
 
 [node name="AirGrid" type="Node2D" parent="."]
 position = Vector2(0, -96)
 
-[node name="1" type="Marker2D" parent="AirGrid"]
-position = Vector2(176, 256)
+[node name="GridMarker" parent="AirGrid" instance=ExtResource("2_nn2hy")]
+position = Vector2(174, 230.5)
 
-[node name="2" type="Marker2D" parent="AirGrid"]
-position = Vector2(256, 256)
+[node name="GridMarker2" parent="AirGrid" instance=ExtResource("2_nn2hy")]
+position = Vector2(254, 230.5)
 
-[node name="3" type="Marker2D" parent="AirGrid"]
-position = Vector2(336, 256)
+[node name="GridMarker3" parent="AirGrid" instance=ExtResource("2_nn2hy")]
+position = Vector2(334, 230.5)
 
-[node name="4" type="Marker2D" parent="AirGrid"]
-position = Vector2(416, 256)
+[node name="GridMarker4" parent="AirGrid" instance=ExtResource("2_nn2hy")]
+position = Vector2(414, 230.5)
 
-[node name="5" type="Marker2D" parent="AirGrid"]
-position = Vector2(496, 256)
+[node name="GridMarker5" parent="AirGrid" instance=ExtResource("2_nn2hy")]
+position = Vector2(494, 230.5)
 
 [node name="MeleeAttackAnimRange" type="Marker2D" parent="."]
-position = Vector2(112, 256)
+position = Vector2(112, 234)
 
 [node name="FlyingMeleeAttackAnimRange" type="Marker2D" parent="."]
-position = Vector2(112, 224)
+position = Vector2(112, 202)
 
 [node name="Enemies" type="Node2D" parent="."]

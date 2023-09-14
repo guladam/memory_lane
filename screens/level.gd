@@ -12,8 +12,8 @@ extends Node2D
 @onready var board: Board = $Board
 @onready var draw_pile: DrawPile = $DrawPile
 @onready var discard_pile: DiscardPile = $DiscardPile
-@onready var player: Sprite2D = $Creatures/Player
-@onready var enemy_manager: Node2D = $Creatures/EnemyManager
+@onready var player: Player = $Creatures/Player
+@onready var enemy_manager: EnemyManager = $Creatures/EnemyManager
 @onready var ingame_ui: CanvasLayer = $IngameUI
 
 ## Turn counter. Used for spawning in [Enemy]
@@ -43,6 +43,7 @@ func _ready() -> void:
 	board.spawn_cards(draw_pile.draw_cards(12))
 	game_state.reset()
 	enemy_manager.spawn_enemies_for_turn(turn, level_data)
+	player.set_eye_color(run.character.color)
 
 
 ## Called when the board is emptied.

@@ -7,7 +7,7 @@ extends Node2D
 ## [GameState] dependency.
 @export var game_state: GameState
 ## Label displaying the number of [Card]s in the draw pile.
-@onready var cards_label: Label = $CardsLabel
+@onready var cards_label: Label = %CardsLabel
 ## The draw pile is dependent of the [Deck] to work properly.
 var deck: Deck
 ## Available [CardData] in the draw pile.

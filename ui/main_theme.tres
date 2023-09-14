@@ -1,7 +1,70 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dptpxyk5ldmai"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dptpxyk5ldmai"]
 
 [ext_resource type="FontFile" uid="uid://dbb73ujk8a3yr" path="res://ui/lato_regular.ttf" id="1_kld35"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwf2o"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 0.886275)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.552941, 0.552941, 0.552941, 1)
+shadow_color = Color(0.168627, 0.168627, 0.168627, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il3lg"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.905882, 0.901961, 0.803922, 1)
+shadow_color = Color(0.168627, 0.168627, 0.168627, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lna85"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.831373, 0.831373, 0.831373, 1)
+shadow_color = Color(0.168627, 0.168627, 0.168627, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nl05"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.690196, 0.690196, 0.690196, 1)
+shadow_color = Color(0.168627, 0.168627, 0.168627, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(3, 3)
 
 [resource]
 default_font = ExtResource("1_kld35")
 default_font_size = 16
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.443137, 0.443137, 0.443137, 1)
+Button/colors/font_focus_color = Color(0.933333, 0.933333, 0.933333, 1)
+Button/colors/font_hover_color = Color(0.933333, 0.933333, 0.933333, 1)
+Button/colors/font_hover_pressed_color = Color(0.913725, 0.921569, 0.87451, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.913725, 0.921569, 0.87451, 1)
+Button/colors/icon_disabled_color = Color(0, 0, 0, 1)
+Button/colors/icon_focus_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_color = Color(0, 0, 0, 1)
+Button/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_normal_color = Color(0, 0, 0, 1)
+Button/colors/icon_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 24
+Button/styles/disabled = SubResource("StyleBoxFlat_pwf2o")
+Button/styles/focus = SubResource("StyleBoxFlat_il3lg")
+Button/styles/hover = SubResource("StyleBoxFlat_lna85")
+Button/styles/normal = SubResource("StyleBoxFlat_4nl05")
+Button/styles/pressed = SubResource("StyleBoxFlat_il3lg")

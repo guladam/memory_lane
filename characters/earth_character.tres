@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" path="res://custom_resource_types/character.gd" id="1_0sm6t"]
 [ext_resource type="Texture2D" uid="uid://b6vot6oxseqan" path="res://cards/card_background3.png" id="1_aup3a"]
-[ext_resource type="Texture2D" uid="uid://d234b64y0wd5i" path="res://temp/card_014.png" id="1_qtf06"]
+[ext_resource type="Texture2D" uid="uid://w4m8avgpa2n3" path="res://ui/earth_emblem.png" id="2_3va64"]
 
 [resource]
 script = ExtResource("1_0sm6t")
 name = "Earth"
-icon = ExtResource("1_qtf06")
+icon = ExtResource("2_3va64")
+tooltip = "Leaf your mark on them."
 card_background = ExtResource("1_aup3a")
 color = Color(0.333333, 1, 0.333333, 1)
 starting_hp = 5

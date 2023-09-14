@@ -51,9 +51,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/v_separation = 40
-columns = 3
+columns = 2
 
 [node name="CardView" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
+custom_minimum_size = Vector2(75, 180)
 layout_mode = 2
 
 [node name="CardView2" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]

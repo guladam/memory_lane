@@ -23,7 +23,7 @@ game_state = ExtResource("3_hrhjg")
 [node name="Creatures" parent="." instance=ExtResource("3_lmivi")]
 
 [node name="Player" parent="Creatures" instance=ExtResource("4_wob1k")]
-position = Vector2(48, 240)
+position = Vector2(59, 216)
 
 [node name="EnemyManager" parent="Creatures" instance=ExtResource("5_smhgd")]
 
@@ -42,6 +42,7 @@ game_state = ExtResource("3_hrhjg")
 script = ExtResource("9_ad715")
 
 [node name="DebugWindow" parent="IngameUI" node_paths=PackedStringArray("board") instance=ExtResource("6_yafv1")]
+visible = false
 offset_right = 341.0
 offset_bottom = 117.0
 board = NodePath("../../Board")

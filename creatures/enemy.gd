@@ -9,6 +9,9 @@ extends Sprite2D
 signal action_finished
 
 enum Type {GROUND, FLYING}
+## Intents of the [Enemy] unit.
+enum Intents {NONE, ATTACK, MOVE}
+
 
 ## Type of this [Enemy].
 @export var type: Type

@@ -1,166 +1,167 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6k5gqw3dbwew"]
+[gd_scene load_steps=15 format=3 uid="uid://b6k5gqw3dbwew"]
 
 [ext_resource type="PackedScene" uid="uid://cx0wk3a6k6nnl" path="res://creatures/hurt_box.tscn" id="1_bfnpp"]
 [ext_resource type="PackedScene" uid="uid://d3vnfucrg4ic3" path="res://creatures/health.tscn" id="1_jxybv"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_qjjdr"]
+[ext_resource type="Texture2D" uid="uid://bfismngw4yyuw" path="res://player/player.png" id="2_yniou"]
 [ext_resource type="PackedScene" uid="uid://1l6kn3equ457" path="res://creatures/health_bar.tscn" id="3_twdi5"]
 [ext_resource type="PackedScene" uid="uid://ddrodc1r2feoo" path="res://modifiers/modifiers.tscn" id="5_torel"]
 [ext_resource type="PackedScene" uid="uid://cywb0mjl78eua" path="res://status_effects/status_effects.tscn" id="7_hu57v"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c1ll0"]
-radius = 25.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wt08t"]
+size = Vector2(36, 84)
 
 [sub_resource type="Animation" id="Animation_7y411"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Staff:position")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(32, 16)]
+"update": 1,
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Staff:rotation")
+tracks/1/path = NodePath("StaffEnd:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(21, -9)]
 }
 
 [sub_resource type="Animation" id="Animation_a4ano"]
 resource_name = "cast_spell_air"
-length = 0.1
+length = 0.15
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Staff:position")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(32, 16), Vector2(38, 10)]
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 2, 3]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Staff:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.959931]
+
+[sub_resource type="Animation" id="Animation_sj6y8"]
+resource_name = "cast_spell_finish"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 0]
 }
 
 [sub_resource type="Animation" id="Animation_h728c"]
 resource_name = "cast_spell_ground"
-length = 0.1
+length = 0.2
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Staff:position")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(32, 16), Vector2(38, 4)]
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 6, 7, 8]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Staff:rotation")
+tracks/1/path = NodePath("StaffEnd:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.5708]
+"update": 1,
+"values": [Vector2(21, -9), Vector2(54, 9)]
 }
 
-[sub_resource type="Animation" id="Animation_yqpne"]
-resource_name = "cast_spell_other"
-length = 0.1
+[sub_resource type="Animation" id="Animation_xncfy"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Staff:position")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(32, 16), Vector2(32, 4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Staff:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2citj"]
 _data = {
 "RESET": SubResource("Animation_7y411"),
 "cast_spell_air": SubResource("Animation_a4ano"),
+"cast_spell_finish": SubResource("Animation_sj6y8"),
 "cast_spell_ground": SubResource("Animation_h728c"),
-"cast_spell_other": SubResource("Animation_yqpne")
+"idle": SubResource("Animation_xncfy")
 }
 
-[node name="Player" type="Sprite2D"]
+[node name="Player" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_qjjdr")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.564706, 0.388235, 0.592157, 1)
-polygon = PackedVector2Array(-32, 0, 0, -32, 32, 0, 0, 32)
+[node name="Eyes" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -8, -8, 10, 3, 10, 3, -8)
 
-[node name="Staff" type="Polygon2D" parent="."]
-position = Vector2(32, 16)
-color = Color(0.682353, 0.560784, 0.588235, 1)
-polygon = PackedVector2Array(-16, 0, 0, 16, 16, 0, 0, -32)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6, 0)
+scale = Vector2(6, 6)
+texture = ExtResource("2_yniou")
+hframes = 4
+vframes = 3
 
-[node name="StaffEnd" type="Marker2D" parent="Staff"]
-position = Vector2(0, -32)
+[node name="StaffEnd" type="Marker2D" parent="."]
+position = Vector2(21, -9)
 
 [node name="HurtBox" parent="." instance=ExtResource("1_bfnpp")]
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("CircleShape2D_c1ll0")
+shape = SubResource("RectangleShape2D_wt08t")
 
 [node name="RangedTargetPosition" type="Marker2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(25, -26)
 
 [node name="FloatingTextPosition" type="Marker2D" parent="."]
-position = Vector2(-32, -32)
+position = Vector2(-20, -26)
 
 [node name="HealthBar" parent="." instance=ExtResource("3_twdi5")]
 offset_left = -24.0
-offset_top = -64.0
+offset_top = -70.0
 offset_right = 26.0
-offset_bottom = -44.0
+offset_bottom = -50.0
 
 [node name="Health" parent="." instance=ExtResource("1_jxybv")]
 max_health = 3
