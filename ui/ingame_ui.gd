@@ -3,11 +3,13 @@ extends CanvasLayer
 
 
 @onready var card_pile_panel: CenterContainer = $CardPilePanel
+@onready var tooltip_manager: Control = $TooltipManager
 var current_character: Character
 
 
 func _ready() -> void:
 	Events.card_pile_panel_requested.connect(_on_card_pile_panel_requested)
+	card_pile_panel.closed.connect(tooltip_manager.clear_tooltip)
 
 
 func setup(character: Character) -> void:

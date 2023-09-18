@@ -5,7 +5,6 @@
 [ext_resource type="Resource" uid="uid://bsyx4481gsh2v" path="res://temp/test_run.tres" id="2_qsxpo"]
 [ext_resource type="Resource" uid="uid://cptm7sot6d2fj" path="res://global/game_state.tres" id="3_hrhjg"]
 [ext_resource type="PackedScene" uid="uid://djtj8f4tg8dk2" path="res://creatures/creatures.tscn" id="3_lmivi"]
-[ext_resource type="Resource" uid="uid://b6ohxan1455df" path="res://levels/level1_a.tres" id="3_lojxg"]
 [ext_resource type="PackedScene" uid="uid://du5hommjpsvea" path="res://piles/draw_pile.tscn" id="4_iejax"]
 [ext_resource type="PackedScene" uid="uid://b6k5gqw3dbwew" path="res://player/player.tscn" id="4_wob1k"]
 [ext_resource type="PackedScene" uid="uid://cegivhvq2dd30" path="res://piles/discard_pile.tscn" id="5_73kb1"]
@@ -13,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://c7r675rnocnfe" path="res://debugging/debug_window.tscn" id="6_yafv1"]
 [ext_resource type="Script" path="res://ui/ingame_ui.gd" id="9_ad715"]
 [ext_resource type="PackedScene" uid="uid://bn3pivcnfpu1x" path="res://ui/card_pile_panel.tscn" id="11_jplfr"]
+[ext_resource type="PackedScene" uid="uid://cpvqx5wls726g" path="res://ui/tooltip_manager.tscn" id="13_xset1"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_cmfot")
 run = ExtResource("2_qsxpo")
-level_data = ExtResource("3_lojxg")
 game_state = ExtResource("3_hrhjg")
 
 [node name="Creatures" parent="." instance=ExtResource("3_lmivi")]
@@ -56,6 +55,8 @@ enemy_manager = NodePath("../../../../Creatures/EnemyManager")
 [node name="CardPilePanel" parent="IngameUI" instance=ExtResource("11_jplfr")]
 visible = false
 game_state = ExtResource("3_hrhjg")
+
+[node name="TooltipManager" parent="IngameUI" instance=ExtResource("13_xset1")]
 
 [node name="DeckViewButton" type="Button" parent="IngameUI"]
 anchors_preset = 1

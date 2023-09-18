@@ -42,7 +42,7 @@ position = Vector2(414, 230.5)
 position = Vector2(494, 230.5)
 
 [node name="MeleeAttackAnimRange" type="Marker2D" parent="."]
-position = Vector2(112, 234)
+position = Vector2(109, 252.5)
 
 [node name="FlyingMeleeAttackAnimRange" type="Marker2D" parent="."]
 position = Vector2(112, 202)

@@ -29,14 +29,14 @@ func _ready() -> void:
 ## [param damage] is the amount of damage to take.
 func take_damage(damage: int) -> void:
 	health.health -= damage
-	_create_floating_text("-%s" % damage, Color.FIREBRICK)
+	_create_floating_text("-%s" % damage, Color.RED)
 
 
 ## This method is for healing the player
 ## [param amount] is the amount of health restored.
 func heal(amount: int) -> void:
 	health.health += amount
-	_create_floating_text("+%s" % amount, Color.WEB_GREEN)
+	_create_floating_text("+%s" % amount, Color.GREEN)
 
 
 ## Changes the maximum health of the player.

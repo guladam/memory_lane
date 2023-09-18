@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bkp8vqgjvv1ni"]
+[gd_scene load_steps=15 format=3 uid="uid://bkp8vqgjvv1ni"]
 
 [ext_resource type="Script" path="res://creatures/enemy.gd" id="1_8xmhl"]
 [ext_resource type="PackedScene" uid="uid://1l6kn3equ457" path="res://creatures/health_bar.tscn" id="1_pxvnn"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d3vnfucrg4ic3" path="res://creatures/health.tscn" id="2_2468b"]
 [ext_resource type="PackedScene" uid="uid://bl5gsx3seabcr" path="res://creatures/status_effect_bar.tscn" id="4_h8dq8"]
 [ext_resource type="PackedScene" uid="uid://ddrodc1r2feoo" path="res://modifiers/modifiers.tscn" id="4_l3yc6"]
-[ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="5_5qetd"]
 [ext_resource type="PackedScene" uid="uid://cywb0mjl78eua" path="res://status_effects/status_effects.tscn" id="6_4bj62"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j25mi"]
@@ -41,7 +40,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Polygon2D:self_modulate")
+tracks/2/path = NodePath("Sprite2D:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -111,7 +110,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Polygon2D:self_modulate")
+tracks/1/path = NodePath("Sprite2D:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -191,12 +190,10 @@ _data = {
 
 [node name="Enemy" type="Sprite2D" node_paths=PackedStringArray("weapon") groups=["enemies"]]
 script = ExtResource("1_8xmhl")
-weapon = NodePath("Weapon")
+weapon = NodePath("")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.857874, -15.4139)
-color = Color(0.309804, 0.572549, 0.74902, 1)
-polygon = PackedVector2Array(-16, -16, -32, 0, -32, 16, 32, 16, 32, 0, 16, -16)
 
 [node name="HurtBox" parent="." instance=ExtResource("2_36ngk")]
 collision_layer = 8
@@ -205,9 +202,6 @@ is_type = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_j25mi")
-
-[node name="Weapon" parent="." instance=ExtResource("5_5qetd")]
-position = Vector2(-48, -16)
 
 [node name="FloatingTextPosition" type="Marker2D" parent="."]
 position = Vector2(-22, -23)

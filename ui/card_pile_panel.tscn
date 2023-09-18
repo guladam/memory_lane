@@ -1,9 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn3pivcnfpu1x"]
+[gd_scene load_steps=6 format=3 uid="uid://bn3pivcnfpu1x"]
 
 [ext_resource type="StyleBox" uid="uid://pffww0em5f35" path="res://ui/ingame_panel_black.tres" id="1_0w5r2"]
 [ext_resource type="Script" path="res://ui/card_pile_panel.gd" id="1_5ih6j"]
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="2_tn5uh"]
 [ext_resource type="PackedScene" uid="uid://di8413bx5b8td" path="res://ui/card_view.tscn" id="3_j854v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tuva"]
+bg_color = Color(0.364706, 0.364706, 0.364706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.364706, 0.364706, 0.364706, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
 
 [node name="CardPilePanel" type="CenterContainer"]
 anchors_preset = 15
@@ -11,10 +24,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_tn5uh")
 script = ExtResource("1_5ih6j")
 
 [node name="Panel" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(400, 640)
+custom_minimum_size = Vector2(400, 660)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("1_0w5r2")
 
@@ -33,12 +47,15 @@ theme_override_constants/separation = 20
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_tn5uh")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 36
 text = "Draw Pile"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxFlat_6tuva")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -50,7 +67,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/v_separation = 40
+theme_override_constants/v_separation = 10
 columns = 2
 
 [node name="CardView" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
@@ -66,43 +83,10 @@ layout_mode = 2
 [node name="CardView4" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
 layout_mode = 2
 
-[node name="CardView5" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView6" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView7" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView8" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView9" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView10" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView11" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView12" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView13" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView14" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
-[node name="CardView15" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-layout_mode = 2
-
 [node name="CloseButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 40)
+custom_minimum_size = Vector2(130, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 24
 text = "Close"

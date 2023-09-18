@@ -4,14 +4,17 @@ class_name MeleeWeapon
 extends Weapon
 
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var hit_box: HitBox = $Visuals/HitBox
+@export var animation_player: AnimationPlayer
+@export var hit_box: HitBox
 
 var already_hit := false
 
 
 ## This method is used for performing an attack with the weapon.
 func use_weapon() -> void:
+	if not animation_player:
+		return
+
 	already_hit = false
 	animation_player.play("use")
 	await animation_player.animation_finished

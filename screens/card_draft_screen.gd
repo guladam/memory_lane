@@ -9,6 +9,7 @@ signal card_drafted(new_card: CardData)
 @onready var add: Button = %Add
 @onready var skip: Button = %Skip
 @onready var cards: HBoxContainer = %Cards
+@onready var character_icon: TextureRect = %CharacterIcon
 @onready var draftable_card := preload("res://ui/draftable_card.tscn")
 
 var picked_card: CardData
@@ -32,6 +33,7 @@ func setup(run: Run) -> void:
 		new_draftable_card.setup(card, run.character)
 		new_draftable_card.selected.connect(_on_card_selected)
 	
+	character_icon.texture = run.character.icon
 	cards.get_child(0).select()
 	picked_card = cards.get_child(0).card
 

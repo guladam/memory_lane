@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfkmnllqd4b73"]
+
+[ext_resource type="PackedScene" uid="uid://b864ttbx7p5vk" path="res://cards/card.tscn" id="1_7fa12"]
+[ext_resource type="Script" path="res://screens/menu_background_cards.gd" id="1_vooli"]
+[ext_resource type="Resource" uid="uid://ccrhcy38xlr5e" path="res://characters/fire_character.tres" id="2_1fo1k"]
+[ext_resource type="Resource" uid="uid://qung2y8erng0" path="res://characters/ice_character.tres" id="3_qgudr"]
+[ext_resource type="Resource" uid="uid://ccn8avhv1bgyg" path="res://characters/earth_character.tres" id="4_2pkuj"]
+[ext_resource type="Resource" uid="uid://b0hucd36es5rb" path="res://temp/testcard1.tres" id="5_doxly"]
+[ext_resource type="Resource" uid="uid://c1l2bnjtal2uc" path="res://temp/testcard2.tres" id="6_x4wcs"]
+[ext_resource type="Resource" uid="uid://75qrcaqkjir8" path="res://temp/testcard3.tres" id="7_egg4w"]
+[ext_resource type="Resource" uid="uid://bxb1epfykt48n" path="res://temp/testcard4.tres" id="8_ckgys"]
+
+[node name="MenuBackgroundCards" type="CanvasGroup"]
+modulate = Color(1, 1, 1, 0.627451)
+script = ExtResource("1_vooli")
+characters = Array[Resource("res://custom_resource_types/character.gd")]([ExtResource("2_1fo1k"), ExtResource("3_qgudr"), ExtResource("4_2pkuj")])
+card_fronts = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("5_doxly"), ExtResource("6_x4wcs"), ExtResource("7_egg4w"), ExtResource("8_ckgys")])
+
+[node name="Card" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(32, 64)
+
+[node name="Card2" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(192, 112)
+
+[node name="Card3" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(352, 64)
+
+[node name="Card4" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(496, 96)
+
+[node name="Card5" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(32, 256)
+
+[node name="Card6" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(192, 320)
+
+[node name="Card7" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(352, 272)
+
+[node name="Card8" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(496, 304)
+
+[node name="Card9" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(32, 464)
+
+[node name="Card10" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(192, 528)
+
+[node name="Card11" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(352, 480)
+
+[node name="Card12" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(496, 512)
+
+[node name="Card13" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(32, 672)
+
+[node name="Card14" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(192, 736)
+
+[node name="Card15" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(352, 688)
+
+[node name="Card16" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(496, 720)
+
+[node name="Card18" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(192, 944)
+
+[node name="Card19" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(352, 896)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq6d8drq200c6"]
+[gd_scene load_steps=4 format=3 uid="uid://bq6d8drq200c6"]
 
 [ext_resource type="Script" path="res://screens/card_draft_screen.gd" id="1_06b6j"]
+[ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_gj4vp"]
+[ext_resource type="Texture2D" uid="uid://dpidrwgdl7ko1" path="res://ui/fire_emblem.png" id="3_w3srn"]
 
 [node name="CardDraftScreen" type="ColorRect"]
 anchors_preset = 15
@@ -8,7 +10,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.145098, 0.145098, 0.145098, 1)
+theme = ExtResource("1_gj4vp")
+color = Color(0, 0.0901961, 0.0784314, 1)
 script = ExtResource("1_06b6j")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -18,38 +21,51 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -141.5
+offset_top = -151.0
+offset_right = 141.5
+offset_bottom = 151.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="CharacterIcon" type="TextureRect" parent="VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+texture = ExtResource("3_w3srn")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Select a Card to Add
 to you deck!"
 horizontal_alignment = 1
 
-[node name="Cards" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Cards" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Add" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Add" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 40)
+custom_minimum_size = Vector2(110, 50)
 layout_mode = 2
 text = "Add"
 
-[node name="Skip" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Skip" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 40)
+custom_minimum_size = Vector2(110, 40)
 layout_mode = 2
 text = "Skip"

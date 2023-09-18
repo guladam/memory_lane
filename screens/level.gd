@@ -88,6 +88,7 @@ func _on_deck_view_button_pressed() -> void:
 func _on_enemy_died(_enemy: Enemy) -> void:
 	enemies_killed += 1
 	if enemies_killed == level_data.get_number_of_enemies():
+		await get_tree().create_timer(5.0).timeout
 		Events.level_won.emit(level_data)
 		print("level won! woo")
 

@@ -3,7 +3,7 @@
 ## handling health-related functions. 
 ## For dealing damage, check the [Weapon] class.
 class_name Enemy
-extends Sprite2D
+extends Node2D
 
 ## Emitted when an [Enemy] finished performing its action for the turn.
 signal action_finished
@@ -19,6 +19,9 @@ enum Intents {NONE, ATTACK, MOVE}
 @export var movement_speed := 1.0
 ## Animation speed for moving, in one grid / second format.
 @export var movement_anim_speed := 1.0
+## Animation player for the enemy. It needs to be injected, so each 
+## enemy can have their own unique animations.
+@export var custom_anim_player: AnimationPlayer
 ## [Weapon] used by this enemy.
 @export var weapon: Weapon
 @onready var health: Health = $Health
@@ -28,11 +31,16 @@ enum Intents {NONE, ATTACK, MOVE}
 @onready var status_effects: StatusEffects = $StatusEffects
 @onready var floating_text_position: Marker2D = $FloatingTextPosition
 @onready var floating_text := preload("res://creatures/floating_text.tscn")
+@onready var puff_effect := preload("res://creatures/puff_effect.tscn")
 
 ## This variable is used to calculate how many grid spaces
 ## an enemy can move. If it's less than 0, the accumulated
 ## float value is stored for the next turn(s).
 var accumulated_movement := 0.0
+## This is used to decide which [AnimationPlayer] this enemy uses.
+## Each can use their own unique animation but we provide a default
+## one if there are no unique animations provided.
+var animations: AnimationPlayer
 
 
 func _ready() -> void:
@@ -41,24 +49,30 @@ func _ready() -> void:
 	health.reached_zero.connect(_on_health_reached_zero)
 	
 	health_bar.setup(health.max_health)
+	
+	if custom_anim_player:
+		animation_player.queue_free()
+		animations = custom_anim_player
+	else:
+		animations = animation_player
 
 
 ## This method is mandatory for creatures having a [Hurtbox].
 ## [param damage] is the amount of damage to take.
 func take_damage(damage: int) -> void:
 	health.health -= damage
-	_create_floating_text("-%s" % damage, Color.FIREBRICK)
+	_create_floating_text("-%s" % damage, Color.RED)
 	
 	if health.health > 0:
-		animation_player.play("damage")
-		await animation_player.animation_finished
+		animations.play("damage")
+		await animations.animation_finished
 
 
 ## This method is for healing the enemy.
 ## [param amount] is the amount of health restored.
 func heal(amount: int) -> void:
 	health.health += amount
-	_create_floating_text("+%s" % amount, Color.WEB_GREEN)
+	_create_floating_text("+%s" % amount, Color.GREEN)
 
 
 ## Changes the maximum health of the enemy.
@@ -75,12 +89,12 @@ func animate_move(target: Vector2) -> void:
 		return
 	
 	var anim_length := movement_anim_speed * movement_modifiers.get_modifier()
-	animation_player.play("walk")
+	animations.play("walk")
 	var tween := create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self, "global_position", target, anim_length)
 	tween.tween_interval(0.15)
 	await tween.finished
-	animation_player.play("idle")
+	animations.play("idle")
 
 
 ## Changes the movement speed of the [Enemy].
@@ -154,6 +168,7 @@ func _on_health_changed(new_hp: int) -> void:
 ## Called when the enemy's health reaches 0.
 func _on_health_reached_zero() -> void:
 	Events.enemy_died.emit(self)
-	print("TODO!")
-	#animation_player.play("die")
+	var puff = puff_effect.instantiate()
+	get_tree().root.add_child(puff)
+	puff.global_position = global_position
 	queue_free()

@@ -17,6 +17,7 @@ texture_filter = 1
 script = ExtResource("1_xgs1u")
 
 [node name="Background" type="TileMap" parent="."]
+modulate = Color(1, 1, 1, 0.643137)
 z_index = -1
 tile_set = SubResource("TileSet_y0usl")
 format = 2

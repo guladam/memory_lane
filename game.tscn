@@ -1,12 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bss37jcv6wxbd"]
+[gd_scene load_steps=4 format=3 uid="uid://bss37jcv6wxbd"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_21ugc"]
+[ext_resource type="Resource" uid="uid://4x53kc465kmb" path="res://levels/level01_a.tres" id="2_bkw5y"]
 [ext_resource type="PackedScene" uid="uid://cvya4mhm2rvyc" path="res://screens/menu_screen.tscn" id="2_hi3kj"]
-[ext_resource type="Resource" uid="uid://b6ohxan1455df" path="res://levels/level1_a.tres" id="2_xvayr"]
-[ext_resource type="Resource" uid="uid://dsx0r64r2guss" path="res://levels/level2_a.tres" id="3_tr0en"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_21ugc")
-available_levels = Array[Resource("res://custom_resource_types/level_data.gd")]([ExtResource("2_xvayr"), ExtResource("3_tr0en")])
+available_levels = Array[Resource("res://custom_resource_types/level_data.gd")]([ExtResource("2_bkw5y")])
 
 [node name="MenuScreen" parent="." instance=ExtResource("2_hi3kj")]

@@ -64,3 +64,5 @@ signal run_won
 
 ## Emitted when a CardPilePanel is requested to show.
 signal card_pile_panel_requested(title: String, cards: Array[CardData])
+## Emitted when a tooltip for a [Card] is requested.
+signal card_tooltip_requested(card: CardData, position: Vector2)

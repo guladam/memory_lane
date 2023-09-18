@@ -1,18 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://di8413bx5b8td"]
+[gd_scene load_steps=5 format=3 uid="uid://di8413bx5b8td"]
 
 [ext_resource type="Script" path="res://ui/card_view.gd" id="1_54pvi"]
 [ext_resource type="PackedScene" uid="uid://ok77bnmeiv08" path="res://cards/card_front.tscn" id="2_1aeiy"]
-[ext_resource type="PackedScene" uid="uid://cdylhvu13jmtq" path="res://ui/card_tooltip.tscn" id="3_jcony"]
 [ext_resource type="FontFile" uid="uid://dbb73ujk8a3yr" path="res://ui/lato_regular.ttf" id="4_dmvay"]
 [ext_resource type="Texture2D" uid="uid://bxbhqu6hyblle" path="res://cards/card_number.png" id="4_slq2o"]
-
-[sub_resource type="Gradient" id="Gradient_bd1pe"]
-colors = PackedColorArray(1, 1, 1, 0.533333, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3rjtx"]
-gradient = SubResource("Gradient_bd1pe")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [node name="CardView" type="Control"]
 texture_filter = 1
@@ -51,32 +42,6 @@ offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Shadow" type="TextureRect" parent="Scaler/CardFront"]
-modulate = Color(1, 1, 1, 0.34902)
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_3rjtx")
-
-[node name="CardTooltip" parent="." instance=ExtResource("3_jcony")]
-visible = false
-z_index = 99
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 5.0
-offset_right = 85.0
-grow_horizontal = 0
-
 [node name="NumberBg" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -106,4 +71,3 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="tooltip_shown" from="CardTooltip" to="." method="_on_card_tooltip_tooltip_shown"]

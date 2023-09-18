@@ -5,9 +5,9 @@ extends ColorRect
 ## Emitted when the player starts a new game with the selected [Character].
 signal start_new_game(character: Character)
 
-@onready var main_menu: ColorRect = $MainMenu
-@onready var character_selector: VBoxContainer = $CharacterSelector
-@onready var credits: VBoxContainer = $Credits
+@onready var main_menu: Control = $MainMenu
+@onready var character_selector: Control = $CharacterSelector
+@onready var credits: Control = $Credits
 
 
 func _ready() -> void:
@@ -29,6 +29,7 @@ func _ready() -> void:
 	)
 	character_selector.new_game_requested.connect(
 		func(character: Character):
+			character_selector.fade_out_icons()
 			await _fade_out_front(character_selector)
 			start_new_game.emit(character)
 	)
@@ -84,7 +85,7 @@ func _fade_in_right(screen: Control) -> void:
 	screen.set_buttons(false)
 	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	t.tween_callback(screen.show)
-	t.tween_property(screen, "position:x", 70, 0.5).from(500)
+	t.tween_property(screen, "position:x", 0, 0.5).from(500)
 	t.parallel().tween_property(screen, "modulate", Color.WHITE, 0.6)
 	await t.finished
 	screen.set_buttons(true)

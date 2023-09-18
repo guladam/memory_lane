@@ -1,5 +1,5 @@
 ## This screen shows the [Player] the credits.
-extends VBoxContainer
+extends Control
 
 ## Emitted when the player wants to go back to the main menu.
 signal main_menu_requested

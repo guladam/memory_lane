@@ -23,6 +23,10 @@ alignment = 0
 layout_mode = 2
 text = "board"
 
+[node name="Win" type="Button" parent="Items/TimeScale"]
+layout_mode = 2
+text = "win"
+
 [node name="Player" type="HBoxContainer" parent="Items"]
 layout_mode = 2
 script = ExtResource("2_wtd20")
@@ -62,6 +66,7 @@ layout_mode = 2
 text = "dmg enemy"
 
 [connection signal="pressed" from="Items/TimeScale/ShowBoard" to="." method="_on_show_board_pressed"]
+[connection signal="pressed" from="Items/TimeScale/Win" to="." method="_on_win_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerDmg" to="Items/Player" method="_on_player_dmg_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerHeal" to="Items/Player" method="_on_player_heal_pressed"]
 [connection signal="pressed" from="Items/Player/PlayerMaxHigh" to="Items/Player" method="_on_player_max_high_pressed"]

@@ -75,6 +75,9 @@ func take_turn_with_units(units: Dictionary) -> void:
 		
 		await units[i].status_effects.apply_status_effects()
 	
+	update_unit_intentions(air_grid, grid_air)
+	update_unit_intentions(grid, grid_ground)
+	
 	for i in units.keys():
 		if not units[i]:
 			continue

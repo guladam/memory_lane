@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdylhvu13jmtq"]
+
+[ext_resource type="Script" path="res://ui/card_tooltip.gd" id="1_kuxib"]
+
+[node name="CardTooltip" type="Panel"]
+offset_right = 150.0
+offset_bottom = 31.0
+script = ExtResource("1_kuxib")
+
+[node name="Tooltip" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]Tooltip[/center]"
+fit_content = true
+scroll_active = false

@@ -1,14 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://rl6khyp8imaq"]
+[gd_scene load_steps=9 format=3 uid="uid://rl6khyp8imaq"]
 
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_0kgti"]
 [ext_resource type="Script" path="res://screens/character_selector.gd" id="1_3f0td"]
 [ext_resource type="PackedScene" uid="uid://ce62ja7y3ei2q" path="res://ui/pickable_character.tscn" id="2_1c8pe"]
+[ext_resource type="Shader" path="res://screens/shine.gdshader" id="2_avvis"]
 [ext_resource type="Resource" uid="uid://ccrhcy38xlr5e" path="res://characters/fire_character.tres" id="3_qef18"]
 [ext_resource type="Resource" uid="uid://qung2y8erng0" path="res://characters/ice_character.tres" id="4_j0i00"]
 [ext_resource type="Resource" uid="uid://ccn8avhv1bgyg" path="res://characters/earth_character.tres" id="5_h3k3h"]
 
-[node name="CharacterSelector" type="VBoxContainer"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_op3ks"]
+shader = ExtResource("2_avvis")
+shader_parameter/shine_color = Color(0.701961, 0.317647, 0.411765, 1)
+shader_parameter/shine_progress = 0.0
+shader_parameter/shine_size = 0.2
+shader_parameter/shine_angle = 45.0
+
+[node name="CharacterSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(270, 480)
+script = ExtResource("1_3f0td")
+
+[node name="Shine" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_op3ks")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="VboxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 650)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,9 +53,8 @@ grow_vertical = 2
 pivot_offset = Vector2(200, 325)
 theme = ExtResource("1_0kgti")
 theme_override_constants/separation = 0
-script = ExtResource("1_3f0td")
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="VboxContainer"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
@@ -34,17 +63,17 @@ element!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="VboxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VboxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="PickedCharacterInfo" type="Label" parent="VBoxContainer/VBoxContainer"]
+[node name="PickedCharacterInfo" type="Label" parent="VboxContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
@@ -52,37 +81,37 @@ text = " "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PickableCharacters" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="PickableCharacters" type="HBoxContainer" parent="VboxContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="PickableCharacter" parent="VBoxContainer/VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
+[node name="PickableCharacter" parent="VboxContainer/VBoxContainer/VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
 layout_mode = 2
 character = ExtResource("3_qef18")
 
-[node name="PickableCharacter2" parent="VBoxContainer/VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
+[node name="PickableCharacter2" parent="VboxContainer/VBoxContainer/VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
 layout_mode = 2
 character = ExtResource("4_j0i00")
 
-[node name="PickableCharacter3" parent="VBoxContainer/VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
+[node name="PickableCharacter3" parent="VboxContainer/VBoxContainer/VBoxContainer/PickableCharacters" instance=ExtResource("2_1c8pe")]
 layout_mode = 2
 character = ExtResource("5_h3k3h")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VboxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="Back" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Back" type="Button" parent="VboxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
 
-[node name="Play" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Play" type="Button" parent="VboxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2

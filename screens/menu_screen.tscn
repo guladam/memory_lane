@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvya4mhm2rvyc"]
+[gd_scene load_steps=7 format=3 uid="uid://cvya4mhm2rvyc"]
 
 [ext_resource type="Script" path="res://screens/menu_screen.gd" id="1_r7624"]
 [ext_resource type="PackedScene" uid="uid://csckhpk6v8me2" path="res://screens/main_menu.tscn" id="2_gtfp5"]
+[ext_resource type="PackedScene" uid="uid://cfkmnllqd4b73" path="res://screens/menu_background_cards.tscn" id="2_gvdyo"]
 [ext_resource type="PackedScene" uid="uid://rl6khyp8imaq" path="res://screens/character_selector.tscn" id="3_3hp7d"]
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="4_55d3g"]
 [ext_resource type="PackedScene" uid="uid://by2lxtudbbc58" path="res://screens/credits.tscn" id="4_dbb1f"]
 
 [node name="MenuScreen" type="ColorRect"]
@@ -14,22 +16,71 @@ grow_vertical = 2
 color = Color(0, 0.0901961, 0.0784314, 1)
 script = ExtResource("1_r7624")
 
+[node name="MenuBackgroundCards" parent="." instance=ExtResource("2_gvdyo")]
+
 [node name="MainMenu" parent="." instance=ExtResource("2_gtfp5")]
 layout_mode = 1
-color = Color(0, 0.0901961, 0.0784314, 1)
 
 [node name="CharacterSelector" parent="." instance=ExtResource("3_3hp7d")]
 visible = false
 layout_mode = 1
-offset_left = -200.0
-offset_top = -325.0
-offset_right = 200.0
-offset_bottom = 325.0
 
 [node name="Credits" parent="." instance=ExtResource("4_dbb1f")]
 visible = false
 layout_mode = 1
-offset_left = -200.0
-offset_top = -325.0
-offset_right = 200.0
-offset_bottom = 325.0
+
+[node name="Card" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -244.0
+offset_right = 85.0
+offset_bottom = -40.0001
+grow_vertical = 0
+rotation = -0.318163
+texture = ExtResource("4_55d3g")
+
+[node name="Card2" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 75.0
+offset_top = -138.0
+offset_right = 207.0
+offset_bottom = 66.0002
+grow_vertical = 0
+rotation = 0.716413
+texture = ExtResource("4_55d3g")
+
+[node name="Card4" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 486.0
+offset_top = -291.0
+offset_right = 618.0
+offset_bottom = -87.0
+grow_vertical = 0
+rotation = 0.507593
+texture = ExtResource("4_55d3g")
+
+[node name="Card3" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 386.0
+offset_top = -40.0
+offset_right = 518.0
+offset_bottom = 164.0
+grow_vertical = 0
+rotation = -0.846169
+texture = ExtResource("4_55d3g")

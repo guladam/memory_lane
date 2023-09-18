@@ -2,6 +2,7 @@ extends PanelContainer
 
 
 @export var board: Board
+@export var level_data: LevelData
 
 
 func _input(event: InputEvent) -> void:
@@ -24,3 +25,7 @@ func _on_show_board_pressed() -> void:
 			print_string.append(card + "\t\t")
 			
 	print("".join(print_string))
+
+
+func _on_win_pressed() -> void:
+	Events.level_won.emit(level_data)
