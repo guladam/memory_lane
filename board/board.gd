@@ -33,7 +33,6 @@ func _ready() -> void:
 	Events.card_flipped.connect(_on_card_flipped)
 	Events.card_unflipped.connect(_on_card_unflipped)
 
-	Events.enemy_turn_ended.connect(func(): Events.player_turn_started.emit())
 	Events.player_turn_started.connect(func(): self.interactable = true)
 	Events.player_turn_ended.connect(func(): self.interactable = false)
 

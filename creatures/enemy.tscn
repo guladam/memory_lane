@@ -119,20 +119,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.45),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["idle", -1, 1.0, false],
-"method": &"play"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_sevog"]
 resource_name = "idle"
@@ -188,9 +174,8 @@ _data = {
 "walk": SubResource("Animation_mtw5n")
 }
 
-[node name="Enemy" type="Sprite2D" node_paths=PackedStringArray("weapon") groups=["enemies"]]
+[node name="Enemy" type="Sprite2D" groups=["enemies"]]
 script = ExtResource("1_8xmhl")
-weapon = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.857874, -15.4139)

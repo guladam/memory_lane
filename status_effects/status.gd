@@ -12,8 +12,8 @@ signal status_applied
 enum Icons {FIRE, ICE}
 ## Preloaded textures for the icons above.
 const ICONS := {
-	Icons.FIRE: preload("res://temp/card_012.png"),
-	Icons.ICE: preload("res://temp/card_013.png")
+	Icons.FIRE: preload("res://status_effects/fire_icon.png"),
+	Icons.ICE: preload("res://status_effects/ice_icon.png")
 }
 
 ## [StatusData] resource for this status effect.
@@ -42,6 +42,12 @@ func setup(_data: StatusData) -> void:
 ## [param target] is the unit receiving this status effect.
 func apply_status(target: Node) -> void:
 	print("apply %s status to %s" % [data.status_id, target])
+
+
+## Returns [code]true[/code] if this status is the same as
+## the [param other] one.
+func equals(other: StatusData) -> bool:
+	return data.status_id == other.status_id
 
 
 ## Called when the status effect is applied to the target.

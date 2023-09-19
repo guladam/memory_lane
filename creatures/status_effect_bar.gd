@@ -16,6 +16,7 @@ func add_status(status: Status) -> void:
 
 ## Updates all status effect for the creature.
 ## This should be called once every turn.
-func update_all_status_effects() -> void:
-	for status in get_children():
-		status.update()
+func update_all_status_effects(status_effects: Array) -> void:
+	for i in range(get_child_count()):
+		if i < status_effects.size():
+			get_child(i).update(status_effects[i])

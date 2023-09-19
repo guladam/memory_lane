@@ -66,6 +66,7 @@ func take_damage(damage: int) -> void:
 	if health.health > 0:
 		animations.play("damage")
 		await animations.animation_finished
+		animations.play("idle")
 
 
 ## This method is for healing the enemy.

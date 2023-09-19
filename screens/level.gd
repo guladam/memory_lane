@@ -44,6 +44,8 @@ func _ready() -> void:
 	game_state.reset()
 	enemy_manager.spawn_enemies_for_turn(turn, level_data)
 	player.set_eye_color(run.character.color)
+	
+	player.status_effects.add_new_status(preload("res://status_effects/ignited_3_data.tres"))
 
 
 ## Called when the board is emptied.
@@ -97,3 +99,5 @@ func _on_enemy_died(_enemy: Enemy) -> void:
 func _on_enemy_turn_ended(): 
 	self.turn += 1
 	enemy_manager.spawn_enemies_for_turn(self.turn, level_data)
+	await player.status_effects.apply_status_effects()
+	Events.player_turn_started.emit()

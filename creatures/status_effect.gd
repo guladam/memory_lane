@@ -13,6 +13,7 @@ var permanent: bool
 func setup(status: Status) -> void:
 	icon.texture = status.icon_texture
 	permanent = status.duration <= 0
+	status.status_expired.connect(_on_status_expired)
 	
 	if not permanent:
 		turn_counter.text = str(status.duration)
@@ -22,14 +23,19 @@ func setup(status: Status) -> void:
 
 ## This is called every turn to update the turn counter.
 ## Only does anything if its not a permanent [Status].
-func update() -> void:
+func update(new_data: Status) -> void:
 	if permanent:
 		return
 
-	var new_duration := int(turn_counter.text) - 1
+	var new_duration := new_data.duration
 	
 	if new_duration <= 0:
 		queue_free()
 		return
 			
 	turn_counter.text = str(new_duration)
+
+
+## Called when the associated status effect expires.
+func _on_status_expired(_status: Status) -> void:
+	queue_free()

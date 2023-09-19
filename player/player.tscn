@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6k5gqw3dbwew"]
+[gd_scene load_steps=16 format=3 uid="uid://b6k5gqw3dbwew"]
 
 [ext_resource type="PackedScene" uid="uid://cx0wk3a6k6nnl" path="res://creatures/hurt_box.tscn" id="1_bfnpp"]
 [ext_resource type="PackedScene" uid="uid://d3vnfucrg4ic3" path="res://creatures/health.tscn" id="1_jxybv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://1l6kn3equ457" path="res://creatures/health_bar.tscn" id="3_twdi5"]
 [ext_resource type="PackedScene" uid="uid://ddrodc1r2feoo" path="res://modifiers/modifiers.tscn" id="5_torel"]
 [ext_resource type="PackedScene" uid="uid://cywb0mjl78eua" path="res://status_effects/status_effects.tscn" id="7_hu57v"]
+[ext_resource type="PackedScene" uid="uid://bl5gsx3seabcr" path="res://creatures/status_effect_bar.tscn" id="8_pkla6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt08t"]
 size = Vector2(36, 84)
@@ -163,13 +164,20 @@ offset_top = -70.0
 offset_right = 26.0
 offset_bottom = -50.0
 
+[node name="StatusEffectBar" parent="." instance=ExtResource("8_pkla6")]
+offset_left = -30.0
+offset_top = 40.0
+offset_right = 30.0
+offset_bottom = 70.0
+
 [node name="Health" parent="." instance=ExtResource("1_jxybv")]
 max_health = 3
 
 [node name="BonusDamage" parent="." instance=ExtResource("5_torel")]
 percent_based = false
 
-[node name="StatusEffects" parent="." instance=ExtResource("7_hu57v")]
+[node name="StatusEffects" parent="." node_paths=PackedStringArray("status_effect_bar") instance=ExtResource("7_hu57v")]
+status_effect_bar = NodePath("../StatusEffectBar")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
