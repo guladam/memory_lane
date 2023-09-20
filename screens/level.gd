@@ -35,18 +35,18 @@ func _ready() -> void:
 	
 	Events.draw_pile_reshuffled.connect(_on_draw_pile_reshuffled)
 	Events.board_emptied.connect(_on_board_emptied)
-	Events.player_turn_started.connect(_draw_new_hand)
+	Events.player_turn_started.connect(_on_player_turn_started)
 	Events.enemy_died.connect(_on_enemy_died)
 	Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
 	
 	board.setup(draw_pile.global_position, discard_pile.global_position, run.character)
-	board.spawn_cards(draw_pile.draw_cards(12))
 	game_state.reset()
 	enemy_manager.spawn_enemies_for_turn(turn, level_data)
-	player.set_eye_color(run.character.color)
+	player.setup(run.character, game_state)
 	
-	player.status_effects.add_new_status(preload("res://status_effects/ignited_3_data.tres"))
-
+	await board.spawn_cards(draw_pile.draw_cards(12))
+	player.status_effects.apply_status_effects()
+	
 
 ## Called when the board is emptied.
 ## We queue a new hand of [Card]s which will be drawn when it's
@@ -57,16 +57,18 @@ func _on_board_emptied() -> void:
 
 ## Draws a new set of [Card]s for the board, based on the draw_queue.
 ## If the queue is empty, this method does nothing.
-func _draw_new_hand() -> void:
+func _draw_new_hand() -> int:
 	var cards_needed = draw_queue.pop_back()
 	
 	if not cards_needed:
-		return
+		return 0
 		
 	var cards := draw_pile.draw_cards(cards_needed)
 	await board.spawn_cards(cards)
 	if cards.size() < cards_needed:
 		draw_pile.reshuffle(cards, cards_needed)
+	
+	return cards_needed
 
 
 ## Called when the draw pile gets reshuffled.
@@ -77,7 +79,8 @@ func _on_draw_pile_reshuffled(remaining_cards: int) -> void:
 	await get_tree().create_timer(0.2).timeout
 	await discard_pile.empty(draw_pile.global_position)
 	await get_tree().create_timer(0.4).timeout
-	board.spawn_cards(draw_pile.draw_cards(remaining_cards))
+	await board.spawn_cards(draw_pile.draw_cards(remaining_cards))
+	Events.player_turn_started.emit()
 
 
 ## Submits a request to the show the [Deck] in the Card Pile panel.
@@ -89,15 +92,21 @@ func _on_deck_view_button_pressed() -> void:
 ## [param _enemy] is the unit that just died.
 func _on_enemy_died(_enemy: Enemy) -> void:
 	enemies_killed += 1
-	if enemies_killed == level_data.get_number_of_enemies():
-		await get_tree().create_timer(5.0).timeout
+	var all_enemies_dead := enemies_killed == level_data.get_number_of_enemies()
+	if all_enemies_dead and not game_state.is_paused():
 		Events.level_won.emit(level_data)
-		print("level won! woo")
+		game_state.change_to(GameState.State.PAUSED)
 
 
 ## Called when the enemy turn has ended.
 func _on_enemy_turn_ended(): 
 	self.turn += 1
 	enemy_manager.spawn_enemies_for_turn(self.turn, level_data)
+	var cards_needed = await _draw_new_hand()
+	if cards_needed == 0 or board.get_current_board_card_number() == 12:
+		Events.player_turn_started.emit()
+
+
+func _on_player_turn_started() -> void:
+	board.interactable = true
 	await player.status_effects.apply_status_effects()
-	Events.player_turn_started.emit()

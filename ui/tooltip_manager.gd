@@ -23,8 +23,13 @@ func _on_card_tooltip_requested(card_view: CardView) -> void:
 	var rect := card_view.get_global_rect()
 	var tooltip = card_tooltip.instantiate()
 	add_child(tooltip)
+	tooltip.setup(card_view.card)
+	
+	await get_tree().process_frame
+	
 	tooltip.position = rect.position
 	tooltip.position.x +=  rect.size.x / 2
 	tooltip.position.x -= tooltip.size.x / 2
-	tooltip.setup(card_view.card)
+	tooltip.position.y -= tooltip.size.y / 2
+	tooltip.original_pos = tooltip.position
 	tooltip.fade_in()

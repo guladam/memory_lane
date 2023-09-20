@@ -56,13 +56,13 @@ func spawn_enemy(_enemy_scene: PackedScene) -> void:
 ## Completes the full enemy turn, unit by unit.
 ## This is a coroutine as it waits for the units to finish their actions.
 func do_enemy_turn() -> void:
-	# TODO valami grafika?
 	await get_tree().create_timer(1.0).timeout
 	await take_turn_with_units(grid_air)
 	await take_turn_with_units(grid_ground)
 	update_unit_intentions(air_grid, grid_air)
 	update_unit_intentions(grid, grid_ground)
 	Events.enemy_turn_ended.emit()
+	print("--- ENEMY TURN ENDED ---")
 
 
 ## Iterates over a type of enemies and takes turns with them one by one.
@@ -279,7 +279,6 @@ func _on_effect_created(effect: Effect) -> void:
 	if not valid_targets.has(effect.target_type):
 		return
 
-	print("enemy effect should apply")
 	var target: Array[Node]
 	if effect.target_type == Effect.TargetType.ALL_ENEMIES:
 		target = _get_all_enemies()

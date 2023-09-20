@@ -33,8 +33,9 @@ func _ready() -> void:
 	Events.card_flipped.connect(_on_card_flipped)
 	Events.card_unflipped.connect(_on_card_unflipped)
 
-	Events.player_turn_started.connect(func(): self.interactable = true)
-	Events.player_turn_ended.connect(func(): self.interactable = false)
+	Events.player_turn_started.connect(_on_player_turn_started)
+	Events.player_turn_ended.connect(_on_player_turn_ended)
+	Events.board_reveal_requested.connect(reveal_cards)
 
 
 ## This method is used for dependency injection.
@@ -73,7 +74,7 @@ func spawn_cards(new_cards: Array[CardData]) -> void:
 			await new_card.animate_draw(draw_pile_pos, card_markers[j].global_position)
 	
 	# TODO feels hacky
-	if _get_current_board_card_number() == 12:
+	if get_current_board_card_number() == 12:
 		interactable = true
 
 
@@ -103,20 +104,52 @@ func discard_board() -> void:
 	Events.board_emptied.emit()
 
 
+## Reveals [param num_of_cards] [Card]s to the [Player].
+func reveal_cards(num_of_cards: int) -> void:
+	interactable = false
+	var picked_cards := _get_random_cards(num_of_cards)
+	
+	for i in range(picked_cards.size()):
+		print("reveal %s, card: %s" % [i, picked_cards[i].card.id])
+		
+		if i == num_of_cards - 1:
+			await picked_cards[i].animate_reveal()
+		else:
+			picked_cards[i].animate_reveal()
+	
+	interactable = true
+
+
+## Returns the number of cards on the board.
+func get_current_board_card_number() -> int:
+	var non_empty_elements = current_cards.filter(func(card): return card != null)
+	return non_empty_elements.size()
+
+
+## Returns [param n] random [Card]s from the board.
+func _get_random_cards(n: int) -> Array[Card]:
+	var picked_cards: Array[Card] = []
+	
+	if get_current_board_card_number() < n:
+		print("you need at least %s cards to get!" % n)
+		return picked_cards
+	
+	while picked_cards.size() < n:
+		var card: Card = current_cards.pick_random()
+		if card and not picked_cards.has(card):
+			picked_cards.append(card)
+			
+	return picked_cards
+
+
 ## Returns [code]true[/code] if the [param n]th space is occupied.
 func _is_space_occupied(n) -> bool:
 	return current_cards[n] != null
 
 
-## Returns the number of cards on the board.
-func _get_current_board_card_number() -> int:
-	var non_empty_elements = current_cards.filter(func(card): return card != null)
-	return non_empty_elements.size()
-
-
 ## Returns [code]true[/code] if the board is currently empty.
 func _is_board_empty() -> bool:
-	return _get_current_board_card_number() == 0
+	return get_current_board_card_number() == 0
 
 
 ## Returns the index of the last [Card] on the board.
@@ -164,6 +197,7 @@ func _on_match() -> void:
 
 ## Called when two different [Card]s are flipped over.
 func _on_mismatch() -> void:
+	interactable = false
 	Events.cards_mismatched.emit()
 	await flipped_cards[0].unflip()
 	await flipped_cards[0].unflip()
@@ -210,3 +244,15 @@ func _on_effect_created(effect: Effect) -> void:
 	
 	effect.setup([self])
 	effect.apply_effect()
+
+
+## Called when it's the [Player]'s turn.
+func _on_player_turn_started() -> void:
+	self.interactable = true
+	self.modulate.a = 1.0
+
+
+## Called when the [Player]'s turn is over.
+func _on_player_turn_ended() -> void:
+	self.interactable = false
+	self.modulate.a = 0.5

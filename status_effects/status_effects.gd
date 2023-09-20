@@ -19,7 +19,10 @@ func apply_status_effects() -> void:
 		
 		@warning_ignore("redundant_await")
 		await status.apply_status(owner)
-		await get_tree().create_timer(0.3).timeout
+		
+		if owner.health and owner.health.health <= 0:
+			print("owner died while applying statuses")
+			break
 	
 	if status_effect_bar:
 		status_effect_bar.update_all_status_effects(get_children())

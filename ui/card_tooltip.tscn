@@ -1,22 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdylhvu13jmtq"]
+[gd_scene load_steps=3 format=3 uid="uid://cdylhvu13jmtq"]
 
 [ext_resource type="Script" path="res://ui/card_tooltip.gd" id="1_kuxib"]
 
-[node name="CardTooltip" type="Panel"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfpxq"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.933333, 0.933333, 0.933333, 1)
+
+[node name="CardTooltip" type="PanelContainer"]
+texture_filter = 1
 offset_right = 150.0
 offset_bottom = 31.0
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qfpxq")
 script = ExtResource("1_kuxib")
 
-[node name="Tooltip" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="TooltipLines" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 mouse_filter = 2
-bbcode_enabled = true
-text = "[center]Tooltip[/center]"
-fit_content = true
-scroll_active = false

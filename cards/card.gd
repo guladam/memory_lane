@@ -99,6 +99,21 @@ func animate_discard(discard_position: Vector2) -> void:
 	queue_free()
 
 
+## Reveals the card. It's a coroutine as it waits for the animation
+## to finish.
+func animate_reveal() -> void:
+	print("reveal this!")
+	if is_flipped or anim_player.is_playing():
+		return
+	
+	input_pickable = false
+	anim_player.play("reveal")
+	await anim_player.animation_finished
+	anim_player.play("unflip")
+	await anim_player.animation_finished
+	input_pickable = true
+
+
 ## Injects all data and dependencies when creating a new card.
 func setup(new_card_data: CardData, character: Character) -> void:
 	self.card = new_card_data

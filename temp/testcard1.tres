@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_60kcm"]
 [ext_resource type="Resource" uid="uid://ccwxdf2rlwc4q" path="res://card_effects/board_discard_effect.tres" id="3_by5qf"]
 [ext_resource type="Texture2D" uid="uid://c4ekjtwm3a3dc" path="res://cards/card_target3.png" id="3_k8tvx"]
-[ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target4.png" id="4_5tx1k"]
+[ext_resource type="Texture2D" uid="uid://crlhdsrihj4qn" path="res://cards/discard_icon.png" id="3_kvlru"]
 
 [resource]
 script = ExtResource("2_60kcm")
@@ -12,8 +12,9 @@ card_back = ExtResource("1_hmcvu")
 card_color = Color(0.333333, 1, 1, 1)
 card_icon = ExtResource("3_k8tvx")
 card_text = ""
-card_status_icon = ExtResource("4_5tx1k")
-tooltip = "Red card"
+card_status_icon = ExtResource("3_kvlru")
+tooltip_texts = Array[String](["TARGETS: SELF", "DISCARDS HAND"])
+tooltip_icons = Array[Texture]([ExtResource("3_k8tvx"), ExtResource("3_kvlru")])
 id = "red_arrow"
 effect = ExtResource("3_by5qf")
 can_have_multiple = true

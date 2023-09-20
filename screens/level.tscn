@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://l48bpn0txwjb"]
+[gd_scene load_steps=15 format=3 uid="uid://l48bpn0txwjb"]
 
 [ext_resource type="Script" path="res://screens/level.gd" id="1_cmfot"]
 [ext_resource type="PackedScene" uid="uid://cpm1h02k47x6e" path="res://board/board.tscn" id="1_da4pj"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c7r675rnocnfe" path="res://debugging/debug_window.tscn" id="6_yafv1"]
 [ext_resource type="Script" path="res://ui/ingame_ui.gd" id="9_ad715"]
 [ext_resource type="PackedScene" uid="uid://bn3pivcnfpu1x" path="res://ui/card_pile_panel.tscn" id="11_jplfr"]
+[ext_resource type="Resource" uid="uid://4x53kc465kmb" path="res://levels/level01_a.tres" id="12_mw2ej"]
 [ext_resource type="PackedScene" uid="uid://cpvqx5wls726g" path="res://ui/tooltip_manager.tscn" id="13_xset1"]
 
 [node name="Level" type="Node2D"]
@@ -45,6 +46,7 @@ visible = false
 offset_right = 341.0
 offset_bottom = 117.0
 board = NodePath("../../Board")
+level_data = ExtResource("12_mw2ej")
 
 [node name="Player" parent="IngameUI/DebugWindow/Items" index="1" node_paths=PackedStringArray("player")]
 player = NodePath("../../../../Creatures/Player")

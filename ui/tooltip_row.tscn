@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckfyfn6dx088c"]
+
+[ext_resource type="Script" path="res://ui/tooltip_row.gd" id="1_cdqpq"]
+[ext_resource type="Texture2D" uid="uid://dbwvl1hun2awc" path="res://status_effects/fire_icon.png" id="1_mdgix"]
+
+[node name="TooltipRow" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cdqpq")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_mdgix")
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "IGNITE: deal 1 dmg / turn"
+vertical_alignment = 1

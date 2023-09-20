@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=3 format=3 uid="uid://di2bv4du2ikm0"]
+
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_3378d"]
+[ext_resource type="Script" path="res://status_effects/reveal_2.gd" id="1_iv0en"]
+
+[resource]
+script = ExtResource("1_3378d")
+status_id = "reveal"
+duration = -1
+icon = 2
+code = ExtResource("1_iv0en")

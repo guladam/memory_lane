@@ -1,8 +1,9 @@
 ## This a tooltip panel for cards that need further explanation.
-extends Panel
+extends PanelContainer
 
 
-@onready var tooltip: RichTextLabel = $Tooltip
+@onready var tooltip_lines: VBoxContainer = $MarginContainer/TooltipLines
+@onready var tooltip_row: PackedScene = preload("res://ui/tooltip_row.tscn")
 
 var original_pos: Vector2
 var _tween: Tween
@@ -16,8 +17,11 @@ func _ready() -> void:
 ## This method sets up the tooltip text.
 ## [param _card_data] is the [CardData] that holds the information needed.
 func setup(_card_data: CardData) -> void:
-	tooltip.text = _card_data.tooltip
-	original_pos = position
+	var num_of_tooltips: int = min(_card_data.tooltip_icons.size(), _card_data.tooltip_texts.size())
+	for i in range(num_of_tooltips):
+		var new_tooltip := tooltip_row.instantiate()
+		tooltip_lines.add_child(new_tooltip)
+		new_tooltip.setup(_card_data.tooltip_icons[i], _card_data.tooltip_texts[i])
 
 
 ## Fade out animation for the tooltip.

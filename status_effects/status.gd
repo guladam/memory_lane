@@ -9,11 +9,12 @@ signal status_expired
 signal status_applied
 
 ## Available icons for ALL status effects.
-enum Icons {FIRE, ICE}
+enum Icons {FIRE, ICE, REVEAL}
 ## Preloaded textures for the icons above.
 const ICONS := {
 	Icons.FIRE: preload("res://status_effects/fire_icon.png"),
-	Icons.ICE: preload("res://status_effects/ice_icon.png")
+	Icons.ICE: preload("res://status_effects/ice_icon.png"),
+	Icons.REVEAL: preload("res://status_effects/reveal_icon.png")
 }
 
 ## [StatusData] resource for this status effect.
@@ -41,7 +42,7 @@ func setup(_data: StatusData) -> void:
 ## Also, the implementing methods should always emit the [signal Status.status_applied] signal.
 ## [param target] is the unit receiving this status effect.
 func apply_status(target: Node) -> void:
-	print("apply %s status to %s" % [data.status_id, target])
+	print("applied %s status to %s" % [data.status_id, target])
 
 
 ## Returns [code]true[/code] if this status is the same as

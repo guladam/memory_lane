@@ -29,6 +29,8 @@ signal card_unflipped(card: Card)
 signal cards_mismatched
 ## Emitted when the [Board] is emptied and needs new [Card]s.
 signal board_emptied
+## Emitted when the [Board] needs to reveal an [param amount] of [Card]s.
+signal board_reveal_requested(amount: int)
 ## Emitted when the deck is reshuffled because there
 ## were no more cards left in the draw pile.
 signal draw_pile_reshuffled(cards_still_needed: int)

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dptpxyk5ldmai"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dptpxyk5ldmai"]
 
 [ext_resource type="FontFile" uid="uid://dbb73ujk8a3yr" path="res://ui/lato_regular.ttf" id="1_kld35"]
 
@@ -46,6 +46,24 @@ shadow_color = Color(0.168627, 0.168627, 0.168627, 0.6)
 shadow_size = 3
 shadow_offset = Vector2(3, 3)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gr6i1"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.156863, 0.156863, 0.156863, 0.517647)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fij4q"]
+bg_color = Color(0.332031, 0.332031, 0.996094, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [resource]
 default_font = ExtResource("1_kld35")
 default_font_size = 16
@@ -68,3 +86,5 @@ Button/styles/focus = SubResource("StyleBoxFlat_il3lg")
 Button/styles/hover = SubResource("StyleBoxFlat_lna85")
 Button/styles/normal = SubResource("StyleBoxFlat_4nl05")
 Button/styles/pressed = SubResource("StyleBoxFlat_il3lg")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_gr6i1")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_fij4q")

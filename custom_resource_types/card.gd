@@ -13,7 +13,8 @@ extends Resource
 @export var card_text: String
 @export var card_status_icon: Texture
 ## Tooltip shown when tapped on the card.
-@export var tooltip: String
+@export var tooltip_texts: Array[String]
+@export var tooltip_icons: Array[Texture]
 
 @export_category("Other Data")
 ## A unique ID for the card, used for checking matches.

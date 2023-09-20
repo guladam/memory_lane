@@ -2,7 +2,6 @@
 class_name Player
 extends Node2D
 
-
 @onready var health: Health = $Health
 @onready var health_bar: PanelContainer = $HealthBar
 @onready var ranged_target_position: Marker2D = $RangedTargetPosition
@@ -12,6 +11,7 @@ extends Node2D
 @onready var status_effects: StatusEffects = $StatusEffects
 @onready var floating_text_position: Marker2D = $FloatingTextPosition
 @onready var floating_text := preload("res://creatures/floating_text.tscn")
+var game_state: GameState
 
 
 func _ready() -> void:
@@ -23,6 +23,14 @@ func _ready() -> void:
 	
 	health_bar.setup(health.max_health)
 	animation_player.play("idle")
+
+
+## Injects [Character] dependency to the player.
+func setup(character: Character, state: GameState) -> void:
+	$Eyes.color = character.color
+	game_state = state
+	for status in character.starting_traits:
+		status_effects.add_new_status(status)
 
 
 ## This method is mandatory for creatures having a [HurtBox].
@@ -65,12 +73,6 @@ func spawn_projectile(target: Vector2, projectile: PackedScene, start: Vector2 =
 	new_projectile.launch(target, bonus_damage.get_modifier())
 
 
-## Sets the eye color to any [Color].
-## [param color] is the new eye color.
-func set_eye_color(color: Color) -> void:
-	$Eyes.color = color
-
-
 ## Creates a floating text for the player.
 ## [param text] is the text of the message.
 ## [param color] is the [Color].
@@ -88,8 +90,9 @@ func _on_health_changed(new_hp: int) -> void:
 
 ## Called when the player's health reaches zero.
 func _on_health_reached_zero() -> void:
+	if not game_state.is_paused():
 		Events.game_over.emit()
-		print("game over")
+		game_state.change_to(GameState.State.PAUSED)
 
 
 ## Play spell animation when an [Effect] is created.

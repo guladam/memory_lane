@@ -4,6 +4,8 @@ extends Node
 
 ## Total number of enemies killed while playing the game.
 var enemies_killed: int
+## Total number of enemies killed while playing the game.
+var enemies_killed_this_run: int
 ## Total number of levels beaten while playing the game.
 var levels_beaten: int
 ## Total number of runs won while playing the game.
@@ -45,6 +47,7 @@ func _initialize() -> void:
 ## Can be used if there is no saved file available.
 func _save_default() -> void:
 	enemies_killed = 0
+	enemies_killed_this_run = 0
 	levels_beaten = 0
 	runs_won = 0
 	all_runs = 0
@@ -62,6 +65,7 @@ func _save_stats() -> void:
 		return
 	
 	_stats.store_var(enemies_killed)
+	_stats.store_var(enemies_killed_this_run)
 	_stats.store_var(levels_beaten)
 	_stats.store_var(runs_won)
 	_stats.store_var(all_runs)
@@ -73,6 +77,7 @@ func _save_stats() -> void:
 ## [param file] is the loaded save file.
 func _load_data(file: FileAccess) -> void:
 	enemies_killed = file.get_var()
+	enemies_killed_this_run = file.get_var()
 	levels_beaten = file.get_var()
 	runs_won = file.get_var()
 	all_runs = file.get_var()
@@ -84,6 +89,7 @@ func _load_data(file: FileAccess) -> void:
 func print_stats() -> void:
 	print("STATS\n-------------------")
 	print("enemies killed: %s" % enemies_killed)
+	print("enemies killed this run: %s" % enemies_killed_this_run)
 	print("levels beaten: %s" % levels_beaten)
 	print("runs won: %s" % runs_won)
 	print("all runs: %s" % all_runs)
@@ -95,6 +101,7 @@ func print_stats() -> void:
 ## Called when an enemy dies in-game.
 func _on_enemy_died(_enemy: Enemy) -> void:
 	enemies_killed += 1
+	enemies_killed_this_run += 1
 	_save_stats()
 
 
