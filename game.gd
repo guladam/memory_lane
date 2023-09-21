@@ -50,16 +50,17 @@ func _on_level_won(_level: LevelData) -> void:
 	
 	current_run.current_level += 1
 	
-	if current_run.current_level > LEVELS_PER_RUN:
-		print("woohoo! no more levels gg")
-		Events.run_won.emit()
-		return
-	
 	var level_end := level_end_screen.instantiate()
 	add_child(level_end)
+	level_end.awesome_selected.connect(_on_level_end_screen_continue_selected)
 	level_end.continue_selected.connect(_on_level_end_screen_continue_selected)
-	level_end.show_level_won(current_run)
 	
+	if current_run.current_level > LEVELS_PER_RUN:
+		Events.run_won.emit()
+		level_end.show_run_won(current_run)
+	else:
+		level_end.show_level_won(current_run)
+
 
 ## Called when the [Player] loses the game.
 func _on_game_over() -> void:

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgnif2l6f5yl0"]
+
+[ext_resource type="StyleBox" uid="uid://dqumk7eac1dug" path="res://ui/slide_indicator_box_active.tres" id="1_4wxl3"]
+[ext_resource type="Script" path="res://ui/slide_indicator.gd" id="2_08l52"]
+
+[node name="SlideIndicator" type="Panel"]
+custom_minimum_size = Vector2(30, 30)
+theme_override_styles/panel = ExtResource("1_4wxl3")
+script = ExtResource("2_08l52")

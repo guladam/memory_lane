@@ -5,6 +5,7 @@ extends ColorRect
 
 signal continue_selected
 signal main_menu_selected
+signal awesome_selected
 
 @onready var text_1: Label = $Text1
 @onready var text_2: Label = $Text2
@@ -15,6 +16,7 @@ signal main_menu_selected
 @onready var enemies_killed_progress_bar: ProgressBar = %EnemiesKilledProgressBar
 @onready var next_level: Button = %NextLevel
 @onready var main_menu: Button = %MainMenu
+@onready var awesome: Button = %Awesome
 @onready var puff := preload("res://creatures/puff_effect.tscn")
 
 var current_level: int
@@ -27,25 +29,36 @@ func _ready() -> void:
 	enemies_killed.hide()
 	next_level.hide()
 	main_menu.hide()
+	awesome.hide()
 	
 	next_level.pressed.connect(func(): continue_selected.emit())
 	main_menu.pressed.connect(func(): main_menu_selected.emit())
+	awesome.pressed.connect(func(): awesome_selected.emit())
 
 
 ## Shows the level won version, based on the current [Run] data.
 func show_level_won(run: Run) -> void:
 	text_1.text = "Level"
 	text_2.text = "Won"
-	current_level = run.current_level
+	current_level = run.current_level-1
 	current_kills = StatTracker.enemies_killed_this_run
 	animate("win", next_level)
+
+
+## Shows the run won version, based on the current [Run] data.
+func show_run_won(run: Run) -> void:
+	text_1.text = "You are"
+	text_2.text = "Victorious!"
+	current_level = run.current_level-1
+	current_kills = StatTracker.enemies_killed_this_run
+	animate("win", awesome)
 
 
 ## Shows the game over version, based on the current [Run] data.
 func show_game_over(run: Run) -> void:
 	text_1.text = "Game"
 	text_2.text = "Over"
-	current_level = run.current_level
+	current_level = run.current_level-1
 	current_kills = StatTracker.enemies_killed_this_run
 	animate("die", main_menu)
 

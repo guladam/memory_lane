@@ -1,0 +1,150 @@
+[gd_scene load_steps=4 format=3 uid="uid://bblifh5b7k7y2"]
+
+[ext_resource type="Script" path="res://screens/stats.gd" id="1_km4jq"]
+[ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="2_xpl4u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eu0y"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.690196, 0.690196, 0.690196, 1)
+
+[node name="Stats" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_km4jq")
+
+[node name="VboxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 650)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_xpl4u")
+theme_override_constants/separation = 50
+
+[node name="Title" type="Label" parent="VboxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VboxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8eu0y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VboxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="GamesPlayed" type="HBoxContainer" parent="VboxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Text" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/GamesPlayed"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Total games played:"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/GamesPlayed"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "99"
+
+[node name="GamesWon" type="HBoxContainer" parent="VboxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Text" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/GamesWon"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Total games won:"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/GamesWon"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "99"
+
+[node name="WinRate" type="HBoxContainer" parent="VboxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Text" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/WinRate"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Winrate:"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/WinRate"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "45.67%"
+
+[node name="LevelsBeaten" type="HBoxContainer" parent="VboxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Text" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/LevelsBeaten"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Total levels won:"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/LevelsBeaten"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "9999"
+
+[node name="EnemiesKilled" type="HBoxContainer" parent="VboxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Text" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/EnemiesKilled"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Total enemies killed:"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="VboxContainer/PanelContainer/VBoxContainer/EnemiesKilled"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "99999"
+
+[node name="Back" type="Button" parent="VboxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back
+"

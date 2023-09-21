@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvya4mhm2rvyc"]
+[gd_scene load_steps=9 format=3 uid="uid://cvya4mhm2rvyc"]
 
 [ext_resource type="Script" path="res://screens/menu_screen.gd" id="1_r7624"]
 [ext_resource type="PackedScene" uid="uid://csckhpk6v8me2" path="res://screens/main_menu.tscn" id="2_gtfp5"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://rl6khyp8imaq" path="res://screens/character_selector.tscn" id="3_3hp7d"]
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="4_55d3g"]
 [ext_resource type="PackedScene" uid="uid://by2lxtudbbc58" path="res://screens/credits.tscn" id="4_dbb1f"]
+[ext_resource type="PackedScene" uid="uid://bblifh5b7k7y2" path="res://screens/stats.tscn" id="5_jhqmo"]
+[ext_resource type="PackedScene" uid="uid://brgquf0x4yhld" path="res://screens/how_to_play.tscn" id="6_2ng87"]
 
 [node name="MenuScreen" type="ColorRect"]
 anchors_preset = 15
@@ -22,6 +24,14 @@ script = ExtResource("1_r7624")
 layout_mode = 1
 
 [node name="CharacterSelector" parent="." instance=ExtResource("3_3hp7d")]
+visible = false
+layout_mode = 1
+
+[node name="Stats" parent="." instance=ExtResource("5_jhqmo")]
+visible = false
+layout_mode = 1
+
+[node name="HowToPlay" parent="." instance=ExtResource("6_2ng87")]
 visible = false
 layout_mode = 1
 

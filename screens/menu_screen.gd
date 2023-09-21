@@ -7,10 +7,23 @@ signal start_new_game(character: Character)
 
 @onready var main_menu: Control = $MainMenu
 @onready var character_selector: Control = $CharacterSelector
+@onready var stats: Control = $Stats
+@onready var how_to_play: Control = $HowToPlay
 @onready var credits: Control = $Credits
 
 
 func _ready() -> void:
+	main_menu.stats_requested.connect(
+		func():
+			_fade_out_left(main_menu)
+			_fade_in_right(stats)
+	)
+	main_menu.tutorial_requested.connect(
+		func():
+			how_to_play.change_to_slide(1)
+			_fade_out_left(main_menu)
+			_fade_in_right(how_to_play)
+	)
 	main_menu.credits_requested.connect(
 		func():
 			_fade_out_left(main_menu)
@@ -37,6 +50,18 @@ func _ready() -> void:
 	credits.main_menu_requested.connect(
 		func():
 			_fade_out_right(credits)
+			_fade_in_left(main_menu)
+	)
+	
+	stats.main_menu_requested.connect(
+		func():
+			_fade_out_right(stats)
+			_fade_in_left(main_menu)
+	)
+	
+	how_to_play.main_menu_requested.connect(
+		func():
+			_fade_out_right(how_to_play)
 			_fade_in_left(main_menu)
 	)
 
