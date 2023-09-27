@@ -43,7 +43,10 @@ signal card_reshuffle_anim_finished
 signal effect_created(effect: Effect)
 ## Emitted when an [Effect] wants to spawn a projectile from the [Player].
 signal projectile_spawn_requested(target: Vector2, projectile: PackedScene, start: Vector2)
-
+## Emitted when an outside source wants to add a damage modifier to the [Player]
+signal player_damage_modifier_requested(dmg_modifier: int, duration: int)
+## Emitted when someone wants to add a [Status] to a random [Enemy].
+signal add_status_to_random_enemy_requested(status: StatusData)
 
 ## Emitted when the [Player]'s turn starts.
 signal player_turn_started
@@ -67,4 +70,6 @@ signal run_won
 ## Emitted when a CardPilePanel is requested to show.
 signal card_pile_panel_requested(title: String, cards: Array[CardData])
 ## Emitted when a tooltip for a [Card] is requested.
-signal card_tooltip_requested(card: CardData, position: Vector2)
+signal card_tooltip_requested(card: CardData, gui_element: Control)
+## Emitted when [Status] tooltips for a unit are requested.
+signal status_tooltip_requested(statuses: Array[StatusData], unit: Node2D)

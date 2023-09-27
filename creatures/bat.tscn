@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://q0uouhv20f7t"]
+[gd_scene load_steps=16 format=3 uid="uid://q0uouhv20f7t"]
 
 [ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_5eye3"]
 [ext_resource type="Texture2D" uid="uid://c7uow1iiga5kg" path="res://creatures/bat.png" id="2_7ppbr"]
 [ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="3_wsenm"]
 [ext_resource type="Texture2D" uid="uid://c87mnw5wm6ftd" path="res://creatures/bat_attack.png" id="4_057bl"]
 [ext_resource type="PackedScene" uid="uid://dnd6bc6alqa1i" path="res://creatures/hit_box.tscn" id="4_b3jo0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yorad"]
+size = Vector2(68, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ab3f3"]
 
@@ -189,6 +192,10 @@ position = Vector2(0, -16)
 scale = Vector2(4, 4)
 texture = ExtResource("2_7ppbr")
 hframes = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(2, -16.5)
+shape = SubResource("RectangleShape2D_yorad")
 
 [node name="BatAttackWeapon" parent="." index="9" node_paths=PackedStringArray("animation_player", "hit_box") instance=ExtResource("3_wsenm")]
 position = Vector2(-35, 1)

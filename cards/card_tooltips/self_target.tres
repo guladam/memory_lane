@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://b46wjo7rt8ue3"]
+
+[ext_resource type="Texture2D" uid="uid://c4ekjtwm3a3dc" path="res://cards/card_target3.png" id="1_vx8yj"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_xvetc"]
+
+[resource]
+script = ExtResource("1_xvetc")
+icon = ExtResource("1_vx8yj")
+text = "Target: Self"

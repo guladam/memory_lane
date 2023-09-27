@@ -23,8 +23,8 @@ func flip() -> void:
 	
 	await anim_player.animation_finished
 	
-	Events.card_flipped.emit(self)
 	is_flipped = true
+	Events.card_flipped.emit(self)
 
 
 ## Flips the card back. It's a coroutine 

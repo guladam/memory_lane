@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://dfkfq8nvpmtvs"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_6d2fx"]
+[ext_resource type="Script" path="res://card_effects/fire/fireworks_effect.gd" id="1_lqawm"]
+
+[resource]
+script = ExtResource("1_6d2fx")
+target_type = 3
+anim_name = "cast_spell_air"
+effect_name = "fireworks"
+effect_code = ExtResource("1_lqawm")

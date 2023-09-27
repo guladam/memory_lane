@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://3kesmebidtjo"]
+
+[ext_resource type="Script" path="res://card_effects/fire/ignite_all_effect.gd" id="1_8mt35"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="2_ke1ko"]
+
+[resource]
+script = ExtResource("2_ke1ko")
+target_type = 6
+anim_name = "cast_spell_air"
+effect_name = "ignite_all"
+effect_code = ExtResource("1_8mt35")

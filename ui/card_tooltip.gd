@@ -17,11 +17,10 @@ func _ready() -> void:
 ## This method sets up the tooltip text.
 ## [param _card_data] is the [CardData] that holds the information needed.
 func setup(_card_data: CardData) -> void:
-	var num_of_tooltips: int = min(_card_data.tooltip_icons.size(), _card_data.tooltip_texts.size())
-	for i in range(num_of_tooltips):
+	for tooltip in _card_data.tooltips:
 		var new_tooltip := tooltip_row.instantiate()
 		tooltip_lines.add_child(new_tooltip)
-		new_tooltip.setup(_card_data.tooltip_icons[i], _card_data.tooltip_texts[i])
+		new_tooltip.setup(tooltip.icon, tooltip.text)
 
 
 ## Fade out animation for the tooltip.

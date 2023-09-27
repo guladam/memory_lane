@@ -5,7 +5,7 @@ class_name Effect
 extends Resource
 
 ## Types of targets for the different effects.
-enum TargetType { BOARD, SELF, GROUND, AIR, ALL_ENEMIES }
+enum TargetType { BOARD, SELF, GROUND, AIR, ALL_GROUND, ALL_AIR, ALL_ENEMIES, EVERYONE }
 
 @export var target_type: TargetType
 @export var anim_name: String

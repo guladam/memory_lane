@@ -45,6 +45,7 @@ func _start_level(level_pool: int) -> void:
 
 ## Called when the [Player] wins a [Level].
 func _on_level_won(_level: LevelData) -> void:
+	print("level won hehe")
 	await get_tree().create_timer(0.5).timeout
 	get_child(0).queue_free()
 	
@@ -64,6 +65,7 @@ func _on_level_won(_level: LevelData) -> void:
 
 ## Called when the [Player] loses the game.
 func _on_game_over() -> void:
+	print("game over hehe")
 	await get_tree().create_timer(0.5).timeout
 	get_child(0).queue_free()
 	
@@ -79,6 +81,13 @@ func _on_card_drafted(card: CardData) -> void:
 	if card:
 		current_run.deck.cards.append(card)
 		current_run.deck.cards.append(card)
+		
+		if not card.can_have_multiple:
+			print("ensuring you cant draft %s twice...")
+			print(current_run.character.available_cards)
+			current_run.character.available_cards.erase(card)
+			print("after removal:")
+			print(current_run.character.available_cards)
 	
 	_start_level(current_run.current_level)
 

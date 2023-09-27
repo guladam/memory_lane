@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://cdo6q2xgru7ga"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_8puvj"]
+[ext_resource type="Texture2D" uid="uid://cjq62tlifeyce" path="res://cards/heal_and_fire_icon.png" id="1_lk2y6"]
+
+[resource]
+script = ExtResource("1_8puvj")
+icon = ExtResource("1_lk2y6")
+text = "Heal 99 & apply N ignite"

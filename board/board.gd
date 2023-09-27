@@ -225,7 +225,9 @@ func _on_card_flip_started(card: Card) -> void:
 
 ## Called when a [Card] is flipped over.
 func _on_card_flipped(_card: Card) -> void:
-	if flipped_cards.size() == 2:
+	var all_finished_flipping = flipped_cards.all(func(card): return card.is_flipped)
+
+	if all_finished_flipping and flipped_cards.size() == 2:
 		_check_pair()
 
 

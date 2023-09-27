@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3 uid="uid://feyktr560qrt"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_saorv"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_shry0"]
+[ext_resource type="Texture2D" uid="uid://swplufen4rfw" path="res://cards/card_target_all_air.png" id="2_stpmt"]
+[ext_resource type="Resource" uid="uid://dwhey8cchts16" path="res://card_effects/fire/meteor_shower_effect.tres" id="3_o7ibv"]
+[ext_resource type="Resource" uid="uid://1wxjd5dtabv" path="res://cards/card_tooltips/all_air_target_tooltip.tres" id="5_r0on1"]
+
+[resource]
+script = ExtResource("2_shry0")
+card_back = ExtResource("1_saorv")
+card_color = Color(1, 0.333333, 0.333333, 1)
+card_icon = ExtResource("2_stpmt")
+card_text = "1D"
+card_text2 = ""
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_r0on1")])
+id = "meteor_shower"
+tier = 2
+effect = ExtResource("3_o7ibv")
+can_have_multiple = true

@@ -1,16 +1,25 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6k5gqw3dbwew"]
+[gd_scene load_steps=21 format=3 uid="uid://b6k5gqw3dbwew"]
 
 [ext_resource type="PackedScene" uid="uid://cx0wk3a6k6nnl" path="res://creatures/hurt_box.tscn" id="1_bfnpp"]
 [ext_resource type="PackedScene" uid="uid://d3vnfucrg4ic3" path="res://creatures/health.tscn" id="1_jxybv"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_qjjdr"]
 [ext_resource type="Texture2D" uid="uid://bfismngw4yyuw" path="res://player/player.png" id="2_yniou"]
 [ext_resource type="PackedScene" uid="uid://1l6kn3equ457" path="res://creatures/health_bar.tscn" id="3_twdi5"]
+[ext_resource type="Texture2D" uid="uid://danxd02jv8ygm" path="res://weapons/heal_icon.png" id="4_din7l"]
 [ext_resource type="PackedScene" uid="uid://ddrodc1r2feoo" path="res://modifiers/modifiers.tscn" id="5_torel"]
 [ext_resource type="PackedScene" uid="uid://cywb0mjl78eua" path="res://status_effects/status_effects.tscn" id="7_hu57v"]
 [ext_resource type="PackedScene" uid="uid://bl5gsx3seabcr" path="res://creatures/status_effect_bar.tscn" id="8_pkla6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt08t"]
-size = Vector2(36, 84)
+size = Vector2(49, 93)
+
+[sub_resource type="Curve" id="Curve_vjnrt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23348, 0.947368), 0.0, 0.0, 0, 0, Vector2(0.696035, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_ekt17"]
+offsets = PackedFloat32Array(0, 0.571429, 1)
+colors = PackedColorArray(1, 1, 1, 0.686275, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_7y411"]
 length = 0.001
@@ -37,6 +46,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(21, -9)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HealParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_a4ano"]
@@ -102,6 +135,78 @@ tracks/1/keys = {
 "values": [Vector2(21, -9), Vector2(54, 9)]
 }
 
+[sub_resource type="Animation" id="Animation_tkuay"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["idle", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qv1bx"]
+resource_name = "heal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["idle", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HealParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_xncfy"]
 resource_name = "idle"
 length = 1.2
@@ -125,6 +230,8 @@ _data = {
 "cast_spell_air": SubResource("Animation_a4ano"),
 "cast_spell_finish": SubResource("Animation_sj6y8"),
 "cast_spell_ground": SubResource("Animation_h728c"),
+"damage": SubResource("Animation_tkuay"),
+"heal": SubResource("Animation_qv1bx"),
 "idle": SubResource("Animation_xncfy")
 }
 
@@ -150,6 +257,7 @@ position = Vector2(21, -9)
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-6.5, 0.5)
 shape = SubResource("RectangleShape2D_wt08t")
 
 [node name="RangedTargetPosition" type="Marker2D" parent="."]
@@ -157,6 +265,22 @@ position = Vector2(25, -26)
 
 [node name="FloatingTextPosition" type="Marker2D" parent="."]
 position = Vector2(-20, -26)
+
+[node name="HealParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 42)
+emitting = false
+one_shot = true
+explosiveness = 0.63
+lifetime_randomness = 0.26
+texture = ExtResource("4_din7l")
+emission_shape = 3
+emission_rect_extents = Vector2(15, 1)
+direction = Vector2(0, -1)
+gravity = Vector2(0, -100)
+initial_velocity_min = 24.8
+initial_velocity_max = 49.59
+scale_amount_curve = SubResource("Curve_vjnrt")
+color_ramp = SubResource("Gradient_ekt17")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_twdi5")]
 offset_left = -24.0
@@ -183,3 +307,5 @@ status_effect_bar = NodePath("../StatusEffectBar")
 libraries = {
 "": SubResource("AnimationLibrary_2citj")
 }
+
+[connection signal="input_event" from="HurtBox" to="." method="_on_hurt_box_input_event"]

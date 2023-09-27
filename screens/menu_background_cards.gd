@@ -14,6 +14,8 @@ extends CanvasGroup
 func _ready() -> void:
 	randomize()
 	cards.pop_back()
+	if DisplayServer.screen_get_size().y > 1920:
+		position.y = (DisplayServer.screen_get_size().y - 1920) / 2.0
 	
 	for c in cards:
 		c.setup(card_fronts.pick_random(), characters.pick_random())

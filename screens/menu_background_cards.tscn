@@ -5,16 +5,16 @@
 [ext_resource type="Resource" uid="uid://ccrhcy38xlr5e" path="res://characters/fire_character.tres" id="2_1fo1k"]
 [ext_resource type="Resource" uid="uid://qung2y8erng0" path="res://characters/ice_character.tres" id="3_qgudr"]
 [ext_resource type="Resource" uid="uid://ccn8avhv1bgyg" path="res://characters/earth_character.tres" id="4_2pkuj"]
-[ext_resource type="Resource" uid="uid://b0hucd36es5rb" path="res://temp/testcard1.tres" id="5_doxly"]
-[ext_resource type="Resource" uid="uid://c1l2bnjtal2uc" path="res://temp/testcard2.tres" id="6_x4wcs"]
-[ext_resource type="Resource" uid="uid://75qrcaqkjir8" path="res://temp/testcard3.tres" id="7_egg4w"]
-[ext_resource type="Resource" uid="uid://bxb1epfykt48n" path="res://temp/testcard4.tres" id="8_ckgys"]
+[ext_resource type="Resource" uid="uid://dwivf1hyeguhn" path="res://cards/common/basic_heal.tres" id="5_2ix7o"]
+[ext_resource type="Resource" uid="uid://bq17e4catd7ep" path="res://cards/common/discard_board.tres" id="6_qhdgb"]
+[ext_resource type="Resource" uid="uid://7702nlq0352m" path="res://cards/fire/fire_air_attack.tres" id="7_nskt1"]
+[ext_resource type="Resource" uid="uid://c4ff86lh0h107" path="res://cards/fire/fire_ground_attack.tres" id="8_7kbi4"]
 
 [node name="MenuBackgroundCards" type="CanvasGroup"]
 modulate = Color(1, 1, 1, 0.627451)
 script = ExtResource("1_vooli")
 characters = Array[Resource("res://custom_resource_types/character.gd")]([ExtResource("2_1fo1k"), ExtResource("3_qgudr"), ExtResource("4_2pkuj")])
-card_fronts = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("5_doxly"), ExtResource("6_x4wcs"), ExtResource("7_egg4w"), ExtResource("8_ckgys")])
+card_fronts = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("5_2ix7o"), ExtResource("6_qhdgb"), ExtResource("7_nskt1"), ExtResource("8_7kbi4")])
 
 [node name="Card" parent="." instance=ExtResource("1_7fa12")]
 position = Vector2(32, 64)
@@ -69,6 +69,30 @@ position = Vector2(192, 944)
 
 [node name="Card19" parent="." instance=ExtResource("1_7fa12")]
 position = Vector2(352, 896)
+
+[node name="Card17" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(32, -144)
+
+[node name="Card20" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(192, -96)
+
+[node name="Card21" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(352, -144)
+
+[node name="Card22" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(496, -112)
+
+[node name="Card23" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(32, -352)
+
+[node name="Card24" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(192, -304)
+
+[node name="Card25" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(352, -352)
+
+[node name="Card26" parent="." instance=ExtResource("1_7fa12")]
+position = Vector2(496, -320)
 
 [node name="Timer" type="Timer" parent="."]
 

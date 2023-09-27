@@ -178,7 +178,6 @@ _data = {
 script = ExtResource("1_8xmhl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.857874, -15.4139)
 
 [node name="HurtBox" parent="." instance=ExtResource("2_36ngk")]
 collision_layer = 8
@@ -216,3 +215,5 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_0nvuf")
 }
+
+[connection signal="input_event" from="HurtBox" to="." method="_on_hurt_box_input_event"]

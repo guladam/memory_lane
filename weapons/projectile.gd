@@ -1,5 +1,5 @@
 ## Base class for any ranged projectiles.
-extends Sprite2D
+extends Node2D
 
 
 ## The travel speed of the projectile.
@@ -26,6 +26,5 @@ func _process(delta: float) -> void:
 	global_position += dir * speed * delta
 
 
-## TODO replace this with particles?
 func _on_hit_box_area_entered(_area: Area2D) -> void:
 	queue_free()

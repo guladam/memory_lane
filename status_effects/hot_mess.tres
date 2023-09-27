@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=4 format=3 uid="uid://b7j854m45efg4"]
+
+[ext_resource type="Script" path="res://status_effects/hot_mess.gd" id="1_g6gow"]
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_l8hjd"]
+[ext_resource type="Resource" uid="uid://bkd5dwwinh575" path="res://cards/card_tooltips/hot_mess_tooltip.tres" id="3_fd05t"]
+
+[resource]
+script = ExtResource("1_l8hjd")
+status_id = "hot_mess"
+duration = 4
+icon = 3
+tooltip = ExtResource("3_fd05t")
+code = ExtResource("1_g6gow")

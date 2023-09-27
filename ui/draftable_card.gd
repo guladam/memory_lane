@@ -2,7 +2,7 @@
 extends Control
 
 ## Emitted when the draftable card is selected.
-signal selected(card: CardData)
+signal selected(card: CardData, card_gui: Control)
 
 @onready var card_front: TextureRect = $CardFront
 @onready var selection_panel: Panel = $SelectionPanel
@@ -53,4 +53,4 @@ func _animate() -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		select()
-		selected.emit(card)
+		selected.emit(card, self)

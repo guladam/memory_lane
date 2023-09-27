@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://bhhdchrb6f4a"]
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://dm5e64fogkp5w"]
 
 [ext_resource type="Script" path="res://card_effects/fire/fire_bolt_effect.gd" id="1_4mrgc"]
 [ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_t06et"]

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://c4eflis0r1j42"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_glhli"]
+[ext_resource type="Texture2D" uid="uid://dbwvl1hun2awc" path="res://status_effects/fire_icon.png" id="1_uouih"]
+
+[resource]
+script = ExtResource("1_glhli")
+icon = ExtResource("1_uouih")
+text = "Ignite: 1 DMG / turn"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://bst4icu62uhax"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_jm1ds"]
+[ext_resource type="Texture2D" uid="uid://6bb6jk7ncjhj" path="res://cards/card_target_everyone.png" id="1_tubr2"]
+
+[resource]
+script = ExtResource("1_jm1ds")
+icon = ExtResource("1_tubr2")
+text = "Target: Everyone"

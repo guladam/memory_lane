@@ -1,14 +1,112 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw4676bwvd6"]
+[gd_scene load_steps=8 format=3 uid="uid://cw4676bwvd6"]
 
 [ext_resource type="PackedScene" uid="uid://4ja8uwrqk6sv" path="res://weapons/projectile.tscn" id="1_rd8es"]
+[ext_resource type="Texture2D" uid="uid://bd2brpvcmfkeg" path="res://weapons/basic_attack.png" id="2_k6c82"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fv3nr"]
+size = Vector2(32, 16)
+
+[sub_resource type="Animation" id="Animation_led52"]
+resource_name = "spawn"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 2)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["fly", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_labon"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_rkmyl"]
+resource_name = "fly"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxbdp"]
+_data = {
+"RESET": SubResource("Animation_labon"),
+"fly": SubResource("Animation_rkmyl"),
+"spawn": SubResource("Animation_led52")
+}
 
 [node name="FireBoltProjectile" instance=ExtResource("1_rd8es")]
-speed = 550
+speed = 350
 
-[node name="Polygon2D" parent="." index="0"]
-color = Color(0.329412, 0.0666667, 0.0666667, 0.843137)
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_k6c82")
+hframes = 3
+vframes = 3
+frame = 6
 
 [node name="HitBox" parent="." index="1"]
 collision_layer = 1
 collision_mask = 8
 target = 1
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_fv3nr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+autoplay = "spawn"
+libraries = {
+"": SubResource("AnimationLibrary_mxbdp")
+}

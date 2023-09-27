@@ -9,12 +9,13 @@ signal status_expired
 signal status_applied
 
 ## Available icons for ALL status effects.
-enum Icons {FIRE, ICE, REVEAL}
+enum Icons {FIRE, ICE, REVEAL, HOT_MESS}
 ## Preloaded textures for the icons above.
 const ICONS := {
 	Icons.FIRE: preload("res://status_effects/fire_icon.png"),
 	Icons.ICE: preload("res://status_effects/ice_icon.png"),
-	Icons.REVEAL: preload("res://status_effects/reveal_icon.png")
+	Icons.REVEAL: preload("res://status_effects/reveal_icon.png"),
+	Icons.HOT_MESS: preload("res://status_effects/hot_mess_icon.png")
 }
 
 ## [StatusData] resource for this status effect.

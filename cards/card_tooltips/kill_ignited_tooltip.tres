@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://ds0kdhjhky40m"]
+
+[ext_resource type="Texture2D" uid="uid://2ickgah85v25" path="res://cards/kill_ignited_icon.png" id="1_1t72y"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_dvteh"]
+
+[resource]
+script = ExtResource("1_dvteh")
+icon = ExtResource("1_1t72y")
+text = "Kill 1st Ignited Enemy"

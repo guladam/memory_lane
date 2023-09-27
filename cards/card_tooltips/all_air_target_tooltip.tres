@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://1wxjd5dtabv"]
+
+[ext_resource type="Texture2D" uid="uid://swplufen4rfw" path="res://cards/card_target_all_air.png" id="1_6l3fu"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_aguoe"]
+
+[resource]
+script = ExtResource("1_aguoe")
+icon = ExtResource("1_6l3fu")
+text = "Target: All Air Enemies"

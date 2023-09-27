@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://dnxqgiesu38rb"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_d1su2"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_7hk5t"]
+[ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target1.png" id="2_irx54"]
+[ext_resource type="Texture2D" uid="uid://dbwvl1hun2awc" path="res://status_effects/fire_icon.png" id="3_rcrea"]
+[ext_resource type="Resource" uid="uid://dfkfq8nvpmtvs" path="res://card_effects/fire/fireworks_effect.tres" id="4_gepaq"]
+[ext_resource type="Resource" uid="uid://droioedx671hj" path="res://cards/card_tooltips/air_target.tres" id="6_h4mjg"]
+[ext_resource type="Resource" uid="uid://c4eflis0r1j42" path="res://cards/card_tooltips/ignite_tooltip.tres" id="7_rhvv8"]
+
+[resource]
+script = ExtResource("2_7hk5t")
+card_back = ExtResource("1_d1su2")
+card_color = Color(1, 0.333333, 0.333333, 1)
+card_icon = ExtResource("2_irx54")
+card_text = "1D"
+card_text2 = "2 IF"
+card_status_icon2 = ExtResource("3_rcrea")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_h4mjg"), ExtResource("7_rhvv8")])
+id = "fireworks"
+tier = 1
+effect = ExtResource("4_gepaq")
+can_have_multiple = true

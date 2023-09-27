@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://dumaomir06bkb"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_l4tcl"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_2chy4"]
+[ext_resource type="Texture2D" uid="uid://c4ekjtwm3a3dc" path="res://cards/card_target3.png" id="2_71qhj"]
+[ext_resource type="Resource" uid="uid://dviseqtv8x2cm" path="res://card_effects/fire/hot_mess_effect.tres" id="3_3ma3k"]
+[ext_resource type="Texture2D" uid="uid://dhxihqatkwlf8" path="res://status_effects/hot_mess_icon.png" id="3_lulhr"]
+[ext_resource type="Resource" uid="uid://b46wjo7rt8ue3" path="res://cards/card_tooltips/self_target.tres" id="6_p42fn"]
+[ext_resource type="Resource" uid="uid://bkd5dwwinh575" path="res://cards/card_tooltips/hot_mess_tooltip.tres" id="7_004ey"]
+[ext_resource type="Resource" uid="uid://c4eflis0r1j42" path="res://cards/card_tooltips/ignite_tooltip.tres" id="8_0ixtn"]
+
+[resource]
+script = ExtResource("2_2chy4")
+card_back = ExtResource("1_l4tcl")
+card_color = Color(0.333333, 1, 1, 1)
+card_icon = ExtResource("2_71qhj")
+card_text = "4"
+card_status_icon = ExtResource("3_lulhr")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_p42fn"), ExtResource("7_004ey"), ExtResource("8_0ixtn")])
+id = "hot_mess"
+tier = 3
+effect = ExtResource("3_3ma3k")
+can_have_multiple = false

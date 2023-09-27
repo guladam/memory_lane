@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://ddc1pu36fxx03"]
+
+[ext_resource type="Script" path="res://card_effects/fire/fire_air_effect.gd" id="1_gpby3"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="2_uxael"]
+
+[resource]
+script = ExtResource("2_uxael")
+target_type = 3
+anim_name = "cast_spell_air"
+effect_name = "fire_air_attack"
+effect_code = ExtResource("1_gpby3")

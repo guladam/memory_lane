@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="3_nnfwj"]
 [ext_resource type="PackedScene" uid="uid://dnd6bc6alqa1i" path="res://creatures/hit_box.tscn" id="4_4bkp7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4erfh"]
-size = Vector2(43, 61)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jr08i"]
+size = Vector2(43, 65)
 
 [sub_resource type="Animation" id="Animation_gia1v"]
 length = 0.001
@@ -151,8 +151,8 @@ hframes = 3
 vframes = 2
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(3.5, -30.5)
-shape = SubResource("RectangleShape2D_4erfh")
+position = Vector2(3.5, -32.5)
+shape = SubResource("RectangleShape2D_jr08i")
 
 [node name="FloatingTextPosition" parent="." index="2"]
 position = Vector2(-22, -35)

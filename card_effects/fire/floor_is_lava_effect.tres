@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://onklb517hrtj"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_kfkpg"]
+[ext_resource type="Script" path="res://card_effects/fire/double_ignite_effect.gd" id="1_w0d35"]
+
+[resource]
+script = ExtResource("1_kfkpg")
+target_type = 4
+anim_name = "cast_spell_air"
+effect_name = "floor_is_lava"
+effect_code = ExtResource("1_w0d35")

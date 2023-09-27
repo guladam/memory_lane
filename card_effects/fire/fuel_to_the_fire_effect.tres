@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://c27jdcd1cd0ys"]
+
+[ext_resource type="Script" path="res://card_effects/fire/fuel_to_the_fire_effect.gd" id="1_ofmlv"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_ow0wp"]
+
+[resource]
+script = ExtResource("1_ow0wp")
+target_type = 2
+anim_name = "cast_spell_ground"
+effect_name = "fuel_to_the_fire"
+effect_code = ExtResource("1_ofmlv")

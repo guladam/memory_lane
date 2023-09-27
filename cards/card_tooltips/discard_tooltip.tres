@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://c7ii15qi3ph8"]
+
+[ext_resource type="Texture2D" uid="uid://crlhdsrihj4qn" path="res://cards/discard_icon.png" id="1_a6lki"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_bsxtx"]
+
+[resource]
+script = ExtResource("1_bsxtx")
+icon = ExtResource("1_a6lki")
+text = "Discards Board"

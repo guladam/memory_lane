@@ -9,4 +9,5 @@ extends Resource
 ## -1 means its a permanent status effect. 
 @export var duration := -1
 @export var icon: Status.Icons
+@export var tooltip: Tooltip
 @export var code: GDScript

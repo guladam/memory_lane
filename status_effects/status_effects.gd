@@ -29,7 +29,7 @@ func apply_status_effects() -> void:
 
 
 ## Returns [code]true[/code] if the owner has a [param status].
-func _has_status(status: StatusData) -> bool:
+func has_status(status: StatusData) -> bool:
 	var found := false
 	for s in get_children():
 		if s.equals(status):
@@ -40,7 +40,7 @@ func _has_status(status: StatusData) -> bool:
 
 ## Returns the [param status] if it's present on the owner.
 ## Otherwise returns null.
-func _get_status(status: StatusData) -> Status:
+func get_status(status: StatusData) -> Status:
 	var that_status: Status = null
 	
 	for s in get_children():
@@ -51,6 +51,16 @@ func _get_status(status: StatusData) -> Status:
 	return that_status
 
 
+## Returns all active [StatusData].
+func get_all_status_data() -> Array[StatusData]:
+	var data: Array[StatusData] = []
+	for s in get_children():
+		data.append(s.data)
+	
+	return data
+
+
+## Refreshes all status effects on the GUI.
 func _refresh_effect_bar() -> void:
 	if not status_effect_bar:
 		return
@@ -63,8 +73,8 @@ func _refresh_effect_bar() -> void:
 ## Adds a new [Status] to the owner of this node.
 ## [param status_data] is the [StatusData] resource for the status effect.
 func add_new_status(status_data: StatusData) -> void:
-	if _has_status(status_data):
-		_get_status(status_data).duration += status_data.duration
+	if has_status(status_data):
+		get_status(status_data).duration += status_data.duration
 		status_effect_bar.update_all_status_effects(get_children())
 		return
 	

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://bv6aswwrkvhsa"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_41t8b"]
+[ext_resource type="Script" path="res://card_effects/fire/armageddon_effect.gd" id="1_s0rm7"]
+
+[resource]
+script = ExtResource("1_41t8b")
+target_type = 7
+anim_name = "cast_spell_air"
+effect_name = "armageddon"
+effect_code = ExtResource("1_s0rm7")

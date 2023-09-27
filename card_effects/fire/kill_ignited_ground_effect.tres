@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://yo0kyrlo6ep4"]
+
+[ext_resource type="Script" path="res://card_effects/fire/kill_ignited_effect.gd" id="1_a4fj5"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_yq4pg"]
+
+[resource]
+script = ExtResource("1_yq4pg")
+target_type = 4
+anim_name = "cast_spell_air"
+effect_name = "light_up"
+effect_code = ExtResource("1_a4fj5")

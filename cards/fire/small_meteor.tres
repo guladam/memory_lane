@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://b405becu25hk6"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_e8gcq"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_1qk4n"]
+[ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target1.png" id="2_jxh51"]
+[ext_resource type="Texture2D" uid="uid://dbwvl1hun2awc" path="res://status_effects/fire_icon.png" id="3_3o8kb"]
+[ext_resource type="Resource" uid="uid://sjjd3dswxm8v" path="res://card_effects/fire/small_meteor_effect.tres" id="4_gelbo"]
+[ext_resource type="Resource" uid="uid://droioedx671hj" path="res://cards/card_tooltips/air_target.tres" id="5_jtdsb"]
+[ext_resource type="Resource" uid="uid://c4eflis0r1j42" path="res://cards/card_tooltips/ignite_tooltip.tres" id="6_jsqwg"]
+
+[resource]
+script = ExtResource("2_1qk4n")
+card_back = ExtResource("1_e8gcq")
+card_color = Color(1, 0.333333, 0.333333, 1)
+card_icon = ExtResource("2_jxh51")
+card_text = "1D"
+card_text2 = "1"
+card_status_icon2 = ExtResource("3_3o8kb")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_jtdsb"), ExtResource("6_jsqwg")])
+id = "small_meteor"
+tier = 1
+effect = ExtResource("4_gelbo")
+can_have_multiple = true

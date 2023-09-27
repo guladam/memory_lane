@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwo6r2g0w3rvy"]
+
+[ext_resource type="Script" path="res://ui/status_tooltip.gd" id="1_pa5gn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfpxq"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.933333, 0.933333, 0.933333, 1)
+
+[node name="StatusTooltip" type="PanelContainer"]
+texture_filter = 1
+offset_right = 150.0
+offset_bottom = 31.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qfpxq")
+script = ExtResource("1_pa5gn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="TooltipLines" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2

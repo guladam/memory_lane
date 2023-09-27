@@ -1,14 +1,29 @@
-[gd_resource type="Resource" script_class="Character" load_steps=10 format=3 uid="uid://ccrhcy38xlr5e"]
+[gd_resource type="Resource" script_class="Character" load_steps=25 format=3 uid="uid://ccrhcy38xlr5e"]
 
-[ext_resource type="Resource" uid="uid://b0hucd36es5rb" path="res://temp/testcard1.tres" id="1_iraos"]
+[ext_resource type="Resource" uid="uid://ci0stt04kbjmo" path="res://cards/fire/air_sparkle.tres" id="1_bum7o"]
 [ext_resource type="Script" path="res://custom_resource_types/character.gd" id="1_yq0hd"]
-[ext_resource type="Resource" uid="uid://c1l2bnjtal2uc" path="res://temp/testcard2.tres" id="2_iuh6w"]
-[ext_resource type="Resource" uid="uid://c8nrc1hufo7nl" path="res://temp/test_deck.tres" id="3_2050a"]
-[ext_resource type="Resource" uid="uid://75qrcaqkjir8" path="res://temp/testcard3.tres" id="3_rvmpv"]
-[ext_resource type="Resource" uid="uid://bxb1epfykt48n" path="res://temp/testcard4.tres" id="4_htgf2"]
+[ext_resource type="Resource" uid="uid://cjm7pnluql8mv" path="res://cards/fire/armageddon.tres" id="2_cfn5a"]
+[ext_resource type="Resource" uid="uid://c41lt46cedk2t" path="res://cards/fire/burn_alive.tres" id="3_8w32b"]
+[ext_resource type="Resource" uid="uid://hr7l6mkj20tm" path="res://cards/fire/eruption.tres" id="4_kxje8"]
 [ext_resource type="Texture2D" uid="uid://biyyvbrsubwil" path="res://cards/card_background1.png" id="5_eu8lp"]
+[ext_resource type="Resource" uid="uid://dnxqgiesu38rb" path="res://cards/fire/fireworks.tres" id="5_vstmr"]
 [ext_resource type="Texture2D" uid="uid://dpidrwgdl7ko1" path="res://ui/fire_emblem.png" id="6_4dmau"]
-[ext_resource type="Resource" uid="uid://di2bv4du2ikm0" path="res://status_effects/reveal_2_data.tres" id="9_d6lc8"]
+[ext_resource type="Resource" uid="uid://c6ln208h207tt" path="res://cards/fire/fire_bolt.tres" id="6_751kd"]
+[ext_resource type="Resource" uid="uid://dy5nomyrnlgv2" path="res://characters/fire_character_starting_deck.tres" id="6_c5j3s"]
+[ext_resource type="Resource" uid="uid://cbky1gngggc8c" path="res://cards/fire/floor_is_lava.tres" id="7_hvkup"]
+[ext_resource type="Resource" uid="uid://3e468oo0sdp" path="res://cards/fire/flying_matches.tres" id="8_3fei1"]
+[ext_resource type="Resource" uid="uid://b36xjds6jvr8y" path="res://cards/fire/fuel_to_the_fire.tres" id="9_pss38"]
+[ext_resource type="Resource" uid="uid://dl12b5his3bd1" path="res://cards/fire/ground_sparkle.tres" id="10_4glxr"]
+[ext_resource type="Resource" uid="uid://burvxkiq1eil6" path="res://cards/fire/healing_warmth.tres" id="11_0b1k4"]
+[ext_resource type="Resource" uid="uid://0ufks8hsnyps" path="res://cards/fire/hot_air.tres" id="12_88rw2"]
+[ext_resource type="Resource" uid="uid://dumaomir06bkb" path="res://cards/fire/hot_mess.tres" id="13_gn553"]
+[ext_resource type="Resource" uid="uid://ue1nmjbtg415" path="res://cards/fire/hot_visions.tres" id="14_cuych"]
+[ext_resource type="Resource" uid="uid://cevmdqbs5lhce" path="res://cards/fire/ignite_all.tres" id="15_sypxe"]
+[ext_resource type="Resource" uid="uid://dtfbyc4bv2046" path="res://cards/fire/light_up.tres" id="16_30vt4"]
+[ext_resource type="Resource" uid="uid://feyktr560qrt" path="res://cards/fire/meteor_shower.tres" id="17_bthup"]
+[ext_resource type="Resource" uid="uid://uigpjlo84w2n" path="res://cards/fire/self_burn.tres" id="18_nj0mt"]
+[ext_resource type="Resource" uid="uid://b405becu25hk6" path="res://cards/fire/small_meteor.tres" id="19_r3ni2"]
+[ext_resource type="Resource" uid="uid://dam3s6snb0jcr" path="res://cards/fire/steamy_vapor.tres" id="20_iwtys"]
 
 [resource]
 script = ExtResource("1_yq0hd")
@@ -18,6 +33,6 @@ tooltip = "Set your enemies ablaze... calmly."
 card_background = ExtResource("5_eu8lp")
 color = Color(1, 0.333333, 0.333333, 1)
 starting_hp = 3
-starting_deck = ExtResource("3_2050a")
-starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([ExtResource("9_d6lc8")])
-available_cards = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("1_iraos"), ExtResource("2_iuh6w"), ExtResource("3_rvmpv"), ExtResource("4_htgf2")])
+starting_deck = ExtResource("6_c5j3s")
+starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([])
+available_cards = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("1_bum7o"), ExtResource("2_cfn5a"), ExtResource("3_8w32b"), ExtResource("4_kxje8"), ExtResource("5_vstmr"), ExtResource("6_751kd"), ExtResource("7_hvkup"), ExtResource("8_3fei1"), ExtResource("9_pss38"), ExtResource("10_4glxr"), ExtResource("11_0b1k4"), ExtResource("12_88rw2"), ExtResource("13_gn553"), ExtResource("14_cuych"), ExtResource("15_sypxe"), ExtResource("16_30vt4"), ExtResource("17_bthup"), ExtResource("18_nj0mt"), ExtResource("19_r3ni2"), ExtResource("20_iwtys")])

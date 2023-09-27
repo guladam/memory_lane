@@ -17,6 +17,7 @@ var game_state: GameState
 func _ready() -> void:
 	Events.effect_created.connect(_on_effect_created)
 	Events.projectile_spawn_requested.connect(spawn_projectile)
+	Events.player_damage_modifier_requested.connect(bonus_damage.new_temporary_modifier)
 	health.changed.connect(_on_health_changed)
 	health.max_health_changed.connect(health_bar.setup)
 	health.reached_zero.connect(_on_health_reached_zero)
@@ -36,15 +37,17 @@ func setup(character: Character, state: GameState) -> void:
 ## This method is mandatory for creatures having a [HurtBox].
 ## [param damage] is the amount of damage to take.
 func take_damage(damage: int) -> void:
-	health.health -= damage
 	_create_floating_text("-%s" % damage, Color.RED)
+	animation_player.play("damage")
+	health.health -= damage
 
 
 ## This method is for healing the player
 ## [param amount] is the amount of health restored.
 func heal(amount: int) -> void:
-	health.health += amount
 	_create_floating_text("+%s" % amount, Color.GREEN)
+	animation_player.play("heal")
+	health.health += amount
 
 
 ## Changes the maximum health of the player.
@@ -96,12 +99,18 @@ func _on_health_reached_zero() -> void:
 
 
 ## Play spell animation when an [Effect] is created.
+## If it's a SELF-targeted effect, also apply it to the player character.
 func _on_effect_created(effect: Effect) -> void:
 	if not effect or not animation_player.has_animation(effect.anim_name):
 		return
 	
 	animation_player.play(effect.anim_name)
 	await animation_player.animation_finished
+	
+	if effect.target_type == Effect.TargetType.SELF:
+		effect.setup([self])
+		await effect.apply_effect()
+		return
 	
 	if effect.anim_name == "cast_spell_ground":
 		animation_player.play_backwards("cast_spell_ground")
@@ -110,3 +119,9 @@ func _on_effect_created(effect: Effect) -> void:
 	await animation_player.animation_finished
 	
 	animation_player.play("idle")
+
+
+## If the player is tapped on, show their statuses if there are any.
+func _on_hurt_box_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event.is_action_pressed("tap"):
+		Events.status_tooltip_requested.emit(status_effects.get_all_status_data(), self)

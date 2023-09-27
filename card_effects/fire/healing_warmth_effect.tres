@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://dsi12p5che7kx"]
+
+[ext_resource type="Script" path="res://card_effects/fire/healing_warmth_effect.gd" id="1_1v8rx"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_sjv1m"]
+
+[resource]
+script = ExtResource("1_sjv1m")
+target_type = 1
+anim_name = "cast_spell_air"
+effect_name = "healing_warmth"
+effect_code = ExtResource("1_1v8rx")

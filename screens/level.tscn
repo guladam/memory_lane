@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://l48bpn0txwjb"]
+[gd_scene load_steps=17 format=3 uid="uid://l48bpn0txwjb"]
 
 [ext_resource type="Script" path="res://screens/level.gd" id="1_cmfot"]
 [ext_resource type="PackedScene" uid="uid://cpm1h02k47x6e" path="res://board/board.tscn" id="1_da4pj"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bn3pivcnfpu1x" path="res://ui/card_pile_panel.tscn" id="11_jplfr"]
 [ext_resource type="Resource" uid="uid://4x53kc465kmb" path="res://levels/level01_a.tres" id="12_mw2ej"]
 [ext_resource type="PackedScene" uid="uid://cpvqx5wls726g" path="res://ui/tooltip_manager.tscn" id="13_xset1"]
+[ext_resource type="PackedScene" uid="uid://cc6ut7onakfsb" path="res://ui/status_tooltip_manager.tscn" id="15_pcavm"]
+[ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="16_m2nsb"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_cmfot")
@@ -31,11 +33,11 @@ position = Vector2(59, 216)
 game_state = ExtResource("3_hrhjg")
 
 [node name="DrawPile" parent="." instance=ExtResource("4_iejax")]
-position = Vector2(144, 896)
+position = Vector2(144, 901)
 game_state = ExtResource("3_hrhjg")
 
 [node name="DiscardPile" parent="." instance=ExtResource("5_73kb1")]
-position = Vector2(384, 896)
+position = Vector2(384, 901)
 game_state = ExtResource("3_hrhjg")
 
 [node name="IngameUI" type="CanvasLayer" parent="."]
@@ -60,15 +62,15 @@ game_state = ExtResource("3_hrhjg")
 
 [node name="TooltipManager" parent="IngameUI" instance=ExtResource("13_xset1")]
 
+[node name="StatusTooltipManager" parent="IngameUI" instance=ExtResource("15_pcavm")]
+
 [node name="DeckViewButton" type="Button" parent="IngameUI"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -108.0
-offset_top = 16.0
-offset_right = -21.0
-offset_bottom = 47.0
-grow_horizontal = 0
+custom_minimum_size = Vector2(140, 40)
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 102.0
+offset_bottom = 46.0
+theme = ExtResource("16_m2nsb")
 text = "View Deck"
 
 [connection signal="pressed" from="IngameUI/DeckViewButton" to="." method="_on_deck_view_button_pressed"]

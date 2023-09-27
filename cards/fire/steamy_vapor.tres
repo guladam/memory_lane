@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://dam3s6snb0jcr"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_6mm25"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_skqub"]
+[ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target1.png" id="2_v5som"]
+[ext_resource type="Texture2D" uid="uid://dbwvl1hun2awc" path="res://status_effects/fire_icon.png" id="3_fctcw"]
+[ext_resource type="Resource" uid="uid://b5m6ihm1t14e" path="res://card_effects/fire/steamy_vapor_effect.tres" id="4_yfm55"]
+[ext_resource type="Resource" uid="uid://droioedx671hj" path="res://cards/card_tooltips/air_target.tres" id="6_l3mp6"]
+[ext_resource type="Resource" uid="uid://c4eflis0r1j42" path="res://cards/card_tooltips/ignite_tooltip.tres" id="7_xy08x"]
+
+[resource]
+script = ExtResource("2_skqub")
+card_back = ExtResource("1_6mm25")
+card_color = Color(1, 0.333333, 0.333333, 1)
+card_icon = ExtResource("2_v5som")
+card_text = "2"
+card_status_icon = ExtResource("3_fctcw")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_l3mp6"), ExtResource("7_xy08x")])
+id = "steamy_vapor"
+tier = 1
+effect = ExtResource("4_yfm55")
+can_have_multiple = true

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://cchf15ecioiuw"]
+
+[ext_resource type="Script" path="res://card_effects/fire/ignite_all_effect.gd" id="1_kjeab"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_yk78t"]
+
+[resource]
+script = ExtResource("1_yk78t")
+target_type = 4
+anim_name = "cast_spell_ground"
+effect_name = "ground_sparkle"
+effect_code = ExtResource("1_kjeab")

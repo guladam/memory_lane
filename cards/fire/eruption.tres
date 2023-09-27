@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3 uid="uid://hr7l6mkj20tm"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_8vn4h"]
+[ext_resource type="Texture2D" uid="uid://5qttoa3aimsb" path="res://cards/card_target_all_ground.png" id="2_5f6tv"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_n3d8h"]
+[ext_resource type="Resource" uid="uid://cok7ymvc1af68" path="res://card_effects/fire/eruption_effect.tres" id="3_pgw45"]
+[ext_resource type="Resource" uid="uid://s5kxa346vmh2" path="res://cards/card_tooltips/all_ground_target_tooltip.tres" id="5_iou2t"]
+
+[resource]
+script = ExtResource("2_n3d8h")
+card_back = ExtResource("1_8vn4h")
+card_color = Color(1, 0.333333, 0.333333, 1)
+card_icon = ExtResource("2_5f6tv")
+card_text = "1D"
+card_text2 = ""
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_iou2t")])
+id = "eruption"
+tier = 2
+effect = ExtResource("3_pgw45")
+can_have_multiple = true

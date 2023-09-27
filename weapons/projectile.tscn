@@ -9,9 +9,7 @@ size = Vector2(64, 32)
 [node name="Projectile" type="Sprite2D"]
 script = ExtResource("1_apgi6")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.054902, 0.2, 0.223529, 0.654902)
-polygon = PackedVector2Array(-32, -16, -32, 16, 32, 16, 32, -16)
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="HitBox" parent="." instance=ExtResource("1_6uhw0")]
 

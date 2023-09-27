@@ -33,11 +33,18 @@ func _ready() -> void:
 	enemy_manager.setup(player.get_ranged_target_position())
 	ingame_ui.setup(run.character)
 	
+	if DisplayServer.screen_get_size().y > 1920:
+		var offset := (DisplayServer.screen_get_size().y - 1920) / 2.0
+		board.position.y += offset
+		draw_pile.position.y += offset
+		discard_pile.position.y += offset
+	
 	Events.draw_pile_reshuffled.connect(_on_draw_pile_reshuffled)
 	Events.board_emptied.connect(_on_board_emptied)
 	Events.player_turn_started.connect(_on_player_turn_started)
 	Events.enemy_died.connect(_on_enemy_died)
 	Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
+	Events.effect_created.connect(_on_effect_created)
 	
 	board.setup(draw_pile.global_position, discard_pile.global_position, run.character)
 	game_state.reset()
@@ -107,6 +114,25 @@ func _on_enemy_turn_ended():
 		Events.player_turn_started.emit()
 
 
+## Called when the [Player] turn has started.
 func _on_player_turn_started() -> void:
 	board.interactable = true
 	await player.status_effects.apply_status_effects()
+
+
+## Called when an [Effect] is created by the [Player].
+## This is usually done by matching two cards together.
+## [param effect] is created [Effect].
+func _on_effect_created(effect: Effect) -> void:
+	if not effect:
+		return
+	
+	if not effect.target_type == Effect.TargetType.EVERYONE:
+		return
+
+	var target: Array[Node] = []
+	target.append(player)
+	target.append_array(enemy_manager.get_all_enemies())
+	
+	effect.setup(target)
+	effect.apply_effect()

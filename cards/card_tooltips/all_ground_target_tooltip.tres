@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://s5kxa346vmh2"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_gciwj"]
+[ext_resource type="Texture2D" uid="uid://5qttoa3aimsb" path="res://cards/card_target_all_ground.png" id="1_tmhxc"]
+
+[resource]
+script = ExtResource("1_gciwj")
+icon = ExtResource("1_tmhxc")
+text = "Target: All Ground Enemies"

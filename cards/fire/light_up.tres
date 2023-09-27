@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://dtfbyc4bv2046"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_pm14r"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_6vlis"]
+[ext_resource type="Texture2D" uid="uid://dj6okf305jccu" path="res://cards/card_target2.png" id="2_fgovs"]
+[ext_resource type="Texture2D" uid="uid://2ickgah85v25" path="res://cards/kill_ignited_icon.png" id="3_spxl6"]
+[ext_resource type="Resource" uid="uid://yo0kyrlo6ep4" path="res://card_effects/fire/kill_ignited_ground_effect.tres" id="4_qe6k1"]
+[ext_resource type="Resource" uid="uid://sxnwhm87egrv" path="res://cards/card_tooltips/ground_target.tres" id="5_hahyh"]
+[ext_resource type="Resource" uid="uid://ds0kdhjhky40m" path="res://cards/card_tooltips/kill_ignited_tooltip.tres" id="6_std57"]
+
+[resource]
+script = ExtResource("2_6vlis")
+card_back = ExtResource("1_pm14r")
+card_color = Color(1, 0.333333, 0.333333, 1)
+card_icon = ExtResource("2_fgovs")
+card_text = "1"
+card_status_icon = ExtResource("3_spxl6")
+card_text2 = ""
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_hahyh"), ExtResource("6_std57")])
+id = "light_up"
+tier = 3
+effect = ExtResource("4_qe6k1")
+can_have_multiple = true

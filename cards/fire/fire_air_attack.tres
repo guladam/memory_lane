@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3 uid="uid://7702nlq0352m"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_2c64c"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_j2o7a"]
+[ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target1.png" id="2_vb1nk"]
+[ext_resource type="Resource" uid="uid://ddc1pu36fxx03" path="res://card_effects/fire/fire_air_effect.tres" id="3_7hb5a"]
+[ext_resource type="Resource" uid="uid://droioedx671hj" path="res://cards/card_tooltips/air_target.tres" id="5_siaxt"]
+
+[resource]
+script = ExtResource("2_j2o7a")
+card_back = ExtResource("1_2c64c")
+card_color = Color(1, 0.333333, 0.333333, 1)
+card_icon = ExtResource("2_vb1nk")
+card_text = "1D"
+card_text2 = ""
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_siaxt")])
+id = "fire_air_attack"
+tier = 0
+effect = ExtResource("3_7hb5a")
+can_have_multiple = true

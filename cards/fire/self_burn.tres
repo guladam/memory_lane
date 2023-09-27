@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://uigpjlo84w2n"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_mmy8i"]
+[ext_resource type="Texture2D" uid="uid://c4ekjtwm3a3dc" path="res://cards/card_target3.png" id="2_jkf2m"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_ynrro"]
+[ext_resource type="Texture2D" uid="uid://cjq62tlifeyce" path="res://cards/heal_and_fire_icon.png" id="3_k1xes"]
+[ext_resource type="Resource" uid="uid://cqgbu3juxe7k4" path="res://card_effects/fire/self_burn_effect.tres" id="4_gw5pc"]
+[ext_resource type="Resource" uid="uid://b46wjo7rt8ue3" path="res://cards/card_tooltips/self_target.tres" id="6_bwlo2"]
+[ext_resource type="Resource" uid="uid://cdo6q2xgru7ga" path="res://cards/card_tooltips/heal_ignite_tooltip.tres" id="7_7t1rh"]
+
+[resource]
+script = ExtResource("2_ynrro")
+card_back = ExtResource("1_mmy8i")
+card_color = Color(0.333333, 1, 0.333333, 1)
+card_icon = ExtResource("2_jkf2m")
+card_text = "2"
+card_status_icon = ExtResource("3_k1xes")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_bwlo2"), ExtResource("7_7t1rh")])
+id = "self_burn"
+tier = 2
+effect = ExtResource("4_gw5pc")
+can_have_multiple = true

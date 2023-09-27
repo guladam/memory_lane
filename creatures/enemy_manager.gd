@@ -25,6 +25,7 @@ func _ready() -> void:
 	Events.enemy_turn_started.connect(do_enemy_turn)
 	Events.effect_created.connect(_on_effect_created)
 	Events.enemy_died.connect(_on_enemy_died)
+	Events.add_status_to_random_enemy_requested.connect(_on_add_status_to_random_enemy_requested)
 
 
 ## This method is used to inject a dependency for ranged units.
@@ -32,6 +33,19 @@ func _ready() -> void:
 ## [param _player_ranged_target] is the position of the [Player].
 func setup(_player_ranged_target: Vector2) -> void:
 	player_ranged_target = _player_ranged_target
+
+
+## Returns all present [Enemy] units in an [Array].
+func get_all_enemies() -> Array[Node]:
+	var all_enemies: Array[Node] = []
+	
+	for i in grid_air.keys():
+		if grid_air[i]:
+			all_enemies.append(grid_air[i])
+		if grid_ground[i]:
+			all_enemies.append(grid_ground[i])
+	
+	return all_enemies
 
 
 ## Spawns an [Enemy] unit in the furthest available grid.
@@ -233,19 +247,6 @@ func _get_melee_attack_anim_pos_for_enemy(enemy: Enemy) -> Vector2:
 	return Vector2.ZERO
 
 
-## Returns all present [Enemy] units in an [Array].
-func _get_all_enemies() -> Array[Node]:
-	var all_enemies: Array[Node] = []
-	
-	for i in grid_air.keys():
-		if grid_air[i]:
-			all_enemies.append(grid_air[i])
-		if grid_ground[i]:
-			all_enemies.append(grid_ground[i])
-	
-	return all_enemies
-
-
 ## Returns the first available target for an [Effect].
 ## This method is only useful for single-target [Effects].
 ## [param effect] is the [Effect] which needs to get a target.
@@ -255,11 +256,22 @@ func _get_target_for_effect(effect: Effect) -> Array[Node]:
 			for i in grid_air.keys():
 				if grid_air[i]:
 					return [grid_air[i]]
-		effect.TargetType.GROUND:
+		Effect.TargetType.GROUND:
 			for i in grid_ground.keys():
 				if grid_ground[i]:
 					return [grid_ground[i]]
-	
+		Effect.TargetType.ALL_AIR:
+			var _enemies: Array[Node] = []
+			for enemy in grid_air.values():
+				if enemy != null:
+					_enemies.append(enemy)
+			return _enemies
+		Effect.TargetType.ALL_GROUND:
+			var _enemies: Array[Node] = []
+			for enemy in grid_ground.values():
+				if enemy != null:
+					_enemies.append(enemy)
+			return _enemies
 	return []
 
 
@@ -273,6 +285,8 @@ func _on_effect_created(effect: Effect) -> void:
 	var valid_targets := [
 		Effect.TargetType.AIR,
 		Effect.TargetType.GROUND,
+		Effect.TargetType.ALL_GROUND,
+		Effect.TargetType.ALL_AIR,
 		Effect.TargetType.ALL_ENEMIES,
 	]
 	
@@ -281,7 +295,7 @@ func _on_effect_created(effect: Effect) -> void:
 
 	var target: Array[Node]
 	if effect.target_type == Effect.TargetType.ALL_ENEMIES:
-		target = _get_all_enemies()
+		target = get_all_enemies()
 	else:
 		target = _get_target_for_effect(effect)
 		
@@ -297,3 +311,10 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		if table[i] and table[i] == enemy:
 			table[i] = null
 			print("enemy deleted from grid")
+
+
+## Called when someone wants to add a [param status] to a random [Enemy].
+func _on_add_status_to_random_enemy_requested(status: StatusData) -> void:
+	var enemy := get_all_enemies().pick_random() as Enemy
+	if enemy:
+		enemy.status_effects.add_new_status(status)

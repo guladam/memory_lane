@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ok77bnmeiv08"]
+[gd_scene load_steps=8 format=3 uid="uid://ok77bnmeiv08"]
 
 [ext_resource type="Texture2D" uid="uid://b6y4tttwgy6b0" path="res://cards/card_front.png" id="1_yrdxd"]
 [ext_resource type="Script" path="res://cards/card_front.gd" id="2_i0lui"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://dbb73ujk8a3yr" path="res://ui/lato_regular.ttf" id="4_6bg4o"]
 [ext_resource type="Texture2D" uid="uid://bi3jwnpvsq3hi" path="res://cards/card_background2.png" id="4_vh0wh"]
 [ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target4.png" id="5_ly2g1"]
+[ext_resource type="Texture2D" uid="uid://dbwvl1hun2awc" path="res://status_effects/fire_icon.png" id="7_hy3k5"]
 
 [node name="CardFront" type="TextureRect"]
 texture_filter = 1
@@ -21,42 +22,59 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_vh0wh")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -19.0
-offset_top = -32.0
-offset_right = 19.0
-offset_bottom = 6.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_hi4ma")
-
-[node name="TextAndStatusIcons" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = 6.0
-offset_bottom = 39.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Text" type="Label" parent="TextAndStatusIcons"]
+[node name="Icon" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+texture = ExtResource("3_hi4ma")
+stretch_mode = 5
+
+[node name="TextAndStatusIcons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Text" type="Label" parent="VBoxContainer/TextAndStatusIcons"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_6bg4o")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
+text = "1D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatusIcon" type="TextureRect" parent="VBoxContainer/TextAndStatusIcons"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_ly2g1")
+stretch_mode = 3
+
+[node name="TextAndStatusIcons2" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Text" type="Label" parent="VBoxContainer/TextAndStatusIcons2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_6bg4o")
+theme_override_font_sizes/font_size = 18
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatusIcon" type="TextureRect" parent="TextAndStatusIcons"]
+[node name="StatusIcon" type="TextureRect" parent="VBoxContainer/TextAndStatusIcons2"]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("5_ly2g1")
+texture = ExtResource("7_hy3k5")
 stretch_mode = 3

@@ -5,6 +5,7 @@
 class_name CardData
 extends Resource
 
+enum Tier { TIER_0, TIER_1, TIER_2, TIER_3 }
 
 @export_category("Visuals")
 @export var card_back: Texture = preload("res://cards/card_back.png")
@@ -12,13 +13,16 @@ extends Resource
 @export var card_icon: Texture
 @export var card_text: String
 @export var card_status_icon: Texture
+@export var card_text2: String
+@export var card_status_icon2: Texture
 ## Tooltip shown when tapped on the card.
-@export var tooltip_texts: Array[String]
-@export var tooltip_icons: Array[Texture]
+@export var tooltips: Array[Tooltip]
 
 @export_category("Other Data")
 ## A unique ID for the card, used for checking matches.
 @export var id: String
+## Tier of the card. Used when calculating drafting chances.
+@export var tier: Tier
 ## The [Effect] this card creates when paired.
 @export var effect: Effect
 ## If false, the [Player] can only draft this card once.

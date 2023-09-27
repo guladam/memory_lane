@@ -24,6 +24,7 @@ enum Intents {NONE, ATTACK, MOVE}
 @export var custom_anim_player: AnimationPlayer
 ## [Weapon] used by this enemy.
 @export var weapon: Weapon
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var health: Health = $Health
 @onready var health_bar: PanelContainer = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -152,6 +153,11 @@ func has_melee_weapon() -> bool:
 	return weapon is MeleeWeapon
 
 
+## Returns the center Y offset for the enemy sprite.
+func get_center_y_offset() -> float:
+	return sprite_2d.get_rect().size.y / 2.0
+
+
 ## Creates a floating text for this enemy.
 ## [param text] is the text to be displayed,
 ## [param color] is the color of the message.
@@ -173,3 +179,9 @@ func _on_health_reached_zero() -> void:
 	get_tree().root.add_child(puff)
 	puff.global_position = global_position
 	queue_free()
+
+
+## If the enemy is tapped on, show their statuses if there are any.
+func _on_hurt_box_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event.is_action_pressed("tap"):
+		Events.status_tooltip_requested.emit(status_effects.get_all_status_data(), self)
