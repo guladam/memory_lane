@@ -9,21 +9,24 @@ extends Resource
 ## every run.
 @export var level_pool: int
 ## This contains when and which [Enemy] units will be spawned.
-## key (int): turn to spawn the unit(s)
-## value (array): array of [Enemy] units to spawn on that particular turn.
-@export var spawn_table: Dictionary = {
-	1: [],
-	2: [],
-	3: [],
-	4: [],
-	5: []
-}
+@export var spawn_table: Array[LevelSpawnData]
 
 
 ## Returns the total number of [Enemy] units on this level.
 ## This can be used to check if the [Player] killed all enemies.
 func get_number_of_enemies() -> int:
-	return spawn_table.values().reduce(
-		func(sum, array): return sum + array.size(),
+	return spawn_table.reduce(
+		func(sum, spawn_data): return sum + spawn_data.enemies.size(),
 		0
 	)
+
+
+## Returns the [LevelSpawnData] for a specific [param turn].
+func get_spawn_data_for_turn(turn: int) -> LevelSpawnData:
+	var that_turn: Array[LevelSpawnData] = \
+		spawn_table.filter(func(spawn_data): return spawn_data.turn == turn)
+	
+	if that_turn.is_empty():
+		return null
+	
+	return that_turn[0]

@@ -21,5 +21,5 @@ func setup(card_data: CardData, character: Character, amount: int) -> void:
 
 ## Toggles the tooltip when the player clicks on the card.
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
+	if event.is_action_pressed("tap"):
 		Events.card_tooltip_requested.emit(card, self)

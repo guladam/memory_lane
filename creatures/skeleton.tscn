@@ -138,7 +138,7 @@ _data = {
 size = Vector2(33, 23)
 
 [node name="Skeleton" node_paths=PackedStringArray("custom_anim_player", "weapon") instance=ExtResource("1_1vaxl")]
-movement_speed = 0.5
+movement_speed = 0.34
 custom_anim_player = NodePath("CustomAnimations")
 weapon = NodePath("MeleeWeapon")
 

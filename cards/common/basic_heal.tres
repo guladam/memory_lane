@@ -15,6 +15,7 @@ card_color = Color(0.333333, 1, 0.333333, 1)
 card_icon = ExtResource("2_pir3k")
 card_text = "1"
 card_status_icon = ExtResource("3_2tylr")
+card_text2 = ""
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_7hxxd"), ExtResource("7_3xa8g")])
 id = "basic_heal"
 tier = 0

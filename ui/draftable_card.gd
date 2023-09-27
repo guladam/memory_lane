@@ -51,6 +51,6 @@ func _animate() -> void:
 
 ## Selects the draftable card when its clicked.
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
+	if event.is_action_pressed("tap"):
 		select()
 		selected.emit(card, self)

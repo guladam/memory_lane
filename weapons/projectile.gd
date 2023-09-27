@@ -4,6 +4,8 @@ extends Node2D
 
 ## The travel speed of the projectile.
 @export var speed := 400
+## A Scene to be instantiated on impact.
+@export var impact_vfx: PackedScene
 @onready var hit_box: HitBox = $HitBox
 ## The target of this projectile, in global coordinates.
 var target: Vector2
@@ -26,5 +28,10 @@ func _process(delta: float) -> void:
 	global_position += dir * speed * delta
 
 
-func _on_hit_box_area_entered(_area: Area2D) -> void:
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	Events.projectile_hit.emit()
+	if impact_vfx:
+		var new_vfx := impact_vfx.instantiate()
+		new_vfx.global_position = area.owner.global_position
+		get_tree().root.add_child(new_vfx)
 	queue_free()

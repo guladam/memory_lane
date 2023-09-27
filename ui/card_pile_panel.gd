@@ -10,11 +10,13 @@ signal closed
 @onready var card_grid: GridContainer = %CardGrid
 @onready var close_button: Button = %CloseButton
 @onready var card_view := preload("res://ui/card_view.tscn")
+@onready var scroll_container: ScrollContainer = $Panel/MarginContainer/VBoxContainer/ScrollContainer
 
 
 func _ready() -> void:
 	_clear_children()
 	close_button.pressed.connect(fade_out)
+	scroll_container.get_v_scroll_bar().scrolling.connect(_on_scroll_container_scroll_started)
 
 
 ## Clears any previous cards in the pile.
@@ -34,6 +36,7 @@ func show_panel(title: String, cards: Array[CardData], character: Character) -> 
 	_clear_children()
 	
 	var unique_cards := _get_unique_cards_counted(cards)
+	
 	for card in unique_cards:
 		var new_card_view := card_view.instantiate()
 		card_grid.add_child(new_card_view)
@@ -74,3 +77,8 @@ func _get_unique_cards_counted(cards: Array[CardData]) -> Dictionary:
 		unique_cards[card] = cards.count(card)
 	
 	return unique_cards
+
+
+## We hide tooltips when the [Player] starts scrolling.
+func _on_scroll_container_scroll_started() -> void:
+	Events.card_tooltip_requested.emit(null, null)

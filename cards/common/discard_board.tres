@@ -15,6 +15,7 @@ card_color = Color(0.333333, 1, 1, 1)
 card_icon = ExtResource("2_khqvl")
 card_text = ""
 card_status_icon = ExtResource("3_v0fb5")
+card_text2 = ""
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_3ulnp"), ExtResource("7_83uv1")])
 id = "discard_board"
 tier = 0

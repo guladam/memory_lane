@@ -16,6 +16,7 @@ var current_run: Run
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize()
 	$MenuScreen.start_new_game.connect(_start_new_game)
 	Events.game_over.connect(_on_game_over)
 	Events.level_won.connect(_on_level_won)
@@ -105,7 +106,6 @@ func _get_level(level_pool: int) -> LevelData:
 		print("no more levels!")
 		return null
 	
-	randomize()
 	return possible_levels.pick_random()
 
 

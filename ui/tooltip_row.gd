@@ -6,7 +6,7 @@ extends HBoxContainer
 
 func setup(_icon: Texture, _text: String) -> void:
 	icon.texture = _icon
-	label.text = _text
+	label.text = _text.c_unescape()
 	
 	if not _icon:
 		icon.hide()

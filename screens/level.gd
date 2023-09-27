@@ -27,7 +27,6 @@ var enemies_killed := 0
 var draw_queue := []
 
 func _ready() -> void:
-	randomize()
 	discard_pile.setup(run.deck)
 	draw_pile.setup(run.deck)
 	enemy_manager.setup(player.get_ranged_target_position())

@@ -85,5 +85,5 @@ func _on_tap_detector_input_event(_viewport: Node, event: InputEvent, _shape_idx
 	if game_state.is_paused():
 		return
 	
-	if event is InputEventMouseButton and event.is_pressed():
+	if event.is_action_pressed("tap"):
 		Events.card_pile_panel_requested.emit("Draw Pile", cards)

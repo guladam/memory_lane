@@ -174,10 +174,11 @@ func damage_unit(grid_idx: int) -> void:
 ## [param turn] is the turn counter,
 ## [parram level_data] is the [LevelData] resource for the current [Level].
 func spawn_enemies_for_turn(turn: int, level_data: LevelData) -> void:
-	if not level_data.spawn_table.has(turn):
+	var spawn_data: LevelSpawnData = level_data.get_spawn_data_for_turn(turn)
+	if not spawn_data:
 		return
 	
-	for enemy in level_data.spawn_table[turn]:
+	for enemy in spawn_data.enemies:
 		if enemy:
 			spawn_enemy(enemy)
 
@@ -314,7 +315,16 @@ func _on_enemy_died(enemy: Enemy) -> void:
 
 
 ## Called when someone wants to add a [param status] to a random [Enemy].
-func _on_add_status_to_random_enemy_requested(status: StatusData) -> void:
-	var enemy := get_all_enemies().pick_random() as Enemy
+## Optionally, a [param vfx] scene can be created for the status.
+func _on_add_status_to_random_enemy_requested(status: StatusData, vfx: PackedScene = null) -> void:
+	var _enemies := get_all_enemies()
+	if _enemies.is_empty():
+		return
+		
+	var enemy := _enemies.pick_random() as Enemy
 	if enemy:
 		enemy.status_effects.add_new_status(status)
+		if vfx:
+			var new_vfx := vfx.instantiate()
+			new_vfx.global_position = enemy.global_position
+			get_tree().root.add_child(new_vfx)

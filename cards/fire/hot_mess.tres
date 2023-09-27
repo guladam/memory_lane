@@ -16,6 +16,7 @@ card_color = Color(0.333333, 1, 1, 1)
 card_icon = ExtResource("2_71qhj")
 card_text = "4"
 card_status_icon = ExtResource("3_lulhr")
+card_text2 = ""
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_p42fn"), ExtResource("7_004ey"), ExtResource("8_0ixtn")])
 id = "hot_mess"
 tier = 3

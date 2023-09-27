@@ -43,12 +43,13 @@ game_state = ExtResource("3_hrhjg")
 [node name="IngameUI" type="CanvasLayer" parent="."]
 script = ExtResource("9_ad715")
 
-[node name="DebugWindow" parent="IngameUI" node_paths=PackedStringArray("board") instance=ExtResource("6_yafv1")]
+[node name="DebugWindow" parent="IngameUI" node_paths=PackedStringArray("board", "view_deck_btn") instance=ExtResource("6_yafv1")]
 visible = false
 offset_right = 341.0
 offset_bottom = 117.0
 board = NodePath("../../Board")
 level_data = ExtResource("12_mw2ej")
+view_deck_btn = NodePath("../DeckViewButton")
 
 [node name="Player" parent="IngameUI/DebugWindow/Items" index="1" node_paths=PackedStringArray("player")]
 player = NodePath("../../../../Creatures/Player")

@@ -214,7 +214,7 @@ func _on_card_input_event(_viewport: Node, event: InputEvent, _shape_idx: int, c
 	if two_cards_flipped or is_paused or (not interactable):
 		return
 
-	if event is InputEventMouseButton and event.is_pressed():
+	if event.is_action_pressed("tap"):
 		card.flip()
 
 

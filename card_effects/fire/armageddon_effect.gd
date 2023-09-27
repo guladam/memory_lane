@@ -17,6 +17,7 @@ func apply_effect() -> void:
 	var from: Vector2 = to + Vector2(0, -100)
 	Events.projectile_spawn_requested.emit(to, enemy_fire_bolt_projectile, from)
 	player.status_effects.add_new_status(ignite_status)
+	await Events.projectile_hit
 	
 	var enemy: Enemy
 	for i in range(1, effect.targets.size()):
@@ -28,3 +29,4 @@ func apply_effect() -> void:
 		from = to + Vector2(0, -100)
 		Events.projectile_spawn_requested.emit(to, fire_bolt_projectile, from)
 		enemy.status_effects.add_new_status(ignite_status)
+		await Events.projectile_hit

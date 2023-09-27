@@ -30,6 +30,7 @@ func _ready() -> void:
 func setup(character: Character, state: GameState) -> void:
 	$Eyes.color = character.color
 	game_state = state
+	health.max_health = character.starting_hp
 	for status in character.starting_traits:
 		status_effects.add_new_status(status)
 

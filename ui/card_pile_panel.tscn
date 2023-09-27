@@ -62,26 +62,34 @@ layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="CardGrid" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CardGrid" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="CardView" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
-custom_minimum_size = Vector2(75, 180)
+[node name="CardView" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CenterContainer/CardGrid" instance=ExtResource("3_j854v")]
 layout_mode = 2
+size_flags_horizontal = 6
 
-[node name="CardView2" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
+[node name="CardView2" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CenterContainer/CardGrid" instance=ExtResource("3_j854v")]
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="CardView3" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
+[node name="CardView3" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CenterContainer/CardGrid" instance=ExtResource("3_j854v")]
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="CardView4" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("3_j854v")]
+[node name="CardView4" parent="Panel/MarginContainer/VBoxContainer/ScrollContainer/CenterContainer/CardGrid" instance=ExtResource("3_j854v")]
 layout_mode = 2
+size_flags_horizontal = 6
 
 [node name="CloseButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -90,3 +98,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
 text = "Close"
+
+[connection signal="scroll_started" from="Panel/MarginContainer/VBoxContainer/ScrollContainer" to="." method="_on_scroll_container_scroll_started"]

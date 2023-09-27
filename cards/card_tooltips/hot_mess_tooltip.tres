@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_naw8b")
 icon = ExtResource("1_ccvna")
-text = "Hot Mess: mismatching cards \\n applies 2 Ignite to a random Enemy"
+text = "Mismatching cards applies\\n2 Ignite to a random Enemy."

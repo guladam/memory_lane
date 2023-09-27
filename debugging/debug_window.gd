@@ -3,6 +3,7 @@ extends PanelContainer
 
 @export var board: Board
 @export var level_data: LevelData
+@export var view_deck_btn: Button
 
 
 func _input(event: InputEvent) -> void:
@@ -11,6 +12,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("hide_debug_window"):
 		visible = not visible
+		view_deck_btn.visible = not visible
 
 
 func _on_show_board_pressed() -> void:

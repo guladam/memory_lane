@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_ts2d0")
 icon = ExtResource("1_mlpo6")
-text = "Targets: All"
+text = "Target: All Enemies"

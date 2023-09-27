@@ -15,6 +15,7 @@ card_color = Color(0.333333, 1, 0.333333, 1)
 card_icon = ExtResource("2_jkf2m")
 card_text = "2"
 card_status_icon = ExtResource("3_k1xes")
+card_text2 = ""
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_bwlo2"), ExtResource("7_7t1rh")])
 id = "self_burn"
 tier = 2
