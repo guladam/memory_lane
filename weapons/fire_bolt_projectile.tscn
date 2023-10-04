@@ -1,40 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw4676bwvd6"]
+[gd_scene load_steps=9 format=3 uid="uid://cw4676bwvd6"]
 
 [ext_resource type="PackedScene" uid="uid://4ja8uwrqk6sv" path="res://weapons/projectile.tscn" id="1_rd8es"]
 [ext_resource type="Texture2D" uid="uid://bd2brpvcmfkeg" path="res://weapons/basic_attack.png" id="2_k6c82"]
+[ext_resource type="AudioStream" uid="uid://du7cyho86uor3" path="res://weapons/fire_projectile_sfx.ogg" id="2_twby3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fv3nr"]
 size = Vector2(32, 16)
-
-[sub_resource type="Animation" id="Animation_led52"]
-resource_name = "spawn"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 2),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(2, 2)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["fly", -1, 1.0, false],
-"method": &"play"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_labon"]
 length = 0.001
@@ -80,6 +51,36 @@ tracks/0/keys = {
 "values": [6, 7, 8]
 }
 
+[sub_resource type="Animation" id="Animation_led52"]
+resource_name = "spawn"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 2)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["fly", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxbdp"]
 _data = {
 "RESET": SubResource("Animation_labon"),
@@ -89,6 +90,7 @@ _data = {
 
 [node name="FireBoltProjectile" instance=ExtResource("1_rd8es")]
 speed = 350
+sound = ExtResource("2_twby3")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(2, 2)

@@ -46,7 +46,6 @@ func _start_level(level_pool: int) -> void:
 
 ## Called when the [Player] wins a [Level].
 func _on_level_won(_level: LevelData) -> void:
-	print("level won hehe")
 	await get_tree().create_timer(0.5).timeout
 	get_child(0).queue_free()
 	
@@ -54,7 +53,7 @@ func _on_level_won(_level: LevelData) -> void:
 	
 	var level_end := level_end_screen.instantiate()
 	add_child(level_end)
-	level_end.awesome_selected.connect(_on_level_end_screen_continue_selected)
+	level_end.awesome_selected.connect(_on_level_end_screen_main_menu_selected)
 	level_end.continue_selected.connect(_on_level_end_screen_continue_selected)
 	
 	if current_run.current_level > LEVELS_PER_RUN:
@@ -66,7 +65,6 @@ func _on_level_won(_level: LevelData) -> void:
 
 ## Called when the [Player] loses the game.
 func _on_game_over() -> void:
-	print("game over hehe")
 	await get_tree().create_timer(0.5).timeout
 	get_child(0).queue_free()
 	
@@ -103,7 +101,6 @@ func _get_level(level_pool: int) -> LevelData:
 	)
 	
 	if possible_levels.is_empty():
-		print("no more levels!")
 		return null
 	
 	return possible_levels.pick_random()

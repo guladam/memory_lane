@@ -8,6 +8,7 @@ extends Resource
 @export var tooltip: String
 @export var card_background: Texture
 @export var color: Color
+@export var select_sound: AudioStream
 @export var starting_hp: int
 @export var starting_deck: Deck
 ## This a collection of [StatusData] the [Player]

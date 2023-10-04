@@ -1,0 +1,170 @@
+[gd_scene load_steps=12 format=3 uid="uid://ct7bqpootp2x2"]
+
+[ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_08yjj"]
+[ext_resource type="Texture2D" uid="uid://b0ggysovn0mv4" path="res://creatures/medusa.png" id="2_uudsn"]
+[ext_resource type="PackedScene" uid="uid://c0tlhwxxydged" path="res://weapons/ranged_weapon.tscn" id="3_yk020"]
+[ext_resource type="PackedScene" uid="uid://45eyqyfkiywn" path="res://weapons/medusa_projectile.tscn" id="4_k51wl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwax8"]
+size = Vector2(55, 57)
+
+[sub_resource type="Animation" id="Animation_gia1v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_50bau"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n5o1x"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_w2fb6"]
+resource_name = "use"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 2, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RangedWeapon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_projectile"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3n3hk"]
+resource_name = "walk"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fuvyr"]
+_data = {
+"RESET": SubResource("Animation_gia1v"),
+"damage": SubResource("Animation_50bau"),
+"idle": SubResource("Animation_n5o1x"),
+"use": SubResource("Animation_w2fb6"),
+"walk": SubResource("Animation_3n3hk")
+}
+
+[node name="Medusa" node_paths=PackedStringArray("custom_anim_player", "weapon") instance=ExtResource("1_08yjj")]
+movement_speed = 0.5
+custom_anim_player = NodePath("CustomAnimations")
+weapon = NodePath("RangedWeapon")
+
+[node name="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(0, -27)
+scale = Vector2(2, 2)
+texture = ExtResource("2_uudsn")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-0.5, -28.5)
+shape = SubResource("RectangleShape2D_vwax8")
+
+[node name="FloatingTextPosition" parent="." index="2"]
+position = Vector2(-22, -35)
+
+[node name="HealthBar" parent="." index="3"]
+offset_top = -80.0
+offset_bottom = -60.0
+
+[node name="Health" parent="." index="5"]
+max_health = 3
+
+[node name="CustomAnimations" type="AnimationPlayer" parent="." index="9"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_fuvyr")
+}
+
+[node name="RangedWeapon" parent="." index="10" node_paths=PackedStringArray("animation_player", "visuals", "muzzle") instance=ExtResource("3_yk020")]
+projectile = ExtResource("4_k51wl")
+animation_player = NodePath("../CustomAnimations")
+visuals = NodePath("Visuals")
+muzzle = NodePath("Muzzle")
+attack_range = 2
+
+[node name="Visuals" type="Node2D" parent="RangedWeapon" index="0"]
+
+[node name="Muzzle" type="Marker2D" parent="RangedWeapon" index="1"]
+position = Vector2(-7, -30)

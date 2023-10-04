@@ -17,4 +17,3 @@ func apply_effect() -> void:
 	var bonus_dmg := 1 if enemy.status_effects.has_status(ignite_status) else 0
 	Events.player_damage_modifier_requested.emit(bonus_dmg, 1)
 	Events.projectile_spawn_requested.emit(to, fire_bolt_projectile, from)
-	await Events.projectile_hit

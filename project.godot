@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 Events="*res://global/events.gd"
 StatTracker="*res://global/stat_tracker.gd"
+MusicPlayer="*res://global/music_player.tscn"
+SfxPlayer="*res://global/sfx_player.tscn"
 
 [display]
 

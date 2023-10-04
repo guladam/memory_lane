@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=9 format=3 uid="uid://bl1n5cdytw4j5"]
+
+[ext_resource type="Script" path="res://custom_resource_types/level_data.gd" id="1_15mv0"]
+[ext_resource type="PackedScene" uid="uid://ct0abwvob7sd2" path="res://creatures/beholder.tscn" id="2_3m223"]
+[ext_resource type="Script" path="res://custom_resource_types/level_spawn_data.gd" id="3_c77nu"]
+[ext_resource type="PackedScene" uid="uid://dcioh58t6xhdy" path="res://creatures/skeleton.tscn" id="4_o6ytk"]
+[ext_resource type="PackedScene" uid="uid://q0uouhv20f7t" path="res://creatures/bat.tscn" id="5_fhf8p"]
+
+[sub_resource type="Resource" id="Resource_e25to"]
+script = ExtResource("3_c77nu")
+turn = 1
+enemies = Array[PackedScene]([ExtResource("2_3m223")])
+
+[sub_resource type="Resource" id="Resource_8tmx6"]
+script = ExtResource("3_c77nu")
+turn = 3
+enemies = Array[PackedScene]([ExtResource("4_o6ytk")])
+
+[sub_resource type="Resource" id="Resource_vyibr"]
+script = ExtResource("3_c77nu")
+turn = 5
+enemies = Array[PackedScene]([ExtResource("5_fhf8p")])
+
+[resource]
+script = ExtResource("1_15mv0")
+level_pool = 1
+spawn_table = Array[ExtResource("3_c77nu")]([SubResource("Resource_e25to"), SubResource("Resource_8tmx6"), SubResource("Resource_vyibr")])

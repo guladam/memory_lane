@@ -12,4 +12,3 @@ func apply_effect() -> void:
 	var enemy = effect.targets[0] as Enemy
 	var target_pos: Vector2 = enemy.global_position - Vector2(0, enemy.get_center_y_offset())
 	Events.projectile_spawn_requested.emit(target_pos, fire_bolt_projectile)
-	await Events.projectile_hit

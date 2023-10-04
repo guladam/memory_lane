@@ -16,5 +16,4 @@ func apply_effect() -> void:
 	var from: Vector2 = to + Vector2(0, -100)
 	
 	Events.projectile_spawn_requested.emit(to, fire_bolt_ignite_projectile, from)
-	await Events.projectile_hit
 	enemy.status_effects.add_new_status(ignite_status)

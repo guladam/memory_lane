@@ -1,11 +1,15 @@
 ## This screen is shown when a level is finished, either by
 ## winning it, or when the [Player] has died.
 class_name LevelEndScreen
-extends ColorRect
+extends TextureRect
 
 signal continue_selected
 signal main_menu_selected
 signal awesome_selected
+
+@export var level_won_sound: AudioStream
+@export var game_over_sound: AudioStream
+@export var run_won_sound: AudioStream
 
 @onready var text_1: Label = $Text1
 @onready var text_2: Label = $Text2
@@ -18,6 +22,7 @@ signal awesome_selected
 @onready var main_menu: Button = %MainMenu
 @onready var awesome: Button = %Awesome
 @onready var puff := preload("res://creatures/puff_effect.tscn")
+@onready var eyes: Polygon2D = $Wizard/Sprite2D/Eyes
 
 var current_level: int
 var current_kills: int
@@ -38,40 +43,44 @@ func _ready() -> void:
 
 ## Shows the level won version, based on the current [Run] data.
 func show_level_won(run: Run) -> void:
+	eyes.color = run.character.color
 	text_1.text = "Level"
 	text_2.text = "Won"
 	current_level = run.current_level-1
 	current_kills = StatTracker.enemies_killed_this_run
-	animate("win", next_level)
+	animate("win", next_level, level_won_sound)
 
 
 ## Shows the run won version, based on the current [Run] data.
 func show_run_won(run: Run) -> void:
-	text_1.text = "You are"
-	text_2.text = "Victorious!"
+	eyes.color = run.character.color
+	text_1.text = "Round"
+	text_2.text = "Won"
 	current_level = run.current_level-1
 	current_kills = StatTracker.enemies_killed_this_run
-	animate("win", awesome)
+	animate("win", awesome, run_won_sound)
 
 
 ## Shows the game over version, based on the current [Run] data.
 func show_game_over(run: Run) -> void:
+	eyes.color = run.character.color
 	text_1.text = "Game"
 	text_2.text = "Over"
 	current_level = run.current_level-1
 	current_kills = StatTracker.enemies_killed_this_run
-	animate("die", main_menu)
+	animate("die", main_menu, game_over_sound)
 
 
 ## Animates the screen. Needs the correct [param anim_name] for the wizard
-## and the corresponding [Button] to show.
-func animate(anim_name: String, button: Button) -> void:
+## , the corresponding [Button] to show and the sound to play.
+func animate(anim_name: String, button: Button, sound: AudioStream) -> void:
 	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(text_1, "position:x", text_1.position.x, 0.7).from(text_1.position.x - 200)
 	tween.parallel().tween_property(text_1, "modulate:a", 1.0, 0.4).from(0.0)
 	tween.parallel().tween_property(text_2, "position:x", text_2.position.x, 0.7).from(text_2.position.x + 200)
 	tween.parallel().tween_property(text_2, "modulate:a", 1.0, 0.4).from(0.0)
 	
+	tween.tween_callback(SfxPlayer.play.bind(sound))
 	tween.tween_callback(wizard.show)
 	tween.tween_property(wizard, "modulate:a", 1.0, 0.2).from(0.0)
 	tween.tween_callback(wizard.get_node("AnimationPlayer").play.bind(anim_name))

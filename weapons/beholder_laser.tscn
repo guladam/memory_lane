@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://biwkknk3wt54p"]
+
+[ext_resource type="PackedScene" uid="uid://4ja8uwrqk6sv" path="res://weapons/projectile.tscn" id="1_j6exr"]
+[ext_resource type="Texture2D" uid="uid://1myil2dl7nig" path="res://creatures/beholder_attack.png" id="2_bnv04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbdgo"]
+size = Vector2(56, 18)
+
+[sub_resource type="Animation" id="Animation_se8ek"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sngnv"]
+resource_name = "launch"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jw2p"]
+_data = {
+"RESET": SubResource("Animation_se8ek"),
+"launch": SubResource("Animation_sngnv")
+}
+
+[node name="BeholderLaser" instance=ExtResource("1_j6exr")]
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = -2.35619
+scale = Vector2(3, 3)
+texture = ExtResource("2_bnv04")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_tbdgo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+autoplay = "launch"
+libraries = {
+"": SubResource("AnimationLibrary_3jw2p")
+}

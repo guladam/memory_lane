@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=8 format=3 uid="uid://4x53kc465kmb"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=9 format=3 uid="uid://4x53kc465kmb"]
 
 [ext_resource type="Script" path="res://custom_resource_types/level_data.gd" id="1_0rhmv"]
+[ext_resource type="PackedScene" uid="uid://bkhb7m0ni3iaa" path="res://creatures/ghost.tscn" id="2_a7n02"]
 [ext_resource type="PackedScene" uid="uid://q0uouhv20f7t" path="res://creatures/bat.tscn" id="2_pcr83"]
 [ext_resource type="Script" path="res://custom_resource_types/level_spawn_data.gd" id="3_0q37g"]
 [ext_resource type="PackedScene" uid="uid://dcioh58t6xhdy" path="res://creatures/skeleton.tscn" id="3_yvotn"]
@@ -8,7 +9,7 @@
 [sub_resource type="Resource" id="Resource_u7wjy"]
 script = ExtResource("3_0q37g")
 turn = 1
-enemies = Array[PackedScene]([ExtResource("3_yvotn")])
+enemies = Array[PackedScene]([ExtResource("2_a7n02")])
 
 [sub_resource type="Resource" id="Resource_xxbxa"]
 script = ExtResource("3_0q37g")

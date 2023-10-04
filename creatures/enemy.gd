@@ -141,6 +141,7 @@ func ranged_attack(target: Vector2) -> void:
 	
 	@warning_ignore("redundant_await")
 	await weapon.use_weapon()
+	animations.play("idle")
 
 
 ## Returns the current speed of the unit, in grids.

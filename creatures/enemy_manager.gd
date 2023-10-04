@@ -21,7 +21,6 @@ func _ready() -> void:
 		grid_ground[i] = null
 		grid_air[i] = null
 	
-	Events.player_turn_ended.connect(func(): Events.enemy_turn_started.emit())
 	Events.enemy_turn_started.connect(do_enemy_turn)
 	Events.effect_created.connect(_on_effect_created)
 	Events.enemy_died.connect(_on_enemy_died)
@@ -70,7 +69,8 @@ func spawn_enemy(_enemy_scene: PackedScene) -> void:
 ## Completes the full enemy turn, unit by unit.
 ## This is a coroutine as it waits for the units to finish their actions.
 func do_enemy_turn() -> void:
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.0).timeout
+	print("--- ENEMY TURN STARTED ---")
 	await take_turn_with_units(grid_air)
 	await take_turn_with_units(grid_ground)
 	update_unit_intentions(air_grid, grid_air)
@@ -88,7 +88,7 @@ func take_turn_with_units(units: Dictionary) -> void:
 			continue
 		
 		await units[i].status_effects.apply_status_effects()
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.75).timeout
 	
 	update_unit_intentions(air_grid, grid_air)
 	update_unit_intentions(grid, grid_ground)

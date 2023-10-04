@@ -240,6 +240,7 @@ texture_filter = 1
 script = ExtResource("1_qjjdr")
 
 [node name="Eyes" type="Polygon2D" parent="."]
+position = Vector2(3, -4)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-8, -8, -8, 10, 3, 10, 3, -8)
 

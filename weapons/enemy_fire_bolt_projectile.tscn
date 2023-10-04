@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://br3di8b5mhwnh"]
+[gd_scene load_steps=9 format=3 uid="uid://br3di8b5mhwnh"]
 
 [ext_resource type="PackedScene" uid="uid://4ja8uwrqk6sv" path="res://weapons/projectile.tscn" id="1_gfn1i"]
+[ext_resource type="AudioStream" uid="uid://du7cyho86uor3" path="res://weapons/fire_projectile_sfx.ogg" id="2_f8c4y"]
 [ext_resource type="Texture2D" uid="uid://bd2brpvcmfkeg" path="res://weapons/basic_attack.png" id="2_nya4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fv3nr"]
@@ -89,6 +90,7 @@ _data = {
 
 [node name="EnemyFireBoltProjectile" instance=ExtResource("1_gfn1i")]
 speed = 350
+sound = ExtResource("2_f8c4y")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(2, 2)
@@ -96,10 +98,6 @@ texture = ExtResource("2_nya4b")
 hframes = 3
 vframes = 3
 frame = 6
-
-[node name="HitBox" parent="." index="1"]
-collision_layer = 1
-collision_mask = 8
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("RectangleShape2D_fv3nr")

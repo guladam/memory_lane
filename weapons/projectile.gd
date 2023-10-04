@@ -6,6 +6,9 @@ extends Node2D
 @export var speed := 400
 ## A Scene to be instantiated on impact.
 @export var impact_vfx: PackedScene
+## Sound to play on launch.
+@export var sound: AudioStream
+
 @onready var hit_box: HitBox = $HitBox
 ## The target of this projectile, in global coordinates.
 var target: Vector2
@@ -17,6 +20,7 @@ var target: Vector2
 func launch(_target: Vector2, bonus_damage: int = 0):
 	target = _target
 	hit_box.set_damage(bonus_damage)
+	SfxPlayer.play(sound)
 
 
 func _process(delta: float) -> void:
@@ -29,7 +33,6 @@ func _process(delta: float) -> void:
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	Events.projectile_hit.emit()
 	if impact_vfx:
 		var new_vfx := impact_vfx.instantiate()
 		new_vfx.global_position = area.owner.global_position

@@ -18,4 +18,3 @@ func apply_effect() -> void:
 		var to: Vector2 = enemy.global_position
 		var from: Vector2 = to + Vector2(0, -100)
 		Events.projectile_spawn_requested.emit(to, fire_bolt_projectile, from)
-		await Events.projectile_hit

@@ -41,6 +41,7 @@ func _ready() -> void:
 	Events.draw_pile_reshuffled.connect(_on_draw_pile_reshuffled)
 	Events.board_emptied.connect(_on_board_emptied)
 	Events.player_turn_started.connect(_on_player_turn_started)
+	Events.player_turn_ended.connect(_on_player_turn_ended)
 	Events.enemy_died.connect(_on_enemy_died)
 	Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
 	Events.effect_created.connect(_on_effect_created)
@@ -115,8 +116,12 @@ func _on_enemy_turn_ended():
 
 ## Called when the [Player] turn has started.
 func _on_player_turn_started() -> void:
-	board.interactable = true
 	await player.status_effects.apply_status_effects()
+
+
+## Called when the [Player] turn has ended.
+func _on_player_turn_ended() -> void:
+	Events.enemy_turn_started.emit()
 
 
 ## Called when an [Effect] is created by the [Player].

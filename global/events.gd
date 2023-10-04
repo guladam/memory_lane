@@ -43,8 +43,6 @@ signal card_reshuffle_anim_finished
 signal effect_created(effect: Effect)
 ## Emitted when an [Effect] wants to spawn a projectile from the [Player].
 signal projectile_spawn_requested(target: Vector2, projectile: PackedScene, start: Vector2)
-## Emitted when a projectile hits its target.
-signal projectile_hit
 ## Emitted when an outside source wants to add a damage modifier to the [Player]
 signal player_damage_modifier_requested(dmg_modifier: int, duration: int)
 ## Emitted when someone wants to add a [Status] to a random [Enemy].

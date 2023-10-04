@@ -69,6 +69,8 @@ func _deselect_other_characters(exception: Character) -> void:
 func _on_pickable_character_selected(character: Character) -> void:
 	_deselect_other_characters(character)
 	play.disabled = false
+	if visible:
+		SfxPlayer.play(character.select_sound, true)
 	
 	picked_character = character
 	picked_character_info.text = character.tooltip

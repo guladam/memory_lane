@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://2sxlfyft5y3r"]
+[gd_scene load_steps=10 format=3 uid="uid://2sxlfyft5y3r"]
 
 [ext_resource type="PackedScene" uid="uid://4ja8uwrqk6sv" path="res://weapons/projectile.tscn" id="1_ies1j"]
 [ext_resource type="Texture2D" uid="uid://bd2brpvcmfkeg" path="res://weapons/basic_attack.png" id="2_56vaw"]
 [ext_resource type="PackedScene" uid="uid://bclwu55cqbkcd" path="res://weapons/ignite_vfx.tscn" id="2_yvnl5"]
+[ext_resource type="AudioStream" uid="uid://du7cyho86uor3" path="res://weapons/fire_projectile_sfx.ogg" id="3_3fbvn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fv3nr"]
 size = Vector2(32, 16)
@@ -89,8 +90,9 @@ _data = {
 }
 
 [node name="FireBoltIgniteProjectile" instance=ExtResource("1_ies1j")]
-speed = 300
+speed = 350
 impact_vfx = ExtResource("2_yvnl5")
+sound = ExtResource("3_3fbvn")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(2, 2)

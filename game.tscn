@@ -1,11 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bss37jcv6wxbd"]
+[gd_scene load_steps=11 format=3 uid="uid://bss37jcv6wxbd"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_21ugc"]
 [ext_resource type="Resource" uid="uid://4x53kc465kmb" path="res://levels/level01_a.tres" id="2_bkw5y"]
 [ext_resource type="PackedScene" uid="uid://cvya4mhm2rvyc" path="res://screens/menu_screen.tscn" id="2_hi3kj"]
+[ext_resource type="Resource" uid="uid://2bh5s22x86mc" path="res://levels/level02_a.tres" id="3_0ajag"]
+[ext_resource type="Resource" uid="uid://bl1n5cdytw4j5" path="res://levels/level01_b.tres" id="3_tglqa"]
+[ext_resource type="Resource" uid="uid://5wfw4kjtk4d4" path="res://levels/level03_b.tres" id="4_001jn"]
+[ext_resource type="Resource" uid="uid://byfqdb2ov5vd3" path="res://levels/level03_a.tres" id="4_aiux8"]
+[ext_resource type="Resource" uid="uid://nblf0xqtf5bw" path="res://levels/level02_b.tres" id="5_tuojj"]
+[ext_resource type="Resource" uid="uid://igu6vu06rfv6" path="res://levels/level04_a.tres" id="8_ys0oe"]
+[ext_resource type="Resource" uid="uid://bvd71mu46sqru" path="res://levels/level04_b.tres" id="9_58ux4"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_21ugc")
-available_levels = Array[Resource("res://custom_resource_types/level_data.gd")]([ExtResource("2_bkw5y")])
+available_levels = Array[Resource("res://custom_resource_types/level_data.gd")]([ExtResource("2_bkw5y"), ExtResource("3_tglqa"), ExtResource("3_0ajag"), ExtResource("5_tuojj"), ExtResource("4_aiux8"), ExtResource("4_001jn"), ExtResource("8_ys0oe"), ExtResource("9_58ux4")])
 
 [node name="MenuScreen" parent="." instance=ExtResource("2_hi3kj")]
