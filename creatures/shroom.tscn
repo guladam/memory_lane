@@ -1,0 +1,214 @@
+[gd_scene load_steps=15 format=3 uid="uid://cph6guvqbvj16"]
+
+[ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_3ciwm"]
+[ext_resource type="Texture2D" uid="uid://dk4jwusr17wl0" path="res://creatures/shroom.png" id="2_clqyf"]
+[ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="3_cvsya"]
+[ext_resource type="PackedScene" uid="uid://dnd6bc6alqa1i" path="res://creatures/hit_box.tscn" id="4_is85e"]
+[ext_resource type="PackedScene" uid="uid://cv6f0j7etnach" path="res://weapons/vfx_spawner.tscn" id="5_ye2q3"]
+[ext_resource type="PackedScene" uid="uid://cnjsowibordwu" path="res://weapons/shroom_puff_vfx.tscn" id="6_a1tqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnyag"]
+size = Vector2(45, 72)
+
+[sub_resource type="Animation" id="Animation_gia1v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeleeWeapon/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_50bau"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n5o1x"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_w2fb6"]
+resource_name = "use"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeleeWeapon/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VFXSpawner")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_effect"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [2],
+"method": &"take_damage"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3n3hk"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fuvyr"]
+_data = {
+"RESET": SubResource("Animation_gia1v"),
+"damage": SubResource("Animation_50bau"),
+"idle": SubResource("Animation_n5o1x"),
+"use": SubResource("Animation_w2fb6"),
+"walk": SubResource("Animation_3n3hk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cef72"]
+size = Vector2(33, 23)
+
+[node name="Shroom" node_paths=PackedStringArray("custom_anim_player", "weapon") instance=ExtResource("1_3ciwm")]
+movement_speed = 2.0
+custom_anim_player = NodePath("CustomAnimations")
+weapon = NodePath("MeleeWeapon")
+
+[node name="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(0, -36)
+scale = Vector2(3, 3)
+texture = ExtResource("2_clqyf")
+hframes = 3
+vframes = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0.5, -36)
+shape = SubResource("RectangleShape2D_jnyag")
+
+[node name="FloatingTextPosition" parent="." index="2"]
+position = Vector2(-22, -35)
+
+[node name="HealthBar" parent="." index="3"]
+offset_top = -95.0
+offset_bottom = -75.0
+
+[node name="CustomAnimations" type="AnimationPlayer" parent="." index="9"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_fuvyr")
+}
+
+[node name="MeleeWeapon" parent="." index="10" node_paths=PackedStringArray("animation_player", "hit_box") instance=ExtResource("3_cvsya")]
+position = Vector2(-29, -29)
+animation_player = NodePath("../CustomAnimations")
+hit_box = NodePath("HitBox")
+
+[node name="HitBox" parent="MeleeWeapon" index="0" instance=ExtResource("4_is85e")]
+base_damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeWeapon/HitBox" index="0"]
+position = Vector2(-5.5, -1.5)
+shape = SubResource("RectangleShape2D_cef72")
+disabled = true
+
+[node name="VFXSpawner" parent="." index="11" node_paths=PackedStringArray("target_node") instance=ExtResource("5_ye2q3")]
+effect = ExtResource("6_a1tqn")
+target_node = NodePath("..")

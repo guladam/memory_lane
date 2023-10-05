@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=19 format=3 uid="uid://duxhpxfuxgyvq"]
+
+[ext_resource type="Script" path="res://custom_resource_types/level_data.gd" id="1_msgdq"]
+[ext_resource type="Script" path="res://custom_resource_types/level_spawn_data.gd" id="2_5tgoa"]
+[ext_resource type="PackedScene" uid="uid://ct0abwvob7sd2" path="res://creatures/beholder.tscn" id="2_7d0t3"]
+[ext_resource type="PackedScene" uid="uid://qowj712swg83" path="res://creatures/goblin.tscn" id="3_egxhf"]
+[ext_resource type="PackedScene" uid="uid://dcioh58t6xhdy" path="res://creatures/skeleton.tscn" id="5_rm5x0"]
+[ext_resource type="PackedScene" uid="uid://q0uouhv20f7t" path="res://creatures/bat.tscn" id="6_uxv58"]
+[ext_resource type="PackedScene" uid="uid://bkhb7m0ni3iaa" path="res://creatures/ghost.tscn" id="7_ds30b"]
+[ext_resource type="PackedScene" uid="uid://ct7bqpootp2x2" path="res://creatures/medusa.tscn" id="8_t00g1"]
+[ext_resource type="PackedScene" uid="uid://cph6guvqbvj16" path="res://creatures/shroom.tscn" id="9_0nlv4"]
+[ext_resource type="PackedScene" uid="uid://5awtvfbqn8px" path="res://creatures/genie.tscn" id="10_fx00n"]
+
+[sub_resource type="Resource" id="Resource_pmt26"]
+script = ExtResource("2_5tgoa")
+turn = 1
+enemies = Array[PackedScene]([ExtResource("2_7d0t3"), ExtResource("3_egxhf")])
+
+[sub_resource type="Resource" id="Resource_x7n1n"]
+script = ExtResource("2_5tgoa")
+turn = 3
+enemies = Array[PackedScene]([ExtResource("5_rm5x0"), ExtResource("6_uxv58")])
+
+[sub_resource type="Resource" id="Resource_lmjnf"]
+script = ExtResource("2_5tgoa")
+turn = 5
+enemies = Array[PackedScene]([ExtResource("7_ds30b")])
+
+[sub_resource type="Resource" id="Resource_d4uwj"]
+script = ExtResource("2_5tgoa")
+turn = 6
+enemies = Array[PackedScene]([ExtResource("8_t00g1")])
+
+[sub_resource type="Resource" id="Resource_36dxq"]
+script = ExtResource("2_5tgoa")
+turn = 7
+enemies = Array[PackedScene]([ExtResource("9_0nlv4")])
+
+[sub_resource type="Resource" id="Resource_hf575"]
+script = ExtResource("2_5tgoa")
+turn = 8
+enemies = Array[PackedScene]([ExtResource("10_fx00n")])
+
+[sub_resource type="Resource" id="Resource_ftjlp"]
+script = ExtResource("2_5tgoa")
+turn = 10
+enemies = Array[PackedScene]([ExtResource("7_ds30b"), ExtResource("3_egxhf")])
+
+[sub_resource type="Resource" id="Resource_2asdf"]
+script = ExtResource("2_5tgoa")
+turn = 12
+enemies = Array[PackedScene]([ExtResource("10_fx00n"), ExtResource("8_t00g1")])
+
+[resource]
+script = ExtResource("1_msgdq")
+level_pool = 9
+spawn_table = Array[ExtResource("2_5tgoa")]([SubResource("Resource_pmt26"), SubResource("Resource_x7n1n"), SubResource("Resource_lmjnf"), SubResource("Resource_d4uwj"), SubResource("Resource_36dxq"), SubResource("Resource_hf575"), SubResource("Resource_ftjlp"), SubResource("Resource_2asdf")])

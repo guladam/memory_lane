@@ -1,0 +1,168 @@
+[gd_scene load_steps=12 format=3 uid="uid://5awtvfbqn8px"]
+
+[ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_xcw44"]
+[ext_resource type="Texture2D" uid="uid://b5sqgtr30c283" path="res://creatures/genie.png" id="2_504y0"]
+[ext_resource type="PackedScene" uid="uid://c0tlhwxxydged" path="res://weapons/ranged_weapon.tscn" id="3_13c75"]
+[ext_resource type="PackedScene" uid="uid://b2banxfna01je" path="res://weapons/genie_projectile.tscn" id="4_ee4cm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7dqs"]
+size = Vector2(45, 68)
+
+[sub_resource type="Animation" id="Animation_6hxbd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1pxm8"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0.00784314, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ok77y"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_cqyqd"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_e31r7"]
+resource_name = "use"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 2, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GenieWeapon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_projectile"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_neyk1"]
+_data = {
+"RESET": SubResource("Animation_6hxbd"),
+"damage": SubResource("Animation_1pxm8"),
+"idle": SubResource("Animation_ok77y"),
+"use": SubResource("Animation_e31r7"),
+"walk": SubResource("Animation_cqyqd")
+}
+
+[node name="Genie" node_paths=PackedStringArray("custom_anim_player", "weapon") instance=ExtResource("1_xcw44")]
+type = 1
+movement_speed = 0.5
+movement_anim_speed = 0.5
+custom_anim_player = NodePath("CustomAnimations")
+weapon = NodePath("GenieWeapon")
+
+[node name="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(0, -32)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_504y0")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(1.5, -31)
+shape = SubResource("RectangleShape2D_n7dqs")
+
+[node name="HealthBar" parent="." index="3"]
+offset_top = -86.0
+offset_bottom = -66.0
+
+[node name="Health" parent="." index="5"]
+max_health = 3
+
+[node name="GenieWeapon" parent="." index="9" node_paths=PackedStringArray("animation_player", "visuals", "muzzle") instance=ExtResource("3_13c75")]
+projectile = ExtResource("4_ee4cm")
+animation_player = NodePath("../CustomAnimations")
+visuals = NodePath("Visuals")
+muzzle = NodePath("Muzzle")
+
+[node name="Visuals" type="Node2D" parent="GenieWeapon" index="0"]
+
+[node name="Muzzle" type="Marker2D" parent="GenieWeapon" index="1"]
+position = Vector2(-10, -26)
+
+[node name="CustomAnimations" type="AnimationPlayer" parent="." index="10"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_neyk1")
+}

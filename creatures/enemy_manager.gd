@@ -312,6 +312,9 @@ func _on_enemy_died(enemy: Enemy) -> void:
 		if table[i] and table[i] == enemy:
 			table[i] = null
 			print("enemy deleted from grid")
+	
+	update_unit_intentions(air_grid, grid_air)
+	update_unit_intentions(grid, grid_ground)
 
 
 ## Called when someone wants to add a [param status] to a random [Enemy].

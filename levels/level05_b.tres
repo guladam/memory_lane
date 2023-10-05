@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=10 format=3 uid="uid://0vg47iwvgsxq"]
+
+[ext_resource type="Script" path="res://custom_resource_types/level_data.gd" id="1_aaiht"]
+[ext_resource type="PackedScene" uid="uid://ct7bqpootp2x2" path="res://creatures/medusa.tscn" id="2_epyvj"]
+[ext_resource type="Script" path="res://custom_resource_types/level_spawn_data.gd" id="3_dv4mg"]
+[ext_resource type="PackedScene" uid="uid://qowj712swg83" path="res://creatures/goblin.tscn" id="4_ly4nl"]
+[ext_resource type="PackedScene" uid="uid://ct0abwvob7sd2" path="res://creatures/beholder.tscn" id="5_o3krw"]
+[ext_resource type="PackedScene" uid="uid://q0uouhv20f7t" path="res://creatures/bat.tscn" id="6_qskt2"]
+
+[sub_resource type="Resource" id="Resource_v28ng"]
+script = ExtResource("3_dv4mg")
+turn = 1
+enemies = Array[PackedScene]([ExtResource("2_epyvj")])
+
+[sub_resource type="Resource" id="Resource_vnos0"]
+script = ExtResource("3_dv4mg")
+turn = 3
+enemies = Array[PackedScene]([ExtResource("4_ly4nl"), ExtResource("5_o3krw")])
+
+[sub_resource type="Resource" id="Resource_bgbbh"]
+script = ExtResource("3_dv4mg")
+turn = 5
+enemies = Array[PackedScene]([ExtResource("6_qskt2"), ExtResource("4_ly4nl")])
+
+[resource]
+script = ExtResource("1_aaiht")
+level_pool = 5
+spawn_table = Array[ExtResource("3_dv4mg")]([SubResource("Resource_v28ng"), SubResource("Resource_vnos0"), SubResource("Resource_bgbbh")])

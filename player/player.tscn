@@ -262,7 +262,7 @@ position = Vector2(-6.5, 0.5)
 shape = SubResource("RectangleShape2D_wt08t")
 
 [node name="RangedTargetPosition" type="Marker2D" parent="."]
-position = Vector2(25, -26)
+position = Vector2(18, 0)
 
 [node name="FloatingTextPosition" type="Marker2D" parent="."]
 position = Vector2(-20, -26)

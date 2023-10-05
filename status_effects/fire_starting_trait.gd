@@ -10,7 +10,8 @@ var ignite_vfx := preload("res://weapons/ignite_vfx.tscn")
 func apply_status(_target: Node) -> void:
 	var roll := randf()
 	print("rolled: %s for the fire starter" % roll)
-	if roll <= 0.3:
+#	if roll <= 0.3:
+	if false:
 		Events.add_status_to_random_enemy_requested.emit(ignite_status.duplicate(), ignite_vfx)
 		print("rolled 1 random ignite")
 		

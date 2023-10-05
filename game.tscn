@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bss37jcv6wxbd"]
+[gd_scene load_steps=21 format=3 uid="uid://bss37jcv6wxbd"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_21ugc"]
 [ext_resource type="Resource" uid="uid://4x53kc465kmb" path="res://levels/level01_a.tres" id="2_bkw5y"]
@@ -10,9 +10,19 @@
 [ext_resource type="Resource" uid="uid://nblf0xqtf5bw" path="res://levels/level02_b.tres" id="5_tuojj"]
 [ext_resource type="Resource" uid="uid://igu6vu06rfv6" path="res://levels/level04_a.tres" id="8_ys0oe"]
 [ext_resource type="Resource" uid="uid://bvd71mu46sqru" path="res://levels/level04_b.tres" id="9_58ux4"]
+[ext_resource type="Resource" uid="uid://bgjc7xnnksan" path="res://levels/level05_a.tres" id="10_fk51x"]
+[ext_resource type="Resource" uid="uid://btgvqv8paoryn" path="res://levels/level06_a.tres" id="11_2juxb"]
+[ext_resource type="Resource" uid="uid://0vg47iwvgsxq" path="res://levels/level05_b.tres" id="11_sbmuu"]
+[ext_resource type="Resource" uid="uid://d05q6gbp7cpsa" path="res://levels/level06_b.tres" id="12_n0d1a"]
+[ext_resource type="Resource" uid="uid://28ihncddsltl" path="res://levels/level07_a.tres" id="14_106w7"]
+[ext_resource type="Resource" uid="uid://cywm6dg351vv7" path="res://levels/level07_b.tres" id="15_6sfa2"]
+[ext_resource type="Resource" uid="uid://b38a7pt4fr6dx" path="res://levels/level08_a.tres" id="16_3eie6"]
+[ext_resource type="Resource" uid="uid://bf5so0m14q4dl" path="res://levels/level08_b.tres" id="17_6st8i"]
+[ext_resource type="Resource" uid="uid://wb42h10mh5ro" path="res://levels/level09_a.tres" id="18_3j250"]
+[ext_resource type="Resource" uid="uid://duxhpxfuxgyvq" path="res://levels/level09_b.tres" id="19_atxra"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_21ugc")
-available_levels = Array[Resource("res://custom_resource_types/level_data.gd")]([ExtResource("2_bkw5y"), ExtResource("3_tglqa"), ExtResource("3_0ajag"), ExtResource("5_tuojj"), ExtResource("4_aiux8"), ExtResource("4_001jn"), ExtResource("8_ys0oe"), ExtResource("9_58ux4")])
+available_levels = Array[Resource("res://custom_resource_types/level_data.gd")]([ExtResource("2_bkw5y"), ExtResource("3_tglqa"), ExtResource("3_0ajag"), ExtResource("5_tuojj"), ExtResource("4_aiux8"), ExtResource("4_001jn"), ExtResource("8_ys0oe"), ExtResource("9_58ux4"), ExtResource("10_fk51x"), ExtResource("11_sbmuu"), ExtResource("11_2juxb"), ExtResource("12_n0d1a"), ExtResource("14_106w7"), ExtResource("15_6sfa2"), ExtResource("16_3eie6"), ExtResource("17_6st8i"), ExtResource("18_3j250"), ExtResource("19_atxra")])
 
 [node name="MenuScreen" parent="." instance=ExtResource("2_hi3kj")]
