@@ -3,7 +3,7 @@ class_name Game
 extends Node
 
 ## How many levels the player needs to beat to win a [Run].
-const LEVELS_PER_RUN := 2
+const LEVELS_PER_RUN := 10
 ## All available [Level]s, represented as an array of [LevelData] resources.
 @export var available_levels: Array[LevelData]
 

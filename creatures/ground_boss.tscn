@@ -1,0 +1,184 @@
+[gd_scene load_steps=13 format=3 uid="uid://b0vikjl1a7t8e"]
+
+[ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_84v7b"]
+[ext_resource type="Texture2D" uid="uid://cboc7m22n6577" path="res://creatures/goblin_boss.png" id="2_6w6rb"]
+[ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="3_l2yyn"]
+[ext_resource type="PackedScene" uid="uid://dnd6bc6alqa1i" path="res://creatures/hit_box.tscn" id="4_1d06s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt7gj"]
+size = Vector2(40, 40)
+
+[sub_resource type="Animation" id="Animation_gia1v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeleeWeapon/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_50bau"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n5o1x"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_w2fb6"]
+resource_name = "use"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeleeWeapon/HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_3n3hk"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fuvyr"]
+_data = {
+"RESET": SubResource("Animation_gia1v"),
+"damage": SubResource("Animation_50bau"),
+"idle": SubResource("Animation_n5o1x"),
+"use": SubResource("Animation_w2fb6"),
+"walk": SubResource("Animation_3n3hk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cef72"]
+size = Vector2(33, 23)
+
+[node name="GroundBoss" node_paths=PackedStringArray("custom_anim_player", "weapon") instance=ExtResource("1_84v7b")]
+movement_speed = 0.5
+custom_anim_player = NodePath("CustomAnimations")
+weapon = NodePath("MeleeWeapon")
+
+[node name="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(0, -41)
+scale = Vector2(5, 5)
+texture = ExtResource("2_6w6rb")
+hframes = 3
+vframes = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(5, -20)
+shape = SubResource("RectangleShape2D_nt7gj")
+
+[node name="FloatingTextPosition" parent="." index="2"]
+position = Vector2(-22, -35)
+
+[node name="HealthBar" parent="." index="3"]
+offset_top = -105.0
+offset_bottom = -85.0
+
+[node name="Health" parent="." index="5"]
+max_health = 8
+
+[node name="CustomAnimations" type="AnimationPlayer" parent="." index="9"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_fuvyr")
+}
+
+[node name="MeleeWeapon" parent="." index="10" node_paths=PackedStringArray("animation_player", "hit_box") instance=ExtResource("3_l2yyn")]
+position = Vector2(-29, -29)
+animation_player = NodePath("../CustomAnimations")
+hit_box = NodePath("HitBox")
+
+[node name="HitBox" parent="MeleeWeapon" index="0" instance=ExtResource("4_1d06s")]
+base_damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeWeapon/HitBox" index="0"]
+position = Vector2(-5.5, -1.5)
+shape = SubResource("RectangleShape2D_cef72")
+disabled = true

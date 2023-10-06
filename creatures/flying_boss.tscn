@@ -1,0 +1,166 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1cjmoita2522"]
+
+[ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_6y8ic"]
+[ext_resource type="Texture2D" uid="uid://dmvs1ol18hof3" path="res://creatures/batholder.png" id="2_a2w0i"]
+[ext_resource type="PackedScene" uid="uid://c0tlhwxxydged" path="res://weapons/ranged_weapon.tscn" id="3_yi3ct"]
+[ext_resource type="PackedScene" uid="uid://biwkknk3wt54p" path="res://weapons/beholder_laser.tscn" id="4_2304n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0codf"]
+size = Vector2(120, 79)
+
+[sub_resource type="Animation" id="Animation_a6hdm"]
+resource_name = "use"
+length = 0.01
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_projectile"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jyg32"]
+_data = {
+"use": SubResource("Animation_a6hdm")
+}
+
+[sub_resource type="Animation" id="Animation_6hxbd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1pxm8"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0.00784314, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ok77y"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_cqyqd"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_neyk1"]
+_data = {
+"RESET": SubResource("Animation_6hxbd"),
+"damage": SubResource("Animation_1pxm8"),
+"idle": SubResource("Animation_ok77y"),
+"walk": SubResource("Animation_cqyqd")
+}
+
+[node name="FlyingBoss" node_paths=PackedStringArray("custom_anim_player", "weapon") instance=ExtResource("1_6y8ic")]
+type = 1
+movement_speed = 0.5
+movement_anim_speed = 0.5
+custom_anim_player = NodePath("CustomAnimations")
+weapon = NodePath("BeholderWeapon")
+
+[node name="Eye" type="Marker2D" parent="." index="0"]
+position = Vector2(-15, -31)
+
+[node name="Sprite2D" parent="." index="1"]
+texture_filter = 1
+position = Vector2(0, -42)
+scale = Vector2(7, 7)
+texture = ExtResource("2_a2w0i")
+hframes = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -39.5)
+shape = SubResource("RectangleShape2D_0codf")
+
+[node name="HealthBar" parent="." index="4"]
+offset_left = -27.0
+offset_top = -102.0
+offset_right = 23.0
+offset_bottom = -82.0
+
+[node name="Health" parent="." index="6"]
+max_health = 6
+
+[node name="BeholderWeapon" parent="." index="10" node_paths=PackedStringArray("animation_player", "visuals", "muzzle") instance=ExtResource("3_yi3ct")]
+projectile = ExtResource("4_2304n")
+animation_player = NodePath("AnimationPlayer")
+visuals = NodePath("Visuals")
+muzzle = NodePath("../Eye")
+
+[node name="Visuals" type="Node2D" parent="BeholderWeapon" index="0"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BeholderWeapon" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_jyg32")
+}
+
+[node name="CustomAnimations" type="AnimationPlayer" parent="." index="11"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_neyk1")
+}
