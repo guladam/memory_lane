@@ -1,22 +1,21 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://b36xjds6jvr8y"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_dfo6w"]
+[ext_resource type="Texture2D" uid="uid://dldwr3ox5judg" path="res://cards/damage_if_ignited_icon.png" id="2_l1i57"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_w1o1b"]
-[ext_resource type="Texture2D" uid="uid://dj6okf305jccu" path="res://cards/card_target2.png" id="2_ycki2"]
-[ext_resource type="Texture2D" uid="uid://dbwvl1hun2awc" path="res://status_effects/fire_icon.png" id="3_xyqvl"]
+[ext_resource type="Texture2D" uid="uid://ceqbepn26fadh" path="res://cards/card_target_ground.png" id="3_4r6e3"]
 [ext_resource type="Resource" uid="uid://c27jdcd1cd0ys" path="res://card_effects/fire/fuel_to_the_fire_effect.tres" id="4_ov4u6"]
 [ext_resource type="Resource" uid="uid://sxnwhm87egrv" path="res://cards/card_tooltips/ground_target.tres" id="5_fe3t2"]
-[ext_resource type="Resource" uid="uid://c4eflis0r1j42" path="res://cards/card_tooltips/ignite_tooltip.tres" id="6_e7w7y"]
+[ext_resource type="Resource" uid="uid://xg0kbk8cho3b" path="res://cards/card_tooltips/damage_when_ignited_tooltip.tres" id="7_dhvtj"]
 
 [resource]
 script = ExtResource("2_w1o1b")
 card_back = ExtResource("1_dfo6w")
-card_color = Color(1, 0.333333, 0.333333, 1)
-card_icon = ExtResource("2_ycki2")
-card_text = "1D"
-card_text2 = "3 IF"
-card_status_icon2 = ExtResource("3_xyqvl")
-tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_fe3t2"), ExtResource("6_e7w7y")])
+card_color = Color(1, 1, 1, 1)
+card_icon = ExtResource("2_l1i57")
+card_text = "1(2)"
+card_target_icon = ExtResource("3_4r6e3")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_fe3t2"), ExtResource("7_dhvtj")])
 id = "fuel_to_the_fire"
 tier = 1
 effect = ExtResource("4_ov4u6")

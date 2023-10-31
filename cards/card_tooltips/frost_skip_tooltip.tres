@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://cnaf7r1g5vfxu"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_g7rjf"]
+[ext_resource type="Texture2D" uid="uid://cnj4neuddrdh1" path="res://cards/freeze_skip_icon.png" id="1_mr8ws"]
+
+[resource]
+script = ExtResource("1_g7rjf")
+icon = ExtResource("1_mr8ws")
+text = "Apply N Frost to all Enemies. Skip your next turn."

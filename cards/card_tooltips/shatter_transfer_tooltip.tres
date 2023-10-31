@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://wxi710cg8h84"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_f8gdi"]
+[ext_resource type="Texture2D" uid="uid://bw7cbkhe1b4uo" path="res://cards/shatter_transfer_icon.png" id="1_miriw"]
+
+[resource]
+script = ExtResource("1_f8gdi")
+icon = ExtResource("1_miriw")
+text = "Shatter the target. Then transfer\\n its Frost to a Random Enemy."

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://bq1ygs2805mf6"]
+
+[ext_resource type="Script" path="res://card_effects/frost/frost_bolt_effect.gd" id="1_pr3ay"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="2_ay5ho"]
+
+[resource]
+script = ExtResource("2_ay5ho")
+target_type = 2
+anim_name = "cast_spell_ground"
+effect_name = "frost_bolt"
+effect_code = ExtResource("1_pr3ay")

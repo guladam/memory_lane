@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://ctjf3t6lvuu1u"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_02vvb"]
+[ext_resource type="Texture2D" uid="uid://ckvtdk0ar8bjb" path="res://cards/discard_random_ignite.png" id="1_deonj"]
+
+[resource]
+script = ExtResource("1_02vvb")
+icon = ExtResource("1_deonj")
+text = "Discard Board, apply N Ignite\\n
+to a Random Enemy."

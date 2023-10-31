@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://d1mnpit7cg3tw"]
+
+[ext_resource type="Texture2D" uid="uid://c2ab10yvgfj7a" path="res://cards/shatter_icon.png" id="1_27827"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_xoit0"]
+
+[resource]
+script = ExtResource("1_xoit0")
+icon = ExtResource("1_27827")
+text = "Shatter: Consume all Frost stacks\\nand deal that much dmg."

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=4 format=3 uid="uid://curs08u0i2vh4"]
+
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_7km27"]
+[ext_resource type="Script" path="res://status_effects/gas_station.gd" id="1_gxrjo"]
+[ext_resource type="Resource" uid="uid://bayd4es8ofdsg" path="res://cards/card_tooltips/gas_station_tooltip.tres" id="2_vqxdq"]
+
+[resource]
+script = ExtResource("1_7km27")
+status_id = "gas_station"
+duration = 4
+icon = 6
+tooltip = ExtResource("2_vqxdq")
+code = ExtResource("1_gxrjo")

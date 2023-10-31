@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://4f1lyv3rg4f0"]
+
+[ext_resource type="Script" path="res://card_effects/frost/keeping_cool_effect.gd" id="1_17ess"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_j4h4e"]
+
+[resource]
+script = ExtResource("1_j4h4e")
+target_type = 1
+anim_name = "cast_spell_air"
+effect_name = "keeping_cool"
+effect_code = ExtResource("1_17ess")

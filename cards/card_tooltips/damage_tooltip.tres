@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://dg1oa5l8npp7k"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_ewd5i"]
+[ext_resource type="Texture2D" uid="uid://dj6okf305jccu" path="res://cards/damage_icon.png" id="1_slbhq"]
+
+[resource]
+script = ExtResource("1_ewd5i")
+icon = ExtResource("1_slbhq")
+text = "Deal N damage."

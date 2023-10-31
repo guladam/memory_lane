@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_bsxtx")
 icon = ExtResource("1_a6lki")
-text = "Discards Board"
+text = "Discard Board."

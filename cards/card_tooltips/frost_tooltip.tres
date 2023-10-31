@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://dahfrnsbkk6jd"]
+
+[ext_resource type="Texture2D" uid="uid://baamidx18tbm1" path="res://status_effects/ice_icon.png" id="1_m60dr"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_nwynr"]
+
+[resource]
+script = ExtResource("1_nwynr")
+icon = ExtResource("1_m60dr")
+text = "Frost: -10% movement /stack."

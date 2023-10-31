@@ -142,8 +142,7 @@ func move_enemy(enemy: Enemy, grid_idx: int) -> void:
 		await enemy.animate_move(_get_grid_position_for_enemy(enemy, current_grid_idx))	
 	
 		print("moved from %s to %s" % [grid_idx, current_grid_idx])
-		## TODO THIS MIGHT BE WRONG, MIGHT DELETE UNRELATED UNITS,
-		## NEEDS TO BE CHECKED ON PAPER
+
 		grid_table[current_grid_idx + 1] = null
 		grid_table[current_grid_idx] = enemy
 
@@ -319,14 +318,28 @@ func _on_enemy_died(enemy: Enemy) -> void:
 
 ## Called when someone wants to add a [param status] to a random [Enemy].
 ## Optionally, a [param vfx] scene can be created for the status.
-func _on_add_status_to_random_enemy_requested(status: StatusData, vfx: PackedScene = null) -> void:
+## Optionally, a [param source_texture_status] can be added to create a highlight effect.
+func _on_add_status_to_random_enemy_requested(status: StatusData, vfx: PackedScene = null, source_status_texture: Texture = null) -> void:
 	var _enemies := get_all_enemies()
 	if _enemies.is_empty():
 		return
-		
+	
 	var enemy := _enemies.pick_random() as Enemy
+	
+	if status.duration == -1:
+		var _possible_candidates = _enemies.filter(
+			func(e): return not e.status_effects.has_status_by_id(status.status_id)
+		)
+		if not _possible_candidates.is_empty():
+			enemy = _possible_candidates.pick_random()
+	
 	if enemy:
+		if status.status_id == "ignited" and enemy.status_effects.has_status_by_id("fuel"):
+			status = status.duplicate(true)
+			status.duration *= 2
 		enemy.status_effects.add_new_status(status)
+		if source_status_texture:
+			enemy.create_status_highlight(source_status_texture)
 		if vfx:
 			var new_vfx := vfx.instantiate()
 			new_vfx.global_position = enemy.global_position

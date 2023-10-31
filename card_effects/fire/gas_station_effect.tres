@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://dm27royj1gips"]
+
+[ext_resource type="Script" path="res://card_effects/fire/gas_station_effect.gd" id="1_cybx0"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_ko61x"]
+
+[resource]
+script = ExtResource("1_ko61x")
+target_type = 1
+anim_name = "cast_spell_air"
+effect_name = "gas_station"
+effect_code = ExtResource("1_cybx0")

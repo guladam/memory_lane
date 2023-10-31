@@ -8,7 +8,7 @@ extends Resource
 enum TargetType { BOARD, SELF, GROUND, AIR, ALL_GROUND, ALL_AIR, ALL_ENEMIES, EVERYONE }
 
 @export var target_type: TargetType
-@export var anim_name: String
+@export var anim_name: String = "cast_spell_air"
 @export var effect_name: String
 @export var effect_code: GDScript
 

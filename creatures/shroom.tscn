@@ -84,6 +84,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_w2fb6"]
 resource_name = "use"
+length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -129,12 +130,9 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.9),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [2],
-"method": &"take_damage"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_3n3hk"]
@@ -200,6 +198,7 @@ libraries = {
 position = Vector2(-29, -29)
 animation_player = NodePath("../CustomAnimations")
 hit_box = NodePath("HitBox")
+self_damage = 2
 
 [node name="HitBox" parent="MeleeWeapon" index="0" instance=ExtResource("4_is85e")]
 base_damage = 2

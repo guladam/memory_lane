@@ -16,7 +16,12 @@ func apply_effect() -> void:
 	var to: Vector2 = player.global_position
 	var from: Vector2 = to + Vector2(0, -100)
 	Events.projectile_spawn_requested.emit(to, enemy_fire_bolt_projectile, from)
-	player.status_effects.add_new_status(ignite_status)
+	
+	
+	var new_ignite := ignite_status.duplicate(true)
+	if player.status_effects.has_status_by_id("fuel"):
+		new_ignite.duration *= 2
+	player.status_effects.add_new_status(new_ignite)
 	
 	var enemy: Enemy
 	for i in range(1, effect.targets.size()):
@@ -27,4 +32,8 @@ func apply_effect() -> void:
 		to = enemy.global_position
 		from = to + Vector2(0, -100)
 		Events.projectile_spawn_requested.emit(to, fire_bolt_projectile, from)
-		enemy.status_effects.add_new_status(ignite_status)
+		
+		new_ignite = ignite_status.duplicate(true)
+		if enemy.status_effects.has_status_by_id("fuel"):
+			new_ignite.duration *= 2
+		enemy.status_effects.add_new_status(new_ignite)

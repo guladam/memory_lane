@@ -8,6 +8,7 @@ var current_tooltip: Node2D
 
 func _ready() -> void:
 	Events.status_tooltip_requested.connect(_on_status_tooltip_requested)
+	Events.card_pile_panel_requested.connect(_on_card_pile_panel_requested)
 
 
 func clear_tooltip() -> void:
@@ -36,3 +37,7 @@ func _on_status_tooltip_requested(statuses: Array[StatusData], unit: Node2D) -> 
 	tooltip.position.x = clamp(tooltip.position.x, 0, max_x)
 	tooltip.original_pos = tooltip.position
 	tooltip.fade_in()
+
+
+func _on_card_pile_panel_requested(_title: String, _cards: Array[CardData]) -> void:
+	clear_tooltip()

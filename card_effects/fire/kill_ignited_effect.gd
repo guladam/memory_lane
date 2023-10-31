@@ -6,7 +6,7 @@ var ignite_kill_vfx := preload("res://weapons/ignite_kill_vfx.tscn")
 
 
 ## Overrides the virtual method of the [EffectCode] parent class.
-## Deals 99 damage to the first ignited enemy.
+## Deals 99 damage to all ignited enemies.
 func apply_effect() -> void:
 	var enemy: Enemy
 	
@@ -19,6 +19,5 @@ func apply_effect() -> void:
 			kill_vfx.global_position = enemy.global_position
 			enemy.get_tree().root.add_child(kill_vfx)
 			enemy.take_damage(99)
-			return
 			
 	print("no valid target")

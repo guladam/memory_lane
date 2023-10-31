@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://b6dxv3qmnh83q"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_1t1l4"]
+[ext_resource type="Script" path="res://card_effects/frost/ice_bucket_effect.gd" id="1_i8kch"]
+
+[resource]
+script = ExtResource("1_1t1l4")
+target_type = 2
+anim_name = "cast_spell_ground"
+effect_name = "ice_bucket"
+effect_code = ExtResource("1_i8kch")

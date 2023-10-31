@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_glhli")
 icon = ExtResource("1_uouih")
-text = "Ignite: 1 DMG / turn"
+text = "Ignite: 1 damage / turn"

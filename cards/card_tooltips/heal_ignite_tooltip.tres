@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_8puvj")
 icon = ExtResource("1_lk2y6")
-text = "Heal 99 & apply N ignite"
+text = "Heal to Full HP."

@@ -38,6 +38,16 @@ func has_status(status: StatusData) -> bool:
 	return found
 
 
+## Returns [code]true[/code] if the owner has a [param status] as an ID.
+func has_status_by_id(status_id: String) -> bool:
+	var found := false
+	for s in get_children():
+		if s.data.status_id == status_id:
+			found = true
+	
+	return found
+
+
 ## Returns the [param status] if it's present on the owner.
 ## Otherwise returns null.
 func get_status(status: StatusData) -> Status:
@@ -60,19 +70,12 @@ func get_all_status_data() -> Array[StatusData]:
 	return data
 
 
-## Refreshes all status effects on the GUI.
-func _refresh_effect_bar() -> void:
-	if not status_effect_bar:
-		return
-	
-	status_effect_bar.clear()
-	for s in get_children():
-		status_effect_bar.add_status(s)
-
-
 ## Adds a new [Status] to the owner of this node.
 ## [param status_data] is the [StatusData] resource for the status effect.
-func add_new_status(status_data: StatusData) -> void:
+func add_new_status(status_data: StatusData, at_index: int = -1) -> void:
+	if has_status(status_data) and status_data.duration == -1:
+		return
+	
 	if has_status(status_data):
 		get_status(status_data).duration += status_data.duration
 		status_effect_bar.update_all_status_effects(get_children())
@@ -82,7 +85,27 @@ func add_new_status(status_data: StatusData) -> void:
 	new_status.set_script(status_data.code)
 	new_status.setup(status_data)
 	add_child(new_status)
+	
+	if at_index > -1:
+		move_child(new_status, 0)
+	
 	status_added.emit(new_status)
 	
 	if status_effect_bar:
 		status_effect_bar.add_status(new_status)
+
+
+## Removes [param status] if it's present on the owner.
+func remove_status(status: StatusData) -> void:
+	var that_status: Status = null
+	var children = get_children()
+	
+	for s in get_children():
+		if s.equals(status):
+			that_status = s
+	
+	if that_status and status_effect_bar:
+		status_effect_bar.clear()
+		children.erase(that_status)
+		status_effect_bar.update_all_status_effects(children)
+		that_status.remove()

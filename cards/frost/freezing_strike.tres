@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://dkr8p2srh46e1"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_ib823"]
+[ext_resource type="Texture2D" uid="uid://dj6okf305jccu" path="res://cards/damage_icon.png" id="2_8q5ic"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_uynnt"]
+[ext_resource type="Texture2D" uid="uid://ceqbepn26fadh" path="res://cards/card_target_ground.png" id="3_x1x5e"]
+[ext_resource type="Resource" uid="uid://xijcuiryfgx6" path="res://card_effects/frost/23_freezing_strike_effect.tres" id="4_nbhg3"]
+[ext_resource type="Resource" uid="uid://sxnwhm87egrv" path="res://cards/card_tooltips/ground_target.tres" id="6_fxyxv"]
+[ext_resource type="Resource" uid="uid://dg1oa5l8npp7k" path="res://cards/card_tooltips/damage_tooltip.tres" id="7_h5vec"]
+
+[resource]
+script = ExtResource("2_uynnt")
+card_back = ExtResource("1_ib823")
+card_color = Color(1, 0.333333, 0.333333, 1)
+card_icon = ExtResource("2_8q5ic")
+card_text = "2"
+card_target_icon = ExtResource("3_x1x5e")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_fxyxv"), ExtResource("7_h5vec")])
+id = "freezing_strike"
+tier = 1
+effect = ExtResource("4_nbhg3")
+can_have_multiple = true

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ych0n1e8lv0n"]
+
+[ext_resource type="Texture2D" uid="uid://crc6cbapn4xxk" path="res://status_effects/fire_starter_icon.png" id="1_fik6f"]
+[ext_resource type="Script" path="res://ui/status_highlighter.gd" id="2_maeah"]
+
+[node name="StatusHighlighter" type="TextureRect"]
+custom_minimum_size = Vector2(48, 48)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+texture = ExtResource("1_fik6f")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_maeah")

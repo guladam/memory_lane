@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://btla3t2k4gx83"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_fnwff"]
+[ext_resource type="Script" path="res://card_effects/frost/random_2_frost.gd" id="1_n46bx"]
+
+[resource]
+script = ExtResource("1_fnwff")
+target_type = 6
+anim_name = "cast_spell_air"
+effect_name = "throw_ice_cream"
+effect_code = ExtResource("1_n46bx")

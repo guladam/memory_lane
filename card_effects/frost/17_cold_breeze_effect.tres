@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://2b27s4sfw10e"]
+
+[ext_resource type="Script" path="res://card_effects/frost/cold_breeze_effect.gd" id="1_0i3wq"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_xwgxp"]
+
+[resource]
+script = ExtResource("1_xwgxp")
+target_type = 3
+anim_name = "cast_spell_air"
+effect_name = "cold_breeze"
+effect_code = ExtResource("1_0i3wq")

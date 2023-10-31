@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=6 format=3 uid="uid://cu763ccxuvcsn"]
+
+[ext_resource type="Script" path="res://status_effects/ice_starting_trait.gd" id="1_3gvva"]
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_je3ge"]
+[ext_resource type="Texture2D" uid="uid://c5ruhkwbfy4bm" path="res://status_effects/ice_starter_icon.png" id="2_v7gly"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="3_dq1hs"]
+
+[sub_resource type="Resource" id="Resource_3uc7d"]
+script = ExtResource("3_dq1hs")
+icon = ExtResource("2_v7gly")
+text = "When you Discard a pair of cards or your board\\n is emptied, apply 1 Frost to a Random Enemy."
+
+[resource]
+script = ExtResource("1_je3ge")
+status_id = "ice_starter"
+duration = -1
+temporary_duration = true
+icon = 5
+tooltip = SubResource("Resource_3uc7d")
+code = ExtResource("1_3gvva")

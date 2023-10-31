@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://bayd4es8ofdsg"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_ossks"]
+[ext_resource type="Texture2D" uid="uid://bkjotijpo8kl1" path="res://status_effects/gas_station_icon.png" id="1_y8lt8"]
+
+[resource]
+script = ExtResource("1_ossks")
+icon = ExtResource("1_y8lt8")
+text = "At the start of your turn\\napply 1 Fuel to a Random Enemy."

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://chc23xvtktoi7"]
+
+[ext_resource type="Script" path="res://card_effects/frost/full_heal.gd" id="1_oehnu"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="2_kmrm3"]
+
+[resource]
+script = ExtResource("2_kmrm3")
+target_type = 1
+anim_name = "cast_spell_air"
+effect_name = "cool_down"
+effect_code = ExtResource("1_oehnu")

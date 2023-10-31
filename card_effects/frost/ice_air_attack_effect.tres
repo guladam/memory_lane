@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://caovafr4hgxlj"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_8eh4i"]
+[ext_resource type="Script" path="res://card_effects/frost/ice_air_attack_effect.gd" id="1_jojsv"]
+
+[resource]
+script = ExtResource("1_8eh4i")
+target_type = 3
+anim_name = "cast_spell_air"
+effect_name = "ice_air_attack"
+effect_code = ExtResource("1_jojsv")

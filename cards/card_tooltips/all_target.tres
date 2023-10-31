@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://pfddo38bo3yv"]
 
-[ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target4.png" id="1_mlpo6"]
+[ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target_all_enemies.png" id="1_mlpo6"]
 [ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_ts2d0"]
 
 [resource]

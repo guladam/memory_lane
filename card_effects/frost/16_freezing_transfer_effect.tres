@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://d3u6lbnmgl87h"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_bosar"]
+[ext_resource type="Script" path="res://card_effects/frost/shatter_and_transfer.gd" id="1_n6myk"]
+
+[resource]
+script = ExtResource("1_bosar")
+target_type = 2
+anim_name = "cast_spell_air"
+effect_name = "freezing_transfer"
+effect_code = ExtResource("1_n6myk")

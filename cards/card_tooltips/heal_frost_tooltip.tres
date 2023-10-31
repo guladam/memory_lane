@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://dvjettkebtg2v"]
+
+[ext_resource type="Texture2D" uid="uid://5ersxuiwlk7i" path="res://cards/heal_frost_icon.png" id="1_2ulv4"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_wsi7c"]
+
+[resource]
+script = ExtResource("1_wsi7c")
+icon = ExtResource("1_2ulv4")
+text = "Apply N Frost to a Random Enemy.\\nHeal M. (N+M)"

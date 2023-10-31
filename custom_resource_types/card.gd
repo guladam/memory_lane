@@ -12,9 +12,7 @@ enum Tier { TIER_0, TIER_1, TIER_2, TIER_3 }
 @export var card_color: Color
 @export var card_icon: Texture
 @export var card_text: String
-@export var card_status_icon: Texture
-@export var card_text2: String
-@export var card_status_icon2: Texture
+@export var card_target_icon: Texture
 ## Tooltip shown when tapped on the card.
 @export var tooltips: Array[Tooltip]
 

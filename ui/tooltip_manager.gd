@@ -28,10 +28,12 @@ func _on_card_tooltip_requested(card: CardData, card_gui: Control) -> void:
 	
 	await get_tree().process_frame
 	
+	var max_x: float = get_viewport_rect().size.x - tooltip.size.x
 	tooltip.position = rect.position
 	tooltip.position.x +=  rect.size.x / 2
 	tooltip.position.x -= tooltip.size.x / 2
 	tooltip.position.y -= tooltip.size.y / 2
 	tooltip.position.y += TOOLTIP_Y_OFFSET
+	tooltip.position.x = clamp(tooltip.position.x, 0, max_x)
 	tooltip.original_pos = tooltip.position
 	tooltip.fade_in()

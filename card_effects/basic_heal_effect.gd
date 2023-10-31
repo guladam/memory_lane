@@ -9,4 +9,4 @@ func apply_effect() -> void:
 	if not player:
 		return
 	
-	player.heal(1)
+	player.heal(2)

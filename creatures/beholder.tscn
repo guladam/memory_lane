@@ -118,6 +118,7 @@ _data = {
 
 [node name="Beholder" node_paths=PackedStringArray("custom_anim_player", "weapon") instance=ExtResource("1_p4e71")]
 type = 1
+movement_speed = 0.5
 movement_anim_speed = 0.5
 custom_anim_player = NodePath("CustomAnimations")
 weapon = NodePath("BeholderWeapon")

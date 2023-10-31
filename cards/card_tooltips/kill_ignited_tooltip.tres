@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_dvteh")
 icon = ExtResource("1_1t72y")
-text = "Kill 1st Ignited Enemy"
+text = "Kill Ignited Enemy."

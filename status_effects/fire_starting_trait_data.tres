@@ -8,12 +8,13 @@
 [sub_resource type="Resource" id="Resource_hsef8"]
 script = ExtResource("4_v1qby")
 icon = ExtResource("3_5qw6o")
-text = "Start of turn: 30% chance to apply\\n1 Ignite to a random enemy."
+text = "Start of turn: 20% chance to apply\\n1 Ignite to a random enemy.\\nIf you have Fuel, this can target you too."
 
 [resource]
 script = ExtResource("1_d3ep6")
 status_id = "fire_starter"
 duration = -1
+temporary_duration = true
 icon = 4
 tooltip = SubResource("Resource_hsef8")
 code = ExtResource("1_v7k3r")

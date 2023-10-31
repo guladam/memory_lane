@@ -25,13 +25,14 @@ enum Intents {NONE, ATTACK, MOVE}
 ## [Weapon] used by this enemy.
 @export var weapon: Weapon
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var health: Health = $Health
+@onready var health: Health = $Health as Health
 @onready var health_bar: PanelContainer = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var movement_modifiers: Modifiers = $MovementModifiers
-@onready var status_effects: StatusEffects = $StatusEffects
+@onready var movement_modifiers: Modifiers = $MovementModifiers as Modifiers
+@onready var status_effects: StatusEffects = $StatusEffects as StatusEffects
 @onready var floating_text_position: Marker2D = $FloatingTextPosition
 @onready var floating_text := preload("res://creatures/floating_text.tscn")
+@onready var status_highlight := preload("res://ui/status_highlighter.tscn")
 @onready var puff_effect := preload("res://creatures/puff_effect.tscn")
 
 ## This variable is used to calculate how many grid spaces
@@ -128,7 +129,11 @@ func melee_attack(attack_position: Vector2) -> void:
 	@warning_ignore("redundant_await")
 	await weapon.use_weapon()
 	
-	await animate_move(starting_pos)
+	if weapon.self_damage > 0:
+		take_damage(weapon.self_damage)
+	
+	if health.health > 0:
+		await animate_move(starting_pos)
 
 
 ## Performs a ranged attack.
@@ -146,6 +151,7 @@ func ranged_attack(target: Vector2) -> void:
 
 ## Returns the current speed of the unit, in grids.
 func get_speed() -> float:
+	print("original movement: %s | w/ modifiers: %s" % [movement_speed, movement_speed*movement_modifiers.get_modifier()])
 	return movement_speed * movement_modifiers.get_modifier()
 
 
@@ -166,7 +172,17 @@ func _create_floating_text(text: String, color: Color) -> void:
 	var new_floating_text := floating_text.instantiate()
 	get_tree().root.add_child(new_floating_text)
 	new_floating_text.show_text(floating_text_position.global_position, color, text)
-	
+
+
+## Creates a status highlight effect when a [Status] applies
+## to the unit.
+## [param icon] is the [Texture] to show.
+func create_status_highlight(icon: Texture) -> void:
+	var new_status_highlight := status_highlight.instantiate()
+	var highlight_position = floating_text_position.global_position + Vector2.UP * 30
+	get_tree().root.add_child(new_status_highlight)
+	new_status_highlight.show_text(highlight_position, icon)
+
 
 ## Called when the enemy's health is changed.
 func _on_health_changed(new_hp: int) -> void:

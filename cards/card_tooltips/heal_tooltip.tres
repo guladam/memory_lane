@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_nyedt")
 icon = ExtResource("1_wrths")
-text = "Heal"
+text = "Heal."

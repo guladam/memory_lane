@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://t2uywxn0o2tv"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_c5pjy"]
+[ext_resource type="Texture2D" uid="uid://c5px8k4c5a4ii" path="res://cards/damage_if_frozen_icon.png" id="1_s3j4d"]
+
+[resource]
+script = ExtResource("1_c5pjy")
+icon = ExtResource("1_s3j4d")
+text = "Deal N damage, or (M) damage if Enemy has Frost."

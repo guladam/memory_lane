@@ -16,4 +16,7 @@ func apply_effect() -> void:
 	var from: Vector2 = to + Vector2(0, -100)
 	
 	Events.projectile_spawn_requested.emit(to, fire_bolt_ignite_projectile, from)
-	enemy.status_effects.add_new_status(ignite_status)
+	var new_ignite := ignite_status.duplicate(true)
+	if enemy.status_effects.has_status_by_id("fuel"):
+		new_ignite.duration *= 2
+	enemy.status_effects.add_new_status(new_ignite)

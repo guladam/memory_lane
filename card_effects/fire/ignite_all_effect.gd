@@ -14,7 +14,11 @@ func apply_effect() -> void:
 		if not enemy:
 			continue
 		
-		enemy.status_effects.add_new_status(ignite_status)
+		var new_ignite := ignite_status.duplicate(true)
+		if enemy.status_effects.has_status_by_id("fuel"):
+			new_ignite.duration *= 2
+			
+		enemy.status_effects.add_new_status(new_ignite)
 		var new_vfx := ignite_vfx.instantiate()
 		new_vfx.global_position = enemy.global_position
 		enemy.get_tree().root.add_child(new_vfx)

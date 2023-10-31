@@ -9,14 +9,18 @@ signal status_expired
 signal status_applied
 
 ## Available icons for ALL status effects.
-enum Icons {FIRE, ICE, REVEAL, HOT_MESS, FIRE_STARTER}
+enum Icons {FIRE, ICE, REVEAL, HOT_MESS, FIRE_STARTER, ICE_STARTER, FUEL, GAS_STATION, FREEZING_TIME}
 ## Preloaded textures for the icons above.
 const ICONS := {
 	Icons.FIRE: preload("res://status_effects/fire_icon.png"),
 	Icons.ICE: preload("res://status_effects/ice_icon.png"),
 	Icons.REVEAL: preload("res://status_effects/reveal_icon.png"),
 	Icons.HOT_MESS: preload("res://status_effects/hot_mess_icon.png"),
-	Icons.FIRE_STARTER: preload("res://status_effects/fire_starter_icon.png")
+	Icons.FIRE_STARTER: preload("res://status_effects/fire_starter_icon.png"),
+	Icons.ICE_STARTER: preload("res://status_effects/ice_starter_icon.png"),
+	Icons.FUEL: preload("res://status_effects/fuel_icon.png"),
+	Icons.GAS_STATION: preload("res://status_effects/gas_station_icon.png"),
+	Icons.FREEZING_TIME: preload("res://cards/freeze_skip_icon.png")
 }
 
 ## [StatusData] resource for this status effect.
@@ -47,6 +51,12 @@ func apply_status(target: Node) -> void:
 	print("applied %s status to %s" % [data.status_id, target])
 
 
+## Called when there is a special need of logic to get rid of 
+## status side effect. Eg. remove all movement modifiers for frost effects.
+func remove() -> void:
+	queue_free()
+
+
 ## Returns [code]true[/code] if this status is the same as
 ## the [param other] one.
 func equals(other: StatusData) -> bool:
@@ -55,7 +65,7 @@ func equals(other: StatusData) -> bool:
 
 ## Called when the status effect is applied to the target.
 func _on_status_applied() -> void:
-	if duration > 0:
+	if duration > 0 and data.temporary_duration:
 		duration -= 1
 
 	if duration == 0:

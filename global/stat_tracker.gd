@@ -109,7 +109,9 @@ func _on_enemy_died(_enemy: Enemy) -> void:
 func _on_level_won(level: LevelData) -> void:
 	levels_beaten += 1
 	
+	print("should we unlock ice char at %s" % level.level_pool)
 	if level.level_pool >= 6:
+		print("yes we should indeed")
 		ice_unlocked = true
 		
 	_save_stats()

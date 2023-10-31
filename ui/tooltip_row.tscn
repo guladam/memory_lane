@@ -4,11 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dbwvl1hun2awc" path="res://status_effects/fire_icon.png" id="1_mdgix"]
 
 [node name="TooltipRow" type="HBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 200.0
+offset_bottom = 104.0
+alignment = 1
 script = ExtResource("1_cdqpq")
 
 [node name="Icon" type="TextureRect" parent="."]
@@ -20,5 +18,5 @@ stretch_mode = 5
 [node name="Text" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "IGNITE: deal 1 dmg / turn"
-vertical_alignment = 1
+size_flags_vertical = 0
+text = "Deal N damage, or (M) damage if enemy is Ignited."

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://cqyqxyeedn7rr"]
+
+[ext_resource type="Script" path="res://card_effects/frost/frost_all.gd" id="1_0caf0"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_xucs0"]
+
+[resource]
+script = ExtResource("1_xucs0")
+target_type = 6
+anim_name = "cast_spell_air"
+effect_name = "freezing_lair"
+effect_code = ExtResource("1_0caf0")

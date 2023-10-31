@@ -228,7 +228,7 @@ text = "Enemies slain:"
 [node name="EnemiesKilledProgressBar" parent="StatsAndButtons/Enemies Killed" instance=ExtResource("4_vhiue")]
 unique_name_in_owner = true
 layout_mode = 2
-max_value = 2000.0
+max_value = 600.0
 value = 300.0
 
 [node name="NextLevel" type="Button" parent="StatsAndButtons"]

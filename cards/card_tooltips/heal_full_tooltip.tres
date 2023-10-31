@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://bt7bm260dcx1t"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_8vppl"]
+[ext_resource type="Texture2D" uid="uid://danxd02jv8ygm" path="res://weapons/heal_icon.png" id="1_irpd0"]
+
+[resource]
+script = ExtResource("1_8vppl")
+icon = ExtResource("1_irpd0")
+text = "Heal to full HP."

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://dfdr0h4gpwwq8"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_knjhl"]
+[ext_resource type="Texture2D" uid="uid://csru16ls5nnkq" path="res://cards/damage_ignite_icon.png" id="1_tllqx"]
+
+[resource]
+script = ExtResource("1_knjhl")
+icon = ExtResource("1_tllqx")
+text = "Deal N damage.\\nApply M ignite (N+M)."

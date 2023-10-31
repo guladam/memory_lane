@@ -20,3 +20,9 @@ func update_all_status_effects(status_effects: Array) -> void:
 	for i in range(get_child_count()):
 		if i < status_effects.size():
 			get_child(i).update(status_effects[i])
+
+
+## Removes all status effects present.
+func clear() -> void:
+	for c in get_children():
+		c.queue_free()

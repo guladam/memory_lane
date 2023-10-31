@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://coxclggqjvk7g"]
+
+[ext_resource type="Script" path="res://card_effects/fire/fuel_first.gd" id="1_jmv2h"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="2_cb0lc"]
+
+[resource]
+script = ExtResource("2_cb0lc")
+target_type = 2
+anim_name = "cast_spell_air"
+effect_name = "fuel_first"
+effect_code = ExtResource("1_jmv2h")

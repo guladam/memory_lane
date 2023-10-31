@@ -1,8 +1,33 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://qung2y8erng0"]
+[gd_resource type="Resource" script_class="Character" load_steps=29 format=3 uid="uid://qung2y8erng0"]
 
 [ext_resource type="Texture2D" uid="uid://bi3jwnpvsq3hi" path="res://cards/card_background2.png" id="1_ardei"]
 [ext_resource type="Script" path="res://custom_resource_types/character.gd" id="1_arh60"]
+[ext_resource type="Resource" uid="uid://c45ul3px4m3yh" path="res://cards/frost/cold_breeze.tres" id="1_cfq24"]
 [ext_resource type="Texture2D" uid="uid://c0pkpwfjtd53o" path="res://ui/ice_emblem.png" id="2_on7lf"]
+[ext_resource type="Resource" uid="uid://cb0w0ewn01khj" path="res://cards/frost/cold_clarity.tres" id="2_v5srs"]
+[ext_resource type="Resource" uid="uid://b47n7yvsemujq" path="res://cards/frost/cold_medicine.tres" id="3_q7rvm"]
+[ext_resource type="Resource" uid="uid://bpgjskr06kdnh" path="res://cards/frost/cold_shuffle.tres" id="4_7inhq"]
+[ext_resource type="Resource" uid="uid://5rh75ejxrnpt" path="res://cards/frost/cool_down.tres" id="5_sxnf5"]
+[ext_resource type="Resource" uid="uid://2b8fcqq3n77v" path="res://cards/frost/focus.tres" id="6_27ihm"]
+[ext_resource type="Resource" uid="uid://cl6cygwled2ov" path="res://cards/frost/freezing_bolt.tres" id="7_vsibc"]
+[ext_resource type="Resource" uid="uid://bm3sbi50uvh1n" path="res://cards/frost/freezing_lair.tres" id="8_la5xu"]
+[ext_resource type="Resource" uid="uid://bnv43eoddqfmx" path="res://cards/frost/freezing_shot.tres" id="9_0qne5"]
+[ext_resource type="Resource" uid="uid://dkr8p2srh46e1" path="res://cards/frost/freezing_strike.tres" id="10_1qbj0"]
+[ext_resource type="Resource" uid="uid://dx8vpedn0o233" path="res://cards/frost/freezing_time.tres" id="11_2xaty"]
+[ext_resource type="Resource" uid="uid://b8c76or80sk14" path="res://cards/frost/freezing_transfer.tres" id="12_c6ls8"]
+[ext_resource type="Resource" uid="uid://dqwjvcuv5you7" path="res://cards/frost/frost_bolt.tres" id="13_7onpf"]
+[ext_resource type="Resource" uid="uid://2mfi48atv8bl" path="res://cards/frost/icebreaker.tres" id="14_02641"]
+[ext_resource type="Resource" uid="uid://chlyuejsh5nti" path="res://cards/frost/ice_bucket.tres" id="15_3pb0b"]
+[ext_resource type="Resource" uid="uid://c055vqtck6qox" path="res://cards/frost/keeping_cool.tres" id="16_jcbdd"]
+[ext_resource type="Resource" uid="uid://cb502g6qfnwl2" path="res://cards/frost/shatter_air.tres" id="17_dmh3l"]
+[ext_resource type="Resource" uid="uid://dh6tal6vqsgg4" path="res://cards/frost/shatter_all_air.tres" id="18_fcx5i"]
+[ext_resource type="Resource" uid="uid://dfjiiyqbp88ci" path="res://cards/frost/shatter_all_ground.tres" id="19_a27vv"]
+[ext_resource type="Resource" uid="uid://csmyih1p2pqx3" path="res://cards/frost/shatter_ground.tres" id="20_vud2m"]
+[ext_resource type="Resource" uid="uid://daihtaigm18oj" path="res://cards/frost/shatter_lair.tres" id="21_6lir4"]
+[ext_resource type="Resource" uid="uid://dajn2a03t8eks" path="res://cards/frost/throw_ice_cream.tres" id="22_6syy7"]
+[ext_resource type="Resource" uid="uid://bb6n5klnvtd2m" path="res://characters/ice_character_starting_deck.tres" id="26_jegg3"]
+[ext_resource type="Resource" uid="uid://cu763ccxuvcsn" path="res://status_effects/ice_starting_trait_data.tres" id="27_im5xu"]
+[ext_resource type="Resource" uid="uid://di2bv4du2ikm0" path="res://status_effects/reveal_2_data.tres" id="28_uog31"]
 
 [resource]
 script = ExtResource("1_arh60")
@@ -11,6 +36,7 @@ icon = ExtResource("2_on7lf")
 tooltip = "Personality trait: cold as ice."
 card_background = ExtResource("1_ardei")
 color = Color(0.333333, 1, 1, 1)
-starting_hp = 4
-starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([])
-available_cards = Array[Resource("res://custom_resource_types/card.gd")]([])
+starting_hp = 3
+starting_deck = ExtResource("26_jegg3")
+starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([ExtResource("27_im5xu"), ExtResource("28_uog31")])
+available_cards = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("1_cfq24"), ExtResource("2_v5srs"), ExtResource("3_q7rvm"), ExtResource("4_7inhq"), ExtResource("5_sxnf5"), ExtResource("6_27ihm"), ExtResource("7_vsibc"), ExtResource("8_la5xu"), ExtResource("9_0qne5"), ExtResource("10_1qbj0"), ExtResource("11_2xaty"), ExtResource("12_c6ls8"), ExtResource("13_7onpf"), ExtResource("14_02641"), ExtResource("15_3pb0b"), ExtResource("16_jcbdd"), ExtResource("17_dmh3l"), ExtResource("18_fcx5i"), ExtResource("19_a27vv"), ExtResource("20_vud2m"), ExtResource("21_6lir4"), ExtResource("22_6syy7")])

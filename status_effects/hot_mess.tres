@@ -8,6 +8,7 @@
 script = ExtResource("1_l8hjd")
 status_id = "hot_mess"
 duration = 4
+temporary_duration = true
 icon = 3
 tooltip = ExtResource("3_fd05t")
 code = ExtResource("1_g6gow")

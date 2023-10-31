@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://bieyws31bfamj"]
+
+[ext_resource type="Script" path="res://card_effects/frost/shatter_all.gd" id="1_c1j1p"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_r517j"]
+
+[resource]
+script = ExtResource("1_r517j")
+target_type = 4
+anim_name = "cast_spell_air"
+effect_name = "shatter_all_ground"
+effect_code = ExtResource("1_c1j1p")

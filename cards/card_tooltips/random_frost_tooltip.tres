@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://bt16pppaor5eq"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_haofh"]
+[ext_resource type="Texture2D" uid="uid://deihpk1o6ygwm" path="res://cards/random_frost_icon.png" id="1_nsejg"]
+
+[resource]
+script = ExtResource("1_haofh")
+icon = ExtResource("1_nsejg")
+text = "Apply 1 Frost to N random Enemies."

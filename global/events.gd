@@ -29,8 +29,12 @@ signal card_unflipped(card: Card)
 signal cards_mismatched
 ## Emitted when the [Board] is emptied and needs new [Card]s.
 signal board_emptied
+## Emitted when [param n] pair of [Card]s have been discarded by the [Board].
+signal pairs_discarded(n: int)
 ## Emitted when the [Board] needs to reveal an [param amount] of [Card]s.
 signal board_reveal_requested(amount: int)
+## Emitted when the [Board] needs to discard [param n] pair(s) of [Card]s.
+signal board_discard_requested(n: int)
 ## Emitted when the deck is reshuffled because there
 ## were no more cards left in the draw pile.
 signal draw_pile_reshuffled(cards_still_needed: int)
@@ -46,7 +50,7 @@ signal projectile_spawn_requested(target: Vector2, projectile: PackedScene, star
 ## Emitted when an outside source wants to add a damage modifier to the [Player]
 signal player_damage_modifier_requested(dmg_modifier: int, duration: int)
 ## Emitted when someone wants to add a [Status] to a random [Enemy].
-signal add_status_to_random_enemy_requested(status: StatusData, vfx: PackedScene)
+signal add_status_to_random_enemy_requested(status: StatusData, vfx: PackedScene, source_status: Texture)
 
 ## Emitted when the [Player]'s turn starts.
 signal player_turn_started

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://bjinuexiwxr8l"]
+
+[ext_resource type="Texture2D" uid="uid://cbnqxvt2ex60n" path="res://cards/discard_pair_icon.png" id="1_lx1ro"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_yfxtm"]
+
+[resource]
+script = ExtResource("1_yfxtm")
+icon = ExtResource("1_lx1ro")
+text = "Discard N pair(s) of Cards."

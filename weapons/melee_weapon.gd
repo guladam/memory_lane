@@ -6,6 +6,7 @@ extends Weapon
 
 @export var animation_player: AnimationPlayer
 @export var hit_box: HitBox
+@export var self_damage: int = 0
 
 var already_hit := false
 

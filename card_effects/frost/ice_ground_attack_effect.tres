@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://c0iuc31uu78i5"]
+
+[ext_resource type="Script" path="res://card_effects/frost/ice_ground_attack_effect.gd" id="1_215ri"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_o3bve"]
+
+[resource]
+script = ExtResource("1_o3bve")
+target_type = 2
+anim_name = "cast_spell_ground"
+effect_name = "ice_ground_attack"
+effect_code = ExtResource("1_215ri")

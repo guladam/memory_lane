@@ -36,6 +36,7 @@ func _ready() -> void:
 	Events.player_turn_started.connect(_on_player_turn_started)
 	Events.player_turn_ended.connect(_on_player_turn_ended)
 	Events.board_reveal_requested.connect(reveal_cards)
+	Events.board_discard_requested.connect(discard_pair)
 
 
 ## This method is used for dependency injection.
@@ -58,7 +59,7 @@ func spawn_cards(new_cards: Array[CardData]) -> void:
 	
 	for i in range(new_cards.size()):
 		var j = i
-		while _is_space_occupied(j) and j < current_cards.size():
+		while j < current_cards.size() and _is_space_occupied(j):
 			j += 1
 		
 		var new_card = card_scene.instantiate()
@@ -104,8 +105,42 @@ func discard_board() -> void:
 	Events.board_emptied.emit()
 
 
+## Discard [param n] pairs of [Card]s from the Board.
+func discard_pair(n: int) -> void:
+	var last_card := _get_last_card_index()
+
+	# If the board is already empty, we can return
+	if last_card == -1:
+		return
+	
+	interactable = false
+	var discarded_pairs := 0
+	
+	for i in range(n):	
+		var pair = _get_random_pair()
+		if pair.is_empty():
+			break
+		
+		for card_idx in pair:
+			if pair[card_idx] and is_instance_valid(pair[card_idx]):
+				pair[card_idx].animate_discard(discard_pile_pos)
+				await get_tree().create_timer(0.15).timeout
+				current_cards[card_idx] = null
+		
+		discarded_pairs += 1
+	
+	if _is_board_empty():
+		Events.board_emptied.emit()
+	else:
+		Events.pairs_discarded.emit(discarded_pairs)
+
+
 ## Reveals [param num_of_cards] [Card]s to the [Player].
 func reveal_cards(num_of_cards: int) -> void:
+	# TODO can this cause any other bugs?
+	if not interactable:
+		return
+	
 	interactable = false
 	var picked_cards := _get_random_cards(num_of_cards)
 	
@@ -175,6 +210,34 @@ func _check_pair() -> void:
 		_on_match()
 	else:
 		_on_mismatch()
+
+
+func _get_random_pair() -> Dictionary:
+	var pair := {}
+	
+	# no pairs available, we can return
+	if get_current_board_card_number() < 2 or _is_board_empty():
+		return pair
+		
+	var card_idx1 = randi() % current_cards.size()
+	while not _is_space_occupied(card_idx1):
+		card_idx1 = randi() % current_cards.size()
+		
+	pair[card_idx1] = current_cards[card_idx1]
+	
+	for card_idx2 in range(current_cards.size()):
+		if not _is_space_occupied(card_idx2):
+			continue
+		
+		var matching: bool = current_cards[card_idx1].card.is_matching(current_cards[card_idx2].card)
+		if card_idx1 != card_idx2 and matching:
+			pair[card_idx2] = current_cards[card_idx2]
+			break
+	
+	if pair.size() != 2:
+		return {}
+
+	return pair
 
 
 ## Called when there is a matched pair of [Card]s on the board.

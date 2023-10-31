@@ -43,7 +43,9 @@ func new_temporary_modifier(value: float, duration: int) -> void:
 ## Clears all [Modifier] values.
 func clear_modifiers() -> void:
 	for c in get_children():
-		remove_child(c)
+		c.queue_free()
+		
+	modifier_values.clear()
 
 
 ## Returns the result of applying all present [Modifier]s.

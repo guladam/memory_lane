@@ -15,6 +15,7 @@ extends Node2D
 @onready var player: Player = $Creatures/Player
 @onready var enemy_manager: EnemyManager = $Creatures/EnemyManager
 @onready var ingame_ui: CanvasLayer = $IngameUI
+@onready var debug_window: PanelContainer = $IngameUI/DebugWindow
 
 ## Turn counter. Used for spawning in [Enemy]
 ## units at specific turns.
@@ -31,6 +32,9 @@ func _ready() -> void:
 	draw_pile.setup(run.deck)
 	enemy_manager.setup(player.get_ranged_target_position())
 	ingame_ui.setup(run.character)
+	
+	if OS.has_feature("editor"):
+		debug_window.level_data = level_data
 	
 	if DisplayServer.screen_get_size().y > 1920:
 		var offset := (DisplayServer.screen_get_size().y - 1920) / 2.0

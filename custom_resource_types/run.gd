@@ -7,7 +7,7 @@ extends Resource
 @export var deck: Deck
 @export var character: Character
 
-var tier2_chance := 0.15
+var tier2_chance := 0.30
 var tier3_chance := 0.02
 
 

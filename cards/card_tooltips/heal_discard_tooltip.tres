@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://ccyf5u08ktjg0"]
+
+[ext_resource type="Texture2D" uid="uid://b85j8m8i1n7jo" path="res://cards/discard_heal_icon.png" id="1_5aopy"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_nke4t"]
+
+[resource]
+script = ExtResource("1_nke4t")
+icon = ExtResource("1_5aopy")
+text = "Heal N. Discard your board."

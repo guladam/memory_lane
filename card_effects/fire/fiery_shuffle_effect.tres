@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://dq73yi0jvu26u"]
+
+[ext_resource type="Script" path="res://card_effects/fire/fiery_shuffle_effect.gd" id="1_nqhdf"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="2_kj4l0"]
+
+[resource]
+script = ExtResource("2_kj4l0")
+target_type = 0
+anim_name = "cast_spell_air"
+effect_name = "fiery_shuffle"
+effect_code = ExtResource("1_nqhdf")

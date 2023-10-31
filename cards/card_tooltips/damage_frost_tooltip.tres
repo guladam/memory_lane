@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://dc3j6airh2kpo"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_1nw0w"]
+[ext_resource type="Texture2D" uid="uid://bhlq26524vqv" path="res://cards/damage_frost_icon.png" id="1_wyef5"]
+
+[resource]
+script = ExtResource("1_1nw0w")
+icon = ExtResource("1_wyef5")
+text = "Deal N damage.\\nApply M frost (N+M)."

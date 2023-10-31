@@ -235,7 +235,7 @@ _data = {
 "idle": SubResource("Animation_xncfy")
 }
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["player"]]
 texture_filter = 1
 script = ExtResource("1_qjjdr")
 

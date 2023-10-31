@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=4 format=3 uid="uid://f28a180s08b7"]
+
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_5puvc"]
+[ext_resource type="Script" path="res://status_effects/keep_cool.gd" id="1_k6fq4"]
+[ext_resource type="Resource" uid="uid://osqggc3c8kfd" path="res://cards/card_tooltips/keeping_cool_tooltip.tres" id="3_k4fpr"]
+
+[resource]
+script = ExtResource("1_5puvc")
+status_id = "keep_cool"
+duration = 4
+temporary_duration = true
+icon = 3
+tooltip = ExtResource("3_k4fpr")
+code = ExtResource("1_k6fq4")

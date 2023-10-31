@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://b54tkpw0ii0pq"]
+
+[ext_resource type="Script" path="res://card_effects/frost/discard_1pair.gd" id="1_jsmy8"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_yckrh"]
+
+[resource]
+script = ExtResource("1_yckrh")
+target_type = 0
+anim_name = "cast_spell_air"
+effect_name = "cold_clarity"
+effect_code = ExtResource("1_jsmy8")

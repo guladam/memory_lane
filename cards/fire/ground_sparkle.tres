@@ -11,11 +11,10 @@
 [resource]
 script = ExtResource("2_rdwqx")
 card_back = ExtResource("1_mghdq")
-card_color = Color(1, 0.333333, 0.333333, 1)
-card_icon = ExtResource("2_sijer")
-card_text = "+2"
-card_status_icon = ExtResource("3_w76eh")
-card_text2 = ""
+card_color = Color(1, 1, 1, 1)
+card_icon = ExtResource("3_w76eh")
+card_text = "2"
+card_target_icon = ExtResource("2_sijer")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_vo00f"), ExtResource("7_rbxyh")])
 id = "ground_sparkle"
 tier = 2

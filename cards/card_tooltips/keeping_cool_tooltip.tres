@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://osqggc3c8kfd"]
+
+[ext_resource type="Texture2D" uid="uid://dhxihqatkwlf8" path="res://status_effects/hot_mess_icon.png" id="1_0o2ii"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_7brrt"]
+
+[resource]
+script = ExtResource("1_7brrt")
+icon = ExtResource("1_0o2ii")
+text = "Mismatching cards discards\\n a random pair."

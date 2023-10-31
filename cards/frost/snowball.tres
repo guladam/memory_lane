@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://llcr5wxsqnog"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_1aubv"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_0a0tn"]
+[ext_resource type="Texture2D" uid="uid://baamidx18tbm1" path="res://status_effects/ice_icon.png" id="2_7c824"]
+[ext_resource type="Texture2D" uid="uid://ceqbepn26fadh" path="res://cards/card_target_ground.png" id="3_4oobj"]
+[ext_resource type="Resource" uid="uid://bh5udjm05a4ku" path="res://card_effects/frost/02_snowball_effect.tres" id="4_5xwww"]
+[ext_resource type="Resource" uid="uid://sxnwhm87egrv" path="res://cards/card_tooltips/ground_target.tres" id="6_sk3qi"]
+[ext_resource type="Resource" uid="uid://dahfrnsbkk6jd" path="res://cards/card_tooltips/frost_tooltip.tres" id="7_46t24"]
+
+[resource]
+script = ExtResource("2_0a0tn")
+card_back = ExtResource("1_1aubv")
+card_color = Color(1, 1, 1, 1)
+card_icon = ExtResource("2_7c824")
+card_text = "1"
+card_target_icon = ExtResource("3_4oobj")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_sk3qi"), ExtResource("7_46t24")])
+id = "snowball"
+tier = 1
+effect = ExtResource("4_5xwww")
+can_have_multiple = true

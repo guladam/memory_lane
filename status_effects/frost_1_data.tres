@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=4 format=3 uid="uid://cs2y8pux6h10w"]
+
+[ext_resource type="Script" path="res://status_effects/frost.gd" id="1_iy5kd"]
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_wbero"]
+[ext_resource type="Resource" uid="uid://dahfrnsbkk6jd" path="res://cards/card_tooltips/frost_tooltip.tres" id="3_g7nwp"]
+
+[resource]
+script = ExtResource("1_wbero")
+status_id = "frost"
+duration = 1
+temporary_duration = false
+icon = 1
+tooltip = ExtResource("3_g7nwp")
+code = ExtResource("1_iy5kd")

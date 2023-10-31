@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://d10dsn12hyjlb"]
+
+[ext_resource type="Script" path="res://card_effects/frost/shatter_all.gd" id="1_is8py"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="2_jsxw3"]
+
+[resource]
+script = ExtResource("2_jsxw3")
+target_type = 6
+anim_name = "cast_spell_air"
+effect_name = "shatter_lair"
+effect_code = ExtResource("1_is8py")

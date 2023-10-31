@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://xg0kbk8cho3b"]
+
+[ext_resource type="Texture2D" uid="uid://dldwr3ox5judg" path="res://cards/damage_if_ignited_icon.png" id="1_iqtdh"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_m6erd"]
+
+[resource]
+script = ExtResource("1_m6erd")
+icon = ExtResource("1_iqtdh")
+text = "Deal N damage, or (M) damage 
+if Enemy is Ignited."

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=6 format=3 uid="uid://benrss0lwv5yq"]
+
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_oqmj3"]
+[ext_resource type="Script" path="res://status_effects/freezing_time.gd" id="1_pnj6q"]
+[ext_resource type="Texture2D" uid="uid://cnj4neuddrdh1" path="res://cards/freeze_skip_icon.png" id="2_314h4"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="3_x711p"]
+
+[sub_resource type="Resource" id="Resource_ouhyg"]
+script = ExtResource("3_x711p")
+icon = ExtResource("2_314h4")
+text = "Freezing Time: Skip your next Turn."
+
+[resource]
+script = ExtResource("1_oqmj3")
+status_id = "freezing_time"
+duration = 1
+temporary_duration = true
+icon = 8
+tooltip = SubResource("Resource_ouhyg")
+code = ExtResource("1_pnj6q")

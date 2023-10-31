@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_0o1lh"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_cvqdp"]
-[ext_resource type="Texture2D" uid="uid://c4ekjtwm3a3dc" path="res://cards/card_target3.png" id="2_pir3k"]
 [ext_resource type="Texture2D" uid="uid://sgbqlcvjmda" path="res://cards/heal_icon_white.png" id="3_2tylr"]
 [ext_resource type="Resource" uid="uid://6utr070vntcd" path="res://card_effects/basic_heal_effect.tres" id="3_d0brr"]
+[ext_resource type="Texture2D" uid="uid://c4ekjtwm3a3dc" path="res://cards/card_target_self.png" id="3_r0cvv"]
 [ext_resource type="Resource" uid="uid://b46wjo7rt8ue3" path="res://cards/card_tooltips/self_target.tres" id="5_7hxxd"]
 [ext_resource type="Resource" uid="uid://dey6e1hx0un6a" path="res://cards/card_tooltips/heal_tooltip.tres" id="7_3xa8g"]
 
@@ -12,10 +12,9 @@
 script = ExtResource("2_cvqdp")
 card_back = ExtResource("1_0o1lh")
 card_color = Color(0.333333, 1, 0.333333, 1)
-card_icon = ExtResource("2_pir3k")
-card_text = "1"
-card_status_icon = ExtResource("3_2tylr")
-card_text2 = ""
+card_icon = ExtResource("3_2tylr")
+card_text = "2"
+card_target_icon = ExtResource("3_r0cvv")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_7hxxd"), ExtResource("7_3xa8g")])
 id = "basic_heal"
 tier = 0

@@ -2,15 +2,16 @@
 class_name Player
 extends Node2D
 
-@onready var health: Health = $Health
+@onready var health: Health = $Health as Health
 @onready var health_bar: PanelContainer = $HealthBar
 @onready var ranged_target_position: Marker2D = $RangedTargetPosition
 @onready var staff_end: Marker2D = $StaffEnd
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var bonus_damage: Modifiers = $BonusDamage
-@onready var status_effects: StatusEffects = $StatusEffects
+@onready var bonus_damage: Modifiers = $BonusDamage as Modifiers
+@onready var status_effects: StatusEffects = $StatusEffects as StatusEffects
 @onready var floating_text_position: Marker2D = $FloatingTextPosition
 @onready var floating_text := preload("res://creatures/floating_text.tscn")
+@onready var status_highlight := preload("res://ui/status_highlighter.tscn")
 var game_state: GameState
 
 
@@ -84,6 +85,16 @@ func _create_floating_text(text: String, color: Color) -> void:
 	var new_floating_text := floating_text.instantiate()
 	get_tree().root.add_child(new_floating_text)
 	new_floating_text.show_text(floating_text_position.global_position, color, text)
+
+
+## Creates a status highlight effect when a [Status] applies
+## to the unit.
+## [param icon] is the [Texture] to show.
+func create_status_highlight(icon: Texture) -> void:
+	var new_status_highlight := status_highlight.instantiate()
+	var highlight_position = floating_text_position.global_position + Vector2.UP * 30
+	get_tree().root.add_child(new_status_highlight)
+	new_status_highlight.show_text(highlight_position, icon)
 
 
 ## Called when the player's health changes.
