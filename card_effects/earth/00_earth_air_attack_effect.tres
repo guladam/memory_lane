@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://otmx4tj6sb13"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_degxm"]
+[ext_resource type="Script" path="res://card_effects/earth/earth_air_attack_effect.gd" id="1_jlvke"]
+
+[resource]
+script = ExtResource("1_degxm")
+target_type = 3
+anim_name = "cast_spell_air"
+effect_name = "earth_air_attack"
+effect_code = ExtResource("1_jlvke")

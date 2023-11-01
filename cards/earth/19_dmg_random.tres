@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://ds3u17fxxg6xg"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_km72a"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_agxr4"]
+[ext_resource type="Texture2D" uid="uid://28nrf0p35aw8" path="res://cards/damage_random_icon.png" id="2_qlm03"]
+[ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target_all_enemies.png" id="3_aq5md"]
+[ext_resource type="Resource" uid="uid://h0sgasea1jp3" path="res://card_effects/earth/19_dmg_random_effect.tres" id="4_5jyg0"]
+[ext_resource type="Resource" uid="uid://cxn5sk30hyapp" path="res://cards/card_tooltips/dmg_random.tres" id="6_8qo2w"]
+[ext_resource type="Resource" uid="uid://pfddo38bo3yv" path="res://cards/card_tooltips/all_target.tres" id="7_4b4fx"]
+
+[resource]
+script = ExtResource("2_agxr4")
+card_back = ExtResource("1_km72a")
+card_color = Color(1, 1, 1, 1)
+card_icon = ExtResource("2_qlm03")
+card_text = "4"
+card_target_icon = ExtResource("3_aq5md")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_8qo2w"), ExtResource("7_4b4fx")])
+id = "dmg_random"
+tier = 3
+effect = ExtResource("4_5jyg0")
+can_have_multiple = false

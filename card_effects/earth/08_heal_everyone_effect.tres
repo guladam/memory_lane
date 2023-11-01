@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://b7ndtvvs608vj"]
+
+[ext_resource type="Script" path="res://card_effects/earth/heal_everyone_effect.gd" id="1_1fbp5"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_gkivu"]
+
+[resource]
+script = ExtResource("1_gkivu")
+target_type = 7
+anim_name = "cast_spell_air"
+effect_name = "08_heal_everyone"
+effect_code = ExtResource("1_1fbp5")

@@ -2,6 +2,9 @@
 class_name Player
 extends Node2D
 
+## Emitted when the [Player] takes damage.
+signal damaged(damage: int)
+
 @onready var health: Health = $Health as Health
 @onready var health_bar: PanelContainer = $HealthBar
 @onready var ranged_target_position: Marker2D = $RangedTargetPosition
@@ -22,6 +25,7 @@ func _ready() -> void:
 	health.changed.connect(_on_health_changed)
 	health.max_health_changed.connect(health_bar.setup)
 	health.reached_zero.connect(_on_health_reached_zero)
+	health.over_healed.connect(func(): Events.player_overhealed.emit())
 	
 	health_bar.setup(health.max_health)
 	animation_player.play("idle")
@@ -39,6 +43,9 @@ func setup(character: Character, state: GameState) -> void:
 ## This method is mandatory for creatures having a [HurtBox].
 ## [param damage] is the amount of damage to take.
 func take_damage(damage: int) -> void:
+	if damage > 0:
+		damaged.emit(damage)
+	
 	_create_floating_text("-%s" % damage, Color.RED)
 	animation_player.play("damage")
 	health.health -= damage
@@ -56,6 +63,12 @@ func heal(amount: int) -> void:
 ## [param amount] is the amount of change.
 func change_max_health(amount: int) -> void:
 	health.max_health += amount
+
+
+## Returns [code]true[/code] if the player
+## is at full hp.
+func is_at_full_hp() -> bool:
+	return health.health == health.max_health
 
 
 ## Returns the position where ranged [Enemy] units

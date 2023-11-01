@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://ccd2yt6xfpp3v"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_k7l7c"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_axr3g"]
+[ext_resource type="Texture2D" uid="uid://dfx64fttw50p2" path="res://status_effects/link_icon.png" id="2_qcqf6"]
+[ext_resource type="Texture2D" uid="uid://5qttoa3aimsb" path="res://cards/card_target_all_ground.png" id="3_mata1"]
+[ext_resource type="Resource" uid="uid://cygagx0p5j2vv" path="res://card_effects/earth/16_link_all_ground_effect.tres" id="4_8nx0m"]
+[ext_resource type="Resource" uid="uid://ceon8ieo1byqd" path="res://cards/card_tooltips/link_tooltip.tres" id="6_t6ji5"]
+[ext_resource type="Resource" uid="uid://s5kxa346vmh2" path="res://cards/card_tooltips/all_ground_target_tooltip.tres" id="7_aesxn"]
+
+[resource]
+script = ExtResource("2_axr3g")
+card_back = ExtResource("1_k7l7c")
+card_color = Color(1, 1, 1, 1)
+card_icon = ExtResource("2_qcqf6")
+card_text = "3"
+card_target_icon = ExtResource("3_mata1")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_t6ji5"), ExtResource("7_aesxn")])
+id = "link_all_ground"
+tier = 2
+effect = ExtResource("4_8nx0m")
+can_have_multiple = true

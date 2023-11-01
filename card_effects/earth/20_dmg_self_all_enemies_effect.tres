@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://brpxhw2f1rgv"]
+
+[ext_resource type="Script" path="res://card_effects/earth/dmg_self_aoe_effect.gd" id="1_0l5fm"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_2hpoa"]
+
+[resource]
+script = ExtResource("1_2hpoa")
+target_type = 6
+anim_name = "cast_spell_air"
+effect_name = "20_dmg_self_all_enemies"
+effect_code = ExtResource("1_0l5fm")

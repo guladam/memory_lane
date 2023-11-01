@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=4 format=3 uid="uid://tlso50exv3by"]
+
+[ext_resource type="Script" path="res://status_effects/link.gd" id="1_l6p68"]
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_s6h5w"]
+[ext_resource type="Resource" uid="uid://ceon8ieo1byqd" path="res://cards/card_tooltips/link_tooltip.tres" id="3_qedqc"]
+
+[resource]
+script = ExtResource("1_s6h5w")
+status_id = "link"
+duration = 4
+temporary_duration = true
+icon = 9
+tooltip = ExtResource("3_qedqc")
+code = ExtResource("1_l6p68")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://bgcrsbvs0bmav"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_dx7ky"]
+[ext_resource type="Script" path="res://card_effects/earth/dmg_self_aoe_effect.gd" id="1_uksky"]
+
+[resource]
+script = ExtResource("1_dx7ky")
+target_type = 4
+anim_name = "cast_spell_air"
+effect_name = "14_dmg_self_all_ground"
+effect_code = ExtResource("1_uksky")

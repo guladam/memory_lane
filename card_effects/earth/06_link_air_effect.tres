@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://dywf2io6ord1f"]
+
+[ext_resource type="Script" path="res://card_effects/earth/link_single_effect.gd" id="1_1ecj6"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_i50y7"]
+
+[resource]
+script = ExtResource("1_i50y7")
+target_type = 3
+anim_name = "cast_spell_air"
+effect_name = "06_link_air"
+effect_code = ExtResource("1_1ecj6")

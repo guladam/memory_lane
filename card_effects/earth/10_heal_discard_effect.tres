@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://0wnf2d20ue81"]
+
+[ext_resource type="Script" path="res://card_effects/earth/heal_discard_effect.gd" id="1_35rjj"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_352id"]
+
+[resource]
+script = ExtResource("1_352id")
+target_type = 0
+anim_name = "cast_spell_air"
+effect_name = "10_heal_discard"
+effect_code = ExtResource("1_35rjj")

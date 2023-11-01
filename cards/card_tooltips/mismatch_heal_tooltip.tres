@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://qj3elkv1tdns"]
+
+[ext_resource type="Texture2D" uid="uid://dhxihqatkwlf8" path="res://status_effects/hot_mess_icon.png" id="1_df15n"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_g7wde"]
+
+[resource]
+script = ExtResource("1_g7wde")
+icon = ExtResource("1_df15n")
+text = "Mismatching Cards heals\\nyou for 2 HP."

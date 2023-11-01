@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://c2hntmoyia561"]
+
+[ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_5g7pe"]
+[ext_resource type="Texture2D" uid="uid://b85j8m8i1n7jo" path="res://cards/discard_heal_icon.png" id="2_5y3xq"]
+[ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_kfpp7"]
+[ext_resource type="Texture2D" uid="uid://c4ekjtwm3a3dc" path="res://cards/card_target_self.png" id="3_omjlu"]
+[ext_resource type="Resource" uid="uid://0wnf2d20ue81" path="res://card_effects/earth/10_heal_discard_effect.tres" id="4_urdxm"]
+[ext_resource type="Resource" uid="uid://ccyf5u08ktjg0" path="res://cards/card_tooltips/heal_discard_tooltip.tres" id="6_18681"]
+[ext_resource type="Resource" uid="uid://b46wjo7rt8ue3" path="res://cards/card_tooltips/self_target.tres" id="7_tor7d"]
+
+[resource]
+script = ExtResource("2_kfpp7")
+card_back = ExtResource("1_5g7pe")
+card_color = Color(1, 1, 1, 1)
+card_icon = ExtResource("2_5y3xq")
+card_text = "1"
+card_target_icon = ExtResource("3_omjlu")
+tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_18681"), ExtResource("7_tor7d")])
+id = "heal_discard"
+tier = 2
+effect = ExtResource("4_urdxm")
+can_have_multiple = true

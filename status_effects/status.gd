@@ -9,7 +9,7 @@ signal status_expired
 signal status_applied
 
 ## Available icons for ALL status effects.
-enum Icons {FIRE, ICE, REVEAL, HOT_MESS, FIRE_STARTER, ICE_STARTER, FUEL, GAS_STATION, FREEZING_TIME}
+enum Icons {FIRE, ICE, REVEAL, HOT_MESS, FIRE_STARTER, ICE_STARTER, FUEL, GAS_STATION, FREEZING_TIME, LINK, HEAL}
 ## Preloaded textures for the icons above.
 const ICONS := {
 	Icons.FIRE: preload("res://status_effects/fire_icon.png"),
@@ -20,7 +20,9 @@ const ICONS := {
 	Icons.ICE_STARTER: preload("res://status_effects/ice_starter_icon.png"),
 	Icons.FUEL: preload("res://status_effects/fuel_icon.png"),
 	Icons.GAS_STATION: preload("res://status_effects/gas_station_icon.png"),
-	Icons.FREEZING_TIME: preload("res://cards/freeze_skip_icon.png")
+	Icons.FREEZING_TIME: preload("res://cards/freeze_skip_icon.png"),
+	Icons.LINK: preload("res://status_effects/link_icon.png"),
+	Icons.HEAL: preload("res://weapons/heal_icon.png"),
 }
 
 ## [StatusData] resource for this status effect.

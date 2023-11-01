@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=6 format=3 uid="uid://c25y0hwn5kpqb"]
+
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_mlm8p"]
+[ext_resource type="Script" path="res://status_effects/earth_starting_trait.gd" id="1_ti2lc"]
+[ext_resource type="Texture2D" uid="uid://danxd02jv8ygm" path="res://weapons/heal_icon.png" id="3_jyr5l"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="4_dl500"]
+
+[sub_resource type="Resource" id="Resource_0u8fd"]
+script = ExtResource("4_dl500")
+icon = ExtResource("3_jyr5l")
+text = "Overhealing deals 1 damage\\nto a random enemy."
+
+[resource]
+script = ExtResource("1_mlm8p")
+status_id = "earth_starting_trait"
+duration = -1
+temporary_duration = true
+icon = 10
+tooltip = SubResource("Resource_0u8fd")
+code = ExtResource("1_ti2lc")

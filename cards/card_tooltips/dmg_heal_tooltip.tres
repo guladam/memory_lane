@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://bn4pbdqnf6wl5"]
+
+[ext_resource type="Texture2D" uid="uid://sln3u4x8casc" path="res://cards/damage_heal_icon.png" id="1_i34qs"]
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_iuly4"]
+
+[resource]
+script = ExtResource("1_iuly4")
+icon = ExtResource("1_i34qs")
+text = "Deal N damage, Heal M. (N+M)"

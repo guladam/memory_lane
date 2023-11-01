@@ -2,6 +2,9 @@
 class_name Health
 extends Node
 
+## Emitted when the unit's health would be bigger
+## than its max health.
+signal over_healed
 ## Emitted when the unit's health has changed.
 signal changed(new_health: int)
 ## Emitted when the unit's max health has changed.
@@ -26,6 +29,9 @@ signal reached_zero
 ## Current health of the creature.
 var health: int : 
 	set(new_health):
+		if new_health > max_health:
+			over_healed.emit()
+		
 		health = clamp(new_health, 0, max_health)
 		changed.emit(health)
 		

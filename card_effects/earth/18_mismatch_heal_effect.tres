@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://cfqcem8ialmuf"]
+
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_03clo"]
+[ext_resource type="Script" path="res://card_effects/earth/mismatch_heal_effect.gd" id="1_e4xkh"]
+
+[resource]
+script = ExtResource("1_03clo")
+target_type = 1
+anim_name = "cast_spell_air"
+effect_name = "18_mismatch_heal"
+effect_code = ExtResource("1_e4xkh")

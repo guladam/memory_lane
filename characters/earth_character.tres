@@ -1,8 +1,31 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://ccn8avhv1bgyg"]
+[gd_resource type="Resource" script_class="Character" load_steps=27 format=3 uid="uid://ccn8avhv1bgyg"]
 
 [ext_resource type="Script" path="res://custom_resource_types/character.gd" id="1_0sm6t"]
 [ext_resource type="Texture2D" uid="uid://b6vot6oxseqan" path="res://cards/card_background3.png" id="1_aup3a"]
+[ext_resource type="Resource" uid="uid://cdxlw7884wbc5" path="res://cards/earth/01_dmg_heal_ground.tres" id="1_t3gno"]
 [ext_resource type="Texture2D" uid="uid://w4m8avgpa2n3" path="res://ui/earth_emblem.png" id="2_3va64"]
+[ext_resource type="Resource" uid="uid://c0cbi3qk7xqle" path="res://cards/earth/02_dmg_heal_air.tres" id="2_kt086"]
+[ext_resource type="Resource" uid="uid://qpcknikbff11" path="res://cards/earth/03_dmg_self_ground.tres" id="3_nnmfi"]
+[ext_resource type="Resource" uid="uid://b38vxqnphpya5" path="res://characters/earth_character_starting_deck.tres" id="4_1fvn1"]
+[ext_resource type="Resource" uid="uid://cedam6any8e8l" path="res://cards/earth/04_dmg_self_air.tres" id="4_jr75v"]
+[ext_resource type="Resource" uid="uid://pbk8uvnvyjnh" path="res://cards/earth/05_heal.tres" id="5_rp48s"]
+[ext_resource type="Resource" uid="uid://di2bv4du2ikm0" path="res://status_effects/reveal_2_data.tres" id="5_t20ym"]
+[ext_resource type="Resource" uid="uid://b215ia23aqkwb" path="res://cards/earth/06_link_air.tres" id="6_2dxvk"]
+[ext_resource type="Resource" uid="uid://dxi3g0nlpusyh" path="res://cards/earth/07_link_ground.tres" id="7_tvlr2"]
+[ext_resource type="Resource" uid="uid://chyqs33fsiext" path="res://cards/earth/08_heal_everyone.tres" id="8_j5j3n"]
+[ext_resource type="Resource" uid="uid://b0x1a6ongntw8" path="res://cards/earth/09_heal_full.tres" id="9_b2nuu"]
+[ext_resource type="Resource" uid="uid://c2hntmoyia561" path="res://cards/earth/10_heal_discard.tres" id="10_5clka"]
+[ext_resource type="Resource" uid="uid://dbmtakdwlwrpt" path="res://cards/earth/11_dmg_heal_all_air.tres" id="11_1hljk"]
+[ext_resource type="Resource" uid="uid://cyporhx0w8wum" path="res://cards/earth/12_dmg_heal_all_ground.tres" id="12_5ujci"]
+[ext_resource type="Resource" uid="uid://b84lo820htds5" path="res://cards/earth/13_dmg_self_all_air.tres" id="13_vsfol"]
+[ext_resource type="Resource" uid="uid://1ndo5onffs5n" path="res://cards/earth/14_dmg_self_all_ground.tres" id="14_gbhkk"]
+[ext_resource type="Resource" uid="uid://b3t1qytbnd82l" path="res://cards/earth/15_link_all_air.tres" id="15_0imja"]
+[ext_resource type="Resource" uid="uid://ccd2yt6xfpp3v" path="res://cards/earth/16_link_all_ground.tres" id="16_452uk"]
+[ext_resource type="Resource" uid="uid://gwowlks7gbg6" path="res://cards/earth/17_link_all_enemies.tres" id="17_tcyyw"]
+[ext_resource type="Resource" uid="uid://yqk3jb530a6s" path="res://cards/earth/18_mismatch_heal.tres" id="18_70alq"]
+[ext_resource type="Resource" uid="uid://ds3u17fxxg6xg" path="res://cards/earth/19_dmg_random.tres" id="19_e8mo4"]
+[ext_resource type="Resource" uid="uid://cj7ls58pxf0is" path="res://cards/earth/20_dmg_self_all_enemies.tres" id="20_su2u1"]
+[ext_resource type="Resource" uid="uid://c25y0hwn5kpqb" path="res://status_effects/earth_starting_trait_data.tres" id="25_dn1i6"]
 
 [resource]
 script = ExtResource("1_0sm6t")
@@ -12,5 +35,6 @@ tooltip = "Leaf your mark on them."
 card_background = ExtResource("1_aup3a")
 color = Color(0.333333, 1, 0.333333, 1)
 starting_hp = 5
-starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([])
-available_cards = Array[Resource("res://custom_resource_types/card.gd")]([])
+starting_deck = ExtResource("4_1fvn1")
+starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([ExtResource("25_dn1i6"), ExtResource("5_t20ym")])
+available_cards = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("1_t3gno"), ExtResource("2_kt086"), ExtResource("3_nnmfi"), ExtResource("4_jr75v"), ExtResource("5_rp48s"), ExtResource("6_2dxvk"), ExtResource("7_tvlr2"), ExtResource("8_j5j3n"), ExtResource("9_b2nuu"), ExtResource("10_5clka"), ExtResource("11_1hljk"), ExtResource("12_5ujci"), ExtResource("13_vsfol"), ExtResource("14_gbhkk"), ExtResource("15_0imja"), ExtResource("16_452uk"), ExtResource("17_tcyyw"), ExtResource("18_70alq"), ExtResource("19_e8mo4"), ExtResource("20_su2u1")])

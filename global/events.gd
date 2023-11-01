@@ -62,6 +62,8 @@ signal enemy_turn_started
 signal enemy_turn_ended
 ## Emitted when an [Enemy] dies.
 signal enemy_died(enemy: Enemy)
+## Emitted when the [Player] overheals.
+signal player_overhealed
 
 ## Emitted when the [Player] wins the level.
 signal level_won(level: LevelData)

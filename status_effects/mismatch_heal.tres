@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StatusData" load_steps=4 format=3 uid="uid://b4aoh2pbyyje5"]
+
+[ext_resource type="Script" path="res://status_effects/mismatch_heal.gd" id="1_tvkv6"]
+[ext_resource type="Script" path="res://custom_resource_types/status_data.gd" id="1_uq5m6"]
+[ext_resource type="Resource" uid="uid://qj3elkv1tdns" path="res://cards/card_tooltips/mismatch_heal_tooltip.tres" id="3_tevro"]
+
+[resource]
+script = ExtResource("1_uq5m6")
+status_id = "mismatch_heal"
+duration = 4
+temporary_duration = true
+icon = 3
+tooltip = ExtResource("3_tevro")
+code = ExtResource("1_tvkv6")

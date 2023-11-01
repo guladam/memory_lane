@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://chs3tg6vpe6pv"]
+
+[ext_resource type="Script" path="res://card_effects/earth/earth_ground_attack_effect.gd" id="1_ciwie"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_elo2w"]
+
+[resource]
+script = ExtResource("1_elo2w")
+target_type = 2
+anim_name = "cast_spell_ground"
+effect_name = "earth_ground_attack"
+effect_code = ExtResource("1_ciwie")

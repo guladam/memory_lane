@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Effect" load_steps=3 format=3 uid="uid://dc8pq1aadgwc2"]
+
+[ext_resource type="Script" path="res://card_effects/earth/dmg_self_single_effect.gd" id="1_1ybx2"]
+[ext_resource type="Script" path="res://custom_resource_types/effect.gd" id="1_nwa4n"]
+
+[resource]
+script = ExtResource("1_nwa4n")
+target_type = 2
+anim_name = "cast_spell_air"
+effect_name = "03_dmg_self_ground"
+effect_code = ExtResource("1_1ybx2")

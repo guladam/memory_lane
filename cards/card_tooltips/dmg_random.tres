@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Tooltip" load_steps=3 format=3 uid="uid://cxn5sk30hyapp"]
+
+[ext_resource type="Script" path="res://custom_resource_types/tooltip.gd" id="1_7n7wi"]
+[ext_resource type="Texture2D" uid="uid://28nrf0p35aw8" path="res://cards/damage_random_icon.png" id="1_q3j7r"]
+
+[resource]
+script = ExtResource("1_7n7wi")
+icon = ExtResource("1_q3j7r")
+text = "Deal N damage to a random\\n Enemy. Heals others to full."
