@@ -11,37 +11,28 @@ signal card_drafted(new_card: CardData)
 @onready var cards: HBoxContainer = %Cards
 @onready var character_icon: TextureRect = %CharacterIcon
 @onready var draftable_card := preload("res://ui/draftable_card.tscn")
+@onready var reroll: Button = %Reroll
+@onready var reroll_label: Label = %RerollLabel
+@onready var reroll_disabled_panel: Panel = %RerollDisabledPanel
 
 var run: Run
 var picked_card: CardData
+var rerolls: int
 
 
 func _ready() -> void:
 	add.pressed.connect(func(): card_drafted.emit(picked_card))
 	skip.pressed.connect(func(): card_drafted.emit(null))
-
+	reroll.pressed.connect(_on_reroll_pressed)
+	rerolls = StatTracker.rerolls
 
 ## This method sets the screen up before showing it.
 ## [param run] is the data for the current [Run].
 func setup(_run: Run) -> void:
 	run = _run
-	var rewards: Array[CardData] = _get_rewards()
-	
-	for card in rewards:
-		var new_draftable_card := draftable_card.instantiate()
-		cards.add_child(new_draftable_card)
-		new_draftable_card.setup(card, run.character)
-		new_draftable_card.selected.connect(_on_card_selected)
-	
 	character_icon.texture = run.character.icon
-	cards.get_child(0).select()
-	picked_card = cards.get_child(0).card
-	
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
-	Events.card_tooltip_requested.emit(picked_card, cards.get_child(0))
-
+	_setup_card_rewards()
+	_setup_rerolls()
 
 ## Enables or disables both buttons.
 ## [param enabled] is true if you want the buttons to be enabled.
@@ -90,6 +81,34 @@ func _get_rewards() -> Array[CardData]:
 	return rewards
 
 
+## This method generates a new set of reward cards.
+## Called when initializing this screen or when the
+## Player wants to reroll their rewards.
+func _setup_card_rewards() -> void:
+	var rewards: Array[CardData] = _get_rewards()
+	
+	for card in rewards:
+		var new_draftable_card := draftable_card.instantiate()
+		cards.add_child(new_draftable_card)
+		new_draftable_card.setup(card, run.character)
+		new_draftable_card.selected.connect(_on_card_selected)
+	
+	cards.get_child(0).select()
+	picked_card = cards.get_child(0).card
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	Events.card_tooltip_requested.emit(picked_card, cards.get_child(0))
+
+
+## Sets the reroll button and related visuals.
+func _setup_rerolls() -> void:
+	reroll.disabled = rerolls <= 0
+	reroll_disabled_panel.visible = rerolls <= 0
+	reroll_label.text = "Reroll (%s)" % rerolls
+
+
 func _is_tier3(c) -> bool:
 	return c.tier == CardData.Tier.TIER_3
 
@@ -110,3 +129,15 @@ func _on_card_selected(selected_card: CardData, card_gui: Control) -> void:
 	
 	picked_card = selected_card
 	Events.card_tooltip_requested.emit(selected_card, card_gui)
+
+
+## Called when the user rerolls their reward.
+func _on_reroll_pressed() -> void:
+	Events.card_rewards_rerolled.emit()
+	rerolls -= 1
+	_setup_rerolls()
+	
+	for c in cards.get_children():
+		c.queue_free()
+	
+	_setup_card_rewards()

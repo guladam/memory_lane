@@ -45,8 +45,32 @@ alignment = 1
 
 [node name="Label" type="Label" parent="VboxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Sound effects"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VboxContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Énke"
+text = "Zapsplat
+https://www.zapsplat.com
+OpenGameArt
+https://opengameart.org/
+FreeSound
+https://freesound.org/"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VboxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Music"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="VboxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "OpenGameArt
+https://opengameart.org/"
 horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="VboxContainer/VBoxContainer"]

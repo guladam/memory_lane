@@ -19,19 +19,19 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if not visible:
 		return
-#	if event is InputEventScreenDrag:
-#		var dist: Vector2 = event.position - drag_begin
-#		if abs(dist.x) < 400:
-#			return
-#
-#		change_to_slide(current_slide + sign(dist.x))
-	# TODO TEST ON MOBILE!!!
-	if event is InputEventMouseButton:
+	
+	var mouse_wheel_up = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP and not event.pressed
+	var mouse_wheel_down = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN and not event.pressed
+	
+	if event.is_action_pressed("slide_next") or mouse_wheel_up:
+		change_to_slide(current_slide + 1)
+	elif event.is_action_pressed("slide_previous") or mouse_wheel_down:
+		change_to_slide(current_slide - 1)
+	
+	elif event is InputEventMouseButton:
 		if event.pressed:
 			drag_begin = event.position
-			print("drag began at %s" % drag_begin)
 		else:
-			print("drag end at %s" % event.position)
 			var dist: Vector2 = event.position - drag_begin
 			if abs(dist.x) < 150:
 				return

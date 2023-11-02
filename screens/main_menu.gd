@@ -15,7 +15,7 @@ signal credits_requested
 @onready var how_to_play: Button = %HowToPlay
 @onready var credits: Button = %Credits
 @onready var quit: Button = %Quit
-
+@onready var theme_song: AudioStream = preload("res://music/main_music_loop.ogg")
 
 func _ready() -> void:
 	play.pressed.connect(func(): new_game_requested.emit())
@@ -23,6 +23,7 @@ func _ready() -> void:
 	how_to_play.pressed.connect(func(): tutorial_requested.emit())
 	credits.pressed.connect(func(): credits_requested.emit())
 	quit.pressed.connect(get_tree().quit)
+	MusicPlayer.play_song(theme_song)
 
 
 ## Enables or disables all buttons.

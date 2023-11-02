@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq6d8drq200c6"]
+[gd_scene load_steps=6 format=3 uid="uid://bq6d8drq200c6"]
 
 [ext_resource type="Script" path="res://screens/card_draft_screen.gd" id="1_06b6j"]
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_gj4vp"]
 [ext_resource type="Texture2D" uid="uid://dpidrwgdl7ko1" path="res://ui/fire_emblem.png" id="3_w3srn"]
 [ext_resource type="PackedScene" uid="uid://cpvqx5wls726g" path="res://ui/tooltip_manager.tscn" id="4_gb4up"]
+[ext_resource type="Texture2D" uid="uid://rl2b6ixw7r38" path="res://ui/dice_icon.png" id="4_yfi1o"]
 
 [node name="CardDraftScreen" type="ColorRect"]
 anchors_preset = 15
@@ -54,18 +55,60 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Reroll" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(175, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/VBoxContainer/Reroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/VBoxContainer/Reroll/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_yfi1o")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RerollLabel" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer/Reroll/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Reroll (9)"
+
+[node name="RerollDisabledPanel" type="Panel" parent="VBoxContainer/VBoxContainer/VBoxContainer/Reroll"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Add" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Add" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(110, 50)
 layout_mode = 2
 text = "Add"
 
-[node name="Skip" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Skip" type="Button" parent="VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(110, 40)
 layout_mode = 2

@@ -4,6 +4,7 @@ extends CanvasLayer
 
 @onready var card_pile_panel: CenterContainer = $CardPilePanel
 @onready var tooltip_manager: Control = $TooltipManager
+@onready var enemies_remaining: HBoxContainer = $EnemiesRemaining
 var current_character: Character
 
 
@@ -12,9 +13,9 @@ func _ready() -> void:
 	card_pile_panel.closed.connect(tooltip_manager.clear_tooltip)
 
 
-func setup(character: Character) -> void:
+func setup(character: Character, level_data: LevelData) -> void:
 	current_character = character
-
+	enemies_remaining.level = level_data
 
 ## Displays a card pile panel when requested.
 ## [param title] is the title of the requested panel (e.g. Draw Pile),

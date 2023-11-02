@@ -21,6 +21,10 @@ func _ready() -> void:
 	_set_stat(enemies_killed, StatTracker.enemies_killed)
 	
 	var winrate := StatTracker.runs_won / float(StatTracker.all_runs)
+	
+	if is_nan(winrate):
+		winrate = 0.0
+	
 	_set_stat(win_rate, "%.2f%%" % winrate)
 
 

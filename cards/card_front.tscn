@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b6y4tttwgy6b0" path="res://cards/card_front.png" id="1_yrdxd"]
 [ext_resource type="Script" path="res://cards/card_front.gd" id="2_i0lui"]
 [ext_resource type="FontFile" uid="uid://dbb73ujk8a3yr" path="res://ui/lato_regular.ttf" id="4_6bg4o"]
-[ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target_air.png" id="4_84tq0"]
+[ext_resource type="Texture2D" uid="uid://dj6okf305jccu" path="res://cards/damage_icon.png" id="4_sca4f"]
 [ext_resource type="Texture2D" uid="uid://bi3jwnpvsq3hi" path="res://cards/card_background2.png" id="4_vh0wh"]
 [ext_resource type="Texture2D" uid="uid://5qttoa3aimsb" path="res://cards/card_target_all_ground.png" id="5_vanxv"]
 [ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target_all_enemies.png" id="6_ksbkl"]
@@ -38,7 +38,7 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-texture = ExtResource("4_84tq0")
+texture = ExtResource("4_sca4f")
 stretch_mode = 5
 
 [node name="TextAndStatusIcons" type="HBoxContainer" parent="VBoxContainer"]

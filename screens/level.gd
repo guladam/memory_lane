@@ -31,7 +31,7 @@ func _ready() -> void:
 	discard_pile.setup(run.deck)
 	draw_pile.setup(run.deck)
 	enemy_manager.setup(player.get_ranged_target_position())
-	ingame_ui.setup(run.character)
+	ingame_ui.setup(run.character, level_data)
 	
 	if OS.has_feature("editor"):
 		debug_window.level_data = level_data
@@ -41,6 +41,9 @@ func _ready() -> void:
 		board.position.y += offset
 		draw_pile.position.y += offset
 		discard_pile.position.y += offset
+	
+	if level_data.music_track:
+		MusicPlayer.play_song(level_data.music_track)
 	
 	Events.draw_pile_reshuffled.connect(_on_draw_pile_reshuffled)
 	Events.board_emptied.connect(_on_board_emptied)

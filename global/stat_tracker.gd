@@ -12,6 +12,8 @@ var levels_beaten: int
 var runs_won: int
 ## Total number of runs played.
 var all_runs: int
+## Number of rerolls available when drafting cards.
+var rerolls: int
 
 ## [code]true[/code] if the [Player] has unlocked this character.
 var ice_unlocked: bool
@@ -26,6 +28,7 @@ func _ready() -> void:
 	Events.level_won.connect(_on_level_won)
 	Events.game_over.connect(_on_game_over)
 	Events.run_won.connect(_on_run_won)
+	Events.card_rewards_rerolled.connect(_on_card_rewards_rerolled)
 
 
 func _input(event: InputEvent) -> void:
@@ -51,6 +54,7 @@ func _save_default() -> void:
 	levels_beaten = 0
 	runs_won = 0
 	all_runs = 0
+	rerolls = 3
 	
 	ice_unlocked = false
 	earth_unlocked = false
@@ -69,6 +73,7 @@ func _save_stats() -> void:
 	_stats.store_var(levels_beaten)
 	_stats.store_var(runs_won)
 	_stats.store_var(all_runs)
+	_stats.store_var(rerolls)
 	_stats.store_var(ice_unlocked)
 	_stats.store_var(earth_unlocked)
 
@@ -81,6 +86,7 @@ func _load_data(file: FileAccess) -> void:
 	levels_beaten = file.get_var()
 	runs_won = file.get_var()
 	all_runs = file.get_var()
+	rerolls = file.get_var()
 	ice_unlocked = file.get_var()
 	earth_unlocked = file.get_var()
 
@@ -93,6 +99,7 @@ func print_stats() -> void:
 	print("levels beaten: %s" % levels_beaten)
 	print("runs won: %s" % runs_won)
 	print("all runs: %s" % all_runs)
+	print("rerolls: %s" % rerolls)
 	print("ice: %s" % ice_unlocked)
 	print("earth: %s" % earth_unlocked)
 	print("-------------------")
@@ -113,7 +120,10 @@ func _on_level_won(level: LevelData) -> void:
 	if level.level_pool >= 6:
 		print("yes we should indeed")
 		ice_unlocked = true
-		
+	
+	if levels_beaten % 4 == 0:
+		rerolls += 1
+	
 	_save_stats()
 
 
@@ -128,4 +138,10 @@ func _on_run_won() -> void:
 	runs_won += 1
 	all_runs += 1
 	earth_unlocked = true
+	_save_stats()
+
+
+## Called when the [Player] rerolls their card rewards.
+func _on_card_rewards_rerolled() -> void:
+	rerolls -= 1
 	_save_stats()

@@ -79,3 +79,5 @@ signal card_pile_panel_requested(title: String, cards: Array[CardData])
 signal card_tooltip_requested(card: CardData, gui_element: Control)
 ## Emitted when [Status] tooltips for a unit are requested.
 signal status_tooltip_requested(statuses: Array[StatusData], unit: Node2D)
+## Emitted when the [Player] rerolls their card rewards.
+signal card_rewards_rerolled

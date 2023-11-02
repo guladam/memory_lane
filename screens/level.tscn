@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://l48bpn0txwjb"]
+[gd_scene load_steps=19 format=3 uid="uid://l48bpn0txwjb"]
 
 [ext_resource type="Script" path="res://screens/level.gd" id="1_cmfot"]
 [ext_resource type="PackedScene" uid="uid://cpm1h02k47x6e" path="res://board/board.tscn" id="1_da4pj"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://cpvqx5wls726g" path="res://ui/tooltip_manager.tscn" id="13_xset1"]
 [ext_resource type="PackedScene" uid="uid://cc6ut7onakfsb" path="res://ui/status_tooltip_manager.tscn" id="15_pcavm"]
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="16_m2nsb"]
+[ext_resource type="Script" path="res://ui/enemies_remaining.gd" id="17_fy1d6"]
+[ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target_all_enemies.png" id="17_ttmfo"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_cmfot")
@@ -73,6 +75,29 @@ offset_right = 102.0
 offset_bottom = 46.0
 theme = ExtResource("16_m2nsb")
 text = "View Deck"
+
+[node name="EnemiesRemaining" type="HBoxContainer" parent="IngameUI"]
+offset_left = 175.0
+offset_top = 14.0
+offset_right = 234.0
+offset_bottom = 56.0
+theme_override_constants/separation = 0
+script = ExtResource("17_fy1d6")
+
+[node name="TextureRect" type="TextureRect" parent="IngameUI/EnemiesRemaining"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("17_ttmfo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="IngameUI/EnemiesRemaining"]
+layout_mode = 2
+theme = ExtResource("16_m2nsb")
+theme_override_font_sizes/font_size = 32
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="IngameUI/DeckViewButton" to="." method="_on_deck_view_button_pressed"]
 

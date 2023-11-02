@@ -10,7 +10,8 @@ extends Resource
 @export var level_pool: int
 ## This contains when and which [Enemy] units will be spawned.
 @export var spawn_table: Array[LevelSpawnData]
-
+## Optional custom music track for the Level.
+@export var music_track: AudioStream
 
 ## Returns the total number of [Enemy] units on this level.
 ## This can be used to check if the [Player] killed all enemies.

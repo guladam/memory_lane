@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=10 format=3 uid="uid://ccxe3wd27rom4"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=11 format=3 uid="uid://ccxe3wd27rom4"]
 
+[ext_resource type="AudioStream" uid="uid://bjrb1u5voq6ah" path="res://music/covert_operations.mp3" id="1_qhyvy"]
 [ext_resource type="Script" path="res://custom_resource_types/level_data.gd" id="1_vr3k5"]
 [ext_resource type="PackedScene" uid="uid://b0vikjl1a7t8e" path="res://creatures/ground_boss.tscn" id="2_cbrj2"]
 [ext_resource type="Script" path="res://custom_resource_types/level_spawn_data.gd" id="3_48045"]
@@ -26,3 +27,4 @@ enemies = Array[PackedScene]([ExtResource("6_e0pb8")])
 script = ExtResource("1_vr3k5")
 level_pool = 10
 spawn_table = Array[ExtResource("3_48045")]([SubResource("Resource_4wsx8"), SubResource("Resource_x87qb"), SubResource("Resource_xh66u")])
+music_track = ExtResource("1_qhyvy")

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Deck" load_steps=8 format=3 uid="uid://b38vxqnphpya5"]
 
-[ext_resource type="Resource" uid="uid://yqk3jb530a6s" path="res://cards/earth/18_mismatch_heal.tres" id="1_6n1hv"]
+[ext_resource type="Resource" uid="uid://gulhdkrr8aoj" path="res://cards/earth/00_earth_air_attack.tres" id="1_36c8c"]
 [ext_resource type="Script" path="res://custom_resource_types/deck.gd" id="1_pk8sx"]
-[ext_resource type="Resource" uid="uid://b3t1qytbnd82l" path="res://cards/earth/15_link_all_air.tres" id="2_woky7"]
+[ext_resource type="Resource" uid="uid://dd32kr5o18tnv" path="res://cards/earth/00_earth_ground_attack.tres" id="2_vf58c"]
 [ext_resource type="Resource" uid="uid://dwivf1hyeguhn" path="res://cards/common/basic_heal.tres" id="3_tkk3g"]
 [ext_resource type="Resource" uid="uid://bq17e4catd7ep" path="res://cards/common/discard_board.tres" id="4_bpyi6"]
 [ext_resource type="Resource" uid="uid://c0cbi3qk7xqle" path="res://cards/earth/02_dmg_heal_air.tres" id="5_npvd4"]
-[ext_resource type="Resource" uid="uid://gwowlks7gbg6" path="res://cards/earth/17_link_all_enemies.tres" id="6_iie82"]
+[ext_resource type="Resource" uid="uid://cdxlw7884wbc5" path="res://cards/earth/01_dmg_heal_ground.tres" id="6_7313l"]
 
 [resource]
 script = ExtResource("1_pk8sx")
-cards = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("1_6n1hv"), ExtResource("1_6n1hv"), ExtResource("2_woky7"), ExtResource("2_woky7"), ExtResource("3_tkk3g"), ExtResource("3_tkk3g"), ExtResource("4_bpyi6"), ExtResource("4_bpyi6"), ExtResource("5_npvd4"), ExtResource("5_npvd4"), ExtResource("6_iie82"), ExtResource("6_iie82")])
+cards = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("1_36c8c"), ExtResource("1_36c8c"), ExtResource("2_vf58c"), ExtResource("2_vf58c"), ExtResource("3_tkk3g"), ExtResource("3_tkk3g"), ExtResource("4_bpyi6"), ExtResource("4_bpyi6"), ExtResource("5_npvd4"), ExtResource("5_npvd4"), ExtResource("6_7313l"), ExtResource("6_7313l")])

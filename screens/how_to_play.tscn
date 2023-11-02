@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://brgquf0x4yhld"]
+[gd_scene load_steps=11 format=3 uid="uid://brgquf0x4yhld"]
 
 [ext_resource type="Script" path="res://screens/how_to_play.gd" id="1_esg3q"]
 [ext_resource type="PackedScene" uid="uid://dgnif2l6f5yl0" path="res://ui/slide_indicator.tscn" id="2_ir6yl"]
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="2_suj4u"]
+[ext_resource type="Texture2D" uid="uid://ccaikh4ajr1dk" path="res://ui/how_to_play_1.png" id="3_80uog"]
+[ext_resource type="Texture2D" uid="uid://wf4xnkdvpkjt" path="res://ui/how_to_play_2.png" id="4_lit3i"]
+[ext_resource type="Texture2D" uid="uid://cwp7fs55hy4p6" path="res://ui/how_to_play_3.png" id="5_bd5nh"]
+[ext_resource type="Texture2D" uid="uid://bu0ojl4l2vk0t" path="res://ui/how_to_play_4.png" id="6_m7rwi"]
+[ext_resource type="Texture2D" uid="uid://kp6nt0eopdlp" path="res://ui/how_to_play_5.png" id="7_bqfox"]
+[ext_resource type="Texture2D" uid="uid://dhxe0lqy7nf2u" path="res://ui/how_to_play_6.png" id="8_xpfkn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sopp"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 0.109804)
 
 [node name="HowToPlay" type="Control"]
 layout_mode = 3
@@ -23,9 +36,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -326.0
+offset_top = -417.0
 offset_right = 200.0
-offset_bottom = -206.0
+offset_bottom = -297.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
@@ -49,76 +62,156 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Slide1" type="ColorRect" parent="Slides"]
+[node name="Slide1" type="TextureRect" parent="Slides"]
+custom_minimum_size = Vector2(400, 550)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -200.0
+offset_top = -291.0
+offset_right = 200.0
+offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_80uog")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Slide2" type="ColorRect" parent="Slides"]
+[node name="Slide2" type="TextureRect" parent="Slides"]
 visible = false
+custom_minimum_size = Vector2(400, 550)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -200.0
+offset_top = -291.0
+offset_right = 200.0
+offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.603922, 1, 1)
+texture = ExtResource("4_lit3i")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Slide3" type="ColorRect" parent="Slides"]
+[node name="Slide3" type="TextureRect" parent="Slides"]
 visible = false
+custom_minimum_size = Vector2(400, 550)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -200.0
+offset_top = -291.0
+offset_right = 200.0
+offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.843137, 0.764706, 0.607843, 1)
+texture = ExtResource("5_bd5nh")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="SlideIndicators" type="HBoxContainer" parent="."]
+[node name="Slide4" type="TextureRect" parent="Slides"]
+visible = false
+custom_minimum_size = Vector2(400, 550)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -291.0
+offset_right = 200.0
+offset_bottom = 259.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_m7rwi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slide5" type="TextureRect" parent="Slides"]
+visible = false
+custom_minimum_size = Vector2(400, 550)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -291.0
+offset_right = 200.0
+offset_bottom = 259.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_bqfox")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slide6" type="TextureRect" parent="Slides"]
+visible = false
+custom_minimum_size = Vector2(400, 550)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -291.0
+offset_right = 200.0
+offset_bottom = 259.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_xpfkn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 281.0
+offset_right = 120.0
+offset_bottom = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3sopp")
+
+[node name="SlideIndicators" type="HBoxContainer" parent="PanelContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 202.0
-offset_right = 20.0
-offset_bottom = 232.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="SlideIndicator" parent="SlideIndicators" instance=ExtResource("2_ir6yl")]
+[node name="SlideIndicator" parent="PanelContainer/SlideIndicators" instance=ExtResource("2_ir6yl")]
 layout_mode = 2
 
-[node name="SlideIndicator2" parent="SlideIndicators" instance=ExtResource("2_ir6yl")]
+[node name="SlideIndicator2" parent="PanelContainer/SlideIndicators" instance=ExtResource("2_ir6yl")]
 layout_mode = 2
 
-[node name="SlideIndicator3" parent="SlideIndicators" instance=ExtResource("2_ir6yl")]
+[node name="SlideIndicator3" parent="PanelContainer/SlideIndicators" instance=ExtResource("2_ir6yl")]
+layout_mode = 2
+
+[node name="SlideIndicator4" parent="PanelContainer/SlideIndicators" instance=ExtResource("2_ir6yl")]
+layout_mode = 2
+
+[node name="SlideIndicator5" parent="PanelContainer/SlideIndicators" instance=ExtResource("2_ir6yl")]
+layout_mode = 2
+
+[node name="SlideIndicator6" parent="PanelContainer/SlideIndicators" instance=ExtResource("2_ir6yl")]
 layout_mode = 2
 
 [node name="Back" type="Button" parent="."]
@@ -131,9 +224,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -75.0
-offset_top = 293.0
+offset_top = 351.0
 offset_right = 75.0
-offset_bottom = 343.0
+offset_bottom = 401.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
