@@ -1,6 +1,6 @@
 ## This screen is shown when a [Level] is won and the [Player]
 ## can draft new [Card]s to their [Deck].
-extends ColorRect
+extends TextureRect
 
 ## Emitted when the user has selected a card to draft, or when they
 ## skipped the reward.

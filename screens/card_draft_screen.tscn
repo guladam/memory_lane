@@ -1,20 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://bq6d8drq200c6"]
+[gd_scene load_steps=8 format=3 uid="uid://bq6d8drq200c6"]
 
 [ext_resource type="Script" path="res://screens/card_draft_screen.gd" id="1_06b6j"]
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_gj4vp"]
+[ext_resource type="Texture2D" uid="uid://cfoyabrersg16" path="res://screens/screen_gradient.tres" id="2_u8glh"]
+[ext_resource type="PackedScene" uid="uid://bx028t1351pii" path="res://ui/ui_particles.tscn" id="3_snsev"]
 [ext_resource type="Texture2D" uid="uid://dpidrwgdl7ko1" path="res://ui/fire_emblem.png" id="3_w3srn"]
 [ext_resource type="PackedScene" uid="uid://cpvqx5wls726g" path="res://ui/tooltip_manager.tscn" id="4_gb4up"]
 [ext_resource type="Texture2D" uid="uid://rl2b6ixw7r38" path="res://ui/dice_icon.png" id="4_yfi1o"]
 
-[node name="CardDraftScreen" type="ColorRect"]
+[node name="CardDraftScreen" type="TextureRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_gj4vp")
-color = Color(0, 0.0901961, 0.0784314, 1)
+texture = ExtResource("2_u8glh")
 script = ExtResource("1_06b6j")
+
+[node name="GreenParticles" parent="." instance=ExtResource("3_snsev")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -24,9 +28,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -141.5
-offset_top = -151.0
-offset_right = 141.5
-offset_bottom = 151.0
+offset_top = -216.0
+offset_right = 168.5
+offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 15

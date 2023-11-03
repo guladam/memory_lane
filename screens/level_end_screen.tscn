@@ -1,20 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://dg16ixgfbx3tt"]
+[gd_scene load_steps=15 format=3 uid="uid://dg16ixgfbx3tt"]
 
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_rro6h"]
+[ext_resource type="Texture2D" uid="uid://cfoyabrersg16" path="res://screens/screen_gradient.tres" id="2_epoi1"]
 [ext_resource type="Texture2D" uid="uid://bfismngw4yyuw" path="res://player/player.png" id="2_jqgc6"]
 [ext_resource type="Script" path="res://screens/level_end_screen.gd" id="2_pvuai"]
 [ext_resource type="AudioStream" uid="uid://8voqagr7qbll" path="res://ui/level_won_sound.ogg" id="3_sk0wu"]
+[ext_resource type="PackedScene" uid="uid://bx028t1351pii" path="res://ui/ui_particles.tscn" id="4_8h6pq"]
 [ext_resource type="PackedScene" uid="uid://dth1ehlyddit0" path="res://screens/end_screen_progress_bar.tscn" id="4_vhiue"]
+[ext_resource type="Texture2D" uid="uid://bjickm1g0wltn" path="res://ui/star_particle.png" id="5_qo0j6"]
 
-[sub_resource type="Gradient" id="Gradient_ns4iw"]
-interpolation_mode = 2
-colors = PackedColorArray(0, 0.0901961, 0.0784314, 1, 2.40654e-08, 0.130748, 0.115698, 1)
+[sub_resource type="Curve" id="Curve_g3m07"]
+_data = [Vector2(0, 0.747368), 0.0, 0.0, 0, 0, Vector2(0.802676, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0126316), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_umhim"]
-gradient = SubResource("Gradient_ns4iw")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0, 0)
+[sub_resource type="Gradient" id="Gradient_xxgd4"]
+offsets = PackedFloat32Array(0, 0.302239, 0.835821, 0.985075)
+colors = PackedColorArray(1, 1, 1, 0, 0.878431, 0.85098, 0.509804, 0.760784, 0.878431, 0.85098, 0.509804, 0.760784, 1, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_ihgsp"]
 length = 0.001
@@ -128,9 +129,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rro6h")
-texture = SubResource("GradientTexture2D_umhim")
+texture = ExtResource("2_epoi1")
 script = ExtResource("2_pvuai")
 level_won_sound = ExtResource("3_sk0wu")
+
+[node name="DefaultParticles" parent="." instance=ExtResource("4_8h6pq")]
+
+[node name="WinParticles" parent="." instance=ExtResource("4_8h6pq")]
+emitting = false
+texture = ExtResource("5_qo0j6")
+initial_velocity_min = 120.0
+initial_velocity_max = 120.0
+scale_amount_min = 0.2
+scale_amount_max = 1.0
+scale_amount_curve = SubResource("Curve_g3m07")
+color_ramp = SubResource("Gradient_xxgd4")
 
 [node name="Text1" type="Label" parent="."]
 layout_mode = 2

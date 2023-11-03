@@ -23,6 +23,8 @@ signal awesome_selected
 @onready var awesome: Button = %Awesome
 @onready var puff := preload("res://creatures/puff_effect.tscn")
 @onready var eyes: Polygon2D = $Wizard/Sprite2D/Eyes
+@onready var default_particles: CPUParticles2D = $DefaultParticles
+@onready var win_particles: CPUParticles2D = $WinParticles
 
 var current_level: int
 var current_kills: int
@@ -48,6 +50,8 @@ func show_level_won(run: Run) -> void:
 	text_2.text = "Won"
 	current_level = run.current_level-1
 	current_kills = StatTracker.enemies_killed_this_run
+	default_particles.emitting = true
+	win_particles.emitting = false
 	animate("win", next_level, level_won_sound)
 
 
@@ -58,6 +62,8 @@ func show_run_won(run: Run) -> void:
 	text_2.text = "Won"
 	current_level = run.current_level-1
 	current_kills = StatTracker.enemies_killed_this_run
+	default_particles.emitting = false
+	win_particles.emitting = true
 	animate("win", awesome, run_won_sound)
 
 
@@ -68,6 +74,8 @@ func show_game_over(run: Run) -> void:
 	text_2.text = "Over"
 	current_level = run.current_level-1
 	current_kills = StatTracker.enemies_killed_this_run
+	default_particles.emitting = true
+	win_particles.emitting = false
 	animate("die", main_menu, game_over_sound)
 
 

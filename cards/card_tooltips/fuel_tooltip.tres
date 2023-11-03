@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_qhlvu")
 icon = ExtResource("1_o2b30")
-text = "Ignite effects are 2 times longer."
+text = "Ignite effects last 2 times longer."
