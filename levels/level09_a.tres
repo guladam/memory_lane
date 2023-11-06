@@ -28,27 +28,27 @@ enemies = Array[PackedScene]([ExtResource("7_aepjk")])
 
 [sub_resource type="Resource" id="Resource_wrfmy"]
 script = ExtResource("2_u7cgg")
-turn = 6
+turn = 7
 enemies = Array[PackedScene]([ExtResource("8_ws1jn")])
 
 [sub_resource type="Resource" id="Resource_ofvtv"]
 script = ExtResource("2_u7cgg")
-turn = 7
+turn = 8
 enemies = Array[PackedScene]([ExtResource("9_4td65")])
 
 [sub_resource type="Resource" id="Resource_kpml6"]
 script = ExtResource("2_u7cgg")
-turn = 8
+turn = 9
 enemies = Array[PackedScene]([ExtResource("10_yjgst")])
 
 [sub_resource type="Resource" id="Resource_xsjlw"]
 script = ExtResource("2_u7cgg")
-turn = 10
+turn = 11
 enemies = Array[PackedScene]([ExtResource("7_aepjk"), ExtResource("5_vx3bc")])
 
 [sub_resource type="Resource" id="Resource_uq21d"]
 script = ExtResource("2_u7cgg")
-turn = 12
+turn = 13
 enemies = Array[PackedScene]([ExtResource("8_ws1jn"), ExtResource("10_yjgst")])
 
 [resource]

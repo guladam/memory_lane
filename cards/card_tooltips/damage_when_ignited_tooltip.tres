@@ -6,5 +6,4 @@
 [resource]
 script = ExtResource("1_m6erd")
 icon = ExtResource("1_iqtdh")
-text = "Deal N damage, or (M) damage 
-if Enemy is Ignited."
+text = "Deal N damage or (M) damage\\nif Enemy is Ignited."

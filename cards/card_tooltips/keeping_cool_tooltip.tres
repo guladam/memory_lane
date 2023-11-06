@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_7brrt")
 icon = ExtResource("1_0o2ii")
-text = "Mismatching cards discards\\n a random pair."
+text = "Mismatching Cards discards\\n a Random Pair."

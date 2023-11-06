@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bq6d8drq200c6"]
+[gd_scene load_steps=9 format=3 uid="uid://bq6d8drq200c6"]
 
 [ext_resource type="Script" path="res://screens/card_draft_screen.gd" id="1_06b6j"]
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_gj4vp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dpidrwgdl7ko1" path="res://ui/fire_emblem.png" id="3_w3srn"]
 [ext_resource type="PackedScene" uid="uid://cpvqx5wls726g" path="res://ui/tooltip_manager.tscn" id="4_gb4up"]
 [ext_resource type="Texture2D" uid="uid://rl2b6ixw7r38" path="res://ui/dice_icon.png" id="4_yfi1o"]
+[ext_resource type="PackedScene" uid="uid://bn3pivcnfpu1x" path="res://ui/card_pile_panel.tscn" id="8_yxbmo"]
 
 [node name="CardDraftScreen" type="TextureRect"]
 anchors_preset = 15
@@ -118,5 +119,21 @@ custom_minimum_size = Vector2(110, 40)
 layout_mode = 2
 text = "Skip"
 
+[node name="CardPilePanel" parent="." instance=ExtResource("8_yxbmo")]
+visible = false
+layout_mode = 1
+
 [node name="TooltipManager" parent="." instance=ExtResource("4_gb4up")]
 layout_mode = 1
+
+[node name="DeckViewButton" type="Button" parent="."]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 102.0
+offset_bottom = 46.0
+theme = ExtResource("1_gj4vp")
+text = "View Deck"
+
+[connection signal="closed" from="CardPilePanel" to="." method="_on_card_pile_panel_closed"]

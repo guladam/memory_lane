@@ -19,6 +19,9 @@ extends Node2D
 @onready var card_markers: Array[Node] = $CardMarkers.get_children()
 ## Node holding [Card]s.
 @onready var cards: Node2D = $Cards
+## Star particles.
+@onready var particles: CPUParticles2D = $Particles
+
 ## Position of the draw pile. Needed for [Card] animations.
 var draw_pile_pos: Vector2
 ## Position of the discard pile. Needed for [Card] animations.
@@ -37,6 +40,7 @@ func _ready() -> void:
 	Events.player_turn_ended.connect(_on_player_turn_ended)
 	Events.board_reveal_requested.connect(reveal_cards)
 	Events.board_discard_requested.connect(discard_pair)
+	Events.board_particle_requested.connect(_on_board_particle_requested)
 
 
 ## This method is used for dependency injection.
@@ -321,3 +325,12 @@ func _on_player_turn_started() -> void:
 func _on_player_turn_ended() -> void:
 	self.interactable = false
 	self.modulate.a = 0.5
+
+
+## Called when the board particle is requested to show.
+func _on_board_particle_requested(where: Vector2) -> void:
+	if particles.emitting:
+		return
+	
+	particles.position = where + Vector2(0, -50)
+	particles.emitting = true

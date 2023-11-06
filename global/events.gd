@@ -35,6 +35,9 @@ signal pairs_discarded(n: int)
 signal board_reveal_requested(amount: int)
 ## Emitted when the [Board] needs to discard [param n] pair(s) of [Card]s.
 signal board_discard_requested(n: int)
+## Emitted when two cards matched together and a board star
+## particle is requested.
+signal board_particle_requested(position: Vector2)
 ## Emitted when the deck is reshuffled because there
 ## were no more cards left in the draw pile.
 signal draw_pile_reshuffled(cards_still_needed: int)

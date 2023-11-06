@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_haofh")
 icon = ExtResource("1_nsejg")
-text = "Apply 1 Frost to N random Enemies."
+text = "Apply 1 Frost to N Random Enemies."

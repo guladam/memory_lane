@@ -34,3 +34,15 @@ func set_buttons(enabled: bool) -> void:
 	how_to_play.disabled = not enabled
 	credits.disabled = not enabled
 	quit.disabled = not enabled
+
+
+## Enables or disables sound effects.
+func _on_sound_toggle_toggled(button_pressed: bool) -> void:
+	var sfx_bus := AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_mute(sfx_bus, button_pressed)
+
+
+## Enables or disables music.
+func _on_music_toggle_toggled(button_pressed: bool) -> void:
+	var sfx_bus := AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_mute(sfx_bus, button_pressed)

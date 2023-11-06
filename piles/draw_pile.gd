@@ -37,6 +37,7 @@ func draw_cards(n: int) -> Array[CardData]:
 	while drawn_cards.size() < n:
 		var card = cards.pop_back()
 		if not card:
+			drawn_cards.shuffle()
 			return drawn_cards
 		
 		for card2 in cards:

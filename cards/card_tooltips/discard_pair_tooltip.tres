@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_yfxtm")
 icon = ExtResource("1_lx1ro")
-text = "Discard N pair(s) of Cards."
+text = "Discard N Pair(s) of Cards."

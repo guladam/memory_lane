@@ -68,23 +68,6 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_cqyqd"]
-resource_name = "walk"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
 [sub_resource type="Animation" id="Animation_e31r7"]
 resource_name = "use"
 length = 0.6
@@ -113,6 +96,23 @@ tracks/1/keys = {
 "args": [],
 "method": &"spawn_projectile"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_cqyqd"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_neyk1"]
@@ -155,6 +155,7 @@ projectile = ExtResource("4_ee4cm")
 animation_player = NodePath("../CustomAnimations")
 visuals = NodePath("Visuals")
 muzzle = NodePath("Muzzle")
+attack_range = 2
 
 [node name="Visuals" type="Node2D" parent="GenieWeapon" index="0"]
 

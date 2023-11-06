@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpm1h02k47x6e"]
+[gd_scene load_steps=8 format=3 uid="uid://cpm1h02k47x6e"]
 
 [ext_resource type="Script" path="res://board/board.gd" id="1_xgs1u"]
 [ext_resource type="Texture2D" uid="uid://ckdvioqanvlu4" path="res://board/board_bg.png" id="2_w4r6r"]
+[ext_resource type="Texture2D" uid="uid://boqqowrbkky5d" path="res://ui/particle.png" id="3_xulyf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oac6d"]
 texture = ExtResource("2_w4r6r")
@@ -11,6 +12,15 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_y0usl"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_oac6d")
+
+[sub_resource type="Curve" id="Curve_q7g23"]
+max_value = 0.6
+_data = [Vector2(0, 0.309474), 0.0, 0.0, 0, 0, Vector2(0.617737, 0.6), 0.0, 0.0, 0, 0, Vector2(1, 0.0126316), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_j2tti"]
+offsets = PackedFloat32Array(0, 0.388514, 0.736486, 0.985075)
+colors = PackedColorArray(1, 1, 1, 0, 0.907919, 0.9039, 0.730339, 0.760784, 0.8855, 0.879799, 0.67301, 0.407843, 1, 1, 1, 0)
 
 [node name="Board" type="Node2D"]
 texture_filter = 1
@@ -62,3 +72,25 @@ position = Vector2(332, 766)
 position = Vector2(460, 766)
 
 [node name="Cards" type="Node2D" parent="."]
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 24
+lifetime = 1.2
+one_shot = true
+explosiveness = 1.0
+randomness = 0.11
+texture = ExtResource("3_xulyf")
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+direction = Vector2(0, -1)
+spread = 25.0
+gravity = Vector2(0, 350)
+initial_velocity_min = 250.0
+initial_velocity_max = 275.0
+angular_velocity_min = 18.34
+angular_velocity_max = 18.34
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_q7g23")
+color_ramp = SubResource("Gradient_j2tti")

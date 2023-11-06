@@ -5,9 +5,9 @@
 [ext_resource type="Resource" uid="uid://crxs5u0dcada3" path="res://cards/frost/ice_air_attack.tres" id="2_yfyv6"]
 [ext_resource type="Resource" uid="uid://dwivf1hyeguhn" path="res://cards/common/basic_heal.tres" id="3_4fnqj"]
 [ext_resource type="Resource" uid="uid://bq17e4catd7ep" path="res://cards/common/discard_board.tres" id="4_d835k"]
-[ext_resource type="Resource" uid="uid://conwrjrlna0xt" path="res://cards/frost/icicle.tres" id="5_igpt7"]
-[ext_resource type="Resource" uid="uid://llcr5wxsqnog" path="res://cards/frost/snowball.tres" id="6_uqpm4"]
+[ext_resource type="Resource" uid="uid://dqwjvcuv5you7" path="res://cards/frost/frost_bolt.tres" id="5_q4li0"]
+[ext_resource type="Resource" uid="uid://bnv43eoddqfmx" path="res://cards/frost/freezing_shot.tres" id="6_kdaaa"]
 
 [resource]
 script = ExtResource("1_8csmi")
-cards = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("1_oj65n"), ExtResource("1_oj65n"), ExtResource("2_yfyv6"), ExtResource("2_yfyv6"), ExtResource("3_4fnqj"), ExtResource("3_4fnqj"), ExtResource("4_d835k"), ExtResource("4_d835k"), ExtResource("5_igpt7"), ExtResource("5_igpt7"), ExtResource("6_uqpm4"), ExtResource("6_uqpm4")])
+cards = Array[Resource("res://custom_resource_types/card.gd")]([ExtResource("1_oj65n"), ExtResource("1_oj65n"), ExtResource("2_yfyv6"), ExtResource("2_yfyv6"), ExtResource("3_4fnqj"), ExtResource("3_4fnqj"), ExtResource("4_d835k"), ExtResource("4_d835k"), ExtResource("5_q4li0"), ExtResource("5_q4li0"), ExtResource("6_kdaaa"), ExtResource("6_kdaaa")])

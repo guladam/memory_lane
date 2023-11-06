@@ -12,7 +12,9 @@ func apply_effect() -> void:
 	
 	var enemy = effect.targets[0] as Enemy
 	
-	enemy.status_effects.add_new_status(frost_status)
+	var new_frost := frost_status.duplicate(true)
+	new_frost.duration = 2
+	enemy.status_effects.add_new_status(new_frost)
 	var new_vfx := frost_vfx.instantiate()
 	new_vfx.global_position = enemy.global_position
 	enemy.get_tree().root.add_child(new_vfx)

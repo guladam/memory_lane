@@ -15,6 +15,10 @@ func clear_tooltip() -> void:
 		t.fade_out()
 
 
+func delete_current_tooltip_reference() -> void:
+	current_tooltip = null
+
+
 func _on_card_tooltip_requested(card: CardData, card_gui: Control) -> void:
 	current_tooltip = card_gui if current_tooltip != card_gui else null
 	clear_tooltip()

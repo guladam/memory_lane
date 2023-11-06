@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://csckhpk6v8me2"]
+[gd_scene load_steps=9 format=3 uid="uid://csckhpk6v8me2"]
 
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_d8eat"]
 [ext_resource type="Script" path="res://screens/main_menu.gd" id="1_rq6x7"]
 [ext_resource type="Texture2D" uid="uid://dyedqrv24r0cg" path="res://ui/logo.png" id="3_s5npc"]
+[ext_resource type="PackedScene" uid="uid://costmm8uug5n4" path="res://ui/toggle_button.tscn" id="4_pvh4t"]
+[ext_resource type="Texture2D" uid="uid://b0m0abklf16bx" path="res://ui/sfx_icon.png" id="5_64ti0"]
+[ext_resource type="Texture2D" uid="uid://0tvpffo013pj" path="res://ui/music_icon.png" id="5_t8k1p"]
+[ext_resource type="Texture2D" uid="uid://drr5rlgjpxfri" path="res://ui/music_icon_off.png" id="6_cvum2"]
+[ext_resource type="Texture2D" uid="uid://cw7uvjvxlj72g" path="res://ui/sfx_icon_off.png" id="6_mwurr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,6 +17,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rq6x7")
+
+[node name="SoundToggle" parent="." instance=ExtResource("4_pvh4t")]
+layout_mode = 1
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 100.0
+offset_top = 40.0
+offset_right = 180.0
+offset_bottom = 120.0
+grow_vertical = 1
+icon_on = ExtResource("5_64ti0")
+icon_off = ExtResource("6_mwurr")
+
+[node name="MusicToggle" parent="." instance=ExtResource("4_pvh4t")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -180.0
+offset_top = 40.0
+offset_right = -100.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 1
+icon_on = ExtResource("5_t8k1p")
+icon_off = ExtResource("6_cvum2")
 
 [node name="VboxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(400, 650)
@@ -78,3 +112,6 @@ custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Quit"
+
+[connection signal="toggled" from="SoundToggle" to="." method="_on_sound_toggle_toggled"]
+[connection signal="toggled" from="MusicToggle" to="." method="_on_music_toggle_toggled"]

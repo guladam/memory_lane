@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_7n7wi")
 icon = ExtResource("1_q3j7r")
-text = "Deal N damage to a random\\n Enemy. Heals others to full."
+text = "Deal N damage to a Random\\n Enemy. Heals others to full."

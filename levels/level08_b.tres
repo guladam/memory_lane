@@ -21,12 +21,12 @@ enemies = Array[PackedScene]([ExtResource("4_toitw")])
 
 [sub_resource type="Resource" id="Resource_58ijl"]
 script = ExtResource("3_g3mvg")
-turn = 4
+turn = 5
 enemies = Array[PackedScene]([ExtResource("5_12n4q"), ExtResource("6_danx3")])
 
 [sub_resource type="Resource" id="Resource_01sa4"]
 script = ExtResource("3_g3mvg")
-turn = 6
+turn = 8
 enemies = Array[PackedScene]([ExtResource("7_tef4d"), ExtResource("8_cbqgy")])
 
 [resource]

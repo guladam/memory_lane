@@ -14,9 +14,13 @@ signal card_drafted(new_card: CardData)
 @onready var reroll: Button = %Reroll
 @onready var reroll_label: Label = %RerollLabel
 @onready var reroll_disabled_panel: Panel = %RerollDisabledPanel
+@onready var deck_view_button: Button = $DeckViewButton
+@onready var card_pile_panel: CenterContainer = $CardPilePanel
+@onready var tooltip_manager: Control = $TooltipManager
 
 var run: Run
 var picked_card: CardData
+var picked_card_gui: Control
 var rerolls: int
 
 
@@ -24,7 +28,9 @@ func _ready() -> void:
 	add.pressed.connect(func(): card_drafted.emit(picked_card))
 	skip.pressed.connect(func(): card_drafted.emit(null))
 	reroll.pressed.connect(_on_reroll_pressed)
+	deck_view_button.pressed.connect(_on_deck_view_button_pressed)
 	rerolls = StatTracker.rerolls
+	
 
 ## This method sets the screen up before showing it.
 ## [param run] is the data for the current [Run].
@@ -95,6 +101,7 @@ func _setup_card_rewards() -> void:
 	
 	cards.get_child(0).select()
 	picked_card = cards.get_child(0).card
+	picked_card_gui = cards.get_child(0)
 	
 	await get_tree().process_frame
 	await get_tree().process_frame
@@ -128,6 +135,7 @@ func _on_card_selected(selected_card: CardData, card_gui: Control) -> void:
 			card.deselect()
 	
 	picked_card = selected_card
+	picked_card_gui = card_gui
 	Events.card_tooltip_requested.emit(selected_card, card_gui)
 
 
@@ -141,3 +149,17 @@ func _on_reroll_pressed() -> void:
 		c.queue_free()
 	
 	_setup_card_rewards()
+
+
+## Called when the user presses the view deck button.
+func _on_deck_view_button_pressed() -> void:
+	tooltip_manager.clear_tooltip()
+	tooltip_manager.delete_current_tooltip_reference()
+	card_pile_panel.show_panel("Deck", run.deck.cards, run.character)
+
+
+## Called when the View Deck panel is closed.
+func _on_card_pile_panel_closed() -> void:
+	tooltip_manager.clear_tooltip()
+	tooltip_manager.delete_current_tooltip_reference()
+	Events.card_tooltip_requested.emit(picked_card, picked_card_gui)

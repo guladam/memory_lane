@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_c5pjy")
 icon = ExtResource("1_s3j4d")
-text = "Deal N damage, or (M) damage if Enemy has Frost."
+text = "Deal N damage or (M) damage if Enemy has Frost."

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://costmm8uug5n4"]
+
+[ext_resource type="Texture2D" uid="uid://b0m0abklf16bx" path="res://ui/sfx_icon.png" id="1_1yrsc"]
+[ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_mh87o"]
+[ext_resource type="Script" path="res://ui/toggle_button.gd" id="1_ng45q"]
+
+[node name="ToggleButton" type="Button"]
+custom_minimum_size = Vector2(80, 80)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -960.0
+offset_right = 80.0
+offset_bottom = -880.0
+grow_vertical = 0
+theme = ExtResource("1_mh87o")
+toggle_mode = true
+script = ExtResource("1_ng45q")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1yrsc")
+expand_mode = 1
+stretch_mode = 5

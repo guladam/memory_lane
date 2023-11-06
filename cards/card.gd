@@ -68,13 +68,19 @@ func animate_draw(from: Vector2, to: Vector2) -> void:
 func animate_match(pair_position: Vector2, discard_position: Vector2) -> void:
 	## TODO this way this is fired twice
 	Events.card_match_started.emit(self)
+	var target_pos: Vector2 = global_position.lerp(pair_position, 0.5)
 	z_index = 99
 	
-	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
-	t.tween_property(self, "global_position", global_position.lerp(pair_position, 0.5), 0.2)
+	var t := create_tween()
+	t.tween_property(self, "global_position", target_pos, 0.2)
 	t.parallel().tween_property(self, "scale", Vector2(1.2, 1.2), 0.2)
-	## TODO something fancy
-	t.tween_interval(0.25)
+	t.parallel().tween_callback(func():
+		Events.board_particle_requested.emit(target_pos)
+	)
+	t.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	t.tween_property(self, "scale", Vector2(1.5, 1.5), 0.6)
+	t.tween_interval(0.35)
+	t.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	t.tween_property(self, "global_position", discard_position, 0.3)
 	t.parallel().tween_property(self, "scale", Vector2(0.5, 0.5), 0.3)
 	t.parallel().tween_property(self, "rotation_degrees", 90.0, 0.3)

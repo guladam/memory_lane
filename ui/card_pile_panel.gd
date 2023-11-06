@@ -30,7 +30,8 @@ func _clear_children() -> void:
 ## [param cards] is the array of [CardData], i.e. the Cards to show.
 ## [param character] is the curernt [Character].
 func show_panel(title: String, cards: Array[CardData], character: Character) -> void:
-	game_state.change_to(GameState.State.PAUSED)
+	if game_state:
+		game_state.change_to(GameState.State.PAUSED)
 	close_button.disabled = true
 	panel_title.text = title
 	_clear_children()
@@ -62,7 +63,7 @@ func fade_out() -> void:
 	t.tween_property(self, "position", Vector2(0, 35), 0.3)
 	t.parallel().tween_property(self, "modulate", Color.TRANSPARENT, 0.4)
 	t.tween_callback(hide)
-	t.tween_callback(game_state.change_to.bind(GameState.State.PLAYING))
+	t.tween_callback(_on_fade_out_end)
 
 
 ## Returns a [Dictionary] of unique cards with their number of occurances.
@@ -82,3 +83,9 @@ func _get_unique_cards_counted(cards: Array[CardData]) -> Dictionary:
 ## We hide tooltips when the [Player] starts scrolling.
 func _on_scroll_container_scroll_started() -> void:
 	Events.card_tooltip_requested.emit(null, null)
+
+
+## Called when fade out animation finishes.
+func _on_fade_out_end() -> void:
+	if game_state:
+		game_state.change_to(GameState.State.PLAYING)
