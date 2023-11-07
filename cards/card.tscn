@@ -248,3 +248,6 @@ shape = SubResource("RectangleShape2D_repqe")
 libraries = {
 "": SubResource("AnimationLibrary_ghscl")
 }
+
+[node name="MatchSound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

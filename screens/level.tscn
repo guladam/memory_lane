@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://l48bpn0txwjb"]
+[gd_scene load_steps=20 format=3 uid="uid://l48bpn0txwjb"]
 
 [ext_resource type="Script" path="res://screens/level.gd" id="1_cmfot"]
 [ext_resource type="PackedScene" uid="uid://cpm1h02k47x6e" path="res://board/board.tscn" id="1_da4pj"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cegivhvq2dd30" path="res://piles/discard_pile.tscn" id="5_73kb1"]
 [ext_resource type="PackedScene" uid="uid://dyvt0jm27wtbk" path="res://creatures/enemy_manager.tscn" id="5_smhgd"]
 [ext_resource type="PackedScene" uid="uid://c7r675rnocnfe" path="res://debugging/debug_window.tscn" id="6_yafv1"]
+[ext_resource type="AudioStream" uid="uid://d1wk0n0ojk6wu" path="res://sfx/card_match_sound.ogg" id="8_mgcsy"]
 [ext_resource type="Script" path="res://ui/ingame_ui.gd" id="9_ad715"]
 [ext_resource type="PackedScene" uid="uid://bn3pivcnfpu1x" path="res://ui/card_pile_panel.tscn" id="11_jplfr"]
 [ext_resource type="Resource" uid="uid://4x53kc465kmb" path="res://levels/level01_a.tres" id="12_mw2ej"]
@@ -33,6 +34,7 @@ position = Vector2(59, 216)
 
 [node name="Board" parent="." instance=ExtResource("1_da4pj")]
 game_state = ExtResource("3_hrhjg")
+match_sound = ExtResource("8_mgcsy")
 
 [node name="DrawPile" parent="." instance=ExtResource("4_iejax")]
 position = Vector2(144, 901)

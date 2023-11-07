@@ -16,6 +16,7 @@ card_icon = ExtResource("2_iapio")
 card_text = "2"
 card_target_icon = ExtResource("3_bwd7t")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_0algo"), ExtResource("7_sbflg")])
+pitch = 1.0
 id = "focus"
 tier = 3
 effect = ExtResource("4_4x6a0")

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://3e468oo0sdp"]
+[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://3e468oo0sdp"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_fytqh"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_7np4m"]
 [ext_resource type="Texture2D" uid="uid://ceqbepn26fadh" path="res://cards/card_target_ground.png" id="3_e2n67"]
 [ext_resource type="Texture2D" uid="uid://dbwvl1hun2awc" path="res://status_effects/fire_icon.png" id="3_ha6vv"]
+[ext_resource type="AudioStream" uid="uid://fysdysgiyh0o" path="res://sfx/card_chime-03.ogg" id="3_pko8b"]
 [ext_resource type="Resource" uid="uid://dviexmqyn0jej" path="res://card_effects/fire/flying_matches_effect.tres" id="4_f0waw"]
 [ext_resource type="Resource" uid="uid://sxnwhm87egrv" path="res://cards/card_tooltips/ground_target.tres" id="6_agx0i"]
 [ext_resource type="Resource" uid="uid://c4eflis0r1j42" path="res://cards/card_tooltips/ignite_tooltip.tres" id="7_p6vp6"]
@@ -16,6 +17,8 @@ card_icon = ExtResource("3_ha6vv")
 card_text = "2"
 card_target_icon = ExtResource("3_e2n67")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_agx0i"), ExtResource("7_p6vp6")])
+card_sound = ExtResource("3_pko8b")
+pitch = 0.975
 id = "flying_matches"
 tier = 1
 effect = ExtResource("4_f0waw")

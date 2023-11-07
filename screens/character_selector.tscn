@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://rl6khyp8imaq"]
+[gd_scene load_steps=10 format=3 uid="uid://rl6khyp8imaq"]
 
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_0kgti"]
 [ext_resource type="Script" path="res://screens/character_selector.gd" id="1_3f0td"]
 [ext_resource type="PackedScene" uid="uid://ce62ja7y3ei2q" path="res://ui/pickable_character.tscn" id="2_1c8pe"]
 [ext_resource type="Shader" path="res://screens/shine.gdshader" id="2_avvis"]
+[ext_resource type="AudioStream" uid="uid://dys8mcb66m7v8" path="res://sfx/fire_character.ogg" id="2_v783t"]
 [ext_resource type="Resource" uid="uid://ccrhcy38xlr5e" path="res://characters/fire_character.tres" id="3_qef18"]
 [ext_resource type="Resource" uid="uid://qung2y8erng0" path="res://characters/ice_character.tres" id="4_j0i00"]
 [ext_resource type="Resource" uid="uid://ccn8avhv1bgyg" path="res://characters/earth_character.tres" id="5_h3k3h"]
@@ -24,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(270, 480)
 script = ExtResource("1_3f0td")
+default_sound = ExtResource("2_v783t")
 
 [node name="Shine" type="ColorRect" parent="."]
 unique_name_in_owner = true

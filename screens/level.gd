@@ -66,6 +66,7 @@ func _ready() -> void:
 ## We queue a new hand of [Card]s which will be drawn when it's
 ## the [Player]'s turn.
 func _on_board_emptied() -> void:
+	print("fully emptied board")
 	draw_queue.append(12)
 
 

@@ -16,6 +16,7 @@ card_icon = ExtResource("2_giog3")
 card_text = "3"
 card_target_icon = ExtResource("3_37ooo")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_o7tjs"), ExtResource("5_ek6qp")])
+pitch = 1.0
 id = "mismatch_heal"
 tier = 3
 effect = ExtResource("4_7r6o3")

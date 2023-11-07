@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://dumaomir06bkb"]
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://dumaomir06bkb"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_l4tcl"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_2chy4"]
 [ext_resource type="Resource" uid="uid://dviseqtv8x2cm" path="res://card_effects/fire/hot_mess_effect.tres" id="3_3ma3k"]
 [ext_resource type="Texture2D" uid="uid://c4ekjtwm3a3dc" path="res://cards/card_target_self.png" id="3_5hgc8"]
+[ext_resource type="AudioStream" uid="uid://fysdysgiyh0o" path="res://sfx/card_chime-03.ogg" id="3_jm0au"]
 [ext_resource type="Texture2D" uid="uid://dhxihqatkwlf8" path="res://status_effects/hot_mess_icon.png" id="3_lulhr"]
 [ext_resource type="Resource" uid="uid://b46wjo7rt8ue3" path="res://cards/card_tooltips/self_target.tres" id="6_p42fn"]
 [ext_resource type="Resource" uid="uid://bkd5dwwinh575" path="res://cards/card_tooltips/hot_mess_tooltip.tres" id="7_004ey"]
@@ -17,6 +18,8 @@ card_icon = ExtResource("3_lulhr")
 card_text = "3"
 card_target_icon = ExtResource("3_5hgc8")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_p42fn"), ExtResource("7_004ey"), ExtResource("8_0ixtn")])
+card_sound = ExtResource("3_jm0au")
+pitch = 1.0
 id = "hot_mess"
 tier = 3
 effect = ExtResource("3_3ma3k")

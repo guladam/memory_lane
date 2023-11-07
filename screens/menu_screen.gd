@@ -33,6 +33,7 @@ func _ready() -> void:
 		func():
 			_fade_out_left(main_menu)
 			_fade_in_right(character_selector)
+			character_selector.initialize()
 	)
 	
 	character_selector.main_menu_requested.connect(

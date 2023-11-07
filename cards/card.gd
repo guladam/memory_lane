@@ -10,6 +10,8 @@ extends Area2D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var back: Sprite2D = $Back
 @onready var front: CardFront = $Back/CardFront
+@onready var match_sound: AudioStreamPlayer = $MatchSound
+
 
 ## Flips the card. It's a coroutine as it waits for the animation
 ## to finish.
@@ -19,6 +21,7 @@ func flip() -> void:
 	
 	input_pickable = false
 	anim_player.play("flip")
+	match_sound.play()
 	Events.card_flip_started.emit(self)
 	
 	await anim_player.animation_finished
@@ -123,6 +126,8 @@ func animate_reveal() -> void:
 ## Injects all data and dependencies when creating a new card.
 func setup(new_card_data: CardData, character: Character) -> void:
 	self.card = new_card_data
+	match_sound.pitch_scale = new_card_data.pitch
+	match_sound.stream = new_card_data.card_sound
 	front.setup(new_card_data, character)
 
 

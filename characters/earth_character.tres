@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=27 format=3 uid="uid://ccn8avhv1bgyg"]
+[gd_resource type="Resource" script_class="Character" load_steps=28 format=3 uid="uid://ccn8avhv1bgyg"]
 
 [ext_resource type="Script" path="res://custom_resource_types/character.gd" id="1_0sm6t"]
 [ext_resource type="Texture2D" uid="uid://b6vot6oxseqan" path="res://cards/card_background3.png" id="1_aup3a"]
@@ -25,6 +25,7 @@
 [ext_resource type="Resource" uid="uid://yqk3jb530a6s" path="res://cards/earth/18_mismatch_heal.tres" id="18_70alq"]
 [ext_resource type="Resource" uid="uid://ds3u17fxxg6xg" path="res://cards/earth/19_dmg_random.tres" id="19_e8mo4"]
 [ext_resource type="Resource" uid="uid://cj7ls58pxf0is" path="res://cards/earth/20_dmg_self_all_enemies.tres" id="20_su2u1"]
+[ext_resource type="AudioStream" uid="uid://b45pqs34ohr5m" path="res://sfx/earth_character.ogg" id="24_cgjpi"]
 [ext_resource type="Resource" uid="uid://c25y0hwn5kpqb" path="res://status_effects/earth_starting_trait_data.tres" id="25_dn1i6"]
 
 [resource]
@@ -34,6 +35,7 @@ icon = ExtResource("2_3va64")
 tooltip = "Leaf your mark on them."
 card_background = ExtResource("1_aup3a")
 color = Color(0.333333, 1, 0.333333, 1)
+select_sound = ExtResource("24_cgjpi")
 starting_hp = 5
 starting_deck = ExtResource("4_1fvn1")
 starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([ExtResource("25_dn1i6"), ExtResource("5_t20ym")])

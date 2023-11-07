@@ -16,6 +16,10 @@ enum Tier { TIER_0, TIER_1, TIER_2, TIER_3 }
 ## Tooltip shown when tapped on the card.
 @export var tooltips: Array[Tooltip]
 
+@export_category("Audio")
+@export var card_sound: AudioStream
+@export var pitch: float = 1.0
+
 @export_category("Other Data")
 ## A unique ID for the card, used for checking matches.
 @export var id: String

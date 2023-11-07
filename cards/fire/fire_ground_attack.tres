@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://c4ff86lh0h107"]
+[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://c4ff86lh0h107"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_l2c3t"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_4jkyl"]
 [ext_resource type="Texture2D" uid="uid://dj6okf305jccu" path="res://cards/damage_icon.png" id="2_gjvgj"]
+[ext_resource type="AudioStream" uid="uid://dnsnd3wakppfa" path="res://sfx/card_chime-02.ogg" id="3_1fkwq"]
 [ext_resource type="Resource" uid="uid://bhhdchrb6f4a" path="res://card_effects/fire/fire_ground_attack_effect.tres" id="3_blxeh"]
 [ext_resource type="Texture2D" uid="uid://ceqbepn26fadh" path="res://cards/card_target_ground.png" id="3_du05l"]
 [ext_resource type="Resource" uid="uid://sxnwhm87egrv" path="res://cards/card_tooltips/ground_target.tres" id="5_ibqc6"]
@@ -16,6 +17,8 @@ card_icon = ExtResource("2_gjvgj")
 card_text = "1"
 card_target_icon = ExtResource("3_du05l")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_ibqc6"), ExtResource("7_yykil")])
+card_sound = ExtResource("3_1fkwq")
+pitch = 0.975
 id = "fire_ground_attack"
 tier = 0
 effect = ExtResource("3_blxeh")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=29 format=3 uid="uid://qung2y8erng0"]
+[gd_resource type="Resource" script_class="Character" load_steps=30 format=3 uid="uid://qung2y8erng0"]
 
 [ext_resource type="Texture2D" uid="uid://bi3jwnpvsq3hi" path="res://cards/card_background2.png" id="1_ardei"]
 [ext_resource type="Script" path="res://custom_resource_types/character.gd" id="1_arh60"]
@@ -25,6 +25,7 @@
 [ext_resource type="Resource" uid="uid://csmyih1p2pqx3" path="res://cards/frost/shatter_ground.tres" id="20_vud2m"]
 [ext_resource type="Resource" uid="uid://daihtaigm18oj" path="res://cards/frost/shatter_lair.tres" id="21_6lir4"]
 [ext_resource type="Resource" uid="uid://dajn2a03t8eks" path="res://cards/frost/throw_ice_cream.tres" id="22_6syy7"]
+[ext_resource type="AudioStream" uid="uid://b6p0xig2lvqk2" path="res://sfx/ice_character.ogg" id="26_idq1o"]
 [ext_resource type="Resource" uid="uid://bb6n5klnvtd2m" path="res://characters/ice_character_starting_deck.tres" id="26_jegg3"]
 [ext_resource type="Resource" uid="uid://cu763ccxuvcsn" path="res://status_effects/ice_starting_trait_data.tres" id="27_im5xu"]
 [ext_resource type="Resource" uid="uid://di2bv4du2ikm0" path="res://status_effects/reveal_2_data.tres" id="28_uog31"]
@@ -36,6 +37,7 @@ icon = ExtResource("2_on7lf")
 tooltip = "Personality trait: cold as ice."
 card_background = ExtResource("1_ardei")
 color = Color(0.333333, 1, 1, 1)
+select_sound = ExtResource("26_idq1o")
 starting_hp = 3
 starting_deck = ExtResource("26_jegg3")
 starting_traits = Array[Resource("res://custom_resource_types/status_data.gd")]([ExtResource("27_im5xu"), ExtResource("28_uog31")])

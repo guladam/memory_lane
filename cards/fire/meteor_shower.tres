@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://feyktr560qrt"]
+[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://feyktr560qrt"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_saorv"]
 [ext_resource type="Texture2D" uid="uid://dldwr3ox5judg" path="res://cards/damage_if_ignited_icon.png" id="2_cb80o"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_shry0"]
 [ext_resource type="Texture2D" uid="uid://swplufen4rfw" path="res://cards/card_target_all_air.png" id="2_stpmt"]
 [ext_resource type="Resource" uid="uid://dwhey8cchts16" path="res://card_effects/fire/meteor_shower_effect.tres" id="3_o7ibv"]
+[ext_resource type="AudioStream" uid="uid://dstjmppcl518d" path="res://sfx/card_chime-06.ogg" id="3_x1s2f"]
 [ext_resource type="Resource" uid="uid://1wxjd5dtabv" path="res://cards/card_tooltips/all_air_target_tooltip.tres" id="5_r0on1"]
 [ext_resource type="Resource" uid="uid://xg0kbk8cho3b" path="res://cards/card_tooltips/damage_when_ignited_tooltip.tres" id="7_4utok"]
 
@@ -16,6 +17,8 @@ card_icon = ExtResource("2_cb80o")
 card_text = "1(2)"
 card_target_icon = ExtResource("2_stpmt")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_r0on1"), ExtResource("7_4utok")])
+card_sound = ExtResource("3_x1s2f")
+pitch = 1.0
 id = "meteor_shower"
 tier = 2
 effect = ExtResource("3_o7ibv")

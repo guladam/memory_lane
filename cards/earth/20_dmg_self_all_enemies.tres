@@ -16,6 +16,7 @@ card_icon = ExtResource("2_cufxq")
 card_text = "2"
 card_target_icon = ExtResource("3_p74cc")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_c0qu8"), ExtResource("7_e1uhs")])
+pitch = 1.0
 id = "dmg_self_all_enemies"
 tier = 3
 effect = ExtResource("4_p76iu")

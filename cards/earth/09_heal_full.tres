@@ -16,6 +16,7 @@ card_icon = ExtResource("2_cs8dl")
 card_text = "full"
 card_target_icon = ExtResource("3_iqpbw")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_ix35g"), ExtResource("7_jwcx0")])
+pitch = 1.0
 id = "heal_full"
 tier = 1
 effect = ExtResource("4_xw3og")

@@ -6,6 +6,9 @@ extends TextureRect
 ## skipped the reward.
 signal card_drafted(new_card: CardData)
 
+@export var show_sound: AudioStream
+@export var reroll_sound: AudioStream
+
 @onready var add: Button = %Add
 @onready var skip: Button = %Skip
 @onready var cards: HBoxContainer = %Cards
@@ -30,6 +33,7 @@ func _ready() -> void:
 	reroll.pressed.connect(_on_reroll_pressed)
 	deck_view_button.pressed.connect(_on_deck_view_button_pressed)
 	rerolls = StatTracker.rerolls
+	SfxPlayer.play(show_sound)
 	
 
 ## This method sets the screen up before showing it.
@@ -142,6 +146,7 @@ func _on_card_selected(selected_card: CardData, card_gui: Control) -> void:
 ## Called when the user rerolls their reward.
 func _on_reroll_pressed() -> void:
 	Events.card_rewards_rerolled.emit()
+	SfxPlayer.play(reroll_sound)
 	rerolls -= 1
 	_setup_rerolls()
 	

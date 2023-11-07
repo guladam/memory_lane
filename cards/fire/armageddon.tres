@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://cjm7pnluql8mv"]
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://cjm7pnluql8mv"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_c6bly"]
 [ext_resource type="Texture2D" uid="uid://6bb6jk7ncjhj" path="res://cards/card_target_everyone.png" id="2_lq4i2"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_rjbyf"]
 [ext_resource type="Texture2D" uid="uid://csru16ls5nnkq" path="res://cards/damage_ignite_icon.png" id="2_wwrqb"]
+[ext_resource type="AudioStream" uid="uid://dnsnd3wakppfa" path="res://sfx/card_chime-02.ogg" id="3_jei38"]
 [ext_resource type="Resource" uid="uid://bv6aswwrkvhsa" path="res://card_effects/fire/armageddon_effect.tres" id="4_vek4s"]
 [ext_resource type="Resource" uid="uid://bst4icu62uhax" path="res://cards/card_tooltips/everyone_target_tooltip.tres" id="6_kdg17"]
 [ext_resource type="Resource" uid="uid://c4eflis0r1j42" path="res://cards/card_tooltips/ignite_tooltip.tres" id="7_g0c33"]
@@ -17,6 +18,8 @@ card_icon = ExtResource("2_wwrqb")
 card_text = "1+1"
 card_target_icon = ExtResource("2_lq4i2")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_kdg17"), ExtResource("7_ox81v"), ExtResource("7_g0c33")])
+card_sound = ExtResource("3_jei38")
+pitch = 0.95
 id = "armageddon"
 tier = 2
 effect = ExtResource("4_vek4s")

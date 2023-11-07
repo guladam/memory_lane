@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bq6d8drq200c6"]
+[gd_scene load_steps=11 format=3 uid="uid://bq6d8drq200c6"]
 
 [ext_resource type="Script" path="res://screens/card_draft_screen.gd" id="1_06b6j"]
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_gj4vp"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bx028t1351pii" path="res://ui/ui_particles.tscn" id="3_snsev"]
 [ext_resource type="Texture2D" uid="uid://dpidrwgdl7ko1" path="res://ui/fire_emblem.png" id="3_w3srn"]
 [ext_resource type="PackedScene" uid="uid://cpvqx5wls726g" path="res://ui/tooltip_manager.tscn" id="4_gb4up"]
+[ext_resource type="AudioStream" uid="uid://bfyp02kyi2gv8" path="res://sfx/card_reward_screen_sound.ogg" id="4_qkwvy"]
 [ext_resource type="Texture2D" uid="uid://rl2b6ixw7r38" path="res://ui/dice_icon.png" id="4_yfi1o"]
+[ext_resource type="AudioStream" uid="uid://benamfw1ndf08" path="res://sfx/reroll.ogg" id="5_nclyc"]
 [ext_resource type="PackedScene" uid="uid://bn3pivcnfpu1x" path="res://ui/card_pile_panel.tscn" id="8_yxbmo"]
 
 [node name="CardDraftScreen" type="TextureRect"]
@@ -18,6 +20,8 @@ grow_vertical = 2
 theme = ExtResource("1_gj4vp")
 texture = ExtResource("2_u8glh")
 script = ExtResource("1_06b6j")
+show_sound = ExtResource("4_qkwvy")
+reroll_sound = ExtResource("5_nclyc")
 
 [node name="GreenParticles" parent="." instance=ExtResource("3_snsev")]
 

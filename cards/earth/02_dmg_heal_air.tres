@@ -16,6 +16,7 @@ card_icon = ExtResource("2_262as")
 card_text = "1+1"
 card_target_icon = ExtResource("3_k2g6p")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_d6g8o"), ExtResource("7_tqjgl")])
+pitch = 1.0
 id = "dmg_heal_air"
 tier = 1
 effect = ExtResource("4_ykiqq")

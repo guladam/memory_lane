@@ -8,6 +8,8 @@ signal main_menu_requested
 ## selected [Character].
 signal new_game_requested(character: Character)
 
+@export var default_sound: AudioStream
+
 @onready var play: Button = %Play
 @onready var back: Button = %Back
 @onready var pickable_characters: HBoxContainer = %PickableCharacters
@@ -25,9 +27,6 @@ func _ready() -> void:
 	for pc in pickable_characters.get_children():
 		pc.selected.connect(_on_pickable_character_selected)
 		pc.selected_locked_character.connect(_on_locked_character_selected)
-	
-	pickable_characters.get_child(0).select()
-	picked_character = pickable_characters.get_child(0).character
 
 
 ## Enables or disables both buttons.
@@ -35,6 +34,12 @@ func _ready() -> void:
 func set_buttons(enabled: bool) -> void:
 	play.disabled = not enabled
 	back.disabled = not enabled
+
+
+func initialize() -> void:
+	pickable_characters.get_child(0).select()
+	picked_character = pickable_characters.get_child(0).character
+	SfxPlayer.play(picked_character.select_sound, true)
 
 
 ## Fades out the icons with their shaders

@@ -13,6 +13,6 @@ func apply_effect() -> void:
 	
 	var enemy = effect.targets[0] as Enemy
 	var target_pos: Vector2 = enemy.global_position - Vector2(0, enemy.get_center_y_offset())
-	var bonus_dmg := 2 if enemy.status_effects.has_status(ignite_status) else 0
+	var bonus_dmg := 1 if enemy.status_effects.has_status(ignite_status) else 0
 	Events.player_damage_modifier_requested.emit(bonus_dmg, 1)
 	Events.projectile_spawn_requested.emit(target_pos, fire_bolt_projectile)

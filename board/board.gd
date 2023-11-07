@@ -5,6 +5,8 @@ extends Node2D
 
 ## [GameState] dependency.
 @export var game_state: GameState
+## Match sound effect.
+@export var match_sound: AudioStream
 ## This array is representing the current [Card]s.
 @onready var current_cards := []
 ## This array is tracking the currently flipped [Card](s).
@@ -86,7 +88,8 @@ func spawn_cards(new_cards: Array[CardData]) -> void:
 ## Discards the entire current board.
 func discard_board() -> void:
 	var last_card := _get_last_card_index()
-		
+	print("last cards' index:", last_card)
+	
 	# If the board is already empty, we can return
 	if last_card == -1:
 		return
@@ -106,6 +109,7 @@ func discard_board() -> void:
 				await card.animate_discard(discard_pile_pos)
 	
 	current_cards.fill(null)
+	print("discard board effect empty emit")
 	Events.board_emptied.emit()
 
 
@@ -194,7 +198,7 @@ func _is_board_empty() -> bool:
 ## Returns the index of the last [Card] on the board.
 func _get_last_card_index() -> int:
 	var last_card := current_cards.size() - 1
-	while not _is_space_occupied(last_card) and last_card > 0:
+	while last_card >= 0 and not _is_space_occupied(last_card):
 		last_card -= 1
 		
 	return last_card
@@ -246,20 +250,21 @@ func _get_random_pair() -> Dictionary:
 
 ## Called when there is a matched pair of [Card]s on the board.
 func _on_match() -> void:
+	SfxPlayer.play(match_sound)
 	flipped_cards[0].animate_match(flipped_cards[1].global_position, discard_pile_pos)
 	await flipped_cards[1].animate_match(flipped_cards[0].global_position, discard_pile_pos)
-	
 	current_cards[current_cards.find(flipped_cards[0])] = null
 	current_cards[current_cards.find(flipped_cards[1])] = null
+	
+	if _is_board_empty():
+		print("match board empty emit")
+		Events.board_emptied.emit()
 	
 	Events.effect_created.emit(flipped_cards[0].card.effect)
 	
 	flipped_cards[0].queue_free()
 	flipped_cards[1].queue_free()
 	flipped_cards.clear()
-	
-	if _is_board_empty():
-		Events.board_emptied.emit()
 
 
 ## Called when two different [Card]s are flipped over.
@@ -332,5 +337,5 @@ func _on_board_particle_requested(where: Vector2) -> void:
 	if particles.emitting:
 		return
 	
-	particles.position = where + Vector2(0, -50)
+	particles.global_position = where + Vector2(0, -50)
 	particles.emitting = true

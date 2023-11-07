@@ -16,6 +16,7 @@ card_icon = ExtResource("2_wmnb2")
 card_text = "3"
 card_target_icon = ExtResource("3_al0la")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_hctb8"), ExtResource("7_1s8v0")])
+pitch = 1.0
 id = "keeping_cool"
 tier = 2
 effect = ExtResource("4_u2hgl")

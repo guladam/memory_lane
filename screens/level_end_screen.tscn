@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dg16ixgfbx3tt"]
+[gd_scene load_steps=17 format=3 uid="uid://dg16ixgfbx3tt"]
 
 [ext_resource type="Theme" uid="uid://dptpxyk5ldmai" path="res://ui/main_theme.tres" id="1_rro6h"]
 [ext_resource type="Texture2D" uid="uid://cfoyabrersg16" path="res://screens/screen_gradient.tres" id="2_epoi1"]
@@ -7,7 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://8voqagr7qbll" path="res://ui/level_won_sound.ogg" id="3_sk0wu"]
 [ext_resource type="PackedScene" uid="uid://bx028t1351pii" path="res://ui/ui_particles.tscn" id="4_8h6pq"]
 [ext_resource type="PackedScene" uid="uid://dth1ehlyddit0" path="res://screens/end_screen_progress_bar.tscn" id="4_vhiue"]
+[ext_resource type="AudioStream" uid="uid://c82lschefsp2j" path="res://sfx/game_over.ogg" id="5_1hmxp"]
 [ext_resource type="Texture2D" uid="uid://bjickm1g0wltn" path="res://ui/star_particle.png" id="5_qo0j6"]
+[ext_resource type="AudioStream" uid="uid://oi4pl0illpbf" path="res://sfx/round_won_sound.ogg" id="6_3ec8w"]
 
 [sub_resource type="Curve" id="Curve_g3m07"]
 _data = [Vector2(0, 0.747368), 0.0, 0.0, 0, 0, Vector2(0.802676, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0126316), 0.0, 0.0, 0, 0]
@@ -132,6 +134,8 @@ theme = ExtResource("1_rro6h")
 texture = ExtResource("2_epoi1")
 script = ExtResource("2_pvuai")
 level_won_sound = ExtResource("3_sk0wu")
+game_over_sound = ExtResource("5_1hmxp")
+run_won_sound = ExtResource("6_3ec8w")
 
 [node name="DefaultParticles" parent="." instance=ExtResource("4_8h6pq")]
 
