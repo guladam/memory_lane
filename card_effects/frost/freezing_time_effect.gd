@@ -17,7 +17,7 @@ func apply_effect() -> void:
 	
 	var enemy: Enemy
 	var new_frost = frost_status.duplicate(true)
-	new_frost.duration = 3
+	new_frost.duration = 2
 	for i in range(1, effect.targets.size()):
 		enemy = effect.targets[i] as Enemy
 		if not enemy:

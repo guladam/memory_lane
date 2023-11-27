@@ -149,6 +149,11 @@ func ranged_attack(target: Vector2) -> void:
 	animations.play("idle")
 
 
+## Plays the sound associated with the weapon.
+func play_weapon_sound() -> void:
+	SfxPlayer.play(weapon.sound)
+
+
 ## Returns the current speed of the unit, in grids.
 func get_speed() -> float:
 	print("original movement: %s | w/ modifiers: %s" % [movement_speed, movement_speed*movement_modifiers.get_modifier()])

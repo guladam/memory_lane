@@ -36,6 +36,7 @@ alignment = 1
 
 [node name="Icon" type="TextureRect" parent="VBoxContainer"]
 unique_name_in_owner = true
+modulate = Color(1, 0.333333, 0.333333, 1)
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 texture = ExtResource("4_sca4f")
@@ -59,7 +60,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_6bg4o")
 theme_override_font_sizes/font_size = 18
-text = "1(2)"
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 

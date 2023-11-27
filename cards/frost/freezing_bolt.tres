@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://cl6cygwled2ov"]
+[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://cl6cygwled2ov"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_o8bjd"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_3yf2o"]
 [ext_resource type="Texture2D" uid="uid://dj6okf305jccu" path="res://cards/damage_icon.png" id="2_x2w2q"]
+[ext_resource type="AudioStream" uid="uid://jrqd4oqnfsv5" path="res://sfx/card_chime-01.ogg" id="3_47wgu"]
 [ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target_air.png" id="3_o7gxk"]
 [ext_resource type="Resource" uid="uid://d0sm3chavecfh" path="res://card_effects/frost/22_freezing_bolt_effect.tres" id="4_p26b5"]
 [ext_resource type="Resource" uid="uid://droioedx671hj" path="res://cards/card_tooltips/air_target.tres" id="6_eubd6"]
@@ -16,7 +17,8 @@ card_icon = ExtResource("2_x2w2q")
 card_text = "2"
 card_target_icon = ExtResource("3_o7gxk")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_eubd6"), ExtResource("7_l36nt")])
-pitch = 1.0
+card_sound = ExtResource("3_47wgu")
+pitch = 0.975
 id = "freezing_bolt"
 tier = 1
 effect = ExtResource("4_p26b5")

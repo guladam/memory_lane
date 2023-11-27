@@ -14,7 +14,6 @@ func apply_effect() -> void:
 	var current_frost: Status = enemy.status_effects.get_status(frost_status)
 	if current_frost:
 		enemy.take_damage(current_frost.duration)
-		enemy.status_effects.remove_status(frost_status)
 		var new_vfx := shatter_vfx.instantiate()
 		new_vfx.global_position = enemy.global_position
 		enemy.get_tree().root.add_child(new_vfx)

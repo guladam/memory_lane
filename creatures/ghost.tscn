@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bkhb7m0ni3iaa"]
+[gd_scene load_steps=17 format=3 uid="uid://bkhb7m0ni3iaa"]
 
 [ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_w5tc0"]
 [ext_resource type="Texture2D" uid="uid://bbl5qpujh8b48" path="res://creatures/ghost.png" id="2_ibdbq"]
 [ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="3_56wsk"]
+[ext_resource type="AudioStream" uid="uid://nwsn5qod6t8u" path="res://sfx/ghost_attack.ogg" id="4_kpf1k"]
 [ext_resource type="Texture2D" uid="uid://docmeca5o7vy" path="res://creatures/ghost_attack.png" id="4_law2b"]
 [ext_resource type="PackedScene" uid="uid://dnd6bc6alqa1i" path="res://creatures/hit_box.tscn" id="5_sudt7"]
 
@@ -112,6 +113,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(17, -18), Vector2(0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_weapon_sound"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ov3mi"]
@@ -230,6 +245,7 @@ offset_bottom = -51.0
 position = Vector2(-35, 1)
 animation_player = NodePath("AnimationPlayer")
 hit_box = NodePath("HitBox")
+sound = ExtResource("4_kpf1k")
 
 [node name="Sprite2D" type="Sprite2D" parent="GhostWeapon" index="0"]
 visible = false
@@ -241,7 +257,6 @@ texture = ExtResource("4_law2b")
 hframes = 6
 
 [node name="HitBox" parent="GhostWeapon" index="1" instance=ExtResource("5_sudt7")]
-base_damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GhostWeapon/HitBox" index="0"]
 shape = SubResource("RectangleShape2D_ab3f3")

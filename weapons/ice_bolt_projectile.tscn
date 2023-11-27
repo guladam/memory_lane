@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddr71mxkxon0y"]
+[gd_scene load_steps=10 format=3 uid="uid://ddr71mxkxon0y"]
 
 [ext_resource type="PackedScene" uid="uid://4ja8uwrqk6sv" path="res://weapons/projectile.tscn" id="1_r0wdc"]
 [ext_resource type="PackedScene" uid="uid://rgx3p34k0swb" path="res://weapons/frost_vfx.tscn" id="2_a1wj8"]
+[ext_resource type="AudioStream" uid="uid://bu2p42jy327l4" path="res://sfx/frost_bolt.ogg" id="3_gtutf"]
 [ext_resource type="Texture2D" uid="uid://bd2brpvcmfkeg" path="res://weapons/basic_attack.png" id="4_22g73"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fv3nr"]
@@ -91,6 +92,7 @@ _data = {
 [node name="IceBoltProjectile" instance=ExtResource("1_r0wdc")]
 speed = 350
 impact_vfx = ExtResource("2_a1wj8")
+sound = ExtResource("3_gtutf")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(2, 2)

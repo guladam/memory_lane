@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://conwrjrlna0xt"]
+[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://conwrjrlna0xt"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_o8fft"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_e3wbc"]
 [ext_resource type="Texture2D" uid="uid://baamidx18tbm1" path="res://status_effects/ice_icon.png" id="2_sgpp7"]
 [ext_resource type="Texture2D" uid="uid://df6disissfv12" path="res://cards/card_target_air.png" id="3_lvn0i"]
+[ext_resource type="AudioStream" uid="uid://dstjmppcl518d" path="res://sfx/card_chime-06.ogg" id="3_mx7pc"]
 [ext_resource type="Resource" uid="uid://2j7im16u6ito" path="res://card_effects/frost/01_icicle_effect.tres" id="4_hxetj"]
 [ext_resource type="Resource" uid="uid://droioedx671hj" path="res://cards/card_tooltips/air_target.tres" id="5_ogmgp"]
 [ext_resource type="Resource" uid="uid://dahfrnsbkk6jd" path="res://cards/card_tooltips/frost_tooltip.tres" id="7_fkvfk"]
@@ -13,9 +14,11 @@ script = ExtResource("2_e3wbc")
 card_back = ExtResource("1_o8fft")
 card_color = Color(1, 1, 1, 1)
 card_icon = ExtResource("2_sgpp7")
-card_text = "1"
+card_text = "2"
 card_target_icon = ExtResource("3_lvn0i")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_ogmgp"), ExtResource("7_fkvfk")])
+card_sound = ExtResource("3_mx7pc")
+pitch = 1.0
 id = "icicle"
 tier = 1
 effect = ExtResource("4_hxetj")

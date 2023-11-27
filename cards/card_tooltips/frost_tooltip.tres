@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_nwynr")
 icon = ExtResource("1_m60dr")
-text = "Frost: -10% movement /stack."
+text = "Frost: -10% movement /stack.\\nAt 3 or more stacks, consume to deal\\n that much dmg."

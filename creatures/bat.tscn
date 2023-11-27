@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://q0uouhv20f7t"]
+[gd_scene load_steps=17 format=3 uid="uid://q0uouhv20f7t"]
 
 [ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_5eye3"]
 [ext_resource type="Texture2D" uid="uid://c7uow1iiga5kg" path="res://creatures/bat.png" id="2_7ppbr"]
 [ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="3_wsenm"]
+[ext_resource type="AudioStream" uid="uid://culmtdqkm5khd" path="res://sfx/bat_attack.ogg" id="4_0imv4"]
 [ext_resource type="Texture2D" uid="uid://c87mnw5wm6ftd" path="res://creatures/bat_attack.png" id="4_057bl"]
 [ext_resource type="PackedScene" uid="uid://dnd6bc6alqa1i" path="res://creatures/hit_box.tscn" id="4_b3jo0"]
 
@@ -87,6 +88,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_weapon_sound"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ov3mi"]
@@ -202,6 +217,7 @@ shape = SubResource("RectangleShape2D_yorad")
 position = Vector2(-35, 1)
 animation_player = NodePath("AnimationPlayer")
 hit_box = NodePath("HitBox")
+sound = ExtResource("4_0imv4")
 
 [node name="Sprite2D" type="Sprite2D" parent="BatAttackWeapon" index="0"]
 visible = false

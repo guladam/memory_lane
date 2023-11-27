@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://qowj712swg83"]
+[gd_scene load_steps=14 format=3 uid="uid://qowj712swg83"]
 
 [ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_r3hir"]
 [ext_resource type="Texture2D" uid="uid://c20ty8hemjsad" path="res://creatures/goblin.png" id="2_surfh"]
 [ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="3_v1c4n"]
 [ext_resource type="PackedScene" uid="uid://dnd6bc6alqa1i" path="res://creatures/hit_box.tscn" id="4_5t275"]
+[ext_resource type="AudioStream" uid="uid://bu7tqq4vmc4uc" path="res://sfx/goblin_attack.ogg" id="4_6wjnv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt7gj"]
 size = Vector2(40, 40)
@@ -107,6 +108,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_weapon_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_3n3hk"]
 resource_name = "walk"
@@ -171,6 +186,7 @@ libraries = {
 position = Vector2(-29, -29)
 animation_player = NodePath("../CustomAnimations")
 hit_box = NodePath("HitBox")
+sound = ExtResource("4_6wjnv")
 
 [node name="HitBox" parent="MeleeWeapon" index="0" instance=ExtResource("4_5t275")]
 

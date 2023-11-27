@@ -18,6 +18,8 @@ func _ready() -> void:
 	
 	for c in cards:
 		c.setup(card_fronts.pick_random(), characters.pick_random())
+		c.match_sound.stream = null
+		c.match_sound.volume_db = -80
 		c.back.texture = empty_bg
 	
 	timer.wait_time = randf_range(3.0, 6.0)

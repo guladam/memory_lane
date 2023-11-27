@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtqfq3v1htfx6"]
+[gd_scene load_steps=7 format=3 uid="uid://dtqfq3v1htfx6"]
 
 [ext_resource type="Texture2D" uid="uid://bu3ug0ikcugcf" path="res://weapons/dmg_self_vfx.png" id="1_qxiun"]
+[ext_resource type="Script" path="res://weapons/vfx.gd" id="2_at2l7"]
+[ext_resource type="AudioStream" uid="uid://chs6jayhmisid" path="res://sfx/dmg_self_sfx.ogg" id="3_si4h0"]
 
 [sub_resource type="Animation" id="Animation_470s5"]
 length = 0.001
@@ -83,6 +85,8 @@ texture = ExtResource("1_qxiun")
 offset = Vector2(0, -8)
 hframes = 3
 vframes = 2
+script = ExtResource("2_at2l7")
+sound = ExtResource("3_si4h0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "animate"

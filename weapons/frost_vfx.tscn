@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://rgx3p34k0swb"]
+[gd_scene load_steps=7 format=3 uid="uid://rgx3p34k0swb"]
 
 [ext_resource type="Texture2D" uid="uid://dhxjyv4i12j6n" path="res://weapons/frost_vfx.png" id="1_3w3p2"]
+[ext_resource type="Script" path="res://weapons/vfx.gd" id="2_jkgwc"]
+[ext_resource type="AudioStream" uid="uid://c5guiabsblb4n" path="res://sfx/frost_sfx.ogg" id="3_8lh0v"]
 
 [sub_resource type="Animation" id="Animation_470s5"]
 length = 0.001
@@ -83,6 +85,8 @@ texture = ExtResource("1_3w3p2")
 offset = Vector2(0, -5.5)
 hframes = 3
 vframes = 2
+script = ExtResource("2_jkgwc")
+sound = ExtResource("3_8lh0v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "animate"

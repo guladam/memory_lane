@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhsy2836q0ma"]
+[gd_scene load_steps=7 format=3 uid="uid://dhsy2836q0ma"]
 
 [ext_resource type="Texture2D" uid="uid://16fxxt05f4xi" path="res://weapons/shatter_vfx.png" id="1_ulhar"]
+[ext_resource type="Script" path="res://weapons/vfx.gd" id="2_cye6d"]
+[ext_resource type="AudioStream" uid="uid://wbfng04x2xkp" path="res://sfx/shatter_sfx.ogg" id="3_1ga70"]
 
 [sub_resource type="Animation" id="Animation_470s5"]
 length = 0.001
@@ -83,6 +85,8 @@ texture = ExtResource("1_ulhar")
 offset = Vector2(0, -8)
 hframes = 3
 vframes = 2
+script = ExtResource("2_cye6d")
+sound = ExtResource("3_1ga70")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "animate"

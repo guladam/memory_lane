@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("1_xoit0")
 icon = ExtResource("1_27827")
-text = "Shatter: Consume all Frost stacks\\nand deal that much dmg."
+text = "Shatter: Deal dmg equal to current Frost stacks."

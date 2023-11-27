@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cph6guvqbvj16"]
+[gd_scene load_steps=16 format=3 uid="uid://cph6guvqbvj16"]
 
 [ext_resource type="PackedScene" uid="uid://bkp8vqgjvv1ni" path="res://creatures/enemy.tscn" id="1_3ciwm"]
 [ext_resource type="Texture2D" uid="uid://dk4jwusr17wl0" path="res://creatures/shroom.png" id="2_clqyf"]
 [ext_resource type="PackedScene" uid="uid://d4k3qws740poq" path="res://weapons/melee_weapon.tscn" id="3_cvsya"]
 [ext_resource type="PackedScene" uid="uid://dnd6bc6alqa1i" path="res://creatures/hit_box.tscn" id="4_is85e"]
+[ext_resource type="AudioStream" uid="uid://ynl24omtklma" path="res://sfx/shroom_poison.ogg" id="4_qrnst"]
 [ext_resource type="PackedScene" uid="uid://cv6f0j7etnach" path="res://weapons/vfx_spawner.tscn" id="5_ye2q3"]
 [ext_resource type="PackedScene" uid="uid://cnjsowibordwu" path="res://weapons/shroom_puff_vfx.tscn" id="6_a1tqn"]
 
@@ -130,9 +131,12 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_weapon_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_3n3hk"]
@@ -199,6 +203,7 @@ position = Vector2(-29, -29)
 animation_player = NodePath("../CustomAnimations")
 hit_box = NodePath("HitBox")
 self_damage = 2
+sound = ExtResource("4_qrnst")
 
 [node name="HitBox" parent="MeleeWeapon" index="0" instance=ExtResource("4_is85e")]
 base_damage = 2

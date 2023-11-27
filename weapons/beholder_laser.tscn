@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://biwkknk3wt54p"]
+[gd_scene load_steps=8 format=3 uid="uid://biwkknk3wt54p"]
 
 [ext_resource type="PackedScene" uid="uid://4ja8uwrqk6sv" path="res://weapons/projectile.tscn" id="1_j6exr"]
 [ext_resource type="Texture2D" uid="uid://1myil2dl7nig" path="res://creatures/beholder_attack.png" id="2_bnv04"]
+[ext_resource type="AudioStream" uid="uid://ccsh6fi20ayrc" path="res://sfx/beholder_sfx.ogg" id="2_ftngo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbdgo"]
 size = Vector2(56, 18)
@@ -44,6 +45,7 @@ _data = {
 }
 
 [node name="BeholderLaser" instance=ExtResource("1_j6exr")]
+sound = ExtResource("2_ftngo")
 
 [node name="Sprite2D" parent="." index="0"]
 rotation = -2.35619

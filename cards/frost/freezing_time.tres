@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3 uid="uid://dx8vpedn0o233"]
+[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://dx8vpedn0o233"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_s1hri"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_amvx0"]
 [ext_resource type="Texture2D" uid="uid://cnj4neuddrdh1" path="res://cards/freeze_skip_icon.png" id="2_k4w3d"]
+[ext_resource type="AudioStream" uid="uid://buc034pjamhlf" path="res://sfx/card_chime-05.ogg" id="3_fa2q0"]
 [ext_resource type="Texture2D" uid="uid://bxbdjixa3bcnr" path="res://cards/card_target_all_enemies.png" id="3_h14m0"]
 [ext_resource type="Resource" uid="uid://b7jjld8kt12jl" path="res://card_effects/frost/19_freezing_time_effect.tres" id="4_cfwvd"]
 [ext_resource type="Resource" uid="uid://pfddo38bo3yv" path="res://cards/card_tooltips/all_target.tres" id="5_xcs6s"]
@@ -13,10 +14,11 @@ script = ExtResource("2_amvx0")
 card_back = ExtResource("1_s1hri")
 card_color = Color(1, 1, 1, 1)
 card_icon = ExtResource("2_k4w3d")
-card_text = "3"
+card_text = "2"
 card_target_icon = ExtResource("3_h14m0")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("5_xcs6s"), ExtResource("7_6rr1s")])
-pitch = 1.0
+card_sound = ExtResource("3_fa2q0")
+pitch = 0.975
 id = "freezing_time"
 tier = 2
 effect = ExtResource("4_cfwvd")

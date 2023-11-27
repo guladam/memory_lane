@@ -1,5 +1,5 @@
 ## A status effect which ignites the receiving unit,
-## applying 1 damage per turn.
+## applying -10% movementspeed per stack.
 extends Status
 
 var frost_owner: Enemy
@@ -12,10 +12,17 @@ func apply_status(target: Node) -> void:
 		return
 	
 	frost_owner = enemy
-	enemy.movement_modifiers.clear_modifiers()
-	enemy.movement_modifiers.new_modifier(-0.1 * duration)
-	status_applied.emit()
-	super.apply_status(target)
+	
+	if duration >= 3:
+		enemy.take_damage(duration)
+		status_applied.emit()
+		super.apply_status(target)
+		remove()
+	else:
+		enemy.movement_modifiers.clear_modifiers()
+		enemy.movement_modifiers.new_modifier(-0.1 * duration)
+		status_applied.emit()
+		super.apply_status(target)
 
 
 func remove() -> void:

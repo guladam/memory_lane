@@ -8,6 +8,7 @@
 script = ExtResource("1_clu2u")
 status_id = "fuel"
 duration = -1
-icon = 5
+temporary_duration = true
+icon = 6
 tooltip = ExtResource("3_aja3m")
 code = ExtResource("1_2lwix")

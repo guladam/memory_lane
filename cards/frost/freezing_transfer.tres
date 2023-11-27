@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=9 format=3 uid="uid://b8c76or80sk14"]
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://b8c76or80sk14"]
 
 [ext_resource type="Texture2D" uid="uid://b6djokc0byhmo" path="res://cards/card_back.png" id="1_t8r4j"]
 [ext_resource type="Resource" uid="uid://d3u6lbnmgl87h" path="res://card_effects/frost/16_freezing_transfer_effect.tres" id="2_2dlsh"]
 [ext_resource type="Texture2D" uid="uid://bw7cbkhe1b4uo" path="res://cards/shatter_transfer_icon.png" id="2_rwh23"]
 [ext_resource type="Script" path="res://custom_resource_types/card.gd" id="2_wjdsw"]
+[ext_resource type="AudioStream" uid="uid://dstjmppcl518d" path="res://sfx/card_chime-06.ogg" id="3_8pfx4"]
 [ext_resource type="Texture2D" uid="uid://ceqbepn26fadh" path="res://cards/card_target_ground.png" id="3_75j07"]
 [ext_resource type="Resource" uid="uid://sxnwhm87egrv" path="res://cards/card_tooltips/ground_target.tres" id="6_13h3h"]
 [ext_resource type="Resource" uid="uid://wxi710cg8h84" path="res://cards/card_tooltips/shatter_transfer_tooltip.tres" id="7_0oue7"]
@@ -17,7 +18,8 @@ card_icon = ExtResource("2_rwh23")
 card_text = ""
 card_target_icon = ExtResource("3_75j07")
 tooltips = Array[Resource("res://custom_resource_types/tooltip.gd")]([ExtResource("6_13h3h"), ExtResource("7_0oue7"), ExtResource("8_dfg5b")])
-pitch = 1.0
+card_sound = ExtResource("3_8pfx4")
+pitch = 0.975
 id = "freezing_transfer"
 tier = 3
 effect = ExtResource("2_2dlsh")

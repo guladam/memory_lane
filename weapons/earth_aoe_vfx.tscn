@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cruoprxoirr1c"]
+[gd_scene load_steps=7 format=3 uid="uid://cruoprxoirr1c"]
 
 [ext_resource type="Texture2D" uid="uid://cdb0mrujvu5uq" path="res://weapons/earth_aoe_vfx.png" id="1_due6q"]
+[ext_resource type="Script" path="res://weapons/vfx.gd" id="2_rj13d"]
+[ext_resource type="AudioStream" uid="uid://bpfuk2r7nnolw" path="res://sfx/earth_aoe_sfx.ogg" id="3_wua2e"]
 
 [sub_resource type="Animation" id="Animation_470s5"]
 length = 0.001
@@ -82,6 +84,8 @@ texture = ExtResource("1_due6q")
 offset = Vector2(0, -8)
 hframes = 3
 vframes = 3
+script = ExtResource("2_rj13d")
+sound = ExtResource("3_wua2e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "animate"

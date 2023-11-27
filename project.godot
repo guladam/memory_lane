@@ -13,7 +13,9 @@ config_version=5
 config/name="Memory Lane"
 run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://splatter.png"
+config/icon="res://app_icon.png"
 
 [autoload]
 
@@ -26,9 +28,16 @@ SfxPlayer="*res://global/sfx_player.tscn"
 
 window/size/viewport_width=540
 window/size/viewport_height=960
+window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=1
+
+[editor]
+
+movie_writer/mjpeg_quality=0.9
+movie_writer/movie_file="D:/videok/memory_lane_11_22/memory_lane_phone_footage.avi"
+movie_writer/fps=30
 
 [editor_plugins]
 

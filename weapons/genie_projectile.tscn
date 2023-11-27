@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b2banxfna01je"]
 
 [ext_resource type="PackedScene" uid="uid://4ja8uwrqk6sv" path="res://weapons/projectile.tscn" id="1_vnqyh"]
-[ext_resource type="AudioStream" uid="uid://cvd3bu8hjyjne" path="res://weapons/medusa_projectile_sfx.ogg" id="2_cavkg"]
+[ext_resource type="AudioStream" uid="uid://djpg8txhncj5h" path="res://sfx/genie_attack.ogg" id="2_bxqlc"]
 [ext_resource type="Texture2D" uid="uid://dtj33dphdr8lw" path="res://creatures/genie_attack.png" id="3_iixrv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bycpb"]
@@ -89,7 +89,7 @@ _data = {
 
 [node name="GenieProjectile" instance=ExtResource("1_vnqyh")]
 speed = 350
-sound = ExtResource("2_cavkg")
+sound = ExtResource("2_bxqlc")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(2, 2)
